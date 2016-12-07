@@ -214,6 +214,7 @@ color: #fff;
 
 .main-section{
 	padding:90px 0 110px;
+	background: #fdfdfd;
 }
 
 
@@ -241,7 +242,7 @@ color: #fff;
 	overflow:hidden;	
 }
 .main-section.alabaster{
-	background:#fafafa;
+	background:#f7f7f7;
 }
 
 /* Featured Work
@@ -513,7 +514,7 @@ border: 2px solid #fff;
 	width:auto;
 	height:auto;
 	position:relative;
-	border-radius:50%;
+	border-radius:80%;
 	box-shadow:0px 0px 0px 7px rgba(241,241,241,0.80);
 	margin:7px 7px 25px 7px;
 	
@@ -867,4 +868,11 @@ border: 2px solid #fff;
 .delay-12s { 
 	animation-delay: 1.2s; 
 	-webkit-animation-delay: 1.2s; 
+}
+
+.no-padding {
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
 }
