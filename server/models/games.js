@@ -19,12 +19,6 @@ var Player = new Schema({
   energy: Number,
 });
 
-/*var Team = new Schema({
-  _id: Schema.Types.ObjectId,
-  players: [Player],
-  points: Number
-});*/
-
 var GameState = new Schema({
   _id: Schema.Types.ObjectId,
   teamA: {
@@ -46,16 +40,5 @@ var GameSchema = new Schema({
   timeGame : Number,
   gameState: [GameState]
 });
-
-/*var GamesSchema = new Schema({
-  _id: Schema.Types.ObjectId,
-  listOfGames: [
-    {_id: Schema.Types.ObjectId,
-    name_of_room: String,
-    location: String,
-    timeGame : Number,
-    gameState: [GameState]}
-  ],
-})*/
 
 module.exports = mongoose.model('Game', GameSchema);
