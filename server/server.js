@@ -3,12 +3,24 @@
 // BASE SETUP
 // =============================================================================
 
-// call the packages we need
+// set up =========================
 var express    = require('express');        // call express
 var app        = express();                 // define our app using express
-var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
+var morgan     = require('morgan')
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+
+
+//configuration =====================
 mongoose.connect('mongodb://localhost:27017/database'); // connect to our database
+
+app.use(express.static(__dirname + '/public'));                 // set the static files location /public/img will be /img for users
+app.use(morgan('dev'));                                         // log every request to the console
+app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
+app.use(bodyParser.json());                                     // parse application/json
+app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
+app.use(methodOverride());
 
 
 var Game = require('./models/games');
@@ -40,47 +52,41 @@ router.use(function(req, res, next) {
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
-app.use('/', router);
+//app.use('/', router);
 
-// ----------------------------------------------------
-router.route('/games')
-
-.get(function(req, res) {
+// routes ======================================================================
+// api -----------------
+// get all games
+app.get('/games', function(req, res){
     Game.find(function(err, games) {
         if (err)
             return res.send(err);
         res.json(games);
     });
-}) 
-// create a News_Parsed (accessed at POST http://localhost:8080/api/news_parsed)
-
-.post(function(req, res) {
-
-    var game = new Game(); // create a new instance of the Game model
-    //console.log(req.body.name_of_room);
-    //console.log(req.body.location);
-
-    game._id = new mongoose.Types.ObjectId(req.body._id);
-    game.name_of_room = req.body.name_of_room;
-    game.location = req.body.location;
-    game.timeGame = req.body.timeGame;
-    game.gameState = req.body.gameState;
-
-    // save the news_parsed and check for errors
-    game.save(function(err) {
-        if (err)
-            return res.send(err);
-
-        res.json({ _id: game._id });
-        //return game._id;
-    });
-
 });
 
-router.route('/games/:game_id')
+app.post('/games',function(req, res) {
 
-// get the article with that id (accessed at GET http://localhost:8080/api/news_parsed/:news_parsed_id)
-.get(function(req, res) {
+    Game.create({
+     _id: new mongoose.Types.ObjectId(req.body._id),
+      name_of_room: req.body.name_of_room,
+      location: req.body.location,
+      timeGame :  req.body.timeGame,
+      gameState: req.body.gameState
+    }, function(err, games){
+        if (err)
+            res.send(err);
+        
+        Games.find(function(err, games) {
+            if (err)
+                res.send(err)
+            res.json(games);
+        });
+    });
+});
+
+
+app.get('/games/:game_id',function(req, res){
     Game.findById(req.params.game_id, function(err, game) {
         if (err)
             return res.send(err);
@@ -88,40 +94,35 @@ router.route('/games/:game_id')
     });
 });
 
-router.route('/games/:game_id/gamestate')
-
-// get the article with that id (accessed at GET http://localhost:8080/api/news_parsed/:news_parsed_id)
-.get(function(req, res) {
+app.get('/games/:game_id/gamestate',function(req, res){
     Game.findById(req.params.game_id, function(err, game) {
         if (err)
             return res.send(err);
         res.json(game.gameState);
     });
-})
+});
 
-// update the news_parsed with this id (accessed at PUT http://localhost:8080/api/news_parsed/:news_parsed_id)
-.post(function(req, res) {
-
+app.post('/games/:game_id/gamestate',function(req, res){
     Game.findById(req.params.game_id, function(err, game) {
-
         if (err)
             return res.send(err);
-
         game.gameState.push(req.body);
-        
-        // save the article
+
         game.save(function(err) {
             if (err)
                 return res.send(err);
 
             res.json({ message: 'Game updated!' });
         });
-
     });
 });
 
+// application -------------------------------------------------------------
+app.get('*', function(req, res) {
+    res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
-console.log('Magic happens on port ' + port);
+app.listen(8082);
+console.log('App listening on port ' + port);
