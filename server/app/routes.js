@@ -4,6 +4,7 @@ var Games = require('./models/game');
 var mongoose   = require('mongoose'); // mongoose for mongodb
 var express    = require('express');        // call express
 var app        = express(); // define our app using express
+mongoose.Promise = global.Promise;
 
 // expose the routes to our app
 module.exports = function(app){
@@ -25,7 +26,22 @@ module.exports = function(app){
 	// create a game to send back all games after creation
 	app.post('/games',function(req, res) {
 
-	    Games.create({
+	    var game = new Games(); // create a new instance of the Rss model
+	    game._id = new mongoose.Types.ObjectId(req.body._id);
+	    game.name_of_room = req.body.name_of_room;
+	    game.location = req.body.location;
+	    game.timeGame = req.body.timeGame;
+	    game.gameState = req.body.gameState;
+	    
+	     // save the rss and check for errors
+	    game.save(function(err) {
+	        if (err)
+	            return res.send(err);
+
+	        res.json({_id: game._id });
+	    });
+
+	    /*Games.create({
 	     _id: new mongoose.Types.ObjectId(req.body._id),
 	      name_of_room: req.body.name_of_room,
 	      location: req.body.location,
@@ -34,14 +50,15 @@ module.exports = function(app){
 	    }, function(err, games){
 	        if (err)
 	            res.send(err);
-	        res.json({_id : '_id'});
+	        res.json({id : "_id"});
+	        //console.log("_id");
 	        /*Games.find(function(err, games) {
 	            if (err)
 	                res.send(err)
 	            res.json(games);
 	        });*/
 	    });
-	});
+	//});
 
 	// get a game with selected id
 	app.get('/games/:game_id',function(req, res){
@@ -79,6 +96,9 @@ module.exports = function(app){
 
 	// application -------------------------------------------------------------
 	app.get('*', function(req, res) {
-	    res.sendFile('/Users/rafaeloliveira/Documents/repos/dominium-website/server/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+	    //res.sendFile('../public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+	    //res.sendFile('/Users/rafaeloliveira/Documents/repos/dominium-website/server/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+
+		res.sendFile(path.join(__dirname, '../public', 'index.html'));
 	});
 }
