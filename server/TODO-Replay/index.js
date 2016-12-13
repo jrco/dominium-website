@@ -279,9 +279,10 @@ function createAuxData(markers, nextGamestate) {
     return dataAux;
 }
 
-function updateGameState(game) {
+function processGameStates(game) {
     console.log("Executing "+currentGameState);
     if(game.gamestates.length <= currentGameState){
+        //playGame(game);//loop game
         return;
     }
 
@@ -289,7 +290,7 @@ function updateGameState(game) {
 
     if (currentGameState === 1) {//first gamestate - no movement, just add markers
         initializeGame(gamestate);
-        updateGameState(game,currentGameState);
+        processGameStates(game);
         return;
     }
 
@@ -299,12 +300,16 @@ function updateGameState(game) {
     });
 
     var dataAux = createAuxData(markerList, gamestate);
-    moveIteration(gamestate, dataAux, 1);
+    setTimeout(
+        function () {
+            moveIteration(gamestate, dataAux, 1);
+        }, timeStep
+    );
 }
 
 function moveIteration(gamestate, dataAux, iteration) {
     if (iteration == totalDraws){
-        updateGameState(game,currentGameState);
+        processGameStates(game);
         return;
     }
 
@@ -418,5 +423,5 @@ function playGame(game) {
     currentGameState = 0;
     clearMarkers();
 
-    updateGameState(game);
+    processGameStates(game);
 }
