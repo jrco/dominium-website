@@ -1,2 +1,45 @@
-<h1>{{ $ctrl.game.name_of_room }}</h1>
-<h2>{{ $ctrl.game.location }}</h2>
+<table class="final_score" style="width:100%">
+	<tr>
+		<td align="center"><h3>Team A</h3></td>
+		<td align="center"><h3>{{$ctrl.game.gameState[0].teamA.points}}</h3></td>
+		<td align="center"><h3>Team B</h3></td>
+		<td align="center"><h3>{{$ctrl.game.gameState[0].teamB.points}}</h3></td>
+	</tr>
+</table>§
+Team A:
+{{$ctrl.game.gameState[0].teamA.players.length}} players 
+
+<table>
+	<tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
+		<td>{{player.username}}</td>
+		<td>{{player.role}}</td>
+	</tr>
+</table>
+
+Team B:
+{{$ctrl.game.gameState[0].teamB.players.length}} players 
+<ul>
+	<li ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
+		<div>
+			<p>{{player.username}}</p>
+			<p>{{player.role}}</p>
+		</div>
+	</li>
+</ul>
+
+Capture Points:
+<ul>
+	<li ng-repeat= "cp in $ctrl.game.gameState[0].capturePoints">
+		<div>
+			<p>{{cp.name}}</p>
+			<p>{{cp.lat}}</p>
+			<p>{{cp.long}}</p>
+		</div>
+	</li>
+</ul>
+
+Game Replay:
+<div></div>
+
+Final Result:
+<div></div>

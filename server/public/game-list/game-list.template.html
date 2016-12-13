@@ -19,14 +19,22 @@
     <div class="col-md-10">
       <!--Body content-->
 
-      <ul class="games">
-        <li ng-repeat="game in $ctrl.games | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail game-list-item">>
-        <a href="#!/games/{{game._id}}" class="thumb">{{game.name_of_room}}</a>
-        <!--p>{{game.name_of_room}}</p-->
-        <span>{{game.location}}</span>
-          
-        </li>
-      </ul>
+		<ul>
+	        <li ng-repeat="game in $ctrl.games | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail game-list-item">
+		        <div class="game_div">
+		        	<p>Room: {{game.name_of_room}}</p>
+		        	<p>Team A:{{game.gameState[0].teamA.points}}</p>
+		        	<p>Team B:{{game.gameState[0].teamB.points}}</p>
+		        	<p>Location: {{game.location}} </p>
+		        	<p>Time of game: {{game.timeGame}}</p>
+			        <!--p>{{game.name_of_room}}</p-->
+			        <span></span>
+			        <p align="right"><a href="#!/games/{{game._id}}" class="thumb">See full stats >></a></p>
+		        </div>
+	        </li>
+      	</ul>
+	</div>
+      
 
     </div>
   </div>
