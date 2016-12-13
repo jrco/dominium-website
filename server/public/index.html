@@ -1,53 +1,36 @@
-<!-- index.html -->
 <!doctype html>
-
-<!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="dominium">
-<head>
-    <!-- META -->
+<html lang="en" ng-app="Dominium">
+  <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
-
     <title>Dominium Stats</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="app.css" />
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="app.module.js"></script>
+    <script src="app.config.js"></script>
 
-    <!-- SCROLLS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-    <style>
-        html                    { overflow-y:scroll; }
-        body                    { padding-top:50px; }
-        #todo-list              { margin-bottom:30px; }
-    </style>
+    <script src="game-list/game-list.module.js"></script>
+    <script src="game-list/game-list.component.js"></script>
+    <script src="game-detail/game-detail.module.js"></script>
+    <script src="game-detail/game-detail.component.js"></script>
+    
+    <script rel="stylesheet" src="app.animations.js"></script>
 
-    <!-- SPELLS -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script><!-- load angular -->
-    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
-    <script src="js/services/games.js"></script> <!-- load our todo service -->
-    <script src="js/core.js"></script> <!-- load our main application -->
+  </head>
+  <body>
 
+    <!-- Use a custom component to render a list of phones -->
+    <!--game-list></game-list-->
+    <!--div ng-view></div-->
 
-</head>
-<!-- SET THE CONTROLLER AND GET ALL TODOS -->
-<body ng-controller="mainController">
-    <div class="container">
-
-        <!-- HEADER AND TODO COUNT -->
-        <div class="jumbotron text-center">
-            <h1>Dominium Games <span class="label label-info">{{ games.length }}</span></h1>
-        </div>
-
-        <!-- TODO LIST -->
-        <div id="todo-list" class="row">
-            <div class="col-sm-4 col-sm-offset-4">
-                <div class="checkbox" ng-repeat="game in games">
-                    {{ game }}
-                    
-                </div>
-
-            </div>
-        </div>
-
+    <div class="view-container">
+      <div ng-view class="view-frame"></div>
     </div>
 
-</body>
+
+
+  </body>
 </html>

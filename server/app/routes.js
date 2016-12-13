@@ -5,6 +5,7 @@ var mongoose   = require('mongoose'); // mongoose for mongodb
 var express    = require('express');        // call express
 var app        = express(); // define our app using express
 mongoose.Promise = global.Promise;
+var path = require("path");
 
 // expose the routes to our app
 module.exports = function(app){
@@ -20,6 +21,8 @@ module.exports = function(app){
 	        if (err)
 	            return res.send(err);
 	        res.json(games);
+	        //path = "";
+	        //res.sendFile(path.join(__dirname, '../public', 'all_games.html'));
 	    });
 	});
 
@@ -95,10 +98,11 @@ module.exports = function(app){
 	});
 
 	// application -------------------------------------------------------------
-	app.get('*', function(req, res) {
+	/*app.get('*', function(req, res) {
 	    //res.sendFile('../public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 	    //res.sendFile('/Users/rafaeloliveira/Documents/repos/dominium-website/server/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 
-		res.sendFile(path.join(__dirname, '../public', 'index.html'));
-	});
+		res.sendFile(path.join(__dirname, '../public', 'all_games.html'));
+	});*/
+
 }
