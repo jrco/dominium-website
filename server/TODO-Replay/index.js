@@ -227,7 +227,7 @@ var game = {
 var gameStateDuration = 1000;
 var totalDraws = 100;
 var timeStep = gameStateDuration / totalDraws;
-
+var currentGameState = 0;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -279,25 +279,34 @@ function createAuxData(markers, nextGamestate) {
     return dataAux;
 }
 
-function updateGameState(gamestate) {
-    if (Object.keys(markerList).length === 0) {//first gamestate - no movement, just add markers
-        initializeGame(gamestate);
+function updateGameState(game) {
+    console.log("Executing "+currentGameState);
+    if(game.gamestates.length <= currentGameState){
         return;
     }
+
+    var gamestate = game.gamestates[currentGameState++];
+
+    if (currentGameState === 1) {//first gamestate - no movement, just add markers
+        initializeGame(gamestate);
+        updateGameState(game,currentGameState);
+        return;
+    }
+
     updateInfos(gamestate);
     gamestate.capturePoints.forEach(function (point) {
        capPoint[point.name].marker.setLabel(point.teamOwner);
     });
 
     var dataAux = createAuxData(markerList, gamestate);
-    setTimeout(function () {
-            moveIteration(gamestate, dataAux, 1);
-        }, timeStep
-    );
+    moveIteration(gamestate, dataAux, 1);
 }
 
 function moveIteration(gamestate, dataAux, iteration) {
-    if (iteration == totalDraws)return;
+    if (iteration == totalDraws){
+        updateGameState(game,currentGameState);
+        return;
+    }
 
     getAllPlayers(gamestate).forEach(function (player) {
         moveMarker(
@@ -388,8 +397,7 @@ function getAllPlayers(gamestate){
     return gamestate.teamA.players.concat(gamestate.teamB.players);
 }
 
-var gsIndex = 0;
-function aux() {
-    if(gsIndex == game.gamestates.length) gsIndex = 0;//loop back to first gamestate
-    updateGameState(game.gamestates[gsIndex++]);
+function playGame(game) {
+    currentGameState = 0;
+    updateGameState(game);
 }
