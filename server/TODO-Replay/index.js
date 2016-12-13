@@ -397,7 +397,26 @@ function getAllPlayers(gamestate){
     return gamestate.teamA.players.concat(gamestate.teamB.players);
 }
 
+function clearMarkers(){
+
+    for (var key in markerList) {
+        if (markerList.hasOwnProperty(key)) {
+            markerList[key].marker.setMap(null);
+        }
+    }
+    markerList = {};
+
+    for (var key in capPoint) {
+        if (capPoint.hasOwnProperty(key)) {
+            capPoint[key].marker.setMap(null);
+        }
+    }
+    capPoint = {};
+}
+
 function playGame(game) {
     currentGameState = 0;
+    clearMarkers();
+
     updateGameState(game);
 }
