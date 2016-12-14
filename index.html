@@ -46,8 +46,7 @@
         <ul class="we-create animated fadeInUp delay-1s">
         	<li>A geolocation game for you and your friends.</li>
         </ul>
-            <a class="link animated fadeInUp delay-1s" href="#">Learn More</a>
-    </div>
+        <a id="home_button" class="link animated fadeInUp delay-1s" href="#Game">Learn More</a>
 </header><!--header-end-->
 
 <nav class="main-nav-outer" id="test"><!--main-nav-start-->
@@ -70,10 +69,10 @@
 <section class="main-section" id="Game"><!--main-section-start-->
 	<div class="container">
         <div class="row">
-        	<h2>The Game</h2>
-        	<h6 class="margin-bottom-20">This video offers you a perspective of what its like to play Dominium.</h6>
+        	<h2 class="wow fadeInDown delay-03s">The Game</h2>
+        	<h6 class=" wow fadeInDown delay-06s margin-bottom-20">This video offers you a perspective of what its like to play Dominium.</h6>
             <div class="col-lg-offset-2">
-                <iframe width="800" height="430" src="https://www.youtube.com/embed/x2RJN9a_jdM" frameborder="0" allowfullscreen></iframe>
+                <iframe class="wow fadeInDown delay-09s" width="800" height="430" src="https://www.youtube.com/embed/x2RJN9a_jdM" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>
@@ -299,7 +298,7 @@
 <script type="text/javascript">
 	$(window).load(function(){
 		
-		$('.main-nav li a').bind('click',function(event){
+		$('.main-nav li a, #home_button').bind('click',function(event){
 			var $anchor = $(this);
 			
 			$('html, body').stop().animate({
