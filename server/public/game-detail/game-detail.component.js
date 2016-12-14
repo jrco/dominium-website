@@ -12,6 +12,10 @@ angular.
         $http.get('games/' + $routeParams.gameId).then(function(response) {
         	self.game = response.data;
         });
+
+		self.playGame = function(){
+			playGame(self.game);
+		};
         //this.gameId = $routeParams.gameId;
       }
     ]
