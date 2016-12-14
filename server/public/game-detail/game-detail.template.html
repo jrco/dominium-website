@@ -1,45 +1,98 @@
 <table class="final_score" style="width:100%">
-	<tr>
-		<td align="center"><h3>Team A</h3></td>
-		<td align="center"><h3>{{$ctrl.game.gameState[0].teamA.points}}</h3></td>
-		<td align="center"><h3>Team B</h3></td>
-		<td align="center"><h3>{{$ctrl.game.gameState[0].teamB.points}}</h3></td>
-	</tr>
-</table>§
-Team A:
-{{$ctrl.game.gameState[0].teamA.players.length}} players 
-
-<table>
-	<tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
-		<td>{{player.username}}</td>
-		<td>{{player.role}}</td>
-	</tr>
+    <tr>
+        <td id="winnerA" align="center"><img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"></td>
+        <td align="center">
+            <h3>Team A</h3></td>
+        <td align="center">
+            <h3 id="a_points">{{$ctrl.game.gameState[0].teamA.points}}</h3></td>
+        <td align="center">
+            <h3>VS</h3></td>
+        <td  align="center">
+            <h3 id="b_points">{{$ctrl.game.gameState[0].teamB.points}}</h3></td>
+        <td align="center">
+            <h3>Team B</h3></td>
+        <td align="center"><img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"></td>
+    </tr>
 </table>
+<table width="100%">
+    <tr>
+        <td>
+            <table width="50%">
+                <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
+                    <td style="padding: 10px;" align="center">
+                    <script></script>
+                    <img width="50" width="50" src="../img/viking.png" class="img-responsive" alt="viking"></td>
+                    <td>
+                        <h4>{{player.username}}</h4></td>
+                    <!--td>{{player.role}}</td-->
+                </tr>
+                <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
+                    <td style="padding: 10px;" align="center"><img width="50" width="50" src="../img/escudo.png" class="img-responsive" alt="viking"></td>
+                    <td>
+                        <h4>{{player.username}}</h4></td>
+                    <!--td>{{player.role}}</td-->
+                </tr>
+                <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
+                    <td style="padding: 10px;" align="center"><img width="50" width="50" src="../img/espada.png" class="img-responsive" alt="viking"></td>
+                    <td>
+                        <h4>{{player.username}}</h4></td>
+                    <!--td>{{player.role}}</td-->
+                </tr>
+            </table>
+        </td>
+        <td>
+            <table width=50%>
+                <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
+                    <td id="winner" style="padding: 10px;" align="center"><img width="50" width="50" src="../img/viking.png" class="img-responsive" alt="viking"></td>
+                    <td>
+                        <h4>{{player.username}}</h4></td>
+                    <!--td>{{player.role}}</td-->
+                </tr>
+                <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
+                    <td style="padding: 10px;" align="center"><img width="50" width="50" src="../img/escudo.png" class="img-responsive" alt="viking"></td>
+                    <td>
+                        <h4>{{player.username}}</h4></td>
+                    <!--td>{{player.role}}</td-->
+                </tr>
+                <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
+                    <td style="padding: 10px;" align="center"><img width="50" width="50" src="../img/espada.png" class="img-responsive" alt="viking"></td>
+                    <td>
+                        <h4>{{player.username}}</h4></td>
+                    <!--td>{{player.role}}</td-->
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<h2 align="center">Capture Points</h2>
+<table width="100%">
+    <tr>
+        <td style="width=33%" ng-repeat="cp in $ctrl.game.gameState[0].capturePoints">
+            <table>
+                <tr align="center">
+                    <td style="padding: 10px;" align="center"><img width="80" width="80" src="../img/tower.png" class="img-responsive" alt="tower"></td>
+                </tr>
+                <tr align="center">
+                    <td>NAME</td>
+                </tr>
+                <tr align="center">
+                    <td>ASDA</td>
+                </tr>
+                <tr align="center">
+                    <td>LATITUDE</td>
+                    <td>LONGITUDE</td>
+                </tr>
+                <tr align="center">
+                    <td>23213</td>
+                    <td>13123S</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<h2 align="center">Game Replay</h2>
+<h2 align="center">Final Result</h2>
 
-Team B:
-{{$ctrl.game.gameState[0].teamB.players.length}} players 
-<ul>
-	<li ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
-		<div>
-			<p>{{player.username}}</p>
-			<p>{{player.role}}</p>
-		</div>
-	</li>
-</ul>
-
-Capture Points:
-<ul>
-	<li ng-repeat= "cp in $ctrl.game.gameState[0].capturePoints">
-		<div>
-			<p>{{cp.name}}</p>
-			<p>{{cp.lat}}</p>
-			<p>{{cp.long}}</p>
-		</div>
-	</li>
-</ul>
-
-Game Replay:
-<div></div>
-
-Final Result:
-<div></div>
+<script>
+    var
+</script>

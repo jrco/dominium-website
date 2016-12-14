@@ -12,7 +12,7 @@
         Sort by:
         <select ng-model="$ctrl.orderProp">
           <option value="name">Alphabetical</option>
-          <option value="age">Newest</option>
+          <option value="timeStamp">Newest</option>
         </select>
       </p>
     </div>
@@ -22,13 +22,13 @@
 		<ul>
 	        <li ng-repeat="game in $ctrl.games | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail game-list-item">
 		        <div class="game_div">
+		        	<p>Date : {{game.gameState[0].timeStamp}}</p>
 		        	<p>Room: {{game.name_of_room}}</p>
 		        	<p>Team A:{{game.gameState[0].teamA.points}}</p>
 		        	<p>Team B:{{game.gameState[0].teamB.points}}</p>
 		        	<p>Location: {{game.location}} </p>
 		        	<p>Time of game: {{game.timeGame}}</p>
 			        <!--p>{{game.name_of_room}}</p-->
-			        <span></span>
 			        <p align="right"><a href="#!/games/{{game._id}}" class="thumb">See full stats >></a></p>
 		        </div>
 	        </li>
