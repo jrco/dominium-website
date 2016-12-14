@@ -1,3 +1,60 @@
 body {
   padding-top: 20px;
+  background-color: #ecf0f1;
 }
+
+.head_table {
+	text-align: center;
+	font-size: 150%;
+	font-weight: 900
+}
+
+.body_table {
+	text-align: center;
+	font-size: 120%;
+}
+
+.td_corporation {
+	color : #16a085;
+	text-align: center;
+}
+
+.td_insurgents {
+	color : #e74c3c;
+	text-align: center;
+}
+
+.player_table {
+	width: 100%;
+	font-size: 120%;
+	text-align: center;
+}
+
+.player_table td {
+	padding-left: 150px;
+}
+
+.final_score {
+    border-collapse:separate;
+    border:solid black 1px;
+    border-radius:6px;
+    -moz-border-radius:6px;
+}
+
+.final_score td, th {
+    border-left:solid black 0px;
+    border-top:solid black 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.final_score th {
+    background-color: blue;
+    border-top: none;
+}
+
+.final_score td:first-child, th:first-child {
+     border-left: none;
+}
+
+

@@ -22,14 +22,37 @@
 		<ul>
 	        <li ng-repeat="game in $ctrl.games | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail game-list-item">
 		        <div class="game_div">
-		        	<p>Date : {{game.gameState[0].timeStamp}}</p>
-		        	<p>Room: {{game.name_of_room}}</p>
-		        	<p>Team A:{{game.gameState[0].teamA.points}}</p>
-		        	<p>Team B:{{game.gameState[0].teamB.points}}</p>
-		        	<p>Location: {{game.location}} </p>
-		        	<p>Time of game: {{game.timeGame}}</p>
+            <table width="100%">
+              <tr>
+                <td align="center"><img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/></td>
+                <td class="td_corporation"><h3>Corporation</h3></td>
+                <td align="center"><h3>{{game.gameState[0].teamA.points}}</h3></td>
+                <td align="center"><h3>vs</h3></td>
+                <td align="center"><h3>{{game.gameState[0].teamB.points}}</h3></td>
+                <td class="td_insurgents"><h3>Insurgents</h3></td>
+                <td align="center"><img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/></td>
+              </tr>
+            </table>
+            <hr/>
+            <table width="100%">
+              <tr class="head_table">
+                <td>Room</td>
+                <td>Time of Game</td>
+                <td>Location</td>
+                <td>Date</td>
+                <td></td>
+              </tr>
+              <tr class="body_table">
+                <td>{{game.name_of_room}}</td>
+                <td>{{game.timeGame}}</td>
+                <td>{{game.location}}</td>
+                <td>{{game.gameState[0].timeStamp}}</td>
+                <td><p align="right"><a href="#!/games/{{game._id}}" class="thumb"><img width="30" width="30" src="../img/setas.png" class="img-responsive" alt="arrows"/></a></p></td>
+              </tr>
+            </table>
+		        	
+		        	<p></p>
 			        <!--p>{{game.name_of_room}}</p-->
-			        <p align="right"><a href="#!/games/{{game._id}}" class="thumb">See full stats >></a></p>
 		        </div>
 	        </li>
       	</ul>
