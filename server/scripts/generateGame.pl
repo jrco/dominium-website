@@ -82,7 +82,12 @@ for(my $i = 0; $i<$numGamestates; $i++){
 		
 	}
 	$gamestate{"teamA"}{"players"} = \@playersA;
-	$gamestate{"teamA"}{"points"} += getRandom(0,5);
+	if($i == 0){
+		$gamestate{"teamA"}{"points"} = 0;
+	}
+	else{
+		$gamestate{"teamA"}{"points"} = $game{"gameState"}[$i-1]{"teamA"}{"points"}+getRandom(0,5);
+	}
 
 	my @playersB = ();
 	foreach my $username (keys %teamB){
@@ -96,7 +101,12 @@ for(my $i = 0; $i<$numGamestates; $i++){
 		
 	}
 	$gamestate{"teamB"}{"players"} = \@playersB;
-	$gamestate{"teamB"}{"points"} += getRandom(0,5);
+	if($i == 0){
+		$gamestate{"teamB"}{"points"} = 0;
+	}
+	else{
+		$gamestate{"teamB"}{"points"} = $game{"gameState"}[$i-1]{"teamB"}{"points"}+getRandom(0,5);
+	}
 
 
 	my @capPoints = ();
