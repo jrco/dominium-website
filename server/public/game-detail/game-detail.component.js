@@ -16,6 +16,8 @@ angular.
 		self.playGame = function(){
 			playGame(self.game);
 		};
+
+		initMap();
         //this.gameId = $routeParams.gameId;
       }
     ]
