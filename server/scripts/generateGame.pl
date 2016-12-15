@@ -12,6 +12,7 @@ use JSON;
 binmode(STDOUT,':encoding(UTF-8)');
 binmode(STDERR,':encoding(UTF-8)');
 
+###SUBROUTINES
 sub getRandom{
 	my $min = shift;
 	my $max = shift;
@@ -27,15 +28,21 @@ sub getRandomTeam{
 	return ("A","B")[getRandom(0,1)];
 }
 
-my $minLat = -85;
-my $maxLat = 85;
+###DEFS
 
-my $minLng = -180;
-my $maxLng = 180;
+#Portugal bounds
+my $minLat = 36.5;
+my $maxLat = 41;
+
+my $minLng = -8.5;
+my $maxLng = -7;
 
 my $numUsers = 3;
 my $numPoints = 3;
 
+my $numGamestates = 30;
+
+##INITIALIZ
 my %game = (
 	"name_of_room" => "Room Teste",
 	"location" => "Braga",
@@ -60,11 +67,7 @@ for(my $i = 0; $i < $numPoints; $i++){
 	};
 }
 
-
-
-my $numGamestates = 30;
-
-
+###GENERATE
 
 for(my $i = 0; $i<$numGamestates; $i++){
 
