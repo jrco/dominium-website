@@ -9,17 +9,18 @@ component('gameDetail', {
         function GameDetailController($http, $routeParams) {
             var self = this;
 
+			initMap();
+
             $http.get('games/' + $routeParams.gameId).then(function(response) {
                 self.game = response.data;
                 setWinner(self.game);
-
+				setGameRectangle(self.game);
             });
 
             self.playGame = function() {
                 playGame(self.game);
             };
-
-            initMap();
+			
             //this.gameId = $routeParams.gameId;
         }
     ]
