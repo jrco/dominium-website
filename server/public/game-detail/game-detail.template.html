@@ -75,6 +75,24 @@
 <hr/>
 <div align="center">
     <h2 align="center">Game Replay</h2>
+    <div id="replay_result">
+    <table class="final_score" style="width:100%">
+    <tr>
+        <td id="winnerA" align="center"></td>
+        <td class="td_corporation">
+            <h3>Corporation</h3></td>
+        <td align="center">
+            <h3 id="replay_a_points"></h3></td>
+        <td align="center">
+            <h3>VS</h3></td>
+        <td align="center">
+            <h3 id="replay_b_points"></h3></td>
+        <td class="td_insurgents">
+            <h3>Insurgents</h3></td>
+        <td id="winnerB" align="center"></td>
+    </tr>
+</table>
+</div>
     <button type="button" style="padding:10px; margin:10px;" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
     <div id="dominium-map" style="width:700px; height:512px"></div>
 </div>
@@ -85,7 +103,7 @@
             <td>
                 <table>
                     <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
-                        <td id="{{player.username}}" style="padding: 10px;" align="center">
+                        <td style="padding: 10px;" align="center">
                             <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
                         </td>
                         <td>
@@ -101,7 +119,7 @@
                     <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
                         <td>
                             <h4>{{player.username}}</h4></td>
-                        <td id="{{player.username}}" style="padding: 10px;" align="center">
+                        <td style="padding: 10px;" align="center">
                             <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
                         </td>
                         <td id="{{player.username}}"></td>
