@@ -147,12 +147,14 @@ function updateInfos(gamestate){
 }
 
 function updatePlayerInfo(player){
+    var energyP;
     playerList[player.username].info.setContent(
         '<div>'+
         '<b>'+player.username+' ['+player.role+']</b><br/>'+
         'Energy: '+player.energy+
         '</div>'
     );
+
 }
 function updateCapturePointInfo(point){
     capList[point.name].info.setContent(

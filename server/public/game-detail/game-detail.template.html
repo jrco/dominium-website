@@ -1,4 +1,4 @@
-<table data-ng-init="setWinner()" class="final_score" style="width:100%">
+<table class="final_score" style="width:100%">
     <tr>
         <td id="winnerA" align="center"></td>
         <td class="td_corporation">
@@ -7,7 +7,7 @@
             <h3 id="a_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].teamA.points}}</h3></td>
         <td align="center">
             <h3>VS</h3></td>
-        <td  align="center">
+        <td align="center">
             <h3 id="b_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].teamB.points}}</h3></td>
         <td class="td_insurgents">
             <h3>Insurgents</h3></td>
@@ -21,8 +21,8 @@
         <td>
             <table>
                 <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
-                    <td id="{{player.username}}"  style="padding: 10px;" align="center">
-                    <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}"/>
+                    <td style="padding: 10px;" align="center">
+                        <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
                     </td>
                     <td>
                         <h4>{{player.username}}</h4></td>
@@ -33,12 +33,11 @@
         <td>
             <table>
                 <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
-                <td>
-                    <h4>{{player.username}}</h4></td>
-                    <td id="{{player.username}}" style="padding: 10px;" align="center">
-                        <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}"/>
+                    <td>
+                        <h4>{{player.username}}</h4></td>
+                    <td style="padding: 10px;" align="center">
+                        <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
                     </td>
-                    
                     <!--td>{{player.role}}</td-->
                 </tr>
             </table>
@@ -74,12 +73,45 @@
     </tr>
 </table>
 <hr/>
-
 <div align="center">
-	<h2 align="center">Game Replay</h2>
-	<button type="button" style="padding:10px; margin:10px;" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
-	<div id="dominium-map" style="width:700px; height:512px"></div>
+    <h2 align="center">Game Replay</h2>
+    <button type="button" style="padding:10px; margin:10px;" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
+    <div id="dominium-map" style="width:700px; height:512px"></div>
 </div>
-
-<h2 align="center">Final Result</h2>
-
+<div id="players">
+    <h4>Players</h4>
+    <table class="player_table">
+        <tr>
+            <td>
+                <table>
+                    <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
+                        <td id="{{player.username}}" style="padding: 10px;" align="center">
+                            <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
+                        </td>
+                        <td>
+                            <h4>{{player.username}}</h4>
+                            </td>
+                            <td id="{{player.username}}"></td>
+                        <!--td>{{player.role}}</td-->
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table>
+                    <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
+                        <td>
+                            <h4>{{player.username}}</h4></td>
+                        <td id="{{player.username}}" style="padding: 10px;" align="center">
+                            <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
+                        </td>
+                        <td id="{{player.username}}"></td>
+                        <!--td>{{player.role}}</td-->
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="checkpoints">
+    <h4>Checkpoints</h4>
+</div>
