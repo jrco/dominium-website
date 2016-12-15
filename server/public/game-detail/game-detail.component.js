@@ -12,20 +12,14 @@ component('gameDetail', {
             $http.get('games/' + $routeParams.gameId).then(function(response) {
                 self.game = response.data;
                 setWinner(self.game);
-                //$scope.$on('$viewContentLoaded', function(){
-                  //setRules(self.game);
-                //});
-                //$timeout(setRules(self.game),10);
-                
+
             });
 
             self.playGame = function() {
                 playGame(self.game);
             };
 
-            
-
-
+            initMap();
             //this.gameId = $routeParams.gameId;
         }
     ]

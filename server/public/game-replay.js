@@ -3,24 +3,27 @@ var map;
 var playerList = {};//username: {marker,info}
 var capList = {};//name: {marker, info}
 
-var gameStateDuration = 10000;
-var totalDraws = 1000;
+var gameStateDuration = 1000;
+var totalDraws = 100;
 var timeStep = gameStateDuration / totalDraws;
 
 var dominiumGame;
 var currentGameState = 0;
 
+var animationLoop;
+
 function initMap() {
 	console.log("LOADING MAP");
     map = new google.maps.Map(document.getElementById('dominium-map'), {
-        zoom: 1,
+        zoom: 2,
+		minZoom: 1,
         center: new google.maps.LatLng(0,0),
-        disableDefaultUI: true
+        disableDefaultUI: true,
+		clickableIcons: false
     });
 }
 
 function initializeGame(gamestate) {
-    console.log("Initializing markers");
 
     gamestate.teamA.players.forEach(function(player){
         createPlayerMarker(player,"A");
@@ -28,9 +31,6 @@ function initializeGame(gamestate) {
     gamestate.teamB.players.forEach(function(player){
         createPlayerMarker(player,"B");
     });
-
-    //console.log("MARKERS: ");
-    //console.log(playerList);
 
     gamestate.capturePoints.forEach(function(point){
         createCapturePointMarker(point);
@@ -58,24 +58,16 @@ function createAuxData(markers, nextGamestate) {
         };
     });
 
-    //console.log(dataAux);
     return dataAux;
 }
 
 function processGameStates() {
     console.log("Executing "+currentGameState);
     if(dominiumGame.gameState.length <= currentGameState){
-        //playGame(game);//loop game
         return;
     }
 
     var gamestate = dominiumGame.gameState[currentGameState++];
-
-    if (currentGameState === 1) {//first gamestate - no movement, just add markers
-        initializeGame(gamestate);
-        processGameStates(dominiumGame);
-        return;
-    }
 
     updateInfos(gamestate);
     gamestate.capturePoints.forEach(function (point) {
@@ -83,7 +75,7 @@ function processGameStates() {
     });
 
     var dataAux = createAuxData(playerList, gamestate);
-    setTimeout(
+    animationLoop = setTimeout(
         function () {
             moveIteration(gamestate, dataAux, 1);
         }, timeStep
@@ -92,7 +84,7 @@ function processGameStates() {
 
 function moveIteration(gamestate, dataAux, iteration) {
     if (iteration == totalDraws){
-        processGameStates(dominiumGame);
+        processGameStates();
         return;
     }
 
@@ -105,7 +97,7 @@ function moveIteration(gamestate, dataAux, iteration) {
         );
     });
 
-    setTimeout(
+   animationLoop = setTimeout(
         function () {
             moveIteration(gamestate, dataAux, iteration + 1);
         }, timeStep
@@ -202,27 +194,44 @@ function clearMarkers(){
     capList = {};
 }
 
-function playGame(newGame) {
-	console.log(newGame);
-    currentGameState = 0;
-    clearMarkers();
+function setGameRectangle(){
+	var bounds = new google.maps.LatLngBounds();
 
+	dominiumGame.gameState.forEach(function(gamestate){
+		getAllPlayers(gamestate).forEach(function(player){
+			bounds.extend(
+				new google.maps.LatLng(
+					parseFloat(player.lat),
+					parseFloat(player.lng)
+				)
+			);
+		});
+		gamestate.capturePoints.forEach(function(point){
+			bounds.extend(
+				new google.maps.LatLng(
+					parseFloat(point.lat),
+					parseFloat(point.lng)
+				)
+			);
+		});
+	});
+
+	console.log(bounds);
+	map.fitBounds(bounds);
+	map.panToBounds(bounds);
+}
+
+function playGame(newGame) {
+    currentGameState = 0;
     dominiumGame = newGame;
+
+	if(typeof dominiumGame !== 'undefined'){
+		clearTimeout(animationLoop);
+		clearMarkers();
+		initializeGame(dominiumGame.gameState[0]);
+		updateInfos(dominiumGame.gameState[0]);
+	}
+
+	setGameRectangle();
     processGameStates();
 }
-/*
-function loadGame(){
-    var xhr = new XMLHttpRequest();
-    xhr.open("get", "game.json", true);
-    xhr.responseType = "json";
-    xhr.onload = function() {
-        var status = xhr.status;
-        if (status == 200) {
-            playGame(xhr.response);
-        } else {
-            console.log("Error");
-        }
-    };
-    xhr.send();
-}
-*/
