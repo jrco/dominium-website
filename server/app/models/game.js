@@ -16,7 +16,7 @@ var Player = new Schema({
   lat: String,
   long: String,
   role: String,
-  energy: Number,
+  energy: Number
 });
 
 var GameState = new Schema({

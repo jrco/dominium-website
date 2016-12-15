@@ -1,40 +1,29 @@
-<table class="final_score" style="width:100%">
+<table data-ng-init="setWinner()" class="final_score" style="width:100%">
     <tr>
-        <td id="winnerA" align="center"><img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/></td>
+        <td id="winnerA" align="center"></td>
         <td class="td_corporation">
             <h3>Corporation</h3></td>
         <td align="center">
-            <h3 id="a_points">{{$ctrl.game.gameState[0].teamA.points}}</h3></td>
+            <h3 id="a_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].teamA.points}}</h3></td>
         <td align="center">
             <h3>VS</h3></td>
         <td  align="center">
-            <h3 id="b_points">{{$ctrl.game.gameState[0].teamB.points}}</h3></td>
+            <h3 id="b_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].teamB.points}}</h3></td>
         <td class="td_insurgents">
             <h3>Insurgents</h3></td>
-        <td align="center"><img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"></td>
+        <td id="winnerB" align="center"></td>
     </tr>
 </table>
+<!--button type="button" ng-click="$ctrl.setWinner();">Winner!!</button-->
 <hr/>
 <table class="player_table">
     <tr>
         <td>
             <table>
                 <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
-                    <td style="padding: 10px;" align="center">
-                    <script></script>
-                    <img width="50" width="50" src="../img/viking.png" class="img-responsive" alt="viking"></td>
-                    <td>
-                        <h4>{{player.username}}</h4></td>
-                    <!--td>{{player.role}}</td-->
-                </tr>
-                <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
-                    <td style="padding: 10px;" align="center"><img width="50" width="50" src="../img/escudo.png" class="img-responsive" alt="viking"></td>
-                    <td>
-                        <h4>{{player.username}}</h4></td>
-                    <!--td>{{player.role}}</td-->
-                </tr>
-                <tr ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
-                    <td style="padding: 10px;" align="center"><img width="50" width="50" src="../img/espada.png" class="img-responsive" alt="viking"></td>
+                    <td id="{{player.username}}"  style="padding: 10px;" align="center">
+                    <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}"/>
+                    </td>
                     <td>
                         <h4>{{player.username}}</h4></td>
                     <!--td>{{player.role}}</td-->
@@ -45,27 +34,18 @@
             <table>
                 <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
                 <td>
-                        <h4>{{player.username}}</h4></td>
-                    <td id="winner" style="padding: 10px;" align="center"><img width="50" width="50" src="../img/viking.png" class="img-responsive" alt="viking"></td>
+                    <h4>{{player.username}}</h4></td>
+                    <td id="{{player.username}}" style="padding: 10px;" align="center">
+                        <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}"/>
+                    </td>
                     
-                    <!--td>{{player.role}}</td-->
-                </tr>
-                <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
-                    <td style="padding: 10px;" align="center"><img width="50" width="50" src="../img/escudo.png" class="img-responsive" alt="viking"></td>
-                    <td>
-                        <h4>{{player.username}}</h4></td>
-                    <!--td>{{player.role}}</td-->
-                </tr>
-                <tr ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
-                    <td style="padding: 10px;" align="center"><img width="50" width="50" src="../img/espada.png" class="img-responsive" alt="viking"></td>
-                    <td>
-                        <h4>{{player.username}}</h4></td>
                     <!--td>{{player.role}}</td-->
                 </tr>
             </table>
         </td>
     </tr>
 </table>
+<!--button type="button" ng-click="$ctrl.setRules();">Set rules!!</button-->
 <hr/>
 <h2 align="center">Capture Points</h2>
 <table width="100%">
@@ -103,3 +83,4 @@
 </div>
 
 <h2 align="center">Final Result</h2>
+

@@ -2,21 +2,31 @@
 
 // Register `gameDetail` component, along with its associated controller and template
 angular.
-  module('gameDetail').
-  component('gameDetail', {
+module('gameDetail').
+component('gameDetail', {
     templateUrl: 'game-detail/game-detail.template.html',
     controller: ['$http', '$routeParams',
-      function GameDetailController($http, $routeParams) {
-        var self = this;
+        function GameDetailController($http, $routeParams) {
+            var self = this;
 
-        $http.get('games/' + $routeParams.gameId).then(function(response) {
-        	self.game = response.data;
-        });
+            $http.get('games/' + $routeParams.gameId).then(function(response) {
+                self.game = response.data;
+                setWinner(self.game);
+                //$scope.$on('$viewContentLoaded', function(){
+                  //setRules(self.game);
+                //});
+                //$timeout(setRules(self.game),10);
+                
+            });
 
-		self.playGame = function(){
-			playGame(self.game);
-		};
-        //this.gameId = $routeParams.gameId;
-      }
+            self.playGame = function() {
+                playGame(self.game);
+            };
+
+            
+
+
+            //this.gameId = $routeParams.gameId;
+        }
     ]
-  });
+});

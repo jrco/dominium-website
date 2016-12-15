@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-10">
       <!--Body content-->
-
+  
 		<ul>
 	        <li ng-repeat="game in $ctrl.games | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail game-list-item">
 		        <div class="game_div">
@@ -26,9 +26,9 @@
               <tr>
                 <td align="center"><img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/></td>
                 <td class="td_corporation"><h3>Corporation</h3></td>
-                <td align="center"><h3>{{game.gameState[0].teamA.points}}</h3></td>
+                <td align="center"><h3>{{game.gameState[game.gameState.length-1].teamA.points}}</h3></td>
                 <td align="center"><h3>vs</h3></td>
-                <td align="center"><h3>{{game.gameState[0].teamB.points}}</h3></td>
+                <td align="center"><h3>{{game.gameState[game.gameState.length-1].teamB.points}}</h3></td>
                 <td class="td_insurgents"><h3>Insurgents</h3></td>
                 <td align="center"><img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/></td>
               </tr>

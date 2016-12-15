@@ -28,6 +28,7 @@ body {
 	width: 100%;
 	font-size: 120%;
 	text-align: center;
+	padd
 }
 
 .player_table td {
@@ -56,5 +57,7 @@ body {
 .final_score td:first-child, th:first-child {
      border-left: none;
 }
+
+
 
 
