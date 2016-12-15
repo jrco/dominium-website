@@ -19,7 +19,11 @@ function initMap() {
 		minZoom: 1,
         center: new google.maps.LatLng(0,0),
         disableDefaultUI: true,
-		clickableIcons: false
+		clickableIcons: false,
+		zoomControl: false,
+		scaleControl: false,
+		scrollwheel: false,
+	 	disableDoubleClickZoom: true
     });
 }
 
@@ -194,10 +198,10 @@ function clearMarkers(){
     capList = {};
 }
 
-function setGameRectangle(){
+function setGameRectangle(game){
 	var bounds = new google.maps.LatLngBounds();
 
-	dominiumGame.gameState.forEach(function(gamestate){
+	game.gameState.forEach(function(gamestate){
 		getAllPlayers(gamestate).forEach(function(player){
 			bounds.extend(
 				new google.maps.LatLng(
@@ -232,6 +236,5 @@ function playGame(newGame) {
 		updateInfos(dominiumGame.gameState[0]);
 	}
 
-	setGameRectangle();
     processGameStates();
 }
