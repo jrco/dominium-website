@@ -32,7 +32,7 @@ sub getRandomRole{
 }
 
 sub getRandomTeam{
-	return ("A","B")[getRandomInt(0,1)];
+	return ("Corporation","Insurgents")[getRandomInt(0,1)];
 }
 
 ###DEFS
