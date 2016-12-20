@@ -13,29 +13,42 @@ binmode(STDOUT,':encoding(UTF-8)');
 binmode(STDERR,':encoding(UTF-8)');
 
 ###SUBROUTINES
-sub getRandom{
+sub getRandomInt{
 	my $min = shift;
 	my $max = shift;
 
 	return $min+int(rand($max-$min+1));
 }
 
+sub getRandomFloat{
+	my $min = shift;
+	my $max = shift;
+
+	return $min+rand($max-$min+1);
+}
+
 sub getRandomRole{
-	return ("Attacker","Defender","Support")[getRandom(0,2)];
+	return ("Attacker","Defender","Support")[getRandomInt(0,2)];
 }
 
 sub getRandomTeam{
-	return ("A","B")[getRandom(0,1)];
+	return ("A","B")[getRandomInt(0,1)];
 }
 
 ###DEFS
 
 #Portugal bounds
-my $minLat = 36.5;
-my $maxLat = 41;
 
-my $minLng = -8.5;
-my $maxLng = -7;
+#my $minLat = 36.5;
+#my $maxLat = 41;
+#my $minLng = -8.5;
+#my $maxLng = -7;
+
+
+my $minLat = 41.5574;
+my $maxLat = 41.5574;
+my $minLng = -8.3978;
+my $maxLng = -8.3978;
 
 my $numUsers = 3;
 my $numPoints = 3;
@@ -46,7 +59,7 @@ my $numGamestates = 30;
 my %game = (
 	"name_of_room" => "Room Teste",
 	"location" => "Braga",
-	"timeGame" => getRandom(0,50),
+	"timeGame" => getRandomInt(0,50),
 	"gameState" => []
 );
 
@@ -62,8 +75,8 @@ my %points;
 
 for(my $i = 0; $i < $numPoints; $i++){
 	$points{"Point$i"} = {
-		"lat" => "".getRandom($minLat,$maxLat),
-		"lng" => "".getRandom($minLng,$maxLng)
+		"lat" => "".getRandomFloat($minLat,$maxLat),
+		"lng" => "".getRandomFloat($minLng,$maxLng)
 	};
 }
 
@@ -77,9 +90,9 @@ for(my $i = 0; $i<$numGamestates; $i++){
 	foreach my $username (keys %teamA){
 		push(@playersA,{
 			"username" => $username,
-			"lat" => "".getRandom($minLat,$maxLat),
-			"lng" => "".getRandom($minLng,$maxLng),
-			"energy" => getRandom(0,100),
+			"lat" => "".getRandomFloat($minLat,$maxLat),
+			"lng" => "".getRandomFloat($minLng,$maxLng),
+			"energy" => getRandomInt(0,100),
 			"role" => $teamA{$username}
 		});
 		
@@ -89,16 +102,16 @@ for(my $i = 0; $i<$numGamestates; $i++){
 		$gamestate{"teamA"}{"points"} = 0;
 	}
 	else{
-		$gamestate{"teamA"}{"points"} = $game{"gameState"}[$i-1]{"teamA"}{"points"}+getRandom(0,5);
+		$gamestate{"teamA"}{"points"} = $game{"gameState"}[$i-1]{"teamA"}{"points"}+getRandomInt(0,5);
 	}
 
 	my @playersB = ();
 	foreach my $username (keys %teamB){
 		push(@playersB,{
 			"username" => $username,
-			"lat" => "".getRandom($minLat,$maxLat),
-			"lng" => "".getRandom($minLng,$maxLng),
-			"energy" => getRandom(0,100),
+			"lat" => "".getRandomFloat($minLat,$maxLat),
+			"lng" => "".getRandomFloat($minLng,$maxLng),
+			"energy" => getRandomInt(0,100),
 			"role" => $teamB{$username}
 		});
 		
@@ -108,7 +121,7 @@ for(my $i = 0; $i<$numGamestates; $i++){
 		$gamestate{"teamB"}{"points"} = 0;
 	}
 	else{
-		$gamestate{"teamB"}{"points"} = $game{"gameState"}[$i-1]{"teamB"}{"points"}+getRandom(0,5);
+		$gamestate{"teamB"}{"points"} = $game{"gameState"}[$i-1]{"teamB"}{"points"}+getRandomInt(0,5);
 	}
 
 
@@ -118,7 +131,7 @@ for(my $i = 0; $i<$numGamestates; $i++){
 			"name" => $name,
 			"lat" => "".$points{$name}{"lat"},
 			"lng" => "".$points{$name}{"lng"},
-			"energy" => getRandom(0,100),
+			"energy" => getRandomInt(0,100),
 			"teamOwner" => getRandomTeam()
 		});
 	}
