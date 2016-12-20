@@ -5,7 +5,7 @@ var CapturePoint = new Schema({
   _id: Schema.Types.ObjectId,
   name: String,
   lat: String,
-  long: String,
+  lng: String,
   energy: Number,
   teamOwner: String
 });
@@ -14,7 +14,7 @@ var Player = new Schema({
   _id: Schema.Types.ObjectId,
   username: String,
   lat: String,
-  long: String,
+  lng: String,
   role: String,
   energy: Number
 });
