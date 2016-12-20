@@ -78,9 +78,11 @@ function processGameStates() {
     var gamestate = dominiumGame.gameState[currentGameState++];
 
     updateInfos(gamestate);
+	/*
     gamestate.capturePoints.forEach(function (point) {
        capList[point.name].marker.setLabel(point.teamOwner);
     });
+	*/
 
     var dataAux = createAuxData(playerList, gamestate);
     animationLoop = setTimeout(
@@ -182,7 +184,7 @@ function updateCapturePointInfo(point){
     );
 
 	var color;
-	if(point.teamOwner === "A"){
+	if(point.teamOwner === "Corporation"){
 		color = "#16a085";
 	}
 	else{
