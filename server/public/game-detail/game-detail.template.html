@@ -15,8 +15,8 @@
     </tr>
 </table>
 <!--button type="button" ng-click="$ctrl.setWinner();">Winner!!</button-->
-<table class="game_details">
-    <tr>
+<table class="game_details" width="100%">
+    <tr align="center">
         <td class="td_players">
             <div>
                 <table ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
@@ -29,8 +29,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>imagem bateria</td>
-                        <td id={{player.username}}_energy> {{player.energy}}</td>
+                        <td colspan="2">
+							<div class="progress">
+								<div id="{{player.username}}-energy" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">100</div>
+							</div>
+						</td>
                     </tr>
                 </table>
             </div>
@@ -55,15 +58,18 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>imagem bateria</td>
-                        <td id={{player.username}}> {{player.energy}}</td>
+                        <td colspan="2">
+							<div class="progress">
+								<div id="{{player.username}}-energy" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">100</div>
+							</div>
+						</td>
                     </tr>
                 </table>
             </div>
         </td>
     </tr>
     <tr>
-        <td ng-repeat="cp in $ctrl.game.gameState[0].capturePoints">
+        <td align="center" ng-repeat="cp in $ctrl.game.gameState[0].capturePoints">
             <table>
                 <tr>
                     <td style="padding: 10px;" align="center"><img width="80" width="80" src="../img/tower.png" class="img-responsive" alt="tower"></td>
@@ -82,9 +88,21 @@
                 </tr>
                 <tr>
                     <td>Team Owner</td>
-                    <td>{{cp.teamOwner}}</td>
+                    <td id="{{cp.name}}-owner">{{cp.teamOwner}}</td>
                 </tr>
+				<tr>
+					<td>Energy:</td>
+					<td>
+						<div class="progress">
+							<div id="{{cp.name}}-energy" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">0</div>
+						</div>
+					</td>
+				</tr>
             </table>
         </td>
     </tr>
 </table>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 357f7813a529e9a40a82e59bdd3708d9e618e7ed

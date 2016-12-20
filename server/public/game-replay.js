@@ -41,10 +41,8 @@ function initializeGame(gamestate) {
         createCapturePointMarker(point);
     });
 
-    pointsA = document.getElementById('replay_a_points');
-    pointsB = document.getElementById('replay_b_points');
-    pointsA.innerHTML = '<p>' + 0 + '</p>';
-    pointsB.innerHTML = '<p>' + 0 + '</p>';
+    document.getElementById('a_points').innerHTML = gamestate.teamA.points;
+    document.getElementById('b_points').innerHTML = gamestate.teamB.points;
 
     updateInfos(gamestate);
 }
@@ -157,10 +155,8 @@ function updateInfos(gamestate){
         updatePlayerInfo(player);
     });
 
-    pointsA = document.getElementById('replay_a_points');
-    pointsB = document.getElementById('replay_b_points');
-    pointsA.innerHTML = '<p>' + gamestate.teamA.points + '</p>';
-    pointsB.innerHTML = '<p>' + gamestate.teamB.points + '</p>';
+    document.getElementById('a_points').innerHTML = gamestate.teamA.points;
+    document.getElementById('b_points').innerHTML = gamestate.teamB.points;
 }
 
 function updatePlayerInfo(player){
@@ -172,9 +168,9 @@ function updatePlayerInfo(player){
         '</div>'
     );
 
-    energyP = document.getElementById(player.username);
-    energyP.innerHTML = '<p>Energy</p>' +'<p>' + player.energy + '</p>';
-
+	document.getElementById(player.username+"-energy").setAttribute("aria-valuenow",player.energy);
+	document.getElementById(player.username+"-energy").setAttribute("style","width:"+player.energy+"%;");
+	document.getElementById(player.username+"-energy").innerHTML = player.energy;
 }
 function updateCapturePointInfo(point){
     capList[point.name].info.setContent(
@@ -185,8 +181,19 @@ function updateCapturePointInfo(point){
         '</div>'
     );
 
-	document.getElementById(point.name+"-owner").innerHTML = "Controlled by: "+point.teamOwner;
-	document.getElementById(point.name+"-energy").innerHTML = "Energy: "+point.energy;
+	var color;
+	if(point.teamOwner === "A"){
+		color = "#16a085";
+	}
+	else{
+		color = "#e74c3c";
+	}
+
+	document.getElementById(point.name+"-owner").innerHTML = point.teamOwner;
+
+	document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
+	document.getElementById(point.name+"-energy").setAttribute("style","width:"+point.energy+"%;background-color:"+color+";");
+	document.getElementById(point.name+"-energy").innerHTML = point.energy;
 }
 
 function moveMarker(marker, start, step, index) {
