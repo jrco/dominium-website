@@ -16,20 +16,20 @@
 </table>
 <!--button type="button" ng-click="$ctrl.setWinner();">Winner!!</button-->
 <table class="game_details" width="100%">
-    <tr align="center">
+    <tr>
         <td class="td_players">
             <div>
                 <table ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
                     <tr>
-                        <td>
+                        <td class="role_img">
                             <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
                         </td>
-                        <td>
+                        <td class="player_username">
                             {{player.username}}
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td class="player_energy" colspan="2">
 							<div class="progress">
 								<div id="{{player.username}}-energy" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">100</div>
 							</div>
@@ -39,7 +39,7 @@
             </div>
         </td>
         <td class="map_replay">
-            <div id="replay_result">
+            <div class="replay_result" id="replay_result">
 
             </div>
             <button type="button" style="padding:10px; margin:10px;" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
@@ -53,7 +53,7 @@
                         <td>
                             <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
                         </td>
-                        <td>
+                        <td class="player_username">
                             {{player.username}}
                         </td>
                     </tr>
@@ -102,7 +102,3 @@
         </td>
     </tr>
 </table>
-<<<<<<< HEAD
-=======
-
->>>>>>> 357f7813a529e9a40a82e59bdd3708d9e618e7ed

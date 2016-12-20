@@ -72,3 +72,25 @@ body {
 	text-align: center;
 }
 
+.progress {
+	padding-top: 5px;
+}
+
+.player_username{
+	padding-right: 50px;
+}
+
+.role_img{
+	padding-left: 10px;
+	padding-right: 20px; 
+}
+
+.player_energy{
+	padding-left: 20px;
+}
+
+.map_replay{
+	text-align: center;
+	padding-left: 100px;
+	height: 10%;
+}
