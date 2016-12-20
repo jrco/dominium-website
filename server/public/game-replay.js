@@ -30,10 +30,10 @@ function initMap() {
 function initializeGame(gamestate) {
     var pointsA;
     var pointsB;
-    gamestate.teamA.players.forEach(function(player){
+    gamestate.corporation.players.forEach(function(player){
         createPlayerMarker(player,"A");
     });
-    gamestate.teamB.players.forEach(function(player){
+    gamestate.insurgents.players.forEach(function(player){
         createPlayerMarker(player,"B");
     });
 
@@ -41,8 +41,8 @@ function initializeGame(gamestate) {
         createCapturePointMarker(point);
     });
 
-    document.getElementById('a_points').innerHTML = gamestate.teamA.points;
-    document.getElementById('b_points').innerHTML = gamestate.teamB.points;
+    document.getElementById('a_points').innerHTML = gamestate.corporation.points;
+    document.getElementById('b_points').innerHTML = gamestate.insurgents.points;
 
     updateInfos(gamestate);
 }
@@ -155,8 +155,8 @@ function updateInfos(gamestate){
         updatePlayerInfo(player);
     });
 
-    document.getElementById('a_points').innerHTML = gamestate.teamA.points;
-    document.getElementById('b_points').innerHTML = gamestate.teamB.points;
+    document.getElementById('a_points').innerHTML = gamestate.corporation.points;
+    document.getElementById('b_points').innerHTML = gamestate.insurgents.points;
 }
 
 function updatePlayerInfo(player){
@@ -206,7 +206,7 @@ function moveMarker(marker, start, step, index) {
 }
 
 function getAllPlayers(gamestate){
-    return gamestate.teamA.players.concat(gamestate.teamB.players);
+    return gamestate.corporation.players.concat(gamestate.insurgents.players);
 }
 
 function clearMarkers(){

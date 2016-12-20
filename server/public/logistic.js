@@ -1,16 +1,16 @@
 function setWinner(game) {
     console.log(game);
-    var ptA = game.gameState[game.gameState.length - 1].teamA.points;
-    var ptB = game.gameState[game.gameState.length - 1].teamB.points;
+    var ptA = game.gameState[game.gameState.length - 1].corporation.points;
+    var ptB = game.gameState[game.gameState.length - 1].insurgents.points;
     var td;
 
 
     if (ptA > ptB) {
         //console.log("WINNER B");
-        td = document.getElementById('winnerA');
+        td = document.getElementById('winnerCorporation');
     } else if (ptA < ptB) {
         //console.log("WINNER A");
-        td = document.getElementById('winnerB');
+        td = document.getElementById('winnerInsurgents');
     }
 
     td.innerHTML += '<img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/>';
@@ -18,7 +18,7 @@ function setWinner(game) {
 }
 
 function getAllPlayers(gamestate) {
-    return gamestate.teamA.players.concat(gamestate.teamB.players);
+    return gamestate.corporation.players.concat(gamestate.insurgents.players);
 }
 
 /*function setRules(game) {

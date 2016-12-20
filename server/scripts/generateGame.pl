@@ -63,12 +63,12 @@ my %game = (
 	"gameState" => []
 );
 
-my %teamA;
-my %teamB;
+my %corporation;
+my %insurgents;
 
 for(my $i = 0; $i < $numUsers; $i++){
-	$teamA{"UserA$i"} = getRandomRole();
-	$teamB{"UserB$i"} = getRandomRole();
+	$corporation{"UserA$i"} = getRandomRole();
+	$insurgents{"UserB$i"} = getRandomRole();
 }
 
 my %points;
@@ -87,41 +87,41 @@ for(my $i = 0; $i<$numGamestates; $i++){
 	my %gamestate = ();
 
 	my @playersA = ();
-	foreach my $username (keys %teamA){
+	foreach my $username (keys %corporation){
 		push(@playersA,{
 			"username" => $username,
 			"lat" => "".getRandomFloat($minLat,$maxLat),
 			"lng" => "".getRandomFloat($minLng,$maxLng),
 			"energy" => getRandomInt(0,100),
-			"role" => $teamA{$username}
+			"role" => $corporation{$username}
 		});
 		
 	}
-	$gamestate{"teamA"}{"players"} = \@playersA;
+	$gamestate{"corporation"}{"players"} = \@playersA;
 	if($i == 0){
-		$gamestate{"teamA"}{"points"} = 0;
+		$gamestate{"corporation"}{"points"} = 0;
 	}
 	else{
-		$gamestate{"teamA"}{"points"} = $game{"gameState"}[$i-1]{"teamA"}{"points"}+getRandomInt(0,5);
+		$gamestate{"corporation"}{"points"} = $game{"gameState"}[$i-1]{"corporation"}{"points"}+getRandomInt(0,5);
 	}
 
 	my @playersB = ();
-	foreach my $username (keys %teamB){
+	foreach my $username (keys %insurgents){
 		push(@playersB,{
 			"username" => $username,
 			"lat" => "".getRandomFloat($minLat,$maxLat),
 			"lng" => "".getRandomFloat($minLng,$maxLng),
 			"energy" => getRandomInt(0,100),
-			"role" => $teamB{$username}
+			"role" => $insurgents{$username}
 		});
 		
 	}
-	$gamestate{"teamB"}{"players"} = \@playersB;
+	$gamestate{"insurgents"}{"players"} = \@playersB;
 	if($i == 0){
-		$gamestate{"teamB"}{"points"} = 0;
+		$gamestate{"insurgents"}{"points"} = 0;
 	}
 	else{
-		$gamestate{"teamB"}{"points"} = $game{"gameState"}[$i-1]{"teamB"}{"points"}+getRandomInt(0,5);
+		$gamestate{"insurgents"}{"points"} = $game{"gameState"}[$i-1]{"insurgents"}{"points"}+getRandomInt(0,5);
 	}
 
 
