@@ -17,8 +17,8 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('dominium-map'), {
         zoom: 2,
 		minZoom: 1,
-        center: new google.maps.LatLng(0,0),
-        disableDefaultUI: true,
+        	center: new google.maps.LatLng(0,0),
+        	disableDefaultUI: true,
 		clickableIcons: false,
 		zoomControl: false,
 		scaleControl: false,
@@ -184,6 +184,9 @@ function updateCapturePointInfo(point){
         'Controlled by: '+point.teamOwner+
         '</div>'
     );
+
+	document.getElementById(point.name+"-owner").innerHTML = "Controlled by: "+point.teamOwner;
+	document.getElementById(point.name+"-energy").innerHTML = "Energy: "+point.energy;
 }
 
 function moveMarker(marker, start, step, index) {

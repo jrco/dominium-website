@@ -55,14 +55,14 @@
                     <td style="padding: 10px;" align="center"><img width="80" width="80" src="../img/tower.png" class="img-responsive" alt="tower"></td>
                 </tr>
                 <tr align="center">
-                    <td>NAME</td>
+                    <td>{{cp.name}}</td>
                 </tr>
                 <tr align="center">
                     <td>ASDA</td>
                 </tr>
                 <tr align="center">
-                    <td>LATITUDE</td>
-                    <td>LONGITUDE</td>
+                    <td>{{cp.lat}}</td>
+                    <td>{{cp.lng}}</td>
                 </tr>
                 <tr align="center">
                     <td>23213</td>
@@ -132,4 +132,20 @@
 </div>
 <div id="checkpoints">
     <h4>Checkpoints</h4>
+	<table width="100%">
+		<tr ng-repeat="cp in $ctrl.game.gameState[0].capturePoints">
+            <td align="center">
+                <img width="80" width="80" src="../img/tower.png" class="img-responsive" alt="tower">
+            </td>
+            <td align="center">
+                {{cp.name}}
+            </td>
+            <td id="{{cp.name}}-owner" align="center">
+                Controlled by: -
+            </td>
+            <td id="{{cp.name}}-energy" align="center">
+                Energy: 0
+            </td>
+		</tr>
+	</table>
 </div>
