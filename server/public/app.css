@@ -28,7 +28,6 @@ body {
 	width: 100%;
 	font-size: 120%;
 	text-align: center;
-	padd
 }
 
 .player_table td {
@@ -58,4 +57,18 @@ body {
      border-left: none;
 }
 
+.game_details{
+	width: 100%;
+	border: 1px;
+	text-align: center;
+}
+
+.td_players {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.map_replay {
+	text-align: center;
+}
 
