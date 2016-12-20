@@ -28,7 +28,8 @@ function initMap() {
 }
 
 function initializeGame(gamestate) {
-
+    var pointsA;
+    var pointsB;
     gamestate.teamA.players.forEach(function(player){
         createPlayerMarker(player,"A");
     });
@@ -39,6 +40,11 @@ function initializeGame(gamestate) {
     gamestate.capturePoints.forEach(function(point){
         createCapturePointMarker(point);
     });
+
+    pointsA = document.getElementById('replay_a_points');
+    pointsB = document.getElementById('replay_b_points');
+    pointsA.innerHTML = '<p>' + 0 + '</p>';
+    pointsB.innerHTML = '<p>' + 0 + '</p>';
 
     updateInfos(gamestate);
 }
@@ -142,21 +148,33 @@ function createCapturePointMarker(point){
 
 
 function updateInfos(gamestate){
+    var pointsA;
+    var pointsA
     gamestate.capturePoints.forEach(function(point){
         updateCapturePointInfo(point);
     });
     getAllPlayers(gamestate).forEach(function (player) {
         updatePlayerInfo(player);
     });
+
+    pointsA = document.getElementById('replay_a_points');
+    pointsB = document.getElementById('replay_b_points');
+    pointsA.innerHTML = '<p>' + gamestate.teamA.points + '</p>';
+    pointsB.innerHTML = '<p>' + gamestate.teamB.points + '</p>';
 }
 
 function updatePlayerInfo(player){
+    var energyP;
     playerList[player.username].info.setContent(
         '<div>'+
         '<b>'+player.username+' ['+player.role+']</b><br/>'+
         'Energy: '+player.energy+
         '</div>'
     );
+
+    energyP = document.getElementById(player.username);
+    energyP.innerHTML = '<p>Energy</p>' +'<p>' + player.energy + '</p>';
+
 }
 function updateCapturePointInfo(point){
     capList[point.name].info.setContent(
@@ -234,6 +252,7 @@ function playGame(newGame) {
 		clearMarkers();
 		initializeGame(dominiumGame.gameState[0]);
 		updateInfos(dominiumGame.gameState[0]);
+        setWinner(dominiumGame);
 	}
 
     processGameStates();
