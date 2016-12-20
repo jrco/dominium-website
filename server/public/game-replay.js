@@ -185,8 +185,20 @@ function updateCapturePointInfo(point){
         '</div>'
     );
 
+	var color;
+	if(point.teamOwner === "A"){
+		color = "#16a085";
+	}
+	else{
+		color = "#e74c3c";
+	}
+
 	document.getElementById(point.name+"-owner").innerHTML = "Controlled by: "+point.teamOwner;
-	document.getElementById(point.name+"-energy").innerHTML = "Energy: "+point.energy;
+
+
+	document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
+	document.getElementById(point.name+"-energy").setAttribute("style","width:"+point.energy+"%;background-color:"+color+";");
+	document.getElementById(point.name+"-energy").innerHTML = point.energy;
 }
 
 function moveMarker(marker, start, step, index) {
