@@ -1,17 +1,17 @@
 <table class="final_score" style="width:100%">
     <tr>
-        <td id="winnerA" align="center"></td>
+        <td id="winnerCorporation" align="center"></td>
         <td class="td_corporation">
             <h3>Corporation</h3></td>
         <td align="center">
-            <h3 id="a_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].teamA.points}}</h3></td>
+            <h3 id="a_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.points}}</h3></td>
         <td align="center">
             <h3>VS</h3></td>
         <td align="center">
-            <h3 id="b_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].teamB.points}}</h3></td>
+            <h3 id="b_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.points}}</h3></td>
         <td class="td_insurgents">
             <h3>Insurgents</h3></td>
-        <td id="winnerB" align="center"></td>
+        <td id="winnerInsurgents" align="center"></td>
     </tr>
 </table>
 <!--button type="button" ng-click="$ctrl.setWinner();">Winner!!</button-->
@@ -19,10 +19,10 @@
     <tr align="center">
         <td class="td_players">
             <div>
-                <table ng-repeat="player in $ctrl.game.gameState[0].teamA.players">
+                <table ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
                     <tr>
                         <td>
-                            <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
+                            <img width="50" width="50" ng-src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
                         </td>
                         <td>
                             {{player.username}}
@@ -48,10 +48,10 @@
         </td>
         <td class="td_players">
             <div>
-                <table ng-repeat="player in $ctrl.game.gameState[0].teamB.players">
+                <table ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
                     <tr>
                         <td>
-                            <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
+                            <img width="50" width="50" ng-src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
                         </td>
                         <td>
                             {{player.username}}

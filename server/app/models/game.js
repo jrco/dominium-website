@@ -21,11 +21,11 @@ var Player = new Schema({
 
 var GameState = new Schema({
   _id: Schema.Types.ObjectId,
-  teamA: {
+  corporation: {
     players : [Player],
     points : Number
   },
-  teamB: {
+  insurgents: {
     players : [Player],
     points : Number
   },
