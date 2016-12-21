@@ -72,6 +72,7 @@ function createAuxData(markers, nextGamestate) {
 function processGameStates() {
     console.log("Executing "+currentGameState);
     if(dominiumGame.gameState.length <= currentGameState){
+		setWinner(dominiumGame);
         return;
     }
 
@@ -170,8 +171,8 @@ function updatePlayerInfo(player){
         '</div>'
     );
 
-	document.getElementById(player.username+"-energy").setAttribute("aria-valuenow",player.energy);
-	document.getElementById(player.username+"-energy").setAttribute("style","width:"+player.energy+"%;");
+	document.getElementById(player.username+"-energy").style["aria-valuenow"] = player.energy;
+	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";
 	document.getElementById(player.username+"-energy").innerHTML = player.energy;
 }
 function updateCapturePointInfo(point){
@@ -183,18 +184,19 @@ function updateCapturePointInfo(point){
         '</div>'
     );
 
-	var color;
+
 	if(point.teamOwner === "Corporation"){
-		color = "#16a085";
+		document.getElementById(point.name+"-energy").style["background-color"] = "#16a085";
 	}
 	else{
-		color = "#e74c3c";
+		document.getElementById(point.name+"-energy").style["background-color"] = "#e74c3c";
+
 	}
 
 	document.getElementById(point.name+"-owner").innerHTML = point.teamOwner;
 
 	document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
-	document.getElementById(point.name+"-energy").setAttribute("style","width:"+point.energy+"%;background-color:"+color+";");
+	document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
 	document.getElementById(point.name+"-energy").innerHTML = point.energy;
 }
 
@@ -264,8 +266,8 @@ function playGame(newGame) {
 		clearMarkers();
 		initializeGame(dominiumGame.gameState[0]);
 		updateInfos(dominiumGame.gameState[0]);
-        setWinner(dominiumGame);
 	}
 
+	removeWinner();
     processGameStates();
 }

@@ -13,8 +13,13 @@ function setWinner(game) {
         td = document.getElementById('winnerInsurgents');
     }
 
-    td.innerHTML += '<img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/>';
+    td.innerHTML = '<img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/>';
     console.log("WINNER");
+}
+
+function removeWinner(){
+	document.getElementById('winnerInsurgents').innerHTML = "";
+	document.getElementById('winnerCorporation').innerHTML = "";
 }
 
 function getAllPlayers(gamestate) {
