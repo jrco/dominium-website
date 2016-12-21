@@ -187,7 +187,7 @@ function updatePlayerInfo(player){
 
 	document.getElementById(player.username+"-energy").style["background-color"] = color;
 
-	document.getElementById(player.username+"-energy").style["aria-valuenow"] = player.energy;
+	document.getElementById(player.username+"-energy").setAttribute("aria-valuenow",player.energy);
 	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";
 	document.getElementById(player.username+"-energy").innerHTML = player.energy;
 }
