@@ -17,8 +17,8 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('dominium-map'), {
         zoom: 2,
 		minZoom: 1,
-        	center: new google.maps.LatLng(0,0),
-        	disableDefaultUI: true,
+        center: new google.maps.LatLng(0,0),
+        disableDefaultUI: true,
 		clickableIcons: false,
 		//zoomControl: false,
 		//scaleControl: false,
@@ -33,10 +33,10 @@ function initializeGame(gamestate) {
     var pointsA;
     var pointsB;
     gamestate.corporation.players.forEach(function(player){
-        createPlayerMarker(player,"A");
+        createPlayerMarker(player,"Corporation");
     });
     gamestate.insurgents.players.forEach(function(player){
-        createPlayerMarker(player,"B");
+        createPlayerMarker(player,"Insurgents");
     });
 
     gamestate.capturePoints.forEach(function(point){
@@ -74,15 +74,18 @@ function createAuxData(markers, nextGamestate) {
 function processGameStates() {
     console.log("Executing "+currentGameState);
     if(dominiumGame.gameState.length <= currentGameState){
+		setWinner(dominiumGame);
         return;
     }
 
     var gamestate = dominiumGame.gameState[currentGameState++];
 
     updateInfos(gamestate);
+	/*
     gamestate.capturePoints.forEach(function (point) {
        capList[point.name].marker.setLabel(point.teamOwner);
     });
+	*/
 
     var dataAux = createAuxData(playerList, gamestate);
     animationLoop = setTimeout(
@@ -118,7 +121,7 @@ function createPlayerMarker(player,team){
     playerList[player.username] = {
         "marker": new google.maps.Marker({
             position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
-            icon: (team === "A") ? "https://maps.gstatic.com/mapfiles/ms2/micons/blue.png":"https://maps.gstatic.com/mapfiles/ms2/micons/red.png",
+            icon: (team === "Corporation") ? "https://maps.gstatic.com/mapfiles/ms2/micons/blue.png":"https://maps.gstatic.com/mapfiles/ms2/micons/red.png",
             optimized: false,
             map: map
         }),
@@ -133,7 +136,7 @@ function createCapturePointMarker(point){
     capList[point.name] = {
         "marker": new google.maps.Marker({
             position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
-            label: point.teamOwner,
+            //label: point.teamOwner,
             icon: new google.maps.MarkerImage("../img/capPoint.svg",null,null,null,new google.maps.Size(30, 30)),
             zIndex: -1,
             map: map
@@ -170,8 +173,24 @@ function updatePlayerInfo(player){
         '</div>'
     );
 
+	var color;	
+	if(player.energy < 25){
+		color = "#C04000";
+	}
+	else if(player.energy < 50){
+		color = "#C68E17";
+	}
+	else if(player.energy < 75){
+		color = "#728C00";
+	}
+	else{
+		color = "#4CC417";
+	}
+
+	document.getElementById(player.username+"-energy").style["background-color"] = color;
+
 	document.getElementById(player.username+"-energy").setAttribute("aria-valuenow",player.energy);
-	document.getElementById(player.username+"-energy").setAttribute("style","width:"+player.energy+"%;");
+	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";
 	document.getElementById(player.username+"-energy").innerHTML = player.energy;
 }
 function updateCapturePointInfo(point){
@@ -183,18 +202,18 @@ function updateCapturePointInfo(point){
         '</div>'
     );
 
-	var color;
-	if(point.teamOwner === "A"){
-		color = "#16a085";
+
+	if(point.teamOwner === "Corporation"){
+		document.getElementById(point.name+"-energy").style["background-color"] = "#16a085";
 	}
 	else{
-		color = "#e74c3c";
+		document.getElementById(point.name+"-energy").style["background-color"] = "#e74c3c";
 	}
 
 	document.getElementById(point.name+"-owner").innerHTML = point.teamOwner;
 
 	document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
-	document.getElementById(point.name+"-energy").setAttribute("style","width:"+point.energy+"%;background-color:"+color+";");
+	document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
 	document.getElementById(point.name+"-energy").innerHTML = point.energy;
 }
 
@@ -264,8 +283,8 @@ function playGame(newGame) {
 		clearMarkers();
 		initializeGame(dominiumGame.gameState[0]);
 		updateInfos(dominiumGame.gameState[0]);
-        setWinner(dominiumGame);
 	}
 
+	removeWinner();
     processGameStates();
 }
