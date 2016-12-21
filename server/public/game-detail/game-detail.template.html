@@ -1,106 +1,86 @@
-<table class="final_score" style="width:100%">
-    <tr>
-        <td id="winnerCorporation" align="center"></td>
-        <td class="td_corporation">
-            <h3>Corporation</h3></td>
-        <td align="center">
-            <h3 id="a_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.points}}</h3></td>
-        <td align="center">
-            <h3>VS</h3></td>
-        <td align="center">
-            <h3 id="b_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.points}}</h3></td>
-        <td class="td_insurgents">
-            <h3>Insurgents</h3></td>
-        <td id="winnerInsurgents" align="center"></td>
-    </tr>
-</table>
-<!--button type="button" ng-click="$ctrl.setWinner();">Winner!!</button-->
-<table class="game_details" width="100%">
-    <tr>
-        <td class="td_players">
-            <div>
-                <table ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
-                    <tr>
-                        <td class="role_img">
-                            <img width="50" width="50" src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
-                        <td>
-                            <img width="50" width="50" ng-src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
-                        </td>
-                        <td class="player_username">
-                            {{player.username}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="player_energy" colspan="2">
-							<div class="progress">
-								<div id="{{player.username}}-energy" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">100</div>
-							</div>
-						</td>
-                    </tr>
-                </table>
+<div id="pagewrap">
+    <header>
+        <table class="final_score">
+            <tr>
+                <td id="winnerCorporation" align="center"></td>
+                <td class="td_corporation">
+                    <h1>Corporation</h1></td>
+                <td align="center">
+                    <h1 id="a_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.points}}</h1></td>
+                <td align="center">
+                    <figure class="logo animated fadeInDown delay-07s">
+                        <a href="#"><img src="img/logo.png" alt=""></a>
+                    </figure>
+                </td>
+                <td align="center">
+                    <h1 id="b_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.points}}</h1></td>
+                <td class="td_insurgents">
+                    <h1>Insurgents</h1></td>
+                <td id="winnerInsurgents" align="center"></td>
+            </tr>
+        </table>
+    </header>
+    <section id="content">
+        <div class="container player" ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
+            <!-- Begin of rows -->
+            <div class="row carousel-row">
+                <div class="col-xs-3 slide-row player_data">
+                    <div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img ng-src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" /> </div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <h4>{{player.username}}</h4>
+                    </div>
+                    <div class="slide-footer">
+                        <h6>Energy</h6>
+                        <div id="{{player.username}}-energy" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+                    </div>
+                </div>
             </div>
-        </td>
-        <td class="map_replay">
-            <div class="replay_result" id="replay_result">
-
+        </div>
+    </section>
+    <section id="middle">
+        <div class="replay_result table-responsive container" id="replay_result">
+        </div>
+        <div id="dominium-map" style="width:670px; height:450px"></div>
+        <button type="button" class="btn" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
+    </section>
+    <section id="sidebar">
+        <div class="container player" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
+            <!-- Begin of rows -->
+            <div class="row carousel-row ">
+                <div class="col-xs-3 slide-row player_data">
+                    <div id="carousel-1" class="carousel slide slide-carousel" data-ride="carousel">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img ng-src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" /> </div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <h4>{{player.username}}</h4>
+                    </div>
+                    <div class="slide-footer">
+                        <h6>Energy</h6>
+                        <div id="{{player.username}}-energy" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+                    </div>
+                </div>
             </div>
-            <button type="button" style="padding:10px; margin:10px;" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
-            <div id="dominium-map" style="width:700px; height:512px"></div>
+    </section>
+    <footer>
+        <div class="row">
+            <div class="col-sm-4" ng-repeat="cp in $ctrl.game.gameState[0].capturePoints">
+                <!-- Begin of rows -->
+                <img ng-src="../img/tower.png" class="img-responsive cp_img" alt="tower" />
+              <p>{{cp.name}}</p>
+              <p>{{cp.energy}}</p>
+              <div id="{{cp.name}}-energy" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+              <div id="{{cp.name}}-owner">{{cp.teamOwner}}</div>
             </div>
-        </td>
-        <td class="td_players">
-            <div>
-                <table ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
-                    <tr>
-                        <td>
-                            <img width="50" width="50" ng-src="../img/{{player.role}}.png" class="img-responsive" alt="{{player.role}}" />
-                        </td>
-                        <td class="player_username">
-                            {{player.username}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-							<div class="progress">
-								<div id="{{player.username}}-energy" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">100</div>
-							</div>
-						</td>
-                    </tr>
-                </table>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td align="center" ng-repeat="cp in $ctrl.game.gameState[0].capturePoints">
-            <table>
-                <tr>
-                    <td style="padding: 10px;" align="center"><img width="80" width="80" src="../img/tower.png" class="img-responsive" alt="tower"></td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td>{{cp.name}}</td>
-                </tr>
-                <tr>
-                    <td>Lat</td>
-                    <td>Lng</td>
-                </tr>
-                <tr>
-                    <td>{{cp.lat}}</td>
-                    <td>{{cp.lng}}</td>
-                </tr>
-                <tr>
-                    <td>Team Owner</td>
-                    <td id="{{cp.name}}-owner">{{cp.teamOwner}}</td>
-                </tr>
-				<tr>
-					<td>Energy:</td>
-					<td>
-						<div class="progress">
-							<div id="{{cp.name}}-energy" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">0</div>
-						</div>
-					</td>
-				</tr>
-            </table>
-        </td>
-    </tr>
-</table>
+        </div>
+    </footer>
+    </div>

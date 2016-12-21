@@ -24,7 +24,7 @@ sub getRandomFloat{
 	my $min = shift;
 	my $max = shift;
 
-	return $min+rand($max-$min+1);
+	return $min+rand($max-$min);
 }
 
 sub getRandomRole{
@@ -45,15 +45,15 @@ sub getRandomTeam{
 #my $maxLng = -7;
 
 
-my $minLat = 41.5574;
-my $maxLat = 41.5574;
-my $minLng = -8.3978;
-my $maxLng = -8.3978;
+my $maxLat = 41.560788;
+my $minLat = 41.559331;
+my $maxLng = -8.400355;
+my $minLng = -8.398973;
 
-my $numUsers = 3;
+my $numUsers = 5;
 my $numPoints = 3;
 
-my $numGamestates = 30;
+my $numGamestates = 10;
 
 ##INITIALIZ
 my %game = (
