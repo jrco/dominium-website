@@ -171,6 +171,22 @@ function updatePlayerInfo(player){
         '</div>'
     );
 
+	var color;	
+	if(player.energy < 25){
+		color = "#C04000";
+	}
+	else if(player.energy < 50){
+		color = "#C68E17";
+	}
+	else if(player.energy < 75){
+		color = "#728C00";
+	}
+	else{
+		color = "#4CC417";
+	}
+
+	document.getElementById(player.username+"-energy").style["background-color"] = color;
+
 	document.getElementById(player.username+"-energy").style["aria-valuenow"] = player.energy;
 	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";
 	document.getElementById(player.username+"-energy").innerHTML = player.energy;
@@ -190,7 +206,6 @@ function updateCapturePointInfo(point){
 	}
 	else{
 		document.getElementById(point.name+"-energy").style["background-color"] = "#e74c3c";
-
 	}
 
 	document.getElementById(point.name+"-owner").innerHTML = point.teamOwner;
