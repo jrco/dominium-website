@@ -78,7 +78,7 @@ function aggregateGameStates(game){
 }
 
 function createPointControlCharts(){
-	document.getElementById("charts").innerHTML += "<tr id='pointControl' align='center'></tr>";
+	document.getElementById("charts").innerHTML += "<div id='pointControl' class='row' align='center'></div><br/><br/><br/><br/>";
 	Object.keys(statistics.capturePoints).forEach(function(pointName){
 		var totalCorporation = 0;
 		var totalInsurgents = 0;
@@ -89,8 +89,8 @@ function createPointControlCharts(){
 		});
 
 
-		var canvasId = pointName+"-chart";
-		document.getElementById("pointControl").innerHTML += "<td><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></td>";
+		var canvasId = pointName+"-canvas";
+		document.getElementById("pointControl").innerHTML += "<div class='col-md-4'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
 
 		var total = totalCorporation+totalInsurgents;
 		createChart(canvasId,'pie',
@@ -98,8 +98,8 @@ function createPointControlCharts(){
 				labels: ["Corporation", "Insurgents"],
 				datasets: [{
 					data: [
-						(totalCorporation/total).toFixed(3), 
-						(totalInsurgents/total).toFixed(3)
+						trimNumber(totalCorporation/total,3), 
+						trimNumber(totalInsurgents/total,3)
 					],
 					backgroundColor: [getTeamColor("corporation"),getTeamColor("insurgents")]
 				}]
@@ -107,7 +107,8 @@ function createPointControlCharts(){
 			{
 				title: {
 				    display: true,
-				    text: "Time % Control of "+pointName
+				    text: "Time % Control of "+pointName,
+					fontSize: 20
 				},
 				responsive: true,
 				maintainAspectRatio: false
@@ -117,7 +118,7 @@ function createPointControlCharts(){
 }
 
 function createDistanceCharts(){
-	document.getElementById("charts").innerHTML += "<tr id='distance' align='center'></tr>";
+	document.getElementById("charts").innerHTML += "<div id='distance' class='row' align='center'></div><br/><br/><br/><br/>";
 
 	var namesCorp = [];
 	var distancesCorp = [];
@@ -137,8 +138,8 @@ function createDistanceCharts(){
 		);
 	});
 
-	var canvasId = "distanceChart";
-	document.getElementById("distance").innerHTML += "<td><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></td>";
+	var canvasId = "distanceCanvas";
+	document.getElementById("distance").innerHTML += "<div class='col-md-auto'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
 
 	createChart(canvasId,'bar',
 		{
@@ -152,18 +153,22 @@ function createDistanceCharts(){
 		{
 			title: {
 			    display: true,
-			    text: "Travelled distance"
+			    text: "Travelled distance",
+				fontSize: 25
 			},
 			scales: {
 				yAxes: [{
-				  scaleLabel: {
-					display: true,
-					labelString: "Distance (m)"
-				  }
+					scaleLabel: {
+						display: true,
+						labelString: "Distance (m)"
+					},
+					ticks: {
+                		beginAtZero: true
+            		}
 				}]
 			},
 			legend: {
-				display: false,
+				display: false
 			},
 			responsive: true,
 			maintainAspectRatio: false
@@ -174,10 +179,10 @@ function createDistanceCharts(){
 
 function createPointsCharts(){
 
-	document.getElementById("charts").innerHTML += "<tr id='pointTime' align='center'></tr>";
+	document.getElementById("charts").innerHTML += "<div id='pointTime' class='row' align='center'></div><br/><br/><br/><br/>";
 
 	var canvasId = "pointTimeCanvas";
-	document.getElementById("pointTime").innerHTML += "<td><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></td>";
+	document.getElementById("pointTime").innerHTML += "<div class='col-md-auto'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
 
 
 	createChart(canvasId,'line',
@@ -200,7 +205,8 @@ function createPointsCharts(){
 		{
 			title: {
 			    display: true,
-			    text: "Score change over time"
+			    text: "Score change over time",
+				fontSize: 25
 			},
 			scales: {
 				yAxes: [{
@@ -264,4 +270,8 @@ function getRepeatedArray(item,times){
 		array.push(item);
 	}
 	return array;
+}
+
+function trimNumber(number,maxSize){
+	return parseFloat(number.toFixed(maxSize));
 }
