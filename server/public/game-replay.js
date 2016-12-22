@@ -20,11 +20,13 @@ function initMap() {
         center: new google.maps.LatLng(0,0),
         disableDefaultUI: true,
 		clickableIcons: false,
-		zoomControl: false,
-		scaleControl: false,
-		scrollwheel: false,
-	 	disableDoubleClickZoom: true
+		//zoomControl: false,
+		//scaleControl: false,
+		//scrollwheel: false,
+	 	//disableDoubleClickZoom: true,
+        mapTypeId: 'satellite'
     });
+
 }
 
 function initializeGame(gamestate) {
