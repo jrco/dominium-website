@@ -1,8 +1,59 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/**************************************************************************/
+
 html, body {
 	width: 100%;
 	height: 100%;
 	background-color: #ecf0f1;
-	padding-top: 20px;
+	
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	color: #666;
 }
 
 .view-container {
@@ -13,7 +64,7 @@ html, body {
 .head_table {
 	text-align: center;
 	font-size: 150%;
-	font-weight: 900
+	font-weight: 900;
 }
 
 .body_table {
@@ -150,233 +201,278 @@ html, body {
 	width: 50px;
 }
 
-/* FONT AWESOME & not necessary for functions */
-@import url('http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
 
-
-/*REQUIRED*/
-.carousel-row {
-    margin-bottom: 10px;
-}
-
-.slide-row {
-    padding: 0;
-    border: 2px solid #e7e7e7;
-    border-left: 4px solid #16a085;
-    overflow: hidden;
-    height: auto;
-    position: left;
-}
-
-
-.slide-carousel {
-    width: 20%;
-    float: left;
-    display: inline-block;
-}
-
-.slide-carousel .carousel-indicators {
-    margin-bottom: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, .5);
-}
-
-.slide-carousel .carousel-indicators li {
-    border-radius: 0;
-    width: 20px;
-    height: 6px;
-}
-
-.slide-carousel .carousel-indicators .active {
-    margin: 1px;
-}
-
-.slide-content {
-    position: absolute;
-    top: 0;
-    left: 20%;
-    display: block;
-    float: left;
-    width: 30%;
-    max-height: 60%;
-    padding: 1.5% 2% 2% 2%;
-    overflow-y: auto;
-}
-
-.slide-content h4 {
-    margin-bottom: 3px;
-    margin-top: 0;
-    text-align: center;
-}
-
-.slide-footer {
-    position: absolute;
-    bottom: 0;
-    left: 20%;
-    width: 75%;
-    height: 100%;
-    margin: 1%;
-}
-
-.slide-footercp {
-    position: absolute;
-    bottom: 0;
-    left: 20%;
-    width: 100%;
-    height: 100%;
-    margin: 1%;
-}
-
-/* Scrollbars */
-.slide-content::-webkit-scrollbar {
-  width: 5px;
-}
- 
-.slide-content::-webkit-scrollbar-thumb:vertical {
-  margin: 5px;
-  background-color: #999;
-  -webkit-border-radius: 5px;
-}
- 
-.slide-content::-webkit-scrollbar-button:start:decrement,
-.slide-content::-webkit-scrollbar-button:end:increment {
-  height: 5px;
-  display: block;
-}
 /****************************************************************************************/
 /********************************* LAYOUT FROM PAGE *************************************/
 /*****************************************************************************************/
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
-body { 
-  font-family: 'Open Sans', sans-serif;
-  color: #666;
-}
 
 /* STRUCTURE */
+/* Header */
 
 #pagewrap {
-	padding: 5px;
-	width: 1280px auto;
-	height: 800px auto;
-	margin: 5px auto;
+	width: 100%;
+	height: 100%;
+	border-left:none;
+	border-right:none;
 }
-header {
+
+/************* FINAL RESULT **********************/
+#match_result {
+	width: 100%;
+	display: table;
+	table-layout: fixed;
 	height: 80px;
-	padding: 0 15px;
-}
-#content {
-	width: 330px;
-	float: left;
-	padding: 5px 15px;
+	border-style: 1px solid rgba(52, 73, 94, 0.15);
 }
 
-#middle {
-	width: 700px; /* Account for margins + border values */
-	float: left;
-	padding: 5px;
-	margin: 0px 5px 5px 5px;
-}
-
-#sidebar {
-	width: 330px;
-	padding: 5px 15px;
-	float: left;
-}
-footer {
-	width: 100%;
+#match_result > .winner_cp,
+#match_result > span.corporation,
+#match_result > span.corporation_points,
+#match_result > .logo,
+#match_result > span.insurgents_points,
+#match_result > span.insurgents, 
+#match_result > .winner_in {
+	display: table-cell;
+	vertical-align: middle;
 	height: 100%;
-	clear: both;
-	padding: 0 15px;
+	text-align: center;
 }
 
-.checkpoints_footer{
+#match_result > .winner_cp,
+#match_result > span.corporation_points,
+#match_result > .logo,
+#match_result > span.insurgents_points,
+#match_result > .winner_in {
+	width: 10%;
+}
+
+#match_result > span.corporation,
+#match_result > span.insurgents {
+	width: 25%;
+}
+
+#match_result > .winner_cp > img,
+#match_result > .winner_in > img {
+	opacity: 0;
+	-webkit-transition: opacity 0.5s ease-in-out;
+    transition: opacity 1.5s ease-in-out;
+}
+
+#match_result > .logo > img,
+#match_result > .winner_cp > img,
+#match_result > .winner_in > img {
+	height: 60px;
+}
+
+#match_result > .winner_cp.won > img,
+#match_result > .winner_in.won > img {
+	opacity: 1;
+}
+
+
+#match_result > span.corporation,
+#match_result > span.corporation_points,
+#match_result > span.insurgents_points,
+#match_result > span.insurgents {
+	text-transform: uppercase;
+	font-size: 1.2em;
+}
+
+
+/********************** TEAMS AND MAP **************************/
+
+#section_container {
 	width: 100%;
-	height: 100%;
+	display: table;
+	table-layout: fixed;
 }
 
-/************************************************************************************
-MEDIA QUERIES
-*************************************************************************************/
-/* for 980px or less */
-@media screen and (max-width: 980px) {
-	
-	#pagewrap {
-		width: 94%;
-	}
-	#content {
-		width: 41%;
-		padding: 1% 4%;
-	}
-	#middle {
-		width: 41%;
-		padding: 1% 4%;
-		margin: 0px 0px 5px 5px;
-		float: right;
-	}
-	
-	#sidebar {
-		clear: both;
-		padding: 1% 4%;
-		width: auto;
-		float: none;
-	}
-
-	header, footer {
-		padding: 1% 5%;
-	}
+#section_container > .team_list,
+#section_container > #map {
+	display: table-cell;
+	vertical-align: top;
+	overflow-x: hidden;
 }
 
-/* for 700px or less */
-@media screen and (max-width: 600px) {
-
-	#content {
-		width: auto;
-		float: none;
-	}
-	
-	#middle {
-		width: auto;
-		float: none;
-		margin-left: 0px;
-	}
-	
-	#sidebar {
-		width: auto;
-		float: none;
-	}
-
+#section_container > .team_list {
+	width: 25%;
 }
 
-/* for 480px or less */
-@media screen and (max-width: 480px) {
-
-	header {
-		height: auto;
-	}
-	h1 {
-		font-size: 2em;
-	}
-	#sidebar {
-		display: none;
-	}
-
+#section_container > #map{
+	width: 50%;
+	text-align: center;
 }
 
-
-#content {
-	background: #f8f8f8;
-}
-#sidebar {
-	background: #f0efef;
-}
-header, #content, #middle, #sidebar {
+#section_container > .team_list > .player_row {
+	width: calc(100% - 2px);
+	display: table;
+	height: 60px;
 	margin-bottom: 5px;
+	border: 1px solid rgba(52, 73, 94, 0.15);
 }
 
-#pagewrap, header, #content, #middle, #sidebar, footer {
-	border: solid 1px #ccc;
+#section_container > .team_list > .player_row:last-of-type {
+	margin-bottom: 0;
 }
+
+#section_container > .team_list > .player_row > .image_div,
+#section_container > .team_list > .player_row > .energy {
+	display: table-cell;
+	vertical-align: middle;
+	height: 100%;
+	border:none;
+	margin:0;
+	padding: 0;
+}
+
+#section_container > .team_list > .player_row > .image_div {
+	width: 20%;
+}
+
+#section_container > .team_list.left > .player_row > .image_div {
+	border-left: 2px solid #16a085;
+	text-align: left;
+}
+
+#section_container > .team_list.right > .player_row > .image_div {
+	border-right: 2px solid #e74c3c;
+	text-align: right;
+}
+
+#section_container > .team_list > .player_row > .energy {
+	/*width: 90%; isto muda consoante a cena*/
+}
+
+#section_container > .team_list > .player_row > .image_div > img {
+	height: 60px;
+}
+
+#section_container > .team_list > .player_row > .energy > .info,
+#section_container > .team_list > .player_row > .energy > .progress-bar {
+	display: block;
+	width: 100%;
+	overflow: hidden;
+	height: 50%;
+}
+
+#section_container > .team_list > .player_row > .energy > .info > span.infolabel,
+#section_container > .team_list > .player_row > .energy > .info > span.name {
+	display: inline-block;
+	vertical-align: middle;
+	width: 49%;
+}
+
+#section_container > .team_list > .player_row > .energy > .info > span.infolabel {
+	font-size: 0.8em;
+	opacity: 0.6;
+}
+
+#section_container > .team_list > .player_row > .energy > .info > span.name {
+	font-size: 0.9em;
+	color: #444;
+}
+
+#section_container > .team_list.left > .player_row > .energy > .info > span.infolabel {
+	text-align: right;
+}
+
+#section_container > .team_list.right > .player_row > .energy > .info > span.infolabel {
+	text-align: left;
+}
+
+#section_container > .team_list.left > .player_row > .energy > .info > span.name {
+	text-align: left;
+}
+
+#section_container > .team_list.right > .player_row > .energy > .info > span.name {
+	text-align: right;
+}
+
+#dominium-map {
+	width: 98%;
+	padding: 0;
+	margin: 0 1%;
+	min-height: 450px;
+}
+
+/************* CAPTURE POINTS ******************/
+#capture_points {
+	width: 100%;
+	display: block;
+}
+
+#capture_points > .capture_point {
+	display: inline-block;
+	vertical-align: center;
+	margin-left: 1.25%;
+	width: calc(95% / 3 - 4px);
+	border: 2px solid rgba(28,28,28,0.3);
+	border-radius: 4px;
+	overflow:hidden;
+} 
+
+#capture_points > .capture_point:last-of-type {
+	margin-right: 1.25%;
+}
+
+#capture_points > .capture_point > .cp_info,
+#capture_points > .capture_point > .teamOwner {
+	width: 50%;
+	display: inline-block;
+	vertical-align: middle;
+	text-align: center;
+	overflow-x: hidden;
+}
+
+#capture_points > .capture_point > .cp_info > div,
+#capture_points > .capture_point > .teamOwner > div {
+	display: block;
+	width: 100%;
+}
+
+#capture_points > .capture_point > .cp_info > .cp_img,
+#capture_points > .capture_point > .teamOwner > .team_icon{
+	text-align: center;
+	height: 100px;		
+}
+
+#capture_points > .capture_point > .cp_info > .checkpoint,
+#capture_points > .capture_point > .teamOwner > .progress-bar-container {
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+}
+
+#capture_points > .capture_point > .teamOwner > .progress-bar-container {
+	background-color: rgba(189, 195, 199, 0.5);
+	position: relative;
+}
+
+#capture_points > .capture_point > .teamOwner > .progress-bar-container > .progress-bar {
+	height: 100%;
+}
+
+#capture_points > .capture_point > .teamOwner > .progress-bar-container > span.value_now {
+	text-align: right;
+	position: absolute;
+	top:0;
+	right: 2%;
+	bottom: 0;
+	z-index: 100;
+	color: rgba(25,25,25,0.8);
+	font-size: 0.8em;
+}
+
+#capture_points > .capture_point > .cp_info > .cp_img > img,
+#capture_points > .capture_point > .teamOwner > .team_icon > img {
+	display: block;
+	height: 80%;
+	margin: 10% auto;
+}
+
+
 
 
