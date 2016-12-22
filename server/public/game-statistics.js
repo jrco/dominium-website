@@ -29,8 +29,8 @@ function aggregateGameStates(game){
 				}
 			}
 
-			statistics.corporation.players[player.username].lat.push(player.lat);
-			statistics.corporation.players[player.username].lng.push(player.lng);
+			statistics.corporation.players[player.username].lat.push(parseFloat(player.lat));
+			statistics.corporation.players[player.username].lng.push(parseFloat(player.lng));
 			statistics.corporation.players[player.username].energy.push(player.energy);
 		});
 		gamestate.insurgents.players.forEach(function(player){
@@ -43,8 +43,8 @@ function aggregateGameStates(game){
 				}
 			}
 
-			statistics.insurgents.players[player.username].lat.push(player.lat);
-			statistics.insurgents.players[player.username].lng.push(player.lng);
+			statistics.insurgents.players[player.username].lat.push(parseFloat(player.lat));
+			statistics.insurgents.players[player.username].lng.push(parseFloat(player.lng));
 			statistics.insurgents.players[player.username].energy.push(player.energy);
 		});
 
@@ -59,8 +59,8 @@ function aggregateGameStates(game){
 				}
 			}
 
-			statistics.capturePoints[point.name].lat.push(point.lat);
-			statistics.capturePoints[point.name].lng.push(point.lng);
+			statistics.capturePoints[point.name].lat.push(parseFloat(point.lat));
+			statistics.capturePoints[point.name].lng.push(parseFloat(point.lng));
 			statistics.capturePoints[point.name].energy.push(point.energy);
 			statistics.capturePoints[point.name].teamOwner.push(point.teamOwner);
 		});
