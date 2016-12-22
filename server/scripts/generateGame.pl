@@ -36,15 +36,6 @@ sub getRandomTeam{
 }
 
 ###DEFS
-
-#Portugal bounds
-
-#my $minLat = 36.5;
-#my $maxLat = 41;
-#my $minLng = -8.5;
-#my $maxLng = -7;
-
-
 my $maxLat = 41.560788;
 my $minLat = 41.559331;
 my $maxLng = -8.400355;
@@ -55,7 +46,7 @@ my $numPoints = 5;
 
 my $numGamestates = 10;
 
-##INITIALIZ
+###INITIALIZE
 my %game = (
 	"name_of_room" => "Room Teste",
 	"location" => "Braga",
@@ -81,7 +72,6 @@ for(my $i = 0; $i < $numPoints; $i++){
 }
 
 ###GENERATE
-
 for(my $i = 0; $i<$numGamestates; $i++){
 
 	my %gamestate = ();
