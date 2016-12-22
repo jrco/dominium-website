@@ -1,20 +1,19 @@
-var statistics = {
-	gamestates: 0,
-	corporation: {
-		players: {},
-		points: []
-	},
-	insurgents: {
-		players: {},
-		points: []
-	},
-	capturePoints: {
-		
-	}
-};
-
 
 function aggregateGameStates(game){
+	var statistics = {
+		gamestates: 0,
+		corporation: {
+			players: {},
+			points: []
+		},
+		insurgents: {
+			players: {},
+			points: []
+		},
+		capturePoints: {
+		
+		}
+	};
 
 	statistics.gamestates = game.gameState.length;
 
@@ -72,12 +71,12 @@ function aggregateGameStates(game){
 
 	console.log(statistics);
 
-	createPointControlCharts();
-	createDistanceCharts();
-	createPointsCharts();
+	createPointControlCharts(statistics);
+	createDistanceCharts(statistics);
+	createPointsCharts(statistics);
 }
 
-function createPointControlCharts(){
+function createPointControlCharts(statistics){
 	document.getElementById("charts").innerHTML += "<div id='pointControl' class='row' align='center'></div><br/><br/><br/><br/>";
 	Object.keys(statistics.capturePoints).forEach(function(pointName){
 		var totalCorporation = 0;
@@ -90,7 +89,7 @@ function createPointControlCharts(){
 
 
 		var canvasId = pointName+"-canvas";
-		document.getElementById("pointControl").innerHTML += "<div class='col-md-4'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
+		document.getElementById("pointControl").innerHTML += "<div class='col-md-3'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
 
 		var total = totalCorporation+totalInsurgents;
 		createChart(canvasId,'pie',
@@ -117,7 +116,7 @@ function createPointControlCharts(){
 	});
 }
 
-function createDistanceCharts(){
+function createDistanceCharts(statistics){
 	document.getElementById("charts").innerHTML += "<div id='distance' class='row' align='center'></div><br/><br/><br/><br/>";
 
 	var namesCorp = [];
@@ -139,7 +138,7 @@ function createDistanceCharts(){
 	});
 
 	var canvasId = "distanceCanvas";
-	document.getElementById("distance").innerHTML += "<div class='col-md-auto'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
+	document.getElementById("distance").innerHTML += "<div class='col-md-12'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
 
 	createChart(canvasId,'bar',
 		{
@@ -177,12 +176,12 @@ function createDistanceCharts(){
 }
 
 
-function createPointsCharts(){
+function createPointsCharts(statistics){
 
 	document.getElementById("charts").innerHTML += "<div id='pointTime' class='row' align='center'></div><br/><br/><br/><br/>";
 
 	var canvasId = "pointTimeCanvas";
-	document.getElementById("pointTime").innerHTML += "<div class='col-md-auto'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
+	document.getElementById("pointTime").innerHTML += "<div class='col-md-12'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
 
 
 	createChart(canvasId,'line',

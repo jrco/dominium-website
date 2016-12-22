@@ -51,7 +51,7 @@ my $maxLng = -8.400355;
 my $minLng = -8.398973;
 
 my $numUsers = 5;
-my $numPoints = 3;
+my $numPoints = 5;
 
 my $numGamestates = 10;
 
