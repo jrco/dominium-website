@@ -43,8 +43,9 @@ function initializeGame(gamestate) {
         createCapturePointMarker(point);
     });
 
-    document.getElementById('a_points').innerHTML = gamestate.corporation.points;
-    document.getElementById('b_points').innerHTML = gamestate.insurgents.points;
+
+    $('span.corporation_points').text(gamestate.corporation.points);
+    $('span.insurgents_points').text(gamestate.insurgents.points);
 
     updateInfos(gamestate);
 }
@@ -160,8 +161,8 @@ function updateInfos(gamestate){
         updatePlayerInfo(player);
     });
 
-    document.getElementById('a_points').innerHTML = gamestate.corporation.points;
-    document.getElementById('b_points').innerHTML = gamestate.insurgents.points;
+    $('span.corporation_points').text(gamestate.corporation.points);
+    $('span.insurgents_points').text(gamestate.insurgents.points);
 }
 
 function updatePlayerInfo(player){
@@ -214,7 +215,7 @@ function updateCapturePointInfo(point){
 
 	document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
 	document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
-	document.getElementById(point.name+"-energy").innerHTML = point.energy;
+    $('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
 }
 
 function moveMarker(marker, start, step, index) {

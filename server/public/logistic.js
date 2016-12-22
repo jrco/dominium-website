@@ -7,19 +7,16 @@ function setWinner(game) {
 
     if (ptA > ptB) {
         //console.log("WINNER B");
-        td = document.getElementById('winnerCorporation');
+        $('.winner_cp').addClass('won');
     } else if (ptA < ptB) {
         //console.log("WINNER A");
-        td = document.getElementById('winnerInsurgents');
+        $('.winner_in').addClass('won');
     }
-
-    td.innerHTML = '<img width="50" width="50" src="../img/trophy.png" class="img-responsive" alt="golden_trophy"/>';
-    console.log("WINNER");
 }
 
 function removeWinner(){
-	document.getElementById('winnerInsurgents').innerHTML = "";
-	document.getElementById('winnerCorporation').innerHTML = "";
+	$('.winner_in').removeClass("won");
+	$('.winner_cp').removeClass("won");
 }
 
 function getAllPlayers(gamestate) {
