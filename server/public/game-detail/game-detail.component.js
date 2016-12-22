@@ -15,11 +15,13 @@ component('gameDetail', {
                 self.game = response.data;
                 setWinner(self.game);
 				setGameRectangle(self.game);
+				aggregateGameStates(self.game);
             });
 
             self.playGame = function() {
                 playGame(self.game);
             };
+			
 			
             //this.gameId = $routeParams.gameId;
         }
