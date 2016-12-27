@@ -47,13 +47,10 @@ table {
 html, body {
 	width: 100%;
 	height: 100%;
-	background-color: #ecf0f1;
-	
 }
 
 body {
 	font-family: 'Open Sans', sans-serif;
-	color: #666;
 }
 
 .view-container {
@@ -61,146 +58,38 @@ body {
 	height: 100%;
 }
 
-.head_table {
-	text-align: center;
-	font-size: 150%;
-	font-weight: 900;
+.view-container {
+  position: relative;
 }
 
-.body_table {
-	text-align: center;
-	font-size: 120%;
+.view-frame.ng-enter,
+.view-frame.ng-leave {
+  background: white;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
-.td_corporation {
-	color : #16a085;
-	text-align: center;
+.view-frame.ng-enter {
+  animation: 1s fade-in;
+  z-index: 100;
 }
 
-.td_insurgents {
-	color : #e74c3c;
-	text-align: center;
+.view-frame.ng-leave {
+  animation: 1s fade-out;
+  z-index: 99;
 }
 
-.player_table {
-	width: 100%;
-	font-size: 120%;
-	text-align: center;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-.player_table td {
-	padding-left: 150px;
+@keyframes fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
 }
-
-.final_score {
-    border-collapse:separate;
-    /*border:solid black 1px;
-    border-radius:6px;
-    -moz-border-radius:6px;*/
-}
-
-.final_score td, th {
-   /* border-left:solid black 0px;
-    border-top:solid black 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;*/
-}
-
-.final_score th {
-    background-color: blue;
-    border-top: none;
-}
-
-.final_score td:first-child, th:first-child {
-     border-left: none;
-}
-
-.game_details{
-	width: 100%;
-	border: 1px;
-	text-align: center;
-}
-
-.td_players {
-	text-align: center;
-	padding-top: 10px;
-}
-
-.map_replay {
-	text-align: center;
-}
-
-.progress {
-	padding-top: 5px;
-}
-
-.player_username{
-	padding-right: 50px;
-}
-
-.role_img{
-	padding-left: 10px;
-	padding-right: 20px; 
-}
-
-.player_energy{
-	padding-left: 20px;
-}
-
-.map_replay{
-	text-align: center;
-	padding-left: 100px;
-	height: 10%;
-}
-
-
-.player_stats{
-	border: 1px;
-	border-style: solid;
-	border-color: #16a085;
-	padding-bottom: 100px;
-	text-align: center;
-}
-
-.player {
-	margin-left: 5px;
-	width: 100%;
-	height: 100%;
-}
-
-.player_data{
-	height: 100%;
-	width: 100%;
-}
-
-.final_score {
-	width:100%;
-	padding-right: 50px;
-}
-
-.aux_result {
-	width: 10%;
-}
-
-.progress-bar {
-	width: 100%;
-	height: 50%;
-}
-
-.cp-energy {
-	width: 20%;
-}
-
-.checkpoints {
-	width: 100%;
-	height: 100%;
-}
-
-.cp_img {
-	height: 50px;
-	width: 50px;
-}
-
 
 
 /****************************************************************************************/
@@ -213,61 +102,136 @@ body {
 	height: 100%;
 	border-left: none;
 	border-right: none;
+	display: table;
+	table-layout: fixed;
 }
 
 #all_page_list > .options {
 	display: table-cell;
-	height: 100%;
-	table-layout: fixed;
-	border: 1px solid rgba(52, 73, 94, 0.15);
+	width: 25%;
 }
 
 #all_page_list > .options.left {
-	width: 25%;
 	text-align: left;
 }
 
 #all_page_list > .options.right{
-	width: 25%;
 	text-align: right;
 }
 
 #all_page_list > .game_list {
-	width: 50%;
-	display: table-cell;
+	width: 100%;
+	display: table;
 	table-layout: fixed;
 }
 
 #all_page_list > .game_list > .single_game {
+	width: calc(100% - 4px);
 	display: table-row;
-	table-layout: fixed;
+	margin: 2px;
+}
+
+#all_page_list > .game_list > .single_game.ng-enter,
+#all_page_list > .game_list > .single_game.ng-leave,
+#all_page_list > .game_list > .single_game.ng-move {
+  transition: 0.5s linear all;
+}
+
+#all_page_list > .game_list > .single_game.ng-enter,
+#all_page_list > .game_list > .single_game.ng-move {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+#all_page_list > .game_list > .single_game.ng-enter.ng-enter-active,
+#all_page_list > .game_list > .single_game.ng-move.ng-move-active {
+  height: 120px;
+  opacity: 1;
+}
+
+#all_page_list > .game_list > .single_game.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+#all_page_list > .game_list > .single_game.ng-leave.ng-leave-active {
+  height: 0;
+  opacity: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+#all_page_list > .game_list > .single_game > .team,
+#all_page_list > .game_list > .single_game > .info_game {
+	display: table-cell;
 	vertical-align: middle;
-	height: 60px;
 	text-align: center;
 }
 
-#all_page_list > .game_list > .single_game > .corp_img,
-#all_page_list > .game_list > .single_game > .ins_img {
-	width: 10%;
-	display: table-cell;
+#all_page_list > .game_list > .single_game > .team{
+	width: 25%;
 }
 
-#all_page_list > .game_list > .single_game > .corp_img > .cp,
-#all_page_list > .game_list > .single_game > .ins_img > .in{
-	width: 100%;
-	height: 100px;
+#all_page_list > .game_list > .single_game > .info_game {
+	width: 50%;
+}
+
+#all_page_list > .game_list > .single_game > .team > .img {
 	display: table-row;
+	width: 100%;
+	text-align: center;
 }
 
-#all_page_list > .game_list > .single_game > .corp_img > .cp_name,
-#all_page_list > .game_list > .single_game > .ins_img > .in_name{
+#all_page_list > .game_list > .single_game > .team > .img > img {
+	border: 2px solid rgba(52, 73, 94, 0.15);
+	height: 80px;
+	width: 80px;
+	margin: 10px;
+}
+
+#all_page_list > .game_list > .single_game > .team > .name {
 	width: 100%;
-	height: 10px;
 	display: table-row;
 	text-align: center;
 	text-transform: uppercase;
-	font-size: 1.2em;
+	font-size: 1.0em;
+	vertical-align: middle;
+}
 
+#all_page_list > .game_list > .info_game {
+	width: 100%;
+}
+
+#all_page_list > .game_list > .info_game > .result {
+	display: inline-block;
+}
+
+#all_page_list > .game_list > .info_game > .result > .cp_points,
+#all_page_list > .game_list > .info_game > .result > .in_points,{
+	width: 40%;
+	display: table-cell;
+	font-size: 1.5em;
+}
+
+#all_page_list > .game_list > .info_game > .result > .logo{
+	width: 20%;
+	display: table-cell;
+	height: 20px;
+}
+
+#all_page_list > .game_list > .more_info {
+	display: table-row;
+	font-size: 1.5em;
+}
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+    font-style: 
+}
+
+a:hover {
+ text-decoration: bold;
 }
 
 /* STRUCTURE GAME DETAIL */

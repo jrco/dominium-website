@@ -2,32 +2,29 @@
     <div class="options left">cenas search</div>
     <div class="game_list">
         <div class="single_game" ng-repeat="game in $ctrl.games">
-            <div class="corp_img">
-                <div class="cp"></div>
-                <div class="cp_name">Corporation</div>
+            <div class="team">
+                <div class="img"><img ng-src="../img/diamond_blue.png" alt="coorporation" /></div>
+                <div class="name">Corporation</div>
             </div>
             <div class="info_game">
                 <div class="result">
-                    <div class="cp_points">{{game.gameState[game.gameState.length-1].corporation.points}}</div>
-                    <div class="logo"></div>
-                    <div class="in_points">{{game.gameState[game.gameState.length-1].insurgents.points}}</div>
+                    <div class="cp_points">{{game.gameState[game.gameState.length-1].corporation.points}}</div><div class="logo"><img ng-src="img/logo.png" alt="Dominium"></div><div class="in_points">{{game.gameState[game.gameState.length-1].insurgents.points}}</div>
                 </div>
                 <div class="more_info">
-                    <div class="date">Date : {{game.gameState[0].timeStamp}}</div>
-                    <div class="location">Location : {{game.location}}</div>
-                    <div class="time_of_game">Time of game : {{game.timeGame}}</div>
+                    Played on {{game.gameState[0].timeStamp}} in {{game.location}} for {{game.timeGame}} minutes
                 </div>
                 <div class="full_details">
-                    <a href="#!/games/{{game._id}}" class="thumb">
-                        <div class="arrows">
+                    <a href="#!/games/{{game._id}}">
+                    More info...
+                        <!--div class="arrows">
                             <img src="../img/setas.png" alt="arrows" />
-                        </div>
+                        </div-->
                     </a>
                 </div>
             </div>
-            <div class="ins_img">
-                <div class="in"></div>
-                <div class="in_name">Insurgent</div>
+            <div class="team">
+                <div class="img"><img ng-src="../img/diamond_red.png" alt="coorporation" /></div>
+                <div class="name">Insurgents</div>
             </div>
         </div>
     </div>

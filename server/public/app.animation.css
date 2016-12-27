@@ -1,28 +1,28 @@
-.game-list-item.ng-enter,
-.game-list-item.ng-leave,
-.game-list-item.ng-move {
+.single_game.ng-enter,
+.single_game.ng-leave,
+.single_game.ng-move {
   transition: 0.5s linear all;
 }
 
-.game-list-item.ng-enter,
-.game-list-item.ng-move {
+.single_game.ng-enter,
+.single_game.ng-move {
   height: 0;
   opacity: 0;
   overflow: hidden;
 }
 
-.game-list-item.ng-enter.ng-enter-active,
-.game-list-item.ng-move.ng-move-active {
+.single_game.ng-enter.ng-enter-active,
+.single_game.ng-move.ng-move-active {
   height: 120px;
   opacity: 1;
 }
 
-.game-list-item.ng-leave {
+.single_game.ng-leave {
   opacity: 1;
   overflow: hidden;
 }
 
-.game-list-item.ng-leave.ng-leave-active {
+.single_game.ng-leave.ng-leave-active {
   height: 0;
   opacity: 0;
   padding-bottom: 0;
@@ -61,6 +61,3 @@
   from { opacity: 1; }
   to   { opacity: 0; }
 }
-
-
-/* Older browsers might need vendor-prefixes for keyframes and animation! */
