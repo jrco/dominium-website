@@ -207,9 +207,70 @@ body {
 /********************************* LAYOUT FROM PAGE *************************************/
 /*****************************************************************************************/
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+/* STRUCTURE GAME LIST */
+#all_page_list {
+	width: 100%;
+	height: 100%;
+	border-left: none;
+	border-right: none;
+}
 
+#all_page_list > .options {
+	display: table-cell;
+	height: 100%;
+	table-layout: fixed;
+	border: 1px solid rgba(52, 73, 94, 0.15);
+}
 
-/* STRUCTURE */
+#all_page_list > .options.left {
+	width: 25%;
+	text-align: left;
+}
+
+#all_page_list > .options.right{
+	width: 25%;
+	text-align: right;
+}
+
+#all_page_list > .game_list {
+	width: 50%;
+	display: table-cell;
+	table-layout: fixed;
+}
+
+#all_page_list > .game_list > .single_game {
+	display: table-row;
+	table-layout: fixed;
+	vertical-align: middle;
+	height: 60px;
+	text-align: center;
+}
+
+#all_page_list > .game_list > .single_game > .corp_img,
+#all_page_list > .game_list > .single_game > .ins_img {
+	width: 10%;
+	display: table-cell;
+}
+
+#all_page_list > .game_list > .single_game > .corp_img > .cp,
+#all_page_list > .game_list > .single_game > .ins_img > .in{
+	width: 100%;
+	height: 100px;
+	display: table-row;
+}
+
+#all_page_list > .game_list > .single_game > .corp_img > .cp_name,
+#all_page_list > .game_list > .single_game > .ins_img > .in_name{
+	width: 100%;
+	height: 10px;
+	display: table-row;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 1.2em;
+
+}
+
+/* STRUCTURE GAME DETAIL */
 /* Header */
 
 #pagewrap {
@@ -472,6 +533,8 @@ body {
 	height: 80%;
 	margin: 10% auto;
 }
+
+
 
 
 
