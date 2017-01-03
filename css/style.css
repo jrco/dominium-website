@@ -895,4 +895,11 @@ border: 2px solid #fff;
 	color: #DCDCDC;
 }
 
+.replay-text {
+	animation: blinker 3s linear infinite;
+	color: #C0392B !important;
+}
 
+@keyframes blinker {
+	50% { opacity: 0; }
+}
