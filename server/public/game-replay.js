@@ -30,8 +30,6 @@ function initMap() {
 }
 
 function initializeGame(gamestate) {
-    var pointsA;
-    var pointsB;
     gamestate.corporation.players.forEach(function(player){
         createPlayerMarker(player,"Corporation");
     });
@@ -164,7 +162,6 @@ function updateInfos(gamestate){
 }
 
 function updatePlayerInfo(player){
-    var energyP;
     playerList[player.username].info.setContent(
         '<div>'+
         '<b>'+player.username+' ['+player.role+']</b><br/>'+
@@ -293,7 +290,6 @@ function setGameRectangle(game){
 		});
 	});
 
-	console.log(bounds);
 	map.fitBounds(bounds);
 	map.panToBounds(bounds);
 }
