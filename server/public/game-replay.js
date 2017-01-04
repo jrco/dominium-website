@@ -138,7 +138,7 @@ function createCapturePointMarker(point){
         "marker": new google.maps.Marker({
             position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
             //label: point.teamOwner,
-            icon: new google.maps.MarkerImage("../img/capPoint.svg",null,null,null,new google.maps.Size(30, 30)),
+            icon: new google.maps.MarkerImage("../img/diamond_black.png",null,null,null,new google.maps.Size(30, 30)),
             zIndex: -1,
             map: map
         }),
@@ -152,8 +152,6 @@ function createCapturePointMarker(point){
 
 
 function updateInfos(gamestate){
-    var pointsA;
-    var pointsA
     gamestate.capturePoints.forEach(function(point){
         updateCapturePointInfo(point);
     });
@@ -174,21 +172,8 @@ function updatePlayerInfo(player){
         '</div>'
     );
 
-	var color;	
-	if(player.energy < 25){
-		color = "#C04000";
-	}
-	else if(player.energy < 50){
-		color = "#C68E17";
-	}
-	else if(player.energy < 75){
-		color = "#728C00";
-	}
-	else{
-		color = "#4CC417";
-	}
 
-	document.getElementById(player.username+"-energy").style["background-color"] = color;
+	document.getElementById(player.username+"-energy").style["background-color"] = getEnergyColor(player.energy);
 
 	document.getElementById(player.username+"-energy").setAttribute("aria-valuenow",player.energy);
 	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";
@@ -203,14 +188,13 @@ function updateCapturePointInfo(point){
         '</div>'
     );
 
+	capList[point.name].marker.setIcon(
+		new google.maps.MarkerImage(getCapturePointIcon(point.teamOwner),null,null,null,new google.maps.Size(30, 30))
+	);
 
-	if(point.teamOwner === "Corporation"){
-		document.getElementById(point.name+"-energy").style["background-color"] = "#16a085";
-	}
-	else{
-		document.getElementById(point.name+"-energy").style["background-color"] = "#e74c3c";
-	}
 
+	document.getElementById(point.name+"-energy").style["background-color"] = getTeamColorHex(point.teamOwner);
+	
 	document.getElementById(point.name+"-owner").innerHTML = point.teamOwner;
 
 	document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
@@ -229,6 +213,45 @@ function moveMarker(marker, start, step, index) {
 
 function getAllPlayers(gamestate){
     return gamestate.corporation.players.concat(gamestate.insurgents.players);
+}
+
+function getCapturePointIcon(teamOwner){
+	if(teamOwner === "Corporation"){
+		return "../img/diamond_blue.png";
+	}
+	else if(teamOwner == "Insurgents"){
+		return "../img/diamond_red.png";
+	}
+	else{
+		return "../img/diamond_black.png";
+	}
+}
+
+function getEnergyColor(energy){
+	if(energy < 25){
+		return "#C04000";
+	}
+	else if(energy < 50){
+		return "#C68E17";
+	}
+	else if(energy < 75){
+		return "#728C00";
+	}
+	else{
+		return "#4CC417";
+	}
+}
+
+function getTeamColorHex(team){
+	if(team === "Corporation"){
+		return "#16a085";
+	}
+	else if(team === "Insurgents"){
+		return "#e74c3c";
+	}
+	else{
+		return "#000000";
+	}
 }
 
 function clearMarkers(){
