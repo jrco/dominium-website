@@ -219,7 +219,7 @@ function getCapturePointIcon(teamOwner){
 	if(teamOwner === "Corporation"){
 		return "../img/diamond_blue.png";
 	}
-	else if(teamOwner == "Insurgents"){
+	else if(teamOwner === "Insurgents"){
 		return "../img/diamond_red.png";
 	}
 	else{
