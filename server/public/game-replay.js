@@ -72,7 +72,7 @@ function createAuxData(markers, nextGamestate) {
 
 function processGameStates() {
     console.log("Executing "+currentGameState);
-    if(dominiumGame.gameState.length <= currentGameState){
+    if(currentGameState > dominiumGame.gameState.length-1){
 		setWinner(dominiumGame);
         return;
     }
