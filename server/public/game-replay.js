@@ -1,7 +1,7 @@
 var map;
 
-var playerList = {};//username: {marker,info}
-var capList = {};//name: {marker, info}
+var playerList = {};//username: marker
+var capList = {};//name: marker
 
 var gameStateDuration = 1000;
 var totalDraws = 100;
@@ -45,15 +45,15 @@ function initializeGame(gamestate) {
     $('span.corporation_points').text(gamestate.corporation.points);
     $('span.insurgents_points').text(gamestate.insurgents.points);
 
-    updateInfos(gamestate);
+    updateState(gamestate);
 }
 
-function createAuxData(markers, nextGamestate) {
+function createAuxData(nextGamestate) {
     var dataAux = {};
     var marker;
 
     getAllPlayers(nextGamestate).forEach(function (player) {
-        marker = markers[player.username].marker;
+        marker = playerList[player.username];
 
         dataAux[player.username] = {
             startingPosition: {
@@ -79,14 +79,9 @@ function processGameStates() {
 
     var gamestate = dominiumGame.gameState[currentGameState++];
 
-    updateInfos(gamestate);
-	/*
-    gamestate.capturePoints.forEach(function (point) {
-       capList[point.name].marker.setLabel(point.teamOwner);
-    });
-	*/
+    updateState(gamestate);
 
-    var dataAux = createAuxData(playerList, gamestate);
+    var dataAux = createAuxData(gamestate);
     animationLoop = setTimeout(
         function () {
             moveIteration(gamestate, dataAux, 1);
@@ -102,7 +97,7 @@ function moveIteration(gamestate, dataAux, iteration) {
 
     getAllPlayers(gamestate).forEach(function (player) {
         moveMarker(
-            playerList[player.username].marker,
+            playerList[player.username],
             dataAux[player.username].startingPosition,
             dataAux[player.username].step,
             iteration
@@ -117,58 +112,42 @@ function moveIteration(gamestate, dataAux, iteration) {
 }
 
 function createPlayerMarker(player,team){
-    playerList[player.username] = {
-        "marker": new google.maps.Marker({
-            position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
-            icon: (team === "Corporation") ? "https://maps.gstatic.com/mapfiles/ms2/micons/blue.png":"https://maps.gstatic.com/mapfiles/ms2/micons/red.png",
-            optimized: false,
-            map: map
-        }),
-        "info": new google.maps.InfoWindow()
-    };
 
-    google.maps.event.addListener(playerList[player.username].marker, 'click', function() {
-        playerList[player.username].info.open(map,this);
+	var teamIcon = (team === "Corporation") ? "https://maps.gstatic.com/mapfiles/ms2/micons/blue.png":"https://maps.gstatic.com/mapfiles/ms2/micons/red.png";
+
+    playerList[player.username] = new MarkerWithLabel({
+        position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
+        icon: teamIcon,
+		labelContent: "<span>"+player.username+"</span>",
+		labelAnchor: new google.maps.Point(0,50),
+		labelClass: "player_label",
+        optimized: false,
+        map: map
     });
 }
 function createCapturePointMarker(point){
-    capList[point.name] = {
-        "marker": new google.maps.Marker({
-            position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
-            //label: point.teamOwner,
-            icon: new google.maps.MarkerImage("../img/diamond_black.png",null,null,null,new google.maps.Size(30, 30)),
-            zIndex: -1,
-            map: map
-        }),
-        "info": new google.maps.InfoWindow()
-    };
-
-    google.maps.event.addListener(capList[point.name].marker, 'click', function() {
-        capList[point.name].info.open(map,this);
+    capList[point.name] = new google.maps.Marker({
+        position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
+        icon: new google.maps.MarkerImage("../img/diamond_black.png",null,null,null,new google.maps.Size(30, 30)),
+		zIndex: -1,
+        map: map
     });
 }
 
 
-function updateInfos(gamestate){
+function updateState(gamestate){
     gamestate.capturePoints.forEach(function(point){
-        updateCapturePointInfo(point);
+        updateCapturePointState(point);
     });
     getAllPlayers(gamestate).forEach(function (player) {
-        updatePlayerInfo(player);
+        updatePlayerState(player);
     });
 
     $('span.corporation_points').text(gamestate.corporation.points);
     $('span.insurgents_points').text(gamestate.insurgents.points);
 }
 
-function updatePlayerInfo(player){
-    playerList[player.username].info.setContent(
-        '<div>'+
-        '<b>'+player.username+' ['+player.role+']</b><br/>'+
-        'Energy: '+player.energy+
-        '</div>'
-    );
-
+function updatePlayerState(player){
 
 	document.getElementById(player.username+"-energy").style["background-color"] = getEnergyColor(player.energy);
 
@@ -176,19 +155,11 @@ function updatePlayerInfo(player){
 	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";
 	document.getElementById(player.username+"-energy").innerHTML = player.energy;
 }
-function updateCapturePointInfo(point){
-    capList[point.name].info.setContent(
-        '<div>'+
-        '<b>'+point.name+'</b><br/>'+
-        'Energy: '+point.energy+'<br/>'+
-        'Controlled by: '+point.teamOwner+
-        '</div>'
-    );
+function updateCapturePointState(point){
 
-	capList[point.name].marker.setIcon(
+	capList[point.name].setIcon(
 		new google.maps.MarkerImage(getCapturePointIcon(point.teamOwner),null,null,null,new google.maps.Size(30, 30))
 	);
-
 
 	document.getElementById(point.name+"-energy").style["background-color"] = getTeamColorHex(point.teamOwner);
 	
@@ -255,14 +226,14 @@ function clearMarkers(){
 
     for (var key in playerList) {
         if (playerList.hasOwnProperty(key)) {
-            playerList[key].marker.setMap(null);
+            playerList[key].setMap(null);
         }
     }
     playerList = {};
 
     for (var key in capList) {
         if (capList.hasOwnProperty(key)) {
-            capList[key].marker.setMap(null);
+            capList[key].setMap(null);
         }
     }
     capList = {};
@@ -302,7 +273,7 @@ function playGame(newGame) {
 		clearTimeout(animationLoop);
 		clearMarkers();
 		initializeGame(dominiumGame.gameState[0]);
-		updateInfos(dominiumGame.gameState[0]);
+		updateState(dominiumGame.gameState[0]);
 	}
 
 	removeWinner();

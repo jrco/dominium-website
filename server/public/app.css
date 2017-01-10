@@ -499,7 +499,21 @@ a:hover {
 }
 
 
+.player_label {
+	overflow: visible !important;
+}
 
+.player_label span {
+	display: inline-block;
+	transform: translateX(-50%);
+	font-size: 150%;
+	font-weight: bold;
+	color: white;
+	-webkit-text-fill-color: white;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: black;
+	text-shadow: 2px 2px black;
+}
 
 
 
