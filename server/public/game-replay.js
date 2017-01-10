@@ -113,11 +113,9 @@ function moveIteration(gamestate, dataAux, iteration) {
 
 function createPlayerMarker(player,team){
 
-	var teamIcon = (team === "Corporation") ? "https://maps.gstatic.com/mapfiles/ms2/micons/blue.png":"https://maps.gstatic.com/mapfiles/ms2/micons/red.png";
-
     playerList[player.username] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
-        icon: teamIcon,
+        icon: getPlayerMarkerIcon(team),
 		labelContent: "<span>"+player.username+"</span>",
 		labelAnchor: new google.maps.Point(0,50),
 		labelClass: "player_label",
@@ -181,6 +179,18 @@ function moveMarker(marker, start, step, index) {
 
 function getAllPlayers(gamestate){
     return gamestate.corporation.players.concat(gamestate.insurgents.players);
+}
+
+function getPlayerMarkerIcon(team){
+	if(team === "Corporation"){
+		return "https://maps.gstatic.com/mapfiles/ms2/micons/blue.png";
+	}
+	else if(team === "Insurgents"){
+		return "https://maps.gstatic.com/mapfiles/ms2/micons/red.png";
+	}
+	else{
+		return "https://maps.gstatic.com/mapfiles/ms2/micons/green.png";
+	}
 }
 
 function getCapturePointIcon(teamOwner){
