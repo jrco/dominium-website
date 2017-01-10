@@ -116,20 +116,24 @@ function createPlayerMarker(player,team){
     playerList[player.username] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
         icon: getPlayerMarkerIcon(team),
-		labelContent: "<span>"+player.username+"</span>",
+		labelContent: "<span class='text_label'>"+player.username+"</span>",
 		labelAnchor: new google.maps.Point(0,50),
-		labelClass: "player_label",
+		labelClass: "map_label",
         optimized: false,
         map: map
     });
 }
 function createCapturePointMarker(point){
-    capList[point.name] = new google.maps.Marker({
+    capList[point.name] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
         icon: new google.maps.MarkerImage("../img/diamond_black.png",null,null,null,new google.maps.Size(30, 30)),
+		labelContent: "<span class='text_label'>"+point.name+"</span>",
+		labelAnchor: new google.maps.Point(0,50),
+		labelClass: "map_label",
 		zIndex: -1,
         map: map
     });
+	
 }
 
 

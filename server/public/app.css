@@ -499,12 +499,12 @@ a:hover {
 }
 
 
-.player_label {
+.map_label {
 	overflow: visible !important;
 }
 
-.player_label span {
-	display: inline-block;
+.text_label {
+	display: block;
 	transform: translateX(-50%);
 	font-size: 150%;
 	font-weight: bold;
@@ -514,6 +514,4 @@ a:hover {
 	-webkit-text-stroke-color: black;
 	text-shadow: 2px 2px black;
 }
-
-
 
