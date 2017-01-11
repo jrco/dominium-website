@@ -67,7 +67,8 @@ my %points;
 for(my $i = 0; $i < $numPoints; $i++){
 	$points{"Point$i"} = {
 		"lat" => "".getRandomFloat($minLat,$maxLat),
-		"lng" => "".getRandomFloat($minLng,$maxLng)
+		"lng" => "".getRandomFloat($minLng,$maxLng),
+		"radius" => 10
 	};
 }
 
@@ -121,6 +122,7 @@ for(my $i = 0; $i<$numGamestates; $i++){
 			"name" => $name,
 			"lat" => "".$points{$name}{"lat"},
 			"lng" => "".$points{$name}{"lng"},
+			"radius" => $points{$name}{"radius"},
 			"energy" => getRandomInt(0,100),
 			"teamOwner" => getRandomTeam()
 		});

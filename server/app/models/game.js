@@ -6,6 +6,7 @@ var CapturePoint = new Schema({
   name: String,
   lat: String,
   lng: String,
+  radius: Number,
   energy: Number,
   teamOwner: String
 });

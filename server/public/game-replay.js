@@ -133,7 +133,14 @@ function createCapturePointMarker(point){
 		zIndex: -1,
         map: map
     });
-	
+	var circle = new google.maps.Circle({
+		map: map,
+		radius: point.radius,
+		fillColor: '#44ff00',
+		strokeColor: '#ffff00',
+		strokeWidth: 6
+	});
+	circle.bindTo('center', capList[point.name], 'position');
 }
 
 
@@ -170,6 +177,7 @@ function updateCapturePointState(point){
 	document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
 	document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
     $('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
+
 }
 
 function moveMarker(marker, start, step, index) {
