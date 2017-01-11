@@ -33,7 +33,13 @@
             <div class="replay_result table-responsive container" id="replay_result">
             </div>
             <div id="dominium-map"></div>
-            <button type="button" class="btn" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
+			
+
+        	<button type="button" class="btn" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
+			<br/>
+			<input id="speed" type="text" value="1"></input>
+			<button type="button" class="btn" onclick="changeSpeed();"><b>Change gamestates p/ second!</b></button>
+
         </section>
         <section class="team_list right">
             <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">

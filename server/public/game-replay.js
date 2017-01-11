@@ -3,9 +3,11 @@ var map;
 var playerList = {};//username: marker
 var capList = {};//name: marker
 
-var gameStateDuration = 1000;
-var totalDraws = 100;
-var timeStep = gameStateDuration / totalDraws;
+var speed = {
+	gameStateDuration: 1000,
+	totalDraws: 100,
+	timeStep: 10
+};
 
 var dominiumGame;
 var currentGameState = 0;
@@ -48,7 +50,7 @@ function initializeGame(gamestate) {
     updateState(gamestate);
 }
 
-function createAuxData(nextGamestate) {
+function createAuxData(nextGamestate,speed) {
     var dataAux = {};
     var marker;
 
@@ -61,8 +63,8 @@ function createAuxData(nextGamestate) {
                 lng: marker.getPosition().lng()
             },
             step: {
-                lat: (parseFloat(player.lat) - marker.getPosition().lat()) / totalDraws,
-                lng: (parseFloat(player.lng) - marker.getPosition().lng()) / totalDraws
+                lat: (parseFloat(player.lat) - marker.getPosition().lat()) / speed.totalDraws,
+                lng: (parseFloat(player.lng) - marker.getPosition().lng()) / speed.totalDraws
             }
         };
     });
@@ -78,19 +80,20 @@ function processGameStates() {
     }
 
     var gamestate = dominiumGame.gameState[currentGameState++];
-
     updateState(gamestate);
 
-    var dataAux = createAuxData(gamestate);
+	var currentSpeed = speed;
+
+    var dataAux = createAuxData(gamestate, currentSpeed);
     animationLoop = setTimeout(
         function () {
-            moveIteration(gamestate, dataAux, 1);
-        }, timeStep
+            moveIteration(gamestate, dataAux, 1, currentSpeed);
+        }, currentSpeed.timeStep
     );
 }
 
-function moveIteration(gamestate, dataAux, iteration) {
-    if (iteration == totalDraws){
+function moveIteration(gamestate, dataAux, iteration, speed) {
+    if (iteration == speed.totalDraws){
         processGameStates();
         return;
     }
@@ -106,8 +109,8 @@ function moveIteration(gamestate, dataAux, iteration) {
 
    animationLoop = setTimeout(
         function () {
-            moveIteration(gamestate, dataAux, iteration + 1);
-        }, timeStep
+            moveIteration(gamestate, dataAux, iteration + 1, speed);
+        }, speed.timeStep
     );
 }
 
@@ -287,6 +290,21 @@ function setGameRectangle(game){
 	map.panToBounds(bounds);
 }
 
+function changeSpeed(){
+	var newSpeed = document.getElementById("speed").value;
+
+	var newGameStateDuration = newSpeed*1000;
+	var newTotalDraws = newGameStateDuration/10;
+	var newTimeStep = newGameStateDuration / newTotalDraws;
+
+	var newHash = {
+		gameStateDuration: newGameStateDuration,
+		totalDraws: newTotalDraws,
+		timeStep: newTimeStep
+	};	
+	speed = newHash;
+}
+
 function playGame(newGame) {
     currentGameState = 0;
     dominiumGame = newGame;
@@ -299,5 +317,6 @@ function playGame(newGame) {
 	}
 
 	removeWinner();
+	currentGameState = 1;
     processGameStates();
 }
