@@ -293,28 +293,27 @@ function setGameRectangle(game){
 function changeSpeed(){
 	var newSpeed = document.getElementById("speed").value;
 
-	var newGameStateDuration = newSpeed*1000;
-	var newTotalDraws = newGameStateDuration/10;
+	var newGameStateDuration = newSpeed * 1000;
+	var newTotalDraws = newGameStateDuration / 10;
 	var newTimeStep = newGameStateDuration / newTotalDraws;
 
-	var newHash = {
+	speed = {
 		gameStateDuration: newGameStateDuration,
 		totalDraws: newTotalDraws,
 		timeStep: newTimeStep
-	};	
-	speed = newHash;
+	};
 }
 
 function playGame(newGame) {
-    currentGameState = 0;
-    dominiumGame = newGame;
-
+    
 	if(typeof dominiumGame !== 'undefined'){
 		clearTimeout(animationLoop);
 		clearMarkers();
-		initializeGame(dominiumGame.gameState[0]);
-		updateState(dominiumGame.gameState[0]);
 	}
+
+	currentGameState = 0;
+	dominiumGame = newGame;
+	initializeGame(dominiumGame.gameState[0]);
 
 	removeWinner();
 	currentGameState = 1;

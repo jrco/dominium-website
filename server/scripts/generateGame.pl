@@ -44,7 +44,7 @@ my $minLng = -8.398973;
 my $numUsers = 5;
 my $numPoints = 5;
 
-my $numGamestates = 10;
+my $numGamestates = 30;
 
 ###INITIALIZE
 my %game = (
@@ -68,7 +68,7 @@ for(my $i = 0; $i < $numPoints; $i++){
 	$points{"Point$i"} = {
 		"lat" => "".getRandomFloat($minLat,$maxLat),
 		"lng" => "".getRandomFloat($minLng,$maxLng),
-		"radius" => 10
+		"radius" => getRandomInt(5,30)
 	};
 }
 
