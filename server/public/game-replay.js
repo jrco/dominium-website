@@ -77,6 +77,7 @@ function processGameStates() {
     console.log("Executing "+currentGameState);
     if(currentGameState > dominiumGame.gameState.length-1){
 		setWinner(dominiumGame);
+		animationLoop = undefined;
 		nextCallback = undefined;
         return;
     }
@@ -312,14 +313,12 @@ function changeSpeed(){
 	var newSpeed = 1/document.getElementById("speed").value;
 
 	var newGameStateDuration = newSpeed * 1000;
-	var newTotalDraws = newGameStateDuration / 10;
-	var newTimeStep = newGameStateDuration / newTotalDraws;
-
+	var newTotalDraws = (newGameStateDuration / 10).toFixed(0);
 
 	speed = {
 		gameStateDuration: newGameStateDuration,
 		totalDraws: newTotalDraws,
-		timeStep: newTimeStep
+		timeStep: 10
 	};
 	console.log("Speed changed to:",speed);
 }
@@ -339,6 +338,7 @@ function pause(){
 function resume(){
 	if(typeof nextCallback !== 'undefined'){
 		nextCallback();
+		nextCallback = undefined;
 	}
 	else{
 		document.getElementById("start-button").click();
