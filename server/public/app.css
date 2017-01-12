@@ -501,11 +501,11 @@ a:hover {
 
 .map_label {
 	overflow: visible !important;
+	transform: translateX(-50%);
 }
 
 .text_label {
 	display: block;
-	transform: translateX(-50%);
 	font-size: 150%;
 	font-weight: bold;
 	color: white;
@@ -513,5 +513,44 @@ a:hover {
 	-webkit-text-stroke-width: 1px;
 	-webkit-text-stroke-color: black;
 	text-shadow: 2px 2px black;
+}
+
+.energy-progress-bar {
+	width: 100px;
+	border: 1px solid black;
+}
+
+.energy-progress-bar tr{
+	width: 100%;
+	background-color:white;
+}
+
+.energy-progress-bar tr td{
+	width: 50%;
+	height: 10px;
+	position: relative;
+}
+
+.energy-progress-bar tr td span{
+	position: absolute;
+	text-align: center;
+	left: 0;
+	width: 100%;
+	z-index: 100;	
+}
+
+.energy-progress-bar tr td div{
+	position: absolute;
+	z-index: 50;
+}
+
+.energy-progress-bar tr td:first-child div{
+	right:0;	
+	background-color: #16a085;
+}
+
+.energy-progress-bar tr td:last-child div{
+	left:0;
+	background-color: #e74c3c;
 }
 

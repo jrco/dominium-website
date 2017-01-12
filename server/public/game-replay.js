@@ -130,20 +130,19 @@ function createCapturePointMarker(point){
     capList[point.name] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
         icon: new google.maps.MarkerImage("../img/diamond_black.png",null,null,null,new google.maps.Size(30, 30)),
-		labelContent: "<span class='text_label'>"+point.name+"</span>",
-		labelAnchor: new google.maps.Point(0,50),
+		labelContent: "<span class='text_label'>"+point.name+"</span><progress max='100' value='0'></progress>",
+		labelAnchor: new google.maps.Point(0,60),
 		labelClass: "map_label",
 		zIndex: -1,
         map: map
     });
-	var circle = new google.maps.Circle({
+	new google.maps.Circle({
 		map: map,
 		radius: point.radius,
 		fillColor: '#44ff00',
 		strokeColor: '#ffff00',
 		strokeWidth: 6
-	});
-	circle.bindTo('center', capList[point.name], 'position');
+	}).bindTo('center', capList[point.name], 'position');
 }
 
 
@@ -181,6 +180,7 @@ function updateCapturePointState(point){
 	document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
     $('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
 
+	capList[point.name].set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(point.teamOwner,point.energy));
 }
 
 function moveMarker(marker, start, step, index) {
@@ -194,6 +194,26 @@ function moveMarker(marker, start, step, index) {
 
 function getAllPlayers(gamestate){
     return gamestate.corporation.players.concat(gamestate.insurgents.players);
+}
+
+function createCapturePointBar(team,energy){
+	var corpEnergy = 0;
+	var insEnergy = 0;
+	
+	if(team === "Corporation"){
+		corpEnergy = energy;
+	}
+	else if(team === "Insurgents"){
+		insEnergy = energy
+	}
+
+	return "\
+	<table class='energy-progress-bar'>\
+		<tr>\
+			<td><div style='width:"+corpEnergy+"%;'>&nbsp;</div><span>"+corpEnergy+"</span></td>\
+			<td><div style='width:"+insEnergy+"%;'>&nbsp;</div><span>"+insEnergy+"</span></td>\
+		</tr>\
+	</div>";
 }
 
 function getPlayerMarkerIcon(team){
@@ -314,6 +334,7 @@ function playGame(newGame) {
 	currentGameState = 0;
 	dominiumGame = newGame;
 	initializeGame(dominiumGame.gameState[0]);
+
 
 	removeWinner();
 	currentGameState = 1;
