@@ -324,8 +324,17 @@ function changeSpeed(){
 	console.log("Speed changed to:",speed);
 }
 
+function resumeOrPause(){
+	if(typeof animationLoop !== 'undefined'){
+		pause();
+	}
+	else{
+		resume();
+	}
+}
 function pause(){
 	clearTimeout(animationLoop);
+	animationLoop = undefined;
 }
 function resume(){
 	if(typeof nextCallback !== 'undefined'){
@@ -340,6 +349,7 @@ function playGame(newGame) {
     
 	if(typeof dominiumGame !== 'undefined'){
 		clearTimeout(animationLoop);
+		animationLoop = undefined;
 		clearMarkers();
 	}
 

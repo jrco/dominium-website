@@ -36,8 +36,7 @@
 			
 
         	<button id="start-button" type="button" class="btn" ng-click="$ctrl.playGame();">&#10226;</button>
-			<button type="button" class="btn" onclick="resume();">&#9658;</button>
-			<button type="button" class="btn" onclick="pause();">&#10074;&#10074;</button>
+			<button type="button" class="btn" onclick="resumeOrPause();">&#9658;/&#10074;&#10074;</button>
 			<br/>
 			<input id="speed" type="text" value="1" maxlength="4" size="4" readonly="readonly"></input>
 			<button type="button" class="btn" onclick="document.getElementById('speed').value *= 2;changeSpeed();">+</button>
