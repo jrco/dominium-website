@@ -12,6 +12,7 @@ var speed = {
 var dominiumGame;
 var currentGameState = 0;
 
+var nextCallback;
 var animationLoop;
 
 function initMap() {
@@ -76,43 +77,42 @@ function processGameStates() {
     console.log("Executing "+currentGameState);
     if(currentGameState > dominiumGame.gameState.length-1){
 		setWinner(dominiumGame);
+		nextCallback = undefined;
         return;
     }
 
     var gamestate = dominiumGame.gameState[currentGameState++];
     updateState(gamestate);
 
-	var currentSpeed = speed;
+	var currentSpeed = $.extend(true, {}, speed);
 
     var dataAux = createAuxData(gamestate, currentSpeed);
-    animationLoop = setTimeout(
-        function () {
-            moveIteration(gamestate, dataAux, 1, currentSpeed);
-        }, currentSpeed.timeStep
-    );
+    moveIteration(gamestate, dataAux, 1, currentSpeed);
 }
 
-function moveIteration(gamestate, dataAux, iteration, speed) {
-    if (iteration == speed.totalDraws){
-        processGameStates();
-        return;
-    }
+function moveIteration(gamestate, dataAux, iteration, currentSpeed) {
+	//console.log("Processing iteration "+iteration);
+	if (iteration == currentSpeed.totalDraws){
+		processGameStates();
+		return;
+	}
 
-    getAllPlayers(gamestate).forEach(function (player) {
-        moveMarker(
-            playerList[player.username],
-            dataAux[player.username].startingPosition,
-            dataAux[player.username].step,
-            iteration
-        );
-    });
+	getAllPlayers(gamestate).forEach(function (player) {
+		var marker = playerList[player.username];
+		marker.setPosition(
+		    new google.maps.LatLng(
+		        dataAux[player.username].startingPosition.lat + iteration * dataAux[player.username].step.lat,
+		        dataAux[player.username].startingPosition.lng + iteration * dataAux[player.username].step.lng
+		    )
+		);
+	});
 
-   animationLoop = setTimeout(
-        function () {
-            moveIteration(gamestate, dataAux, iteration + 1, speed);
-        }, speed.timeStep
-    );
+	nextCallback = function () {
+		moveIteration(gamestate, dataAux, iteration + 1, currentSpeed);
+	};
+	animationLoop = setTimeout(nextCallback,currentSpeed.timeStep);
 }
+
 
 function createPlayerMarker(player,team){
 
@@ -130,7 +130,7 @@ function createCapturePointMarker(point){
     capList[point.name] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
         icon: new google.maps.MarkerImage("../img/diamond_black.png",null,null,null,new google.maps.Size(30, 30)),
-		labelContent: "<span class='text_label'>"+point.name+"</span><progress max='100' value='0'></progress>",
+		labelContent: "<span class='text_label'>"+point.name+"</span>",
 		labelAnchor: new google.maps.Point(0,60),
 		labelClass: "map_label",
 		zIndex: -1,
@@ -183,14 +183,6 @@ function updateCapturePointState(point){
 	capList[point.name].set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(point.teamOwner,point.energy));
 }
 
-function moveMarker(marker, start, step, index) {
-    marker.setPosition(
-        new google.maps.LatLng(
-            start.lat + index * step.lat,
-            start.lng + index * step.lng
-        )
-    );
-}
 
 function getAllPlayers(gamestate){
     return gamestate.corporation.players.concat(gamestate.insurgents.players);
@@ -210,8 +202,14 @@ function createCapturePointBar(team,energy){
 	return "\
 	<table class='energy-progress-bar'>\
 		<tr>\
-			<td><div style='width:"+corpEnergy+"%;'>&nbsp;</div><span>"+corpEnergy+"</span></td>\
-			<td><div style='width:"+insEnergy+"%;'>&nbsp;</div><span>"+insEnergy+"</span></td>\
+			<td>\
+				<div style='width:"+corpEnergy+"%;'>&nbsp;</div>\
+				<span>"+corpEnergy+"</span>\
+			</td>\
+			<td>\
+				<div style='width:"+insEnergy+"%;'>&nbsp;</div>\
+				<span>"+insEnergy+"</span>\
+			</td>\
 		</tr>\
 	</div>";
 }
@@ -311,17 +309,31 @@ function setGameRectangle(game){
 }
 
 function changeSpeed(){
-	var newSpeed = document.getElementById("speed").value;
+	var newSpeed = 1/document.getElementById("speed").value;
 
 	var newGameStateDuration = newSpeed * 1000;
 	var newTotalDraws = newGameStateDuration / 10;
 	var newTimeStep = newGameStateDuration / newTotalDraws;
+
 
 	speed = {
 		gameStateDuration: newGameStateDuration,
 		totalDraws: newTotalDraws,
 		timeStep: newTimeStep
 	};
+	console.log("Speed changed to:",speed);
+}
+
+function pause(){
+	clearTimeout(animationLoop);
+}
+function resume(){
+	if(typeof nextCallback !== 'undefined'){
+		nextCallback();
+	}
+	else{
+		document.getElementById("start-button").click();
+	}
 }
 
 function playGame(newGame) {
@@ -334,7 +346,6 @@ function playGame(newGame) {
 	currentGameState = 0;
 	dominiumGame = newGame;
 	initializeGame(dominiumGame.gameState[0]);
-
 
 	removeWinner();
 	currentGameState = 1;

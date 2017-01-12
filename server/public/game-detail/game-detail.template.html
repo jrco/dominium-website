@@ -35,11 +35,13 @@
             <div id="dominium-map"></div>
 			
 
-        	<button type="button" class="btn" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
+        	<button id="start-button" type="button" class="btn" ng-click="$ctrl.playGame();">&#10226;</button>
+			<button type="button" class="btn" onclick="resume();">&#9658;</button>
+			<button type="button" class="btn" onclick="pause();">&#10074;&#10074;</button>
 			<br/>
-			<input id="speed" type="text" value="1"></input>
-			<button type="button" class="btn" onclick="changeSpeed();"><b>Change gamestates p/ second!</b></button>
-
+			<input id="speed" type="text" value="1" maxlength="4" size="4" readonly="readonly"></input>
+			<button type="button" class="btn" onclick="document.getElementById('speed').value *= 2;changeSpeed();">+</button>
+			<button type="button" class="btn" onclick="document.getElementById('speed').value /= 2;changeSpeed();">-</button>
         </section>
         <section class="team_list right">
             <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
