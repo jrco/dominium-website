@@ -38,9 +38,9 @@
         	<button id="start-button" type="button" class="btn" ng-click="$ctrl.playGame();">&#x21bb;</button>
 			<button type="button" class="btn" onclick="resumeOrPause();">&#9658;/&#10074;&#10074;</button>
 			<br/>
-			<input id="speed" type="text" value="1" readonly="readonly" style="width:40px;"></input>
-			<button type="button" class="btn" onclick="document.getElementById('speed').value *= 2;changeSpeed();">+</button>
-			<button type="button" class="btn" onclick="document.getElementById('speed').value /= 2;changeSpeed();">-</button>
+			<input id="speed" type="text" value="1" readonly="readonly" style="width:40px;text-align:center;"></input>
+			<button type="button" class="btn" onclick="changeSpeed(2);">+</button>
+			<button type="button" class="btn" onclick="changeSpeed(0.5);">-</button>
         </section>
         <section class="team_list right">
             <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">

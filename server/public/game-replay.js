@@ -318,8 +318,16 @@ function setGameRectangle(game){
 	map.panToBounds(bounds);
 }
 
-function changeSpeed(){
-	var newSpeed = 1/document.getElementById("speed").value;
+function changeSpeed(scale){
+	//scale the speed
+	document.getElementById('speed').value *= scale;
+
+	//clamp speed between 1/8 and 8
+	var newSpeed = Math.max(1/8,Math.min(document.getElementById('speed').value, 8));
+	//set clamped speed in textbox	
+	document.getElementById('speed').value = newSpeed;
+
+	newSpeed = 1/newSpeed;
 
 	var newGameStateDuration = newSpeed * 1000;
 	var newTotalDraws = (newGameStateDuration / 10).toFixed(0);
