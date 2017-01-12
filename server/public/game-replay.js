@@ -2,6 +2,7 @@ var map;
 
 var playerList = {};//username: marker
 var capList = {};//name: marker
+var circleList = [];
 
 var speed = {
 	gameStateDuration: 1000,
@@ -137,13 +138,16 @@ function createCapturePointMarker(point){
 		zIndex: -1,
         map: map
     });
-	new google.maps.Circle({
+	var circle = new google.maps.Circle({
 		map: map,
 		radius: point.radius,
 		fillColor: '#44ff00',
 		strokeColor: '#ffff00',
 		strokeWidth: 6
-	}).bindTo('center', capList[point.name], 'position');
+	});
+	circle.bindTo('center', capList[point.name], 'position');
+
+	circleList.push(circle);
 }
 
 
@@ -281,6 +285,11 @@ function clearMarkers(){
         }
     }
     capList = {};
+
+	circleList.forEach(function(circle){
+		circle.setMap(null);
+	});
+	circleList = [];
 }
 
 function setGameRectangle(game){
