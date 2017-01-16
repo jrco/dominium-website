@@ -19,6 +19,7 @@ var animationData = {
 	animationLoop: undefined
 };
 
+//Initializes the google map
 function initMap() {
 	console.log("LOADING MAP");
     map = new google.maps.Map(document.getElementById('dominium-map'), {
@@ -36,6 +37,8 @@ function initMap() {
 
 }
 
+
+//Initializes the game, creates all markers
 function initializeGame(gamestate) {
     gamestate.corporation.players.forEach(function(player){
         createPlayerMarker(player,"Corporation");
@@ -52,9 +55,10 @@ function initializeGame(gamestate) {
     $('span.corporation_points').text(gamestate.corporation.points);
     $('span.insurgents_points').text(gamestate.insurgents.points);
 
-    updateState(gamestate);
+    updateState();
 }
 
+//Creates auxiliary structure used in moveIteration()
 function createAuxData(nextGamestate){
     var dataAux = {};
     var marker;
@@ -77,6 +81,7 @@ function createAuxData(nextGamestate){
     return dataAux;
 }
 
+//Processes the next gamestate acording to the currentGamestate var
 function processGameStates() {
     console.log("Executing "+currentGameState);
     if(currentGameState+1 > dominiumGame.gameState.length-1){
@@ -85,13 +90,14 @@ function processGameStates() {
     }
 
     var gamestate = dominiumGame.gameState[++currentGameState];
-    updateState(gamestate);
+    updateState();
 
     var dataAux = createAuxData(gamestate);
 	animationData.currentIteration = 1;
     moveIteration(gamestate, dataAux);
 }
 
+//Updates the position of all players according to the currentIteration var (Animation loop)
 function moveIteration(gamestate, dataAux) {
 	//console.log("Processing iteration "+iteration);
 	if (animationData.currentIteration == speed.totalDraws){
@@ -118,6 +124,7 @@ function moveIteration(gamestate, dataAux) {
 	animationData.animationLoop = setTimeout(animationData.nextCallback,speed.timeStep);
 }
 
+//Creates a player marker
 function createPlayerMarker(player,team){
 
     playerList[player.username] = new MarkerWithLabel({
@@ -130,6 +137,8 @@ function createPlayerMarker(player,team){
         map: map
     });
 }
+
+//Creates a capture point marker with a circle
 function createCapturePointMarker(point){
     capList[point.name] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
@@ -152,8 +161,10 @@ function createCapturePointMarker(point){
 	circleList.push(circle);
 }
 
+//Updates the UI/Markers according to the gamestate
+function updateState(){
+	var gamestate = dominiumGame.gameState[currentGameState];
 
-function updateState(gamestate){
     gamestate.capturePoints.forEach(function(point){
         updateCapturePointState(point);
     });
@@ -165,6 +176,7 @@ function updateState(gamestate){
     $('span.insurgents_points').text(gamestate.insurgents.points);
 }
 
+//Updates the energy of the player in the UI
 function updatePlayerState(player){
 
 	document.getElementById(player.username+"-energy").style["background-color"] = getEnergyColor(player.energy);
@@ -173,6 +185,8 @@ function updatePlayerState(player){
 	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";
 	document.getElementById(player.username+"-energy").innerHTML = player.energy;
 }
+
+//Updates the marker and UI of capture points
 function updateCapturePointState(point){
 
 	capList[point.name].setIcon(
@@ -190,11 +204,12 @@ function updateCapturePointState(point){
 	capList[point.name].set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(point.teamOwner,point.energy));
 }
 
-
+//Returns all players in a gamestate
 function getAllPlayers(gamestate){
     return gamestate.corporation.players.concat(gamestate.insurgents.players);
 }
 
+//Creates the HTML element that represents the energy bar of the capture point marker - used by updateCapturePointState()
 function createCapturePointBar(team,energy){
 	var corpEnergy = 0;
 	var insEnergy = 0;
@@ -221,6 +236,7 @@ function createCapturePointBar(team,energy){
 	</div>";
 }
 
+//Gets the correct player icon according to the team
 function getPlayerMarkerIcon(team){
 	if(team === "Corporation"){
 		return "https://maps.gstatic.com/mapfiles/ms2/micons/blue.png";
@@ -233,6 +249,7 @@ function getPlayerMarkerIcon(team){
 	}
 }
 
+//Gets the correct cap point icon according to the team
 function getCapturePointIcon(teamOwner){
 	if(teamOwner === "Corporation"){
 		return "../img/diamond_blue.png";
@@ -245,6 +262,7 @@ function getCapturePointIcon(teamOwner){
 	}
 }
 
+//Gets the correct energy bar color according to the current energy
 function getEnergyColor(energy){
 	if(energy < 25){
 		return "#C04000";
@@ -260,6 +278,7 @@ function getEnergyColor(energy){
 	}
 }
 
+//Gets the correct team color according to the team
 function getTeamColorHex(team){
 	if(team === "Corporation"){
 		return "#16a085";
@@ -272,6 +291,7 @@ function getTeamColorHex(team){
 	}
 }
 
+//Clears all markers from the google map
 function clearMarkers(){
 
     for (var key in playerList) {
@@ -294,6 +314,7 @@ function clearMarkers(){
 	circleList = [];
 }
 
+//Clears all animation data
 function clearAnimationState(){
 	clearTimeout(animationData.animationLoop);
 	animationData = {
@@ -303,6 +324,7 @@ function clearAnimationState(){
 	};
 }
 
+//Adjusts the google map to the existing markers
 function setGameRectangle(game){
 	var bounds = new google.maps.LatLngBounds();
 
@@ -329,13 +351,12 @@ function setGameRectangle(game){
 	map.panToBounds(bounds);
 }
 
+//Change the animation speed
 function changeSpeed(scale){
-	//scale the speed
 	document.getElementById('speed').value *= scale;
 
 	//clamp speed between 1/8 and 8
 	var newSpeed = Math.max(1/8,Math.min(document.getElementById('speed').value, 8));
-	//set clamped speed in textbox
 	document.getElementById('speed').value = newSpeed;
 
 	var newGameStateDuration = 1000/newSpeed;
@@ -354,6 +375,7 @@ function changeSpeed(scale){
 	console.log("Speed changed to:",speed);
 }
 
+//Resume or pause the game
 function resumeOrPause(){
 	if(typeof animationData.animationLoop !== 'undefined'){
 		pause();
@@ -362,10 +384,14 @@ function resumeOrPause(){
 		resume();
 	}
 }
+
+//Pause the animation
 function pause(){
 	clearTimeout(animationData.animationLoop);
 	animationData.animationLoop = undefined;
 }
+
+//Resume the animation, or restart if already finished
 function resume(){
 	if(typeof animationData.nextCallback !== 'undefined'){
 		animationData.nextCallback();
@@ -375,6 +401,7 @@ function resume(){
 	}
 }
 
+//Start playing a game
 function playGame(newGame) {
     
 	if(typeof dominiumGame !== 'undefined'){
