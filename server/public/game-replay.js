@@ -142,9 +142,15 @@ function createPlayerMarker(player,team){
 function createCapturePointMarker(point){
     capList[point.name] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
-        icon: new google.maps.MarkerImage("../img/diamond_black.png",null,null,null,new google.maps.Size(30, 30)),
+        icon: new google.maps.MarkerImage(
+			"/img/diamond_black.png",
+			null,
+			null,
+			new google.maps.Point(15,15),
+			new google.maps.Size(30, 30)			
+		),
 		labelContent: "<span class='text_label'>"+point.name+"</span>",
-		labelAnchor: new google.maps.Point(0,60),
+		labelAnchor: new google.maps.Point(0,50),
 		labelClass: "map_label",
 		zIndex: -1,
         map: map
@@ -189,9 +195,13 @@ function updatePlayerState(player){
 //Updates the marker and UI of capture points
 function updateCapturePointState(point){
 
-	capList[point.name].setIcon(
-		new google.maps.MarkerImage(getCapturePointIcon(point.teamOwner),null,null,null,new google.maps.Size(30, 30))
-	);
+	capList[point.name].setIcon(new google.maps.MarkerImage(
+		getCapturePointIcon(point.teamOwner),
+		null,
+		null,
+		new google.maps.Point(15,15),
+		new google.maps.Size(30, 30)			
+	));
 
 	document.getElementById(point.name+"-energy").style["background-color"] = getTeamColorHex(point.teamOwner);
 	
