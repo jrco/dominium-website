@@ -13,8 +13,11 @@ var speed = {
 var dominiumGame;
 var currentGameState = 0;
 
-var nextCallback;
-var animationLoop;
+var animationData = {
+	nextCallback: undefined,
+	currentIteration: undefined,
+	animationLoop: undefined
+};
 
 function initMap() {
 	console.log("LOADING MAP");
@@ -52,7 +55,7 @@ function initializeGame(gamestate) {
     updateState(gamestate);
 }
 
-function createAuxData(nextGamestate,speed) {
+function createAuxData(nextGamestate){
     var dataAux = {};
     var marker;
 
@@ -64,9 +67,9 @@ function createAuxData(nextGamestate,speed) {
                 lat: marker.getPosition().lat(),
                 lng: marker.getPosition().lng()
             },
-            step: {
-                lat: (parseFloat(player.lat) - marker.getPosition().lat()) / speed.totalDraws,
-                lng: (parseFloat(player.lng) - marker.getPosition().lng()) / speed.totalDraws
+            distance: {
+                lat: (parseFloat(player.lat) - marker.getPosition().lat()),
+                lng: (parseFloat(player.lng) - marker.getPosition().lng())
             }
         };
     });
@@ -76,45 +79,44 @@ function createAuxData(nextGamestate,speed) {
 
 function processGameStates() {
     console.log("Executing "+currentGameState);
-    if(currentGameState > dominiumGame.gameState.length-1){
+    if(currentGameState+1 > dominiumGame.gameState.length-1){
 		setWinner(dominiumGame);
-		animationLoop = undefined;
-		nextCallback = undefined;
         return;
     }
 
-    var gamestate = dominiumGame.gameState[currentGameState++];
+    var gamestate = dominiumGame.gameState[++currentGameState];
     updateState(gamestate);
 
-	var currentSpeed = $.extend(true, {}, speed);
-
-    var dataAux = createAuxData(gamestate, currentSpeed);
-    moveIteration(gamestate, dataAux, 1, currentSpeed);
+    var dataAux = createAuxData(gamestate);
+	animationData.currentIteration = 1;
+    moveIteration(gamestate, dataAux);
 }
 
-function moveIteration(gamestate, dataAux, iteration, currentSpeed) {
+function moveIteration(gamestate, dataAux) {
 	//console.log("Processing iteration "+iteration);
-	if (iteration == currentSpeed.totalDraws){
+	if (animationData.currentIteration == speed.totalDraws){
+		clearAnimationState();
 		processGameStates();
 		return;
 	}
-
+	
 	getAllPlayers(gamestate).forEach(function (player) {
 		var marker = playerList[player.username];
+		//console.log("step",dataAux[player.username].step);
 		marker.setPosition(
 		    new google.maps.LatLng(
-		        dataAux[player.username].startingPosition.lat + iteration * dataAux[player.username].step.lat,
-		        dataAux[player.username].startingPosition.lng + iteration * dataAux[player.username].step.lng
+		        dataAux[player.username].startingPosition.lat + animationData.currentIteration/speed.totalDraws * dataAux[player.username].distance.lat,
+		        dataAux[player.username].startingPosition.lng + animationData.currentIteration/speed.totalDraws * dataAux[player.username].distance.lng
 		    )
 		);
 	});
 
-	nextCallback = function () {
-		moveIteration(gamestate, dataAux, iteration + 1, currentSpeed);
+	animationData.nextCallback = function () {
+		moveIteration(gamestate, dataAux);
 	};
-	animationLoop = setTimeout(nextCallback,currentSpeed.timeStep);
+	animationData.currentIteration++;
+	animationData.animationLoop = setTimeout(animationData.nextCallback,speed.timeStep);
 }
-
 
 function createPlayerMarker(player,team){
 
@@ -292,6 +294,15 @@ function clearMarkers(){
 	circleList = [];
 }
 
+function clearAnimationState(){
+	clearTimeout(animationData.animationLoop);
+	animationData = {
+		nextCallback: undefined,
+		currentIteration: undefined,
+		animationLoop: undefined
+	};
+}
+
 function setGameRectangle(game){
 	var bounds = new google.maps.LatLngBounds();
 
@@ -324,24 +335,27 @@ function changeSpeed(scale){
 
 	//clamp speed between 1/8 and 8
 	var newSpeed = Math.max(1/8,Math.min(document.getElementById('speed').value, 8));
-	//set clamped speed in textbox	
+	//set clamped speed in textbox
 	document.getElementById('speed').value = newSpeed;
 
-	newSpeed = 1/newSpeed;
+	var newGameStateDuration = 1000/newSpeed;
+	var newTotalDraws = parseInt(newGameStateDuration / 10);
 
-	var newGameStateDuration = newSpeed * 1000;
-	var newTotalDraws = (newGameStateDuration / 10).toFixed(0);
+	if(typeof animationData.animationLoop !== 'undefined'){
+		animationData.currentIteration = parseInt((animationData.currentIteration/speed.totalDraws)*newTotalDraws);
+	}
 
 	speed = {
 		gameStateDuration: newGameStateDuration,
 		totalDraws: newTotalDraws,
 		timeStep: 10
 	};
+
 	console.log("Speed changed to:",speed);
 }
 
 function resumeOrPause(){
-	if(typeof animationLoop !== 'undefined'){
+	if(typeof animationData.animationLoop !== 'undefined'){
 		pause();
 	}
 	else{
@@ -349,13 +363,12 @@ function resumeOrPause(){
 	}
 }
 function pause(){
-	clearTimeout(animationLoop);
-	animationLoop = undefined;
+	clearTimeout(animationData.animationLoop);
+	animationData.animationLoop = undefined;
 }
 function resume(){
-	if(typeof nextCallback !== 'undefined'){
-		nextCallback();
-		nextCallback = undefined;
+	if(typeof animationData.nextCallback !== 'undefined'){
+		animationData.nextCallback();
 	}
 	else{
 		document.getElementById("start-button").click();
@@ -365,8 +378,6 @@ function resume(){
 function playGame(newGame) {
     
 	if(typeof dominiumGame !== 'undefined'){
-		clearTimeout(animationLoop);
-		animationLoop = undefined;
 		clearMarkers();
 	}
 
@@ -375,6 +386,5 @@ function playGame(newGame) {
 	initializeGame(dominiumGame.gameState[0]);
 
 	removeWinner();
-	currentGameState = 1;
     processGameStates();
 }
