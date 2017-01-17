@@ -17,7 +17,12 @@ var Player = new Schema({
   lat: String,
   lng: String,
   role: String,
-  energy: Number
+  energy: Number/*,
+  skill: {
+    name: String,
+    cost: Number,
+    cooldown: Number
+  }*/
 });
 
 var GameState = new Schema({
