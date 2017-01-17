@@ -26,6 +26,17 @@ module.exports = function(app){
 	    });
 	});
 
+	// get all games but without the gamestates
+	app.get('/games-short', function(req, res){
+	    Games.find({},{gameState:{$slice:-1}},function(err, games) {
+	        if (err)
+	            return res.send(err);
+	        res.json(games);
+	        //path = "";
+	        //res.sendFile(path.join(__dirname, '../public', 'all_games.html'));
+	    });
+	});
+
 	// create a game to send back all games after creation
 	app.post('/games',function(req, res) {
 
