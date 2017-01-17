@@ -26,14 +26,12 @@ module.exports = function(app){
 	    });
 	});
 
-	// get all games but without the gamestates
+	// get all games with only the last gamestate
 	app.get('/games-short', function(req, res){
 	    Games.find({},{gameState:{$slice:-1}},function(err, games) {
 	        if (err)
 	            return res.send(err);
 	        res.json(games);
-	        //path = "";
-	        //res.sendFile(path.join(__dirname, '../public', 'all_games.html'));
 	    });
 	});
 
