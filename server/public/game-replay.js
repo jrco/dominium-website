@@ -11,11 +11,11 @@ var speed = {
 };
 
 var dominiumGame;
-var currentGameState = 0;
+var currentGameState;
 
 var animationData = {
 	nextCallback: undefined,
-	currentIteration: undefined,
+	currentDraw: undefined,
 	animationLoop: undefined
 };
 
@@ -61,10 +61,9 @@ function initializeGame(gamestate) {
 //Creates auxiliary structure used in moveIteration()
 function createAuxData(nextGamestate){
     var dataAux = {};
-    var marker;
 
     getAllPlayers(nextGamestate).forEach(function (player) {
-        marker = playerList[player.username];
+        var marker = playerList[player.username];
 
         dataAux[player.username] = {
             startingPosition: {
@@ -93,14 +92,14 @@ function processGameStates() {
     updateState();
 
     var dataAux = createAuxData(gamestate);
-	animationData.currentIteration = 1;
+	animationData.currentDraw = 1;
     moveIteration(gamestate, dataAux);
 }
 
-//Updates the position of all players according to the currentIteration var (Animation loop)
+//Updates the position of all players according to the currentDraw var (Animation loop)
 function moveIteration(gamestate, dataAux) {
 	//console.log("Processing iteration "+iteration);
-	if (animationData.currentIteration == speed.totalDraws){
+	if (animationData.currentDraw === speed.totalDraws){
 		clearAnimationState();
 		processGameStates();
 		return;
@@ -111,8 +110,8 @@ function moveIteration(gamestate, dataAux) {
 		//console.log("step",dataAux[player.username].step);
 		marker.setPosition(
 		    new google.maps.LatLng(
-		        dataAux[player.username].startingPosition.lat + animationData.currentIteration/speed.totalDraws * dataAux[player.username].distance.lat,
-		        dataAux[player.username].startingPosition.lng + animationData.currentIteration/speed.totalDraws * dataAux[player.username].distance.lng
+		        dataAux[player.username].startingPosition.lat + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lat,
+		        dataAux[player.username].startingPosition.lng + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lng
 		    )
 		);
 	});
@@ -120,7 +119,7 @@ function moveIteration(gamestate, dataAux) {
 	animationData.nextCallback = function () {
 		moveIteration(gamestate, dataAux);
 	};
-	animationData.currentIteration++;
+	animationData.currentDraw++;
 	animationData.animationLoop = setTimeout(animationData.nextCallback,speed.timeStep);
 }
 
@@ -129,7 +128,13 @@ function createPlayerMarker(player,team){
 
     playerList[player.username] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
-        icon: getPlayerMarkerIcon(team),
+        icon: new google.maps.MarkerImage(
+			getPlayerMarkerIcon(team),
+			null,
+			null,
+			new google.maps.Point(16,32),
+			new google.maps.Size(32,32)
+		),
 		labelContent: "<span class='text_label'>"+player.username+"</span>",
 		labelAnchor: new google.maps.Point(0,50),
 		labelClass: "map_label",
@@ -143,7 +148,7 @@ function createCapturePointMarker(point){
     capList[point.name] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
         icon: new google.maps.MarkerImage(
-			"/img/diamond_black.png",
+			"../img/diamond_black.png",
 			null,
 			null,
 			new google.maps.Point(15,15),
@@ -329,7 +334,7 @@ function clearAnimationState(){
 	clearTimeout(animationData.animationLoop);
 	animationData = {
 		nextCallback: undefined,
-		currentIteration: undefined,
+		currentDraw: undefined,
 		animationLoop: undefined
 	};
 }
@@ -373,7 +378,7 @@ function changeSpeed(scale){
 	var newTotalDraws = parseInt(newGameStateDuration / 10);
 
 	if(typeof animationData.animationLoop !== 'undefined'){
-		animationData.currentIteration = parseInt((animationData.currentIteration/speed.totalDraws)*newTotalDraws);
+		animationData.currentDraw = parseInt(animationData.currentDraw/speed.totalDraws*newTotalDraws);
 	}
 
 	speed = {
