@@ -554,3 +554,35 @@ a:hover {
 	background-color: #e74c3c;
 }
 
+.gamestate-controls {
+	width: 98%;
+	margin-left: 1%;
+	margin-right: 1%;
+	height: 30px;
+	background-color: #F0F0F0;
+}
+
+.gamestate-controls div{
+	height: 100%;
+	display: inline;
+}
+
+.gamestate-controls div *{
+	height: 100%;
+	line-height: 30px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 120%;
+}
+
+.gamestate-controls div button{
+	min-width: 30px;
+	border: none;
+}
+
+
+
+
+
+
+
