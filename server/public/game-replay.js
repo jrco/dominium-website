@@ -415,6 +415,7 @@ function resume(){
 function playGame(newGame) {
     
 	if(typeof dominiumGame !== 'undefined'){
+		clearAnimationState();
 		clearMarkers();
 	}
 
