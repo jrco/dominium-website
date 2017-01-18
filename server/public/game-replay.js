@@ -4,10 +4,14 @@ var playerList = {};//username: marker
 var capList = {};//name: marker
 var circleList = [];
 
+var followMarker;
+
+var GAMESTATE_DURATION = 1000;
+var INTERVAL_BETWEEN_DRAWS = 20;
+
 var speed = {
-	gameStateDuration: 1000,
-	totalDraws: 100,
-	timeStep: 10
+	gameStateDuration: GAMESTATE_DURATION,
+	totalDraws: parseInt(GAMESTATE_DURATION/INTERVAL_BETWEEN_DRAWS),
 };
 
 var dominiumGame;
@@ -107,20 +111,24 @@ function moveIteration(gamestate, dataAux) {
 	
 	getAllPlayers(gamestate).forEach(function (player) {
 		var marker = playerList[player.username];
-
-		marker.setPosition(
-		    new google.maps.LatLng(
-		        dataAux[player.username].startingPosition.lat + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lat,
-		        dataAux[player.username].startingPosition.lng + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lng
-		    )
-		);
+		var newPos = new google.maps.LatLng(
+	        dataAux[player.username].startingPosition.lat + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lat,
+	        dataAux[player.username].startingPosition.lng + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lng
+	    );
+		
+		marker.setPosition(newPos);
 	});
+
+	if(typeof followMarker !== 'undefined'){
+		//map.setCenter(followMarker.getPosition());
+		map.panTo(followMarker.getPosition());
+	}
 
 	animationData.nextCallback = function () {
 		moveIteration(gamestate, dataAux);
 	};
 	animationData.currentDraw++;
-	animationData.animationLoop = setTimeout(animationData.nextCallback,speed.timeStep);
+	animationData.animationLoop = setTimeout(animationData.nextCallback,INTERVAL_BETWEEN_DRAWS);
 }
 
 //Creates a player marker
@@ -315,6 +323,7 @@ function clearMarkers(){
         }
     }
     playerList = {};
+	followMarker = undefined;
 
     for (var key in capList) {
         if (capList.hasOwnProperty(key)) {
@@ -374,8 +383,8 @@ function changeSpeed(scale){
 	newSpeed = Math.max(1/16,Math.min(newSpeed, 16));
 	document.getElementById('speed').innerHTML = newSpeed;
 
-	var newGameStateDuration = 1000/newSpeed;
-	var newTotalDraws = parseInt(newGameStateDuration / 10);
+	var newGameStateDuration = GAMESTATE_DURATION/newSpeed;
+	var newTotalDraws = parseInt(newGameStateDuration / INTERVAL_BETWEEN_DRAWS);
 
 	if(typeof animationData.currentDraw !== 'undefined'){
 		animationData.currentDraw = parseInt(animationData.currentDraw/speed.totalDraws*newTotalDraws);
@@ -383,11 +392,14 @@ function changeSpeed(scale){
 
 	speed = {
 		gameStateDuration: newGameStateDuration,
-		totalDraws: newTotalDraws,
-		timeStep: 10
+		totalDraws: newTotalDraws
 	};
 
 	console.log("Speed changed to:",speed);
+}
+
+function followPlayer(username){
+	followMarker = playerList[username];
 }
 
 //Resume or pause the game
