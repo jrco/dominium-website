@@ -34,14 +34,16 @@
             </div>
             <div id="dominium-map"></div>
 			<div class="gamestate-controls">
-				<div style="float:left;">
+				<div>
 					<button id="start-button" ng-click="$ctrl.playGame();">&#x21bb;</button>
 					<button onclick="resumeOrPause();">&#9658;/&#10074;&#10074;</button>
 				</div>
-				<div style="float:right;background-color:white;">
-					<button onclick="changeSpeed(0.5);">-</button>
-					<div id="speed" style="display:inline-block;width:50px;">1</div>
-					<button onclick="changeSpeed(2);">+</button>
+				<div>
+					<button onclick="changeSpeed(0.5);">-</button
+					><div>
+						<span id="speed">1</span><span>x</span>
+					</div
+					><button onclick="changeSpeed(2);">+</button>
 				</div>
 			</div>
 

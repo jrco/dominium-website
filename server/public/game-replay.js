@@ -368,10 +368,10 @@ function setGameRectangle(game){
 
 //Change the animation speed
 function changeSpeed(scale){
-	document.getElementById('speed').innerHTML *= scale;
+	var newSpeed = document.getElementById('speed').innerHTML * scale;
 
-	//clamp speed between 1/8 and 8
-	var newSpeed = Math.max(1/8,Math.min(document.getElementById('speed').innerHTML, 8));
+	//clamp speed between 1/16 and 16
+	newSpeed = Math.max(1/16,Math.min(newSpeed, 16));
 	document.getElementById('speed').innerHTML = newSpeed;
 
 	var newGameStateDuration = 1000/newSpeed;
