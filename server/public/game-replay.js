@@ -83,7 +83,7 @@ function createAuxData(nextGamestate){
 //Processes the next gamestate acording to the currentGamestate var
 function processGameStates() {
     console.log("Executing "+currentGameState);
-    if(currentGameState+1 > dominiumGame.gameState.length-1){
+    if(currentGameState >= dominiumGame.gameState.length-1){
 		setWinner(dominiumGame);
         return;
     }
@@ -98,7 +98,7 @@ function processGameStates() {
 
 //Updates the position of all players according to the currentDraw var (Animation loop)
 function moveIteration(gamestate, dataAux) {
-	//console.log("Processing iteration "+iteration);
+	//console.log("Processing iteration "+animationData.currentDraw+"/"+speed.totalDraws);
 	if (animationData.currentDraw === speed.totalDraws){
 		clearAnimationState();
 		processGameStates();
@@ -107,7 +107,7 @@ function moveIteration(gamestate, dataAux) {
 	
 	getAllPlayers(gamestate).forEach(function (player) {
 		var marker = playerList[player.username];
-		//console.log("step",dataAux[player.username].step);
+
 		marker.setPosition(
 		    new google.maps.LatLng(
 		        dataAux[player.username].startingPosition.lat + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lat,
@@ -377,7 +377,7 @@ function changeSpeed(scale){
 	var newGameStateDuration = 1000/newSpeed;
 	var newTotalDraws = parseInt(newGameStateDuration / 10);
 
-	if(typeof animationData.animationLoop !== 'undefined'){
+	if(typeof animationData.currentDraw !== 'undefined'){
 		animationData.currentDraw = parseInt(animationData.currentDraw/speed.totalDraws*newTotalDraws);
 	}
 
