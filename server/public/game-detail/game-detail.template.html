@@ -1,18 +1,34 @@
 <div id="pagewrap">
-    <div id="match_result">
-        <div class="winner_cp">
-          <img ng-src="img/trophy.png" alt="trophy">
+    <div id="top">
+        <div class="margin_left"></div>
+        <div class="match_result">
+            <div class="coorporation_name">
+                <div class="coorporation_fr">Victory</div>
+                <div class="name">
+                    <span>Coorporation</span>
+                </div>
+            </div>
+            <div class="coorporation_img">
+                <img ng-src="img/diamond_blue.png" alt="Dominium">
+            </div>
+            <div class="coorporation_result">
+                <span>{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.points}}</span>
+            </div>
+            <div class="logo">
+                <img ng-src="img/logo-gray.png" alt="Dominium">
+            </div>
+            <div class="insurgents_result">
+                <span>{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.points}}</span>
+            </div>
+            <div class="insurgents_img">
+                <img ng-src="img/diamond_red.png" alt="Dominium">
+            </div>
+            <div class="insurgents_name">
+                <div class="insurgents_fr">Defeat</div>
+                <span class="name">Insurgents</span>
+            </div>
         </div>
-        <span class="corporation">Corporation</span>
-        <span class="corporation_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.points}}</span>
-        <div class="logo">
-            <img ng-src="img/logo.png" alt="Dominium">
-        </div>
-        <span class="insurgents_points">{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.points}}</span>
-        <span class="insurgents">Insurgents</span>
-        <div class="winner_in">
-          <img ng-src="img/trophy.png" alt="trophy">
-        </div>
+        <div class="margin_right"></div>
     </div>
     <div id="section_container">
         <section class="team_list left">
@@ -50,7 +66,7 @@
             </div>
         </section>
     </div>
-    <div id="capture_points">
+    <!--div id="capture_points">
         <div class="capture_point" ng-repeat="cp in $ctrl.game.gameState[0].capturePoints">
             <div class="cp_info">
                 <div class="cp_img">
@@ -66,13 +82,28 @@
                   </div>
                 </div>
             </div>
-		</div>
+        </div>
+    </div-->
+</div>
+<div id="full_stats">
+    <div class="margin_left"></div>
+    <div class="stats">
+        <div class="more_stats">
+            <div class="travel_distance">
+                <div class="title_td"><span></span></div>
+                <div id="canvas_td"></div>
+            </div>
+            <div class="score_change">
+                <div class="title_sc"><span></span></div>
+                <div id="canvas_sc"></div>
+            </div>
+        </div>
+        <div class="control_value">
+            <div class="title_cv"><span>Control Value</span></div>
+            <div id="canvas_cv"></div>
+        </div>
     </div>
+    <div class="margin_right"></div>
 </div>
-
-<h1 align="center" style="line-height:2em">Statistics</h1>
-
-<div id="charts" class="container">
-</div>
-
-
+<!--div id="charts" class="container">
+</div-->

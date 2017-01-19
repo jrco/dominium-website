@@ -47,10 +47,16 @@ table {
 html, body {
 	width: 100%;
 	height: 100%;
+
 }
 
 body {
 	font-family: 'Open Sans', sans-serif;
+	background: url("img/bg.png") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 .view-container {
@@ -96,19 +102,47 @@ body {
 /********************************* LAYOUT FROM PAGE *************************************/
 /*****************************************************************************************/
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+@font-face {
+    font-family: 'dom';
+    src: url('/font/4114blaster.ttf');
+}
+
+
 /* STRUCTURE GAME LIST */
+.topbar {
+	width: 100%;
+	height: 150px;
+	background-color: rgba(20, 20, 20,0.8);
+	text-align: center;
+	vertical-align: middle;
+}
+
+.topbar > img {
+	padding-top: 10px;
+	height: 90px;
+	width: 90px;
+}
+
+.topbar > .name {
+	font-size: 2.5em;
+	vertical-align: middle;
+	color: rgba(236, 240, 241,1.0);
+	font-family: dom;
+}
+
 #all_page_list {
 	width: 100%;
-	height: 100%;
 	border-left: none;
 	border-right: none;
 	display: table;
 	table-layout: fixed;
+	/*background-image: url("img/bg.png");*/
 }
 
 #all_page_list > .options {
 	display: table-cell;
-	width: 25%;
+	width: 15%;
 }
 
 #all_page_list > .options.left {
@@ -120,15 +154,15 @@ body {
 }
 
 #all_page_list > .game_list {
-	width: 100%;
-	display: table;
-	table-layout: fixed;
+	display: table-cell;
 }
 
 #all_page_list > .game_list > .single_game {
-	width: calc(100% - 4px);
-	display: table-row;
-	margin: 2px;
+	display: table;
+	margin: 3px;
+	border-top: 2px solid rgba(127, 140, 141,1.0);
+	border-bottom: 2px solid rgba(127, 140, 141,1.0);
+	background-color : rgba(0, 0, 0,0.8);
 }
 
 #all_page_list > .game_list > .single_game.ng-enter,
@@ -162,67 +196,173 @@ body {
   padding-top: 0;
 }
 
-#all_page_list > .game_list > .single_game > .team,
-#all_page_list > .game_list > .single_game > .info_game {
+#all_page_list > .game_list > .single_game > .location_date {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
+	width: 20%;
+	background-color: rgba(20, 20, 20,0.5);
 }
 
-#all_page_list > .game_list > .single_game > .team{
+#all_page_list > .game_list > .single_game > .location_date > span{
+	font-size: 0.9em;
+	color: rgba(236, 240, 241,1.0);
+	width: 100%;
+}
+
+#all_page_list > .game_list > .single_game > a > .info {
+	display: table;
+	width: 100%;
+	background-color: rgba(20, 20, 20,0.2);
+}
+
+
+#all_page_list > .game_list > .single_game > a > .info > .team,
+#all_page_list > .game_list > .single_game > a > .info > .info_game {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	height: 100%;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .team{
 	width: 25%;
 }
 
-#all_page_list > .game_list > .single_game > .info_game {
+/*#all_page_list > .game_list > .single_game > .info > .team.left {
+	border-right: 2px solid rgba(127, 140, 141,1.0);
+}
+
+#all_page_list > .game_list > .single_game > .info > .team.right {
+	border-left: 2px solid rgba(127, 140, 141,1.0);
+}*/
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game {
 	width: 50%;
 }
 
-#all_page_list > .game_list > .single_game > .team > .img {
-	display: table-row;
+#all_page_list > .game_list > .single_game > a > .info > .team > .name_img{
 	width: 100%;
+	vertical-align: middle;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .team > .name_img > .img {
 	text-align: center;
 }
 
-#all_page_list > .game_list > .single_game > .team > .img > img {
-	border: 2px solid rgba(52, 73, 94, 0.15);
+#all_page_list > .game_list > .single_game > a > .info > .team > .name_img > .img > img {
+	/*border: 2px solid rgba(52, 73, 94, 0.15);*/
 	height: 80px;
 	width: 80px;
 	margin: 10px;
 }
 
-#all_page_list > .game_list > .single_game > .team > .name {
+#all_page_list > .game_list > .single_game > a > .info > .team > .name {
 	width: 100%;
 	display: table-row;
 	text-align: center;
+	font-size: 0.9em;
+	vertical-align: middle;
+	color: rgba(236, 240, 241,1.0);
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .team > .name_img > .name > span {
+	width: 100%;
+	text-align: center;
 	text-transform: uppercase;
-	font-size: 1.0em;
+	font-size: 1.2em;
+	font-family: dom;
+	color: rgba(236, 240, 241,1.0);
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .team > .all_roles {
+	width: 100%;
+	display: table;
+	border-top : 1px solid rgba(127, 140, 141,0.8);
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .team > .all_roles > .role {
+	display: table-cell;
 	vertical-align: middle;
 }
 
-#all_page_list > .game_list > .info_game {
+#all_page_list > .game_list > .single_game > a > .info > .team > .all_roles > .role > .image_div {
+	text-align: center;
+	vertical-align: middle;
+	text-align: center;
+	/*border: 2px solid rgba(52, 73, 94, 0.15);*/
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .team > .all_roles > .role > .image_div.left {
+	padding-left: 2px;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .team > .all_roles > .role > .image_div.right {
+	padding-right: 2px;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .team > .all_roles > .role > .image_div > img {
+	width: 20px;
+	height: 20px;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game {
+	width: 50%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result {
+	display: table;
+	table-layout: fixed;
 	width: 100%;
+	height: 100%;
+	text-align: center;
+	vertical-align: middle;
 }
 
-#all_page_list > .game_list > .info_game > .result {
-	display: inline-block;
-}
-
-#all_page_list > .game_list > .info_game > .result > .cp_points,
-#all_page_list > .game_list > .info_game > .result > .in_points,{
-	width: 40%;
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points,
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points{
+	width: 30%;
 	display: table-cell;
-	font-size: 1.5em;
+	font-size: 2.5em;
+	font-family: dom;
+	color: rgba(236, 240, 241,1.0);
 }
 
-#all_page_list > .game_list > .info_game > .result > .logo{
-	width: 20%;
+/*#all_page_list > .game_list > .single_game > .info > .info_game > .result > .cp_points {
+	padding-left: 50px;
+}
+
+#all_page_list > .game_list > .single_game > .info > .info_game > .result > .in_points {
+	padding-right: 50px;
+}*/
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .logo {
 	display: table-cell;
 	height: 20px;
 }
 
-#all_page_list > .game_list > .more_info {
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .logo{
+	display: table-cell;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .logo > img{
+	width: 40px;
+	height: 40px;
+}
+
+#all_page_list > .game_list > .single_game > a > .more_info {
 	display: table-row;
-	font-size: 1.5em;
+	font-size: 0.5em;
+}
+
+#all_page_list > .game_list > .single_game > a > .info_game > .more_info > span {
+	font-size: 0.7em;
+}
+
+#all_page_list > .game_list > .single_game > a > .info_game > .full_details > a > span {
+	font-size: 0.7em;
 }
 
 a:link, a:visited, a:active {
@@ -245,33 +385,155 @@ a:hover {
 }
 
 /************* FINAL RESULT **********************/
-#match_result {
+
+
+/*div {
+    font-family: myFirstFont;
+}*/
+
+#top {
 	width: 100%;
 	display: table;
 	table-layout: fixed;
-	height: 80px;
-	border-style: 1px solid rgba(52, 73, 94, 0.15);
+	height: 120px;
+	/*border-style: 1px solid rgba(52, 73, 94, 0.15);*/
+	background-color: rgba(20, 20, 20,0.5);
 }
 
-#match_result > .winner_cp,
-#match_result > span.corporation,
-#match_result > span.corporation_points,
+#top > .margin_left,
+#top > .margin_right {
+	width: 15%;
+	display: table-cell;
+}
+
+#top > .match_result {
+	width: 60%;
+	display: table;
+}
+
+#top > .match_result > .coorporation_name,
+#top > .match_result > .insurgents_name {
+	display: table;
+	vertical-align: middle;
+	width: 20%;
+}
+
+#top > .match_result > .coorporation_name > .coorporation_fr,
+#top > .match_result > .coorporation_name > .name,
+#top > .match_result > .coorporation_name > .insurgents_fr,
+#top > .match_result > .coorporation_name > .name {
+	display: table-row;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#top > .match_result > .coorporation_name,
+#top > .match_result > .coorporation_img,
+#top > .match_result > .coorporation_result,
+#top > .match_result > .logo,
+#top > .match_result > .insurgents_result,
+#top > .match_result > .insurgents_img,
+#top > .match_result > .insurgents_name {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+#top > .match_result > .coorporation_name > .coorporation_fr,
+#top > .match_result > .insurgents_name > .insurgents_fr {
+	height: 20px;
+	vertical-align: middle;
+	font-family: dom;
+	color: rgba(236, 240, 241,1.0);
+	font-size: 1.2em;
+
+}
+
+#top > .match_result > .coorporation_name > .name,
+#top > .match_result > .insurgents_name > .name {
+	height: 40px;
+	vertical-align: middle;
+	font-family: dom;
+	color: rgba(236, 240, 241,1.0);
+	font-size: 2.5em;
+}
+
+#top > .match_result > .logo {
+	width: 10%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#top > .match_result > .coorporation_img,
+#top > .match_result > .insurgents_img {
+	width: 25%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#top > .match_result > .coorporation_result,
+#top > .match_result > .insurgents_result {
+	width: 10%;
+	font-family: dom;
+	color: rgba(236, 240, 241,0.5);
+	font-size: 2.0em;
+}
+
+#top > .match_result > .coorporation_img > img,
+#top > .match_result > .insurgents_img > img {
+	width: 120px;
+	height: 120px;
+}
+
+#top > .match_result > .logo > img {
+	width: 40px;
+	height: 40px;
+}
+
+
+
+
+/*#match_result {
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+	height: 120px;
+	/*border-style: 1px solid rgba(52, 73, 94, 0.15);
+	background-color: rgba(20, 20, 20,0.5);
+}
+
+#margin_left,
+#margin_right {
+	display: table-cell;
+	width: 20%;
+}
+
+#match_result > .final_result {
+	display: table-cell;
+	width: 60%;
+}
+
+#match_result > .coorporation_name,
+#match_result > .coorporation_img,
+#match_result > .coorporation_result,
 #match_result > .logo,
-#match_result > span.insurgents_points,
-#match_result > span.insurgents, 
-#match_result > .winner_in {
+#match_result > .insurgents_result,
+#match_result > .insurgents_img, 
+#match_result > .insurgents_name {
 	display: table-cell;
 	vertical-align: middle;
 	height: 100%;
 	text-align: center;
 }
 
+
+
 #match_result > .winner_cp,
 #match_result > span.corporation_points,
 #match_result > .logo,
 #match_result > span.insurgents_points,
 #match_result > .winner_in {
-	width: 10%;
+	width: 20%;
 }
 
 #match_result > span.corporation,
@@ -303,8 +565,9 @@ a:hover {
 #match_result > span.insurgents_points,
 #match_result > span.insurgents {
 	text-transform: uppercase;
-	font-size: 1.2em;
-}
+	font-size: 1.5em;
+	color: rgba(236, 240, 241,1.0);
+}*/
 
 
 /********************** TEAMS AND MAP **************************/
@@ -343,8 +606,8 @@ a:hover {
 	margin-bottom: 0;
 }
 
-#section_container > .team_list > .player_row > .image_div,
-#section_container > .team_list > .player_row > .energy {
+#section_container >  .team_list > .player_row > .image_div,
+#section_container >  .team_list > .player_row > .energy {
 	display: table-cell;
 	vertical-align: middle;
 	height: 100%;
@@ -353,67 +616,78 @@ a:hover {
 	padding: 0;
 }
 
-#section_container > .team_list > .player_row > .image_div {
+#section_container >  .team_list > .player_row > .image_div {
 	width: 20%;
 }
 
-#section_container > .team_list.left > .player_row > .image_div {
+#section_container >  .team_list.left > .player_row > .image_div {
 	border-left: 2px solid #16a085;
 	text-align: left;
 }
 
-#section_container > .team_list.right > .player_row > .image_div {
+#section_container >  .team_list.right > .player_row > .image_div {
 	border-right: 2px solid #e74c3c;
 	text-align: right;
 }
 
-#section_container > .team_list > .player_row > .energy {
+#section_container >  .team_list > .player_row > .energy {
 	/*width: 90%; isto muda consoante a cena*/
+	background-color: rgba(20, 20, 20,0.5);
 }
 
-#section_container > .team_list > .player_row > .image_div > img {
+#section_container >  .team_list > .player_row > .image_div > img {
+	width: 60px;
 	height: 60px;
 }
 
-#section_container > .team_list > .player_row > .energy > .info,
-#section_container > .team_list > .player_row > .energy > .progress-bar {
+#section_container >  .team_list > .player_row > .energy > .info,
+#section_container >  .team_list > .player_row > .energy > .progress-bar {
 	display: block;
 	width: 100%;
 	overflow: hidden;
 	height: 50%;
 }
 
-#section_container > .team_list > .player_row > .energy > .info > span.infolabel,
-#section_container > .team_list > .player_row > .energy > .info > span.name {
+#section_container >  .team_list > .player_row > .energy > .info > span.infolabel,
+#section_container >  .team_list > .player_row > .energy > .info > span.name {
 	display: inline-block;
 	vertical-align: middle;
-	width: 49%;
+	width: 50%;
+	color: rgba(236, 240, 241,1.0);
+
 }
 
-#section_container > .team_list > .player_row > .energy > .info > span.infolabel {
-	font-size: 0.8em;
+#section_container >  .team_list > .player_row > .energy > .info > span.infolabel {
+	font-size: 1.0em;
 	opacity: 0.6;
+	color: rgba(236, 240, 241,1.0);
+
 }
 
-#section_container > .team_list > .player_row > .energy > .info > span.name {
+#section_container >  .team_list > .player_row > .energy > .info > span.name {
 	font-size: 0.9em;
 	color: #444;
+	color: rgba(236, 240, 241,1.0);
 }
 
-#section_container > .team_list.left > .player_row > .energy > .info > span.infolabel {
+#section_container >  .team_list.left > .player_row > .energy > .info > span.infolabel {
 	text-align: right;
+	color: rgba(236, 240, 241,1.0);
 }
 
-#section_container > .team_list.right > .player_row > .energy > .info > span.infolabel {
+#section_container >  .team_list.right > .player_row > .energy > .info > span.infolabel {
 	text-align: left;
+	color: rgba(236, 240, 241,1.0);
 }
 
-#section_container > .team_list.left > .player_row > .energy > .info > span.name {
+#section_container >  .team_list.left > .player_row > .energy > .info > span.name {
 	text-align: left;
+	color: rgba(236, 240, 241,1.0);
 }
 
-#section_container > .team_list.right > .player_row > .energy > .info > span.name {
+#section_container >  .team_list.right > .player_row > .energy > .info > span.name {
 	text-align: right;
+	color: rgba(236, 240, 241,1.0);
 }
 
 #dominium-map {
@@ -492,14 +766,99 @@ a:hover {
 }
 
 #capture_points > .capture_point > .cp_info > .cp_img > img,
-#capture_points > .capture_point > .teamOwner > .team_icon > img {
+#capture_points > .capture_point > .teamOwner > .info > .team_icon > img {
 	display: block;
 	height: 80%;
 	margin: 10% auto;
 }
 
+#full_stats {
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+}
+
+#full_stats > .margin_left,
+#full_stats > .margin_right {
+	display: table-cell;
+	width: 10%;
+}
+
+#full_stats > .stats {
+	display: table-cell;
+	width: 80%;
+}
+
+#full_stats > .stats > .control_value {
+	display: table;
+	table-layout: fixed;
+	text-align: center;
+	width: 100%;
+
+}
+
+#full_stats > .stats > .control_value > .title_cv {
+	display: table-row;
+	width: 100%;
+	vertical-align: middle;
+}
+
+#full_stats > .stats > .control_value > .title_cv > span {
+	text-align: center;
+	font-size: 1.5em;
+}
 
 
+#full_stats > .stats > .control_value > #canvas_cv {
+	table-layout: table-row;
+	width: 20%;
+	vertical-align: middle;
+	text-align: center;
+	height: 200px;
+}
+
+#full_stats > .stats > .more_stats {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 250px;
+}
+
+#full_stats > .stats > .more_stats > .travel_distance {
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+	text-align: center;
+	height: 250px;
+}
+
+#full_stats > .stats > .more_stats > .travel_distance > #canvas_td {
+	vertical-align: middle;
+	text-align: center;
+	height: 100%;
+}
+
+#full_stats > .stats > .more_stats > .score_change {
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+	text-align: center;
+	height: 250px;
+}
+
+#full_stats > .stats > .more_stats > .score_change > #canvas_sc {
+	vertical-align: middle;
+	text-align: center;
+	height: 100%;
+}
+
+
+/*#full_stats > .stats > .more_stats > .travel_distance > .title_cv > span {
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+	text-align: center;
+}*/
 
 
 

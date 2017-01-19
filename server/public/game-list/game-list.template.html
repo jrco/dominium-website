@@ -1,32 +1,65 @@
+<div class="topbar">
+   <img ng-src="img/logo-gray.png" alt="Dominium"> 
+   <div class="name">DOMINIUM</div>
+</div>
+
 <div id="all_page_list">
-    <div class="options left">cenas search</div>
+    <div class="options left"></div>
     <div class="game_list">
         <div class="single_game" ng-repeat="game in $ctrl.games">
-            <div class="team">
-                <div class="img"><img ng-src="../img/diamond_blue.png" alt="coorporation" /></div>
-                <div class="name">Corporation</div>
+            <div class="location_date">
+                <span>{{game.location}}, {{game.gameState[0].timeStamp}}</span>
             </div>
-            <div class="info_game">
-                <div class="result">
-                    <div class="cp_points">{{game.gameState[game.gameState.length-1].corporation.points}}</div><div class="logo"><img ng-src="img/logo.png" alt="Dominium"></div><div class="in_points">{{game.gameState[game.gameState.length-1].insurgents.points}}</div>
+            <a href="#!/games/{{game._id}}">
+            <div class="info">
+                <div class="team">
+                    <div class="name_img">
+                        <div class="img"><img ng-src="../img/diamond_blue.png" alt="coorporation" /></div>
+                        <div class="name">
+                            <span>Corporation</span>
+                        </div>
+                    </div>
+                    <div class="all_roles">
+                        <div class="role" ng-repeat="player in game.gameState[0].corporation.players">
+                            <div class="image_div right">
+                                <img title="{{player.username}}" ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="more_info">
-                    Played on {{game.gameState[0].timeStamp}} in {{game.location}} for {{game.timeGame}} minutes
+                <div class="info_game">
+                    <div class="result">
+                        <div class=cp_points>
+                            <span>{{game.gameState[game.gameState.length-1].corporation.points}}<span>
+                    </div>
+                    <div class="logo"><img ng-src="img/logo-gray.png" alt="Dominium"></div>
+                    <div class="in_points"><span>{{game.gameState[game.gameState.length-1].insurgents.points}}</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="full_details">
+                <!--div class="full_details">
                     <a href="#!/games/{{game._id}}">
-                    More info...
-                        <!--div class="arrows">
-                            <img src="../img/setas.png" alt="arrows" />
-                        </div-->
+                        <span>More info...</span>
                     </a>
+                </div-->
+                <div class="team">
+                    <div class="name_img">
+                        <div class="img"><img ng-src="../img/diamond_red.png" alt="coorporation" /></div>
+                        <div class="name">
+                            <span>Insurgents</span>
+                        </div>
+                    </div>
+                    <div class="all_roles">
+                        <div class="role" ng-repeat="player in game.gameState[0].insurgents.players">
+                            <div class="image_div right">
+                                <img title="{{player.username}}" ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="team">
-                <div class="img"><img ng-src="../img/diamond_red.png" alt="coorporation" /></div>
-                <div class="name">Insurgents</div>
-            </div>
+            </a>
         </div>
     </div>
-    <div class="options right">adsasd</div>
+    <div class="options right"></div>
 </div>

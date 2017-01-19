@@ -77,7 +77,7 @@ function aggregateGameStates(game){
 }
 
 function createPointControlCharts(statistics){
-	document.getElementById("charts").innerHTML += "<div id='pointControl' class='row' align='center'></div><br/><br/><br/><br/>";
+	//document.getElementById("canvas_cv").innerHTML += "<div id='pointControl'></div>";
 	Object.keys(statistics.capturePoints).forEach(function(pointName){
 		var totalCorporation = 0;
 		var totalInsurgents = 0;
@@ -89,11 +89,12 @@ function createPointControlCharts(statistics){
 
 
 		var canvasId = pointName+"-canvas";
-		document.getElementById("pointControl").innerHTML += "<div class='col-md-3'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
+		document.getElementById("canvas_cv").innerHTML += "<canvas id='"+canvasId+"'></canvas>";
 
 		var total = totalCorporation+totalInsurgents;
 		createChart(canvasId,'pie',
 			{
+				position: 'bottom',
 				labels: ["Corporation", "Insurgents"],
 				datasets: [{
 					data: [
@@ -117,7 +118,7 @@ function createPointControlCharts(statistics){
 }
 
 function createDistanceCharts(statistics){
-	document.getElementById("charts").innerHTML += "<div id='distance' class='row' align='center'></div><br/><br/><br/><br/>";
+	/*document.getElementById("canvas_td").innerHTML += "<div id='distance'></div>";*/
 
 	var namesCorp = [];
 	var distancesCorp = [];
@@ -138,7 +139,9 @@ function createDistanceCharts(statistics){
 	});
 
 	var canvasId = "distanceCanvas";
-	document.getElementById("distance").innerHTML += "<div class='col-md-12'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
+	//document.getElementById("distance").innerHTML += "<div class='distance_canvas'><canvas id='"+canvasId+"'></canvas></div>";
+	document.getElementById("canvas_td").innerHTML += "<canvas id='"+canvasId+"'></canvas>";
+	//document.getElementById("canvas_td").innerHTML += "<canvas id='"+canvasId+" class='distance_canvas'></canvas>";
 
 	createChart(canvasId,'bar',
 		{
@@ -178,10 +181,8 @@ function createDistanceCharts(statistics){
 
 function createPointsCharts(statistics){
 
-	document.getElementById("charts").innerHTML += "<div id='pointTime' class='row' align='center'></div><br/><br/><br/><br/>";
-
 	var canvasId = "pointTimeCanvas";
-	document.getElementById("pointTime").innerHTML += "<div class='col-md-12'><canvas id='"+canvasId+"' width='100%' height='500px'></canvas></div>";
+	document.getElementById("canvas_sc").innerHTML += "<canvas id='"+canvasId+"'></canvas></div>";
 
 
 	createChart(canvasId,'line',
@@ -207,6 +208,7 @@ function createPointsCharts(statistics){
 			    text: "Score change over time",
 				fontSize: 25
 			},
+			legend : { position: 'bottom' },
 			scales: {
 				yAxes: [{
 				  scaleLabel: {
@@ -224,7 +226,7 @@ function createPointsCharts(statistics){
 				}
 			},
 			responsive: true,
-			maintainAspectRatio: false
+			maintainAspectRatio: false,
 		}
 	);
 	
