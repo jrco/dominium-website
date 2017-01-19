@@ -216,13 +216,13 @@ function updateCapturePointState(point){
 		new google.maps.Size(30, 30)			
 	));
 
-	document.getElementById(point.name+"-energy").style["background-color"] = getTeamColorHex(point.teamOwner);
+	//document.getElementById(point.name+"-energy").style["background-color"] = getTeamColorHex(point.teamOwner);
 	
-	document.getElementById(point.name+"-owner").innerHTML = point.teamOwner;
+	//document.getElementById(point.name+"-owner").innerHTML = point.teamOwner;
 
-	document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
-	document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
-    $('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
+	//document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
+	//document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
+    //$('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
 
 	capList[point.name].set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(point.teamOwner,point.energy));
 }
