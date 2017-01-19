@@ -9,7 +9,7 @@ angular.
       var self = this;
       //self.orderProp = 'age';
 
-      $http.get('/games').then(function(response) {
+      $http.get('/games-short').then(function(response) {
         self.games = response.data;
       });
     }]

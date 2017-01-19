@@ -49,7 +49,23 @@
             <div class="replay_result table-responsive container" id="replay_result">
             </div>
             <div id="dominium-map"></div>
-            <button type="button" class="btn" ng-click="$ctrl.playGame();"><b>Play Game!</b></button>
+			<div class="gamestate-controls">
+				<div>
+					<button id="start-button" ng-click="$ctrl.playGame();">&#x21bb;</button>
+					<button onclick="resumeOrPause();">&#9658;/&#10074;&#10074;</button>
+				</div>
+				<div>
+					<button onclick="changeSpeed(0.5);">-</button
+					><div>
+						<span id="speed">1</span><span>x</span>
+					</div
+					><button onclick="changeSpeed(2);">+</button>
+				</div>
+			</div>
+
+        	
+			<br/>
+			
         </section>
         <section class="team_list right">
             <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">

@@ -44,7 +44,7 @@ my $minLng = -8.398973;
 my $numUsers = 5;
 my $numPoints = 5;
 
-my $numGamestates = 10;
+my $numGamestates = 50;
 
 ###INITIALIZE
 my %game = (
@@ -58,8 +58,20 @@ my %corporation;
 my %insurgents;
 
 for(my $i = 0; $i < $numUsers; $i++){
-	$corporation{"UserA$i"} = getRandomRole();
-	$insurgents{"UserB$i"} = getRandomRole();
+
+	my $corpRole = getRandomRole();
+	my $insRole = getRandomRole();
+
+	$corporation{"UserA$i"} = {
+		"role" => $corpRole#,
+		#"skillName" => "$corpRole-Skill",
+		#"skillCost" => getRandomInt(5,10)
+	};
+	$insurgents{"UserB$i"} = {
+		"role" => $insRole#,
+		#"skillName" => "$insRole-Skill",
+		#"skillCost" => getRandomInt(5,10)
+	};
 }
 
 my %points;
@@ -67,7 +79,8 @@ my %points;
 for(my $i = 0; $i < $numPoints; $i++){
 	$points{"Point$i"} = {
 		"lat" => "".getRandomFloat($minLat,$maxLat),
-		"lng" => "".getRandomFloat($minLng,$maxLng)
+		"lng" => "".getRandomFloat($minLng,$maxLng),
+		"radius" => getRandomInt(5,30)
 	};
 }
 
@@ -76,18 +89,22 @@ for(my $i = 0; $i<$numGamestates; $i++){
 
 	my %gamestate = ();
 
-	my @playersA = ();
+
 	foreach my $username (keys %corporation){
-		push(@playersA,{
+		push(@{$gamestate{"corporation"}{"players"}},{
 			"username" => $username,
 			"lat" => "".getRandomFloat($minLat,$maxLat),
 			"lng" => "".getRandomFloat($minLng,$maxLng),
 			"energy" => getRandomInt(0,100),
-			"role" => $corporation{$username}
+			"role" => $corporation{$username}{"role"}#,
+			#"skill" => {
+			#	"name" => $corporation{$username}{"skillName"},
+			#	"cost" => $corporation{$username}{"skillCost"},
+			#	"cooldown" => getRandomInt(0,50)
+			#}
 		});
 		
 	}
-	$gamestate{"corporation"}{"players"} = \@playersA;
 	if($i == 0){
 		$gamestate{"corporation"}{"points"} = 0;
 	}
@@ -95,18 +112,22 @@ for(my $i = 0; $i<$numGamestates; $i++){
 		$gamestate{"corporation"}{"points"} = $game{"gameState"}[$i-1]{"corporation"}{"points"}+getRandomInt(0,5);
 	}
 
-	my @playersB = ();
+
 	foreach my $username (keys %insurgents){
-		push(@playersB,{
+		push(@{$gamestate{"insurgents"}{"players"}},{
 			"username" => $username,
 			"lat" => "".getRandomFloat($minLat,$maxLat),
 			"lng" => "".getRandomFloat($minLng,$maxLng),
 			"energy" => getRandomInt(0,100),
-			"role" => $insurgents{$username}
+			"role" => $insurgents{$username}{"role"}#,
+			#"skill" => {
+			#	"name" => $insurgents{$username}{"skillName"},
+			#	"cost" => $insurgents{$username}{"skillCost"},
+			#	"cooldown" => getRandomInt(0,50)
+			#}
 		});
 		
 	}
-	$gamestate{"insurgents"}{"players"} = \@playersB;
 	if($i == 0){
 		$gamestate{"insurgents"}{"points"} = 0;
 	}
@@ -115,17 +136,16 @@ for(my $i = 0; $i<$numGamestates; $i++){
 	}
 
 
-	my @capPoints = ();
 	foreach my $name (keys %points){
-		push(@capPoints,{
+		push(@{$gamestate{"capturePoints"}},{
 			"name" => $name,
 			"lat" => "".$points{$name}{"lat"},
 			"lng" => "".$points{$name}{"lng"},
+			"radius" => $points{$name}{"radius"},
 			"energy" => getRandomInt(0,100),
 			"teamOwner" => getRandomTeam()
 		});
 	}
-	$gamestate{"capturePoints"} = \@capPoints;
 
 	$gamestate{"timeStamp"} = "2016-12-14T10:05:01Z";
 

@@ -26,6 +26,15 @@ module.exports = function(app){
 	    });
 	});
 
+	// get all games with only the last gamestate
+	app.get('/games-short', function(req, res){
+	    Games.find({},{gameState:{$slice:-1}},function(err, games) {
+	        if (err)
+	            return res.send(err);
+	        res.json(games);
+	    });
+	});
+
 	// create a game to send back all games after creation
 	app.post('/games',function(req, res) {
 
