@@ -288,16 +288,16 @@ function getCapturePointIcon(teamOwner){
 //Gets the correct energy bar color according to the current energy
 function getEnergyColor(energy){
 	if(energy < 25){
-		return "#C04000";
+		return "rgba(39, 174, 96,0.2)";
 	}
 	else if(energy < 50){
-		return "#C68E17";
+		return "rgba(39, 174, 96,0.5)";
 	}
 	else if(energy < 75){
-		return "#728C00";
+		return "rgba(39, 174, 96,0.7)";
 	}
 	else{
-		return "#4CC417";
+		return "rgba(39, 174, 96,1.0)";
 	}
 }
 
