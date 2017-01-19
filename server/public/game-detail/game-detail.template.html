@@ -32,17 +32,19 @@
     </div>
     <div id="section_container">
         <section class="team_list left">
+			
             <div class="player_row corporation" ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
-                <div class="image_div">
-                    <img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
-                </div>
-                <div class="energy">
-                    <div class="info">
-                        <span class="name">{{player.username}}</span>
-                        <span class="infolabel">Energy</span>
-                    </div>
-                    <div id="{{player.username}}-energy" class="progress-bar" style="background-color:#4CC417;width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
-                </div>
+				<div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);"/>		
+				<div class="image_div">
+	                <img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
+	            </div>
+	            <div class="energy">
+	                <div class="info">
+	                    <span class="name">{{player.username}}</span>
+	                    <span class="infolabel">Energy</span>
+	                </div>
+	                <div id="{{player.username}}-energy" class="progress-bar" style="background-color:#4CC417;width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+	            </div>
             </div>
         </section>
         <section id="map">
@@ -69,7 +71,8 @@
         </section>
         <section class="team_list right">
             <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
-                <div class="energy">
+				<div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);"/>		                
+				<div class="energy">
                     <div class="info">
                         <span class="infolabel">Energy</span>
                         <span class="name">{{player.username}}</span>

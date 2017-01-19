@@ -97,12 +97,12 @@ function processGameStates() {
 
     var dataAux = createAuxData(gamestate);
 	animationData.currentDraw = 1;
-    moveIteration(gamestate, dataAux);
+	moveIteration(gamestate, dataAux);
 }
 
 //Updates the position of all players according to the currentDraw var (Animation loop)
 function moveIteration(gamestate, dataAux) {
-	//console.log("Processing iteration "+animationData.currentDraw+"/"+speed.totalDraws);
+	console.log("Processing iteration "+animationData.currentDraw+"/"+speed.totalDraws);
 	if (animationData.currentDraw === speed.totalDraws){
 		clearAnimationState();
 		processGameStates();
