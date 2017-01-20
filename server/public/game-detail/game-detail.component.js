@@ -23,22 +23,7 @@ component('gameDetail', {
             };
 
 			self.follow = function(player){
-				
-				var selectedPlayer = document.getElementById(player+"_selection");
-
-				if(selectedPlayer.style["box-shadow"] === null || selectedPlayer.style["box-shadow"] === ""){
-					var players = document.getElementsByClassName("player_selection");
-					for (var i = 0; i < players.length; i++) {
-						players[i].style.removeProperty("box-shadow");
-					}
-
-					selectedPlayer.style["box-shadow"] = "inset 0 0 5px 1px white";
-					followPlayer(player);
-				}
-				else{
-					selectedPlayer.style.removeProperty("box-shadow");
-					followPlayer(undefined);
-				}
+				followPlayer(player);
 			};
 			
             //this.gameId = $routeParams.gameId;
