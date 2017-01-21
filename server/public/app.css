@@ -578,6 +578,7 @@ a:hover {
 	width: 100%;
 	display: table;
 	table-layout: fixed;
+
 }
 
 #section_container > .team_list,
@@ -774,30 +775,161 @@ a:hover {
 	margin: 10% auto;
 }
 
+/***********************************/
+/*		ARROW DOWN AND UP          */
+/***********************************/
+
+.slider_down{
+	width: 100%;
+	height: 500px;
+	display: table;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 30px;
+}
+
+.slider_down > a > .arrow_down {
+	display: table-cell;
+	text-align: center;
+	vertical-align: top;
+}
+
+.slider_down > a > .arrow_down > img{
+	width: 80px;
+	height: 80px;
+}
+
+#slider_up{
+	width: 100%;
+	height: 100px;
+	display: table;
+	text-align: center;
+	padding-bottom: 5px;
+	vertical-align: middle;
+}
+
+#slider_up > a > .arrow_up {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#slider_up > a > .arrow_up > img{
+	width: 80px;
+	height: 80px;
+}
+
+
+
+
 #full_stats {
 	width: 100%;
 	display: table;
 	table-layout: fixed;
+	padding-bottom: 50px;
 }
 
 #full_stats > .margin_left,
 #full_stats > .margin_right {
 	display: table-cell;
-	width: 10%;
+	width: 5%;
 }
 
 #full_stats > .stats {
 	display: table-cell;
-	width: 80%;
+	width: 90%;
 }
+
 
 #full_stats > .stats > .control_value {
+	width: 100%;
 	display: table;
 	table-layout: fixed;
-	text-align: center;
+	padding-bottom: 10px;
+}
+
+#full_stats > .stats > .control_value > .title_cv {
+	display: table-row;
 	width: 100%;
+	vertical-align: middle;
+}
+
+#full_stats > .stats > .control_value > .title_cv > span {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+
+#full_stats > .stats > .control_value > #canvas_cv {
+	display: table;
+	width: 100%;
+	vertical-align: middle;
+	text-align: center;
+	height: 250px;
+	background-color: rgba(20, 20, 20,0.5);
+	text-align: center;
+	vertical-align: center;
+}
+
+#full_stats > .stats > .control_value > #canvas_cv > div{
+	display: table-cell;
+	text-align: center;
+	vertical-align: center;
+	padding-bottom: 30px;
+}
+
+/*#full_stats > .stats > .control_value > #canvas_cv > #pointControl > div > canvas{
+	table-layout: table-cell;
+}*/
+
+#full_stats > .stats > .more_stats {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	height: 350px;
+}
+
+#full_stats > .stats > .more_stats > .travel_distance {
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+	text-align: center;
+	height: 350px;
 
 }
+
+#full_stats > .stats > .more_stats > .travel_distance > #canvas_td {
+	vertical-align: middle;
+	text-align: center;
+	height: 100%;
+	padding-right: 20px;
+}
+
+#full_stats > .stats > .more_stats > .travel_distance > #canvas_td > #distanceCanvas {
+	background-color: rgba(20, 20, 20,0.5);
+}
+
+#full_stats > .stats > .more_stats > .score_change {
+	display: table-cell;
+	width: 50%;
+	vertical-align: middle;
+	text-align: center;
+	height: 250px;
+}
+
+#full_stats > .stats > .more_stats > .score_change > #canvas_sc {
+	vertical-align: middle;
+	text-align: center;
+	height: 100%;
+}
+
+#full_stats > .stats > .more_stats > .score_change > #canvas_sc > #pointTimeCanvas{
+	background-color: rgba(20, 20, 20,0.5);
+}
+
+/***********************************/
+/*			Map Energy Color 		*/
+/***********************************/
 
 .map_label {
 	overflow: visible !important;
@@ -855,17 +987,18 @@ a:hover {
 	background-color: #e74c3c;
 }
 
-.gamestate-controls {
-	width: 98%;
+#map > .gamestate-controls {
+	width: 100%;
 	margin-left: 1%;
 	margin-right: 1%;
 	height: 30px;
-	background-color: #F0F0F0;
+	display: table;
+	background-color: rgba(20, 20, 20,0.5);
 }
 
 .gamestate-controls div{
 	height: 100%;
-	display: inline;
+	display: table-cell;
 }
 
 .gamestate-controls div:first-child{
@@ -873,7 +1006,7 @@ a:hover {
 }
 .gamestate-controls div:last-child{
 	float: right;
-	background-color: white;
+	color: white;
 }
 
 .gamestate-controls div *{
@@ -896,71 +1029,47 @@ a:hover {
 	border: none;
 }
 
-
-
-
-#full_stats > .stats > .control_value > .title_cv {
-	display: table-row;
-	width: 100%;
-	vertical-align: middle;
-}
-
-#full_stats > .stats > .control_value > .title_cv > span {
-	text-align: center;
-	font-size: 1.5em;
-}
-
-
-#full_stats > .stats > .control_value > #canvas_cv {
-	table-layout: table-row;
-	width: 20%;
-	vertical-align: middle;
-	text-align: center;
-	height: 200px;
-}
-
-#full_stats > .stats > .more_stats {
-	display: table;
-	table-layout: fixed;
-	width: 100%;
-	height: 250px;
-}
-
-#full_stats > .stats > .more_stats > .travel_distance {
-	display: table-cell;
-	width: 50%;
-	vertical-align: middle;
-	text-align: center;
-	height: 250px;
-}
-
-#full_stats > .stats > .more_stats > .travel_distance > #canvas_td {
-	vertical-align: middle;
-	text-align: center;
-	height: 100%;
-}
-
-#full_stats > .stats > .more_stats > .score_change {
-	display: table-cell;
-	width: 50%;
-	vertical-align: middle;
-	text-align: center;
-	height: 250px;
-}
-
-#full_stats > .stats > .more_stats > .score_change > #canvas_sc {
-	vertical-align: middle;
-	text-align: center;
-	height: 100%;
-}
-
-
 /*#full_stats > .stats > .more_stats > .travel_distance > .title_cv > span {
 	display: table-cell;
 	width: 50%;
 	vertical-align: middle;
 	text-align: center;
 }*/
+
+.style-button {
+    position: relative;
+    border: none;
+    font-size: 5px;
+    color: #FFFFFF;
+    padding: 5px;
+    width: 80px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.style-button:after {
+    content: "";
+    background: #f1f1f1;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.style-button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
 
 
 

@@ -89,7 +89,10 @@ function createPointControlCharts(statistics){
 
 
 		var canvasId = pointName+"-canvas";
-		document.getElementById("canvas_cv").innerHTML += "<canvas id='"+canvasId+"'></canvas>";
+		//document.getElementById("canvas_cv").innerHTML += "<div><can id='"+canvasId+"'></canvas></div>";
+		//document.getElementById("canvas_cv").innerHTML += "<div class="box"><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></div>";
+		document.getElementById("canvas_cv").innerHTML += "<div><canvas id='"+canvasId+"' style='max-width:250px' height='200px'></canvas></div>";
+		//document.getElementById("pointControl").innerHTML += "<div><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></div>";
 
 		var total = totalCorporation+totalInsurgents;
 		createChart(canvasId,'pie',
@@ -98,8 +101,8 @@ function createPointControlCharts(statistics){
 				labels: ["Corporation", "Insurgents"],
 				datasets: [{
 					data: [
-						trimNumber(totalCorporation/total,3), 
-						trimNumber(totalInsurgents/total,3)
+						trimNumber((totalCorporation/total)*100,3), 
+						trimNumber((totalInsurgents/total)*100,3)
 					],
 					backgroundColor: [getTeamColor("corporation"),getTeamColor("insurgents")]
 				}]

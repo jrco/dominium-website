@@ -49,23 +49,23 @@
             <div class="replay_result table-responsive container" id="replay_result">
             </div>
             <div id="dominium-map"></div>
-			<div class="gamestate-controls">
-				<div>
-					<button id="start-button" ng-click="$ctrl.playGame();">&#x21bb;</button>
-					<button onclick="resumeOrPause();">&#9658;/&#10074;&#10074;</button>
-				</div>
-				<div>
-					<button onclick="changeSpeed(0.5);">-</button
-					><div>
-						<span id="speed">1</span><span>x</span>
-					</div
-					><button onclick="changeSpeed(2);">+</button>
-				</div>
-			</div>
-
-        	
-			<br/>
-			
+            <div class="gamestate-controls">
+                <div class="buttons_left">
+                    <button class="style-button" onclick="resumeOrPause();"><i class="fa fa-play" aria-hidden="true"></i> / <i class="fa fa-pause" aria-hidden="true"></i>
+</button>
+                    <button id="start-button" ng-click="$ctrl.playGame();" class="style-button"><i class="fa fa-repeat" aria-hidden="true"></i>
+</button>
+                </div>
+                <div class="buttons_right">
+                    <button class="style-button onclick="changeSpeed(0.5);"><i class="fa fa-minus" aria-hidden="true"></i>
+</button>
+                    <div>
+                        <span id="speed">1</span><span>x</span>
+                    </div>
+                    <button class="style-button onclick="changeSpeed(2);"><i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+                </div>
+            </div>
         </section>
         <section class="team_list right">
             <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
@@ -101,9 +101,27 @@
         </div>
     </div-->
 </div>
+<div class="slider_down">
+    <a href="http://localhost:8082/#!/games/{{$ctrl.game._id}}/#slider_up">
+        <div class="arrow_down">
+            <img ng-src="img/arrow_down.png" alt="down">
+        </div>
+    </a>
+</div>
+<div id="slider_up">
+    <a href="http://localhost:8082/#!/games/{{$ctrl.game._id}}/#top">
+        <div class="arrow_up">
+            <img ng-src="img/arrow_up.png" alt="down">
+        </div>
+    </a>
+</div>
 <div id="full_stats">
     <div class="margin_left"></div>
     <div class="stats">
+        <div class="control_value">
+            <div class="title_cv"><span></span></div>
+            <div id="canvas_cv"></div>
+        </div>
         <div class="more_stats">
             <div class="travel_distance">
                 <div class="title_td"><span></span></div>
@@ -113,10 +131,6 @@
                 <div class="title_sc"><span></span></div>
                 <div id="canvas_sc"></div>
             </div>
-        </div>
-        <div class="control_value">
-            <div class="title_cv"><span>Control Value</span></div>
-            <div id="canvas_cv"></div>
         </div>
     </div>
     <div class="margin_right"></div>
