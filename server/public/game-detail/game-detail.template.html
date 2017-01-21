@@ -32,7 +32,9 @@
     </div>
     <div id="section_container">
         <section class="team_list left">
+			
             <div class="player_row corporation" ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
+				<div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);"/>		
                 <div class="image_div">
                     <img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
                 </div>
@@ -69,7 +71,8 @@
         </section>
         <section class="team_list right">
             <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
-                <div class="energy">
+				<div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);"/>		                
+				<div class="energy">
                     <div class="info">
                         <span class="infolabel">Energy</span>
                         <span class="name">{{player.username}}</span>

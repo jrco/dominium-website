@@ -21,7 +21,10 @@ component('gameDetail', {
             self.playGame = function() {
                 playGame(self.game);
             };
-			
+
+			self.follow = function(player){
+				followPlayer(player);
+			};
 			
             //this.gameId = $routeParams.gameId;
         }

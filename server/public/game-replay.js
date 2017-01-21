@@ -4,22 +4,19 @@ var playerList = {};//username: marker
 var capList = {};//name: marker
 var circleList = [];
 
-var followMarker;
+var followEvent;
 
-var GAMESTATE_DURATION = 1000;
-var INTERVAL_BETWEEN_DRAWS = 20;
-
-var speed = {
-	gameStateDuration: GAMESTATE_DURATION,
-	totalDraws: parseInt(GAMESTATE_DURATION/INTERVAL_BETWEEN_DRAWS),
-};
+var DEFAULT_GAMESTATE_DURATION = 1000;
+var currentGameStateDuration = DEFAULT_GAMESTATE_DURATION;
 
 var dominiumGame;
 var currentGameState;
 
 var animationData = {
+	startTime: undefined,
+	timeOffset: 0,
+	pauseTime: undefined,
 	nextCallback: undefined,
-	currentDraw: undefined,
 	animationLoop: undefined
 };
 
@@ -43,7 +40,8 @@ function initMap() {
 
 
 //Initializes the game, creates all markers
-function initializeGame(gamestate) {
+function initializeGame() {
+	var gamestate = dominiumGame.gameState[0];
     gamestate.corporation.players.forEach(function(player){
         createPlayerMarker(player,"Corporation");
     });
@@ -74,9 +72,9 @@ function createAuxData(nextGamestate){
                 lat: marker.getPosition().lat(),
                 lng: marker.getPosition().lng()
             },
-            distance: {
-                lat: (parseFloat(player.lat) - marker.getPosition().lat()),
-                lng: (parseFloat(player.lng) - marker.getPosition().lng())
+            dest: {
+                lat: parseFloat(player.lat),
+                lng: parseFloat(player.lng)
             }
         };
     });
@@ -88,47 +86,50 @@ function createAuxData(nextGamestate){
 function processGameStates() {
     console.log("Executing "+currentGameState);
     if(currentGameState >= dominiumGame.gameState.length-1){
+		stopFollowing();
 		setWinner(dominiumGame);
-        return;
+		return;
     }
 
     var gamestate = dominiumGame.gameState[++currentGameState];
     updateState();
 
     var dataAux = createAuxData(gamestate);
-	animationData.currentDraw = 1;
-    moveIteration(gamestate, dataAux);
+	animationData.startTime = (new Date()).getTime();
+
+	animationData.nextCallback = function () {
+		moveIteration(gamestate, dataAux);
+	};
+	animationData.animationLoop = window.requestAnimationFrame(animationData.nextCallback);
 }
 
 //Updates the position of all players according to the currentDraw var (Animation loop)
 function moveIteration(gamestate, dataAux) {
-	//console.log("Processing iteration "+animationData.currentDraw+"/"+speed.totalDraws);
-	if (animationData.currentDraw === speed.totalDraws){
-		clearAnimationState();
-		processGameStates();
-		return;
+	var ellapsed = (new Date()).getTime()-(animationData.startTime+animationData.timeOffset);
+	var progress = ellapsed/currentGameStateDuration;
+
+	//console.log("Current status",progress);
+	if (progress > 1){
+		progress = 1;
 	}
 	
 	getAllPlayers(gamestate).forEach(function (player) {
-		var marker = playerList[player.username];
-		var newPos = new google.maps.LatLng(
-	        dataAux[player.username].startingPosition.lat + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lat,
-	        dataAux[player.username].startingPosition.lng + animationData.currentDraw/speed.totalDraws * dataAux[player.username].distance.lng
-	    );
-		
-		marker.setPosition(newPos);
+		playerList[player.username].setPosition(
+			getCurrentPosition(dataAux[player.username].startingPosition,dataAux[player.username].dest,progress)
+		);
 	});
+	//updateFollow();
 
-	if(typeof followMarker !== 'undefined'){
-		//map.setCenter(followMarker.getPosition());
-		map.panTo(followMarker.getPosition());
+	if(progress === 1){
+		clearAnimationState();
+		processGameStates();
+		return;
 	}
 
 	animationData.nextCallback = function () {
 		moveIteration(gamestate, dataAux);
 	};
-	animationData.currentDraw++;
-	animationData.animationLoop = setTimeout(animationData.nextCallback,INTERVAL_BETWEEN_DRAWS);
+	animationData.animationLoop = window.requestAnimationFrame(animationData.nextCallback);
 }
 
 //Creates a player marker
@@ -314,6 +315,14 @@ function getTeamColorHex(team){
 	}
 }
 
+//Gets a position based on the starting position, final position, and the % of travel done
+function getCurrentPosition(start,end,percent){
+	return new google.maps.LatLng(
+        start.lat + percent * (end.lat - start.lat),
+        start.lng + percent * (end.lng - start.lng)
+    )
+}
+
 //Clears all markers from the google map
 function clearMarkers(){
 
@@ -323,7 +332,6 @@ function clearMarkers(){
         }
     }
     playerList = {};
-	followMarker = undefined;
 
     for (var key in capList) {
         if (capList.hasOwnProperty(key)) {
@@ -340,10 +348,12 @@ function clearMarkers(){
 
 //Clears all animation data
 function clearAnimationState(){
-	clearTimeout(animationData.animationLoop);
+	window.cancelAnimationFrame(animationData.animationLoop);
 	animationData = {
+		startTime: undefined,
+		timeOffset: 0,
+		pauseTime: undefined,
 		nextCallback: undefined,
-		currentDraw: undefined,
 		animationLoop: undefined
 	};
 }
@@ -383,23 +393,47 @@ function changeSpeed(scale){
 	newSpeed = Math.max(1/16,Math.min(newSpeed, 16));
 	document.getElementById('speed').innerHTML = newSpeed;
 
-	var newGameStateDuration = GAMESTATE_DURATION/newSpeed;
-	var newTotalDraws = parseInt(newGameStateDuration / INTERVAL_BETWEEN_DRAWS);
+	var newGameStateDuration = DEFAULT_GAMESTATE_DURATION/newSpeed;
 
-	if(typeof animationData.currentDraw !== 'undefined'){
-		animationData.currentDraw = parseInt(animationData.currentDraw/speed.totalDraws*newTotalDraws);
-	}
-
-	speed = {
-		gameStateDuration: newGameStateDuration,
-		totalDraws: newTotalDraws
-	};
-
-	console.log("Speed changed to:",speed);
+	var now = animationData.pauseTime || (new Date()).getTime();
+	var current = (now-(animationData.startTime+animationData.timeOffset))/currentGameStateDuration;
+	animationData.timeOffset = (now-animationData.startTime)-current*newGameStateDuration;
+	
+	currentGameStateDuration = newGameStateDuration;
+	console.log("Speed changed to:",currentGameStateDuration);
 }
 
-function followPlayer(username){
-	followMarker = playerList[username];
+//Stops following players
+function stopFollowing(){
+	
+	if(typeof followEvent !== 'undefined'){
+		var players = document.getElementsByClassName("player_selection");
+		for (var i = 0; i < players.length; i++) {
+			players[i].style.removeProperty("box-shadow");
+		}
+
+		google.maps.event.removeListener(followEvent);
+		followEvent = undefined;
+	}
+}
+
+//Follow a player
+function followPlayer(player){
+	var selectedPlayer = document.getElementById(player+"_selection");
+
+	if(selectedPlayer.style["box-shadow"] === null || selectedPlayer.style["box-shadow"] === ""){
+		stopFollowing();
+
+		selectedPlayer.style["box-shadow"] = "inset 0 0 5px 1px white";
+
+		var marker = playerList[player];
+		followEvent = marker.addListener('position_changed', function(){
+			map.panTo(marker.getPosition());
+		});
+	}
+	else{
+		stopFollowing();
+	}
 }
 
 //Resume or pause the game
@@ -414,13 +448,16 @@ function resumeOrPause(){
 
 //Pause the animation
 function pause(){
-	clearTimeout(animationData.animationLoop);
+	animationData.pauseTime = (new Date()).getTime();
+	window.cancelAnimationFrame(animationData.animationLoop);
 	animationData.animationLoop = undefined;
 }
 
 //Resume the animation, or restart if already finished
 function resume(){
 	if(typeof animationData.nextCallback !== 'undefined'){
+		animationData.timeOffset += (new Date()).getTime()-animationData.pauseTime;
+		pauseTime = undefined;
 		animationData.nextCallback();
 	}
 	else{
@@ -433,12 +470,13 @@ function playGame(newGame) {
     
 	if(typeof dominiumGame !== 'undefined'){
 		clearAnimationState();
+		stopFollowing();
 		clearMarkers();
 	}
 
 	currentGameState = 0;
 	dominiumGame = newGame;
-	initializeGame(dominiumGame.gameState[0]);
+	initializeGame();
 
 	removeWinner();
     processGameStates();

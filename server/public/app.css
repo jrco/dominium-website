@@ -599,10 +599,19 @@ a:hover {
 
 #section_container > .team_list > .player_row {
 	width: calc(100% - 2px);
+	position: relative;
 	display: table;
 	height: 60px;
 	margin-bottom: 5px;
 	border: 1px solid rgba(52, 73, 94, 0.15);
+}
+
+#section_container > .team_list > .player_row > .player_selection {
+	position:absolute;
+	left:0;
+	top:0;
+	height:100%;
+	width:100%;
 }
 
 #section_container > .team_list > .player_row:last-of-type {
