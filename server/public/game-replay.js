@@ -23,78 +23,77 @@ var animationData = {
 //Initializes the google map
 function initMap() {
 	console.log("LOADING MAP");
-    map = new google.maps.Map(document.getElementById('dominium-map'), {
-        zoom: 2,
+	map = new google.maps.Map(document.getElementById('dominium-map'), {
+		zoom: 2,
 		minZoom: 1,
-        center: new google.maps.LatLng(0,0),
-        disableDefaultUI: true,
+		center: new google.maps.LatLng(0,0),
+		disableDefaultUI: true,
 		clickableIcons: false,
 		//zoomControl: false,
 		//scaleControl: false,
 		//scrollwheel: false,
-	 	//disableDoubleClickZoom: true,
-        mapTypeId: 'satellite'
-    });
-
+		//disableDoubleClickZoom: true,
+		mapTypeId: 'satellite'
+	});
 }
 
 
 //Initializes the game, creates all markers
 function initializeGame() {
 	var gamestate = dominiumGame.gameState[0];
-    gamestate.corporation.players.forEach(function(player){
-        createPlayerMarker(player,"Corporation");
-    });
-    gamestate.insurgents.players.forEach(function(player){
-        createPlayerMarker(player,"Insurgents");
-    });
+	gamestate.corporation.players.forEach(function(player){
+		createPlayerMarker(player,"Corporation");
+	});
+	gamestate.insurgents.players.forEach(function(player){
+		createPlayerMarker(player,"Insurgents");
+	});
 
-    gamestate.capturePoints.forEach(function(point){
-        createCapturePointMarker(point);
-    });
+	gamestate.capturePoints.forEach(function(point){
+		createCapturePointMarker(point);
+	});
 
 
-    $('span.corporation_points').text(gamestate.corporation.points);
-    $('span.insurgents_points').text(gamestate.insurgents.points);
+	$('span.corporation_points').text(gamestate.corporation.points);
+	$('span.insurgents_points').text(gamestate.insurgents.points);
 
-    updateState();
+	updateState();
 }
 
 //Creates auxiliary structure used in moveIteration()
 function createAuxData(nextGamestate){
-    var dataAux = {};
+	var dataAux = {};
 
-    getAllPlayers(nextGamestate).forEach(function (player) {
-        var marker = playerList[player.username];
+	getAllPlayers(nextGamestate).forEach(function (player) {
+		var marker = playerList[player.username];
 
-        dataAux[player.username] = {
-            startingPosition: {
-                lat: marker.getPosition().lat(),
-                lng: marker.getPosition().lng()
-            },
-            dest: {
-                lat: parseFloat(player.lat),
-                lng: parseFloat(player.lng)
-            }
-        };
-    });
+		dataAux[player.username] = {
+			start: {
+				lat: marker.getPosition().lat(),
+				lng: marker.getPosition().lng()
+			},
+			end: {
+				lat: parseFloat(player.lat),
+				lng: parseFloat(player.lng)
+			}
+		};
+	});
 
-    return dataAux;
+	return dataAux;
 }
 
 //Processes the next gamestate acording to the currentGamestate var
 function processGameStates() {
-    console.log("Executing "+currentGameState);
-    if(currentGameState >= dominiumGame.gameState.length-1){
+	console.log("Executing "+currentGameState);
+	if(currentGameState >= dominiumGame.gameState.length-1){
 		stopFollowing();
 		setWinner(dominiumGame);
 		return;
-    }
+	}
 
-    var gamestate = dominiumGame.gameState[++currentGameState];
-    updateState();
+	var gamestate = dominiumGame.gameState[++currentGameState];
+	updateState();
 
-    var dataAux = createAuxData(gamestate);
+	var dataAux = createAuxData(gamestate);
 	animationData.startTime = (new Date()).getTime();
 
 	animationData.nextCallback = function () {
@@ -103,7 +102,7 @@ function processGameStates() {
 	animationData.animationLoop = window.requestAnimationFrame(animationData.nextCallback);
 }
 
-//Updates the position of all players according to the currentDraw var (Animation loop)
+//Updates the position of all players according to the ellapsed time (Animation loop)
 function moveIteration(gamestate, dataAux) {
 	var ellapsed = (new Date()).getTime()-(animationData.startTime+animationData.timeOffset);
 	var progress = ellapsed/currentGameStateDuration;
@@ -115,10 +114,9 @@ function moveIteration(gamestate, dataAux) {
 	
 	getAllPlayers(gamestate).forEach(function (player) {
 		playerList[player.username].setPosition(
-			getCurrentPosition(dataAux[player.username].startingPosition,dataAux[player.username].dest,progress)
+			getCurrentPosition(dataAux[player.username].start,dataAux[player.username].end,progress)
 		);
 	});
-	//updateFollow();
 
 	if(progress === 1){
 		clearAnimationState();
@@ -135,9 +133,9 @@ function moveIteration(gamestate, dataAux) {
 //Creates a player marker
 function createPlayerMarker(player,team){
 
-    playerList[player.username] = new MarkerWithLabel({
-        position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
-        icon: new google.maps.MarkerImage(
+	playerList[player.username] = new MarkerWithLabel({
+		position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
+		icon: new google.maps.MarkerImage(
 			getPlayerMarkerIcon(team),
 			null,
 			null,
@@ -147,16 +145,16 @@ function createPlayerMarker(player,team){
 		labelContent: "<span class='text_label'>"+player.username+"</span>",
 		labelAnchor: new google.maps.Point(0,50),
 		labelClass: "map_label",
-        optimized: false,
-        map: map
-    });
+		optimized: false,
+		map: map
+	});
 }
 
 //Creates a capture point marker with a circle
 function createCapturePointMarker(point){
-    capList[point.name] = new MarkerWithLabel({
-        position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
-        icon: new google.maps.MarkerImage(
+	capList[point.name] = new MarkerWithLabel({
+		position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
+		icon: new google.maps.MarkerImage(
 			"../img/diamond_black.png",
 			null,
 			null,
@@ -167,8 +165,8 @@ function createCapturePointMarker(point){
 		labelAnchor: new google.maps.Point(0,50),
 		labelClass: "map_label",
 		zIndex: -1,
-        map: map
-    });
+		map: map
+	});
 	var circle = new google.maps.Circle({
 		map: map,
 		radius: point.radius,
@@ -185,15 +183,15 @@ function createCapturePointMarker(point){
 function updateState(){
 	var gamestate = dominiumGame.gameState[currentGameState];
 
-    gamestate.capturePoints.forEach(function(point){
-        updateCapturePointState(point);
-    });
-    getAllPlayers(gamestate).forEach(function (player) {
-        updatePlayerState(player);
-    });
+	gamestate.capturePoints.forEach(function(point){
+		updateCapturePointState(point);
+	});
+	getAllPlayers(gamestate).forEach(function (player) {
+		updatePlayerState(player);
+	});
 
-    $('span.corporation_points').text(gamestate.corporation.points);
-    $('span.insurgents_points').text(gamestate.insurgents.points);
+	$('span.corporation_points').text(gamestate.corporation.points);
+	$('span.insurgents_points').text(gamestate.insurgents.points);
 }
 
 //Updates the energy of the player in the UI
@@ -223,14 +221,14 @@ function updateCapturePointState(point){
 
 	//document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
 	//document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
-    //$('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
+	//$('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
 
 	capList[point.name].set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(point.teamOwner,point.energy));
 }
 
 //Returns all players in a gamestate
 function getAllPlayers(gamestate){
-    return gamestate.corporation.players.concat(gamestate.insurgents.players);
+	return gamestate.corporation.players.concat(gamestate.insurgents.players);
 }
 
 //Creates the HTML element that represents the energy bar of the capture point marker - used by updateCapturePointState()
@@ -318,27 +316,27 @@ function getTeamColorHex(team){
 //Gets a position based on the starting position, final position, and the % of travel done
 function getCurrentPosition(start,end,percent){
 	return new google.maps.LatLng(
-        start.lat + percent * (end.lat - start.lat),
-        start.lng + percent * (end.lng - start.lng)
-    )
+		start.lat + percent * (end.lat - start.lat),
+		start.lng + percent * (end.lng - start.lng)
+	)
 }
 
 //Clears all markers from the google map
 function clearMarkers(){
 
-    for (var key in playerList) {
-        if (playerList.hasOwnProperty(key)) {
-            playerList[key].setMap(null);
-        }
-    }
-    playerList = {};
+	for (var key in playerList) {
+		if (playerList.hasOwnProperty(key)) {
+			playerList[key].setMap(null);
+		}
+	}
+	playerList = {};
 
-    for (var key in capList) {
-        if (capList.hasOwnProperty(key)) {
-            capList[key].setMap(null);
-        }
-    }
-    capList = {};
+	for (var key in capList) {
+		if (capList.hasOwnProperty(key)) {
+			capList[key].setMap(null);
+		}
+	}
+	capList = {};
 
 	circleList.forEach(function(circle){
 		circle.setMap(null);
@@ -427,6 +425,7 @@ function followPlayer(player){
 		selectedPlayer.style["box-shadow"] = "inset 0 0 5px 1px white";
 
 		var marker = playerList[player];
+		map.panTo(marker.getPosition());
 		followEvent = marker.addListener('position_changed', function(){
 			map.panTo(marker.getPosition());
 		});
@@ -467,7 +466,7 @@ function resume(){
 
 //Start playing a game
 function playGame(newGame) {
-    
+	
 	if(typeof dominiumGame !== 'undefined'){
 		clearAnimationState();
 		stopFollowing();
@@ -479,5 +478,5 @@ function playGame(newGame) {
 	initializeGame();
 
 	removeWinner();
-    processGameStates();
+	processGameStates();
 }
