@@ -458,7 +458,7 @@ function resume(){
 	if(typeof animationData.nextCallback !== 'undefined'){
 		animationData.timeOffset += (new Date()).getTime()-animationData.pauseTime;
 		pauseTime = undefined;
-		animationData.nextCallback();
+		animationData.animationLoop = window.requestAnimationFrame(animationData.nextCallback);
 	}
 	else{
 		document.getElementById("start-button").click();
