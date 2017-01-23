@@ -404,12 +404,13 @@ function changeSpeed(scale){
 //Stops following players
 function stopFollowing(){
 	
-	if(typeof followEvent !== 'undefined'){
-		var players = document.getElementsByClassName("player_selection");
-		for (var i = 0; i < players.length; i++) {
-			players[i].style.removeProperty("box-shadow");
-		}
+	
+	var players = document.getElementsByClassName("player_selection");
+	for (var i = 0; i < players.length; i++) {
+		players[i].style.removeProperty("box-shadow");
+	}
 
+	if(typeof followEvent !== 'undefined'){
 		google.maps.event.removeListener(followEvent);
 		followEvent = undefined;
 	}
@@ -422,9 +423,13 @@ function followPlayer(player){
 	if(selectedPlayer.style["box-shadow"] === null || selectedPlayer.style["box-shadow"] === ""){
 		stopFollowing();
 
+		var marker = playerList[player];
+		if(typeof marker === 'undefined'){
+			return;
+		}
+
 		selectedPlayer.style["box-shadow"] = "inset 0 0 5px 1px white";
 
-		var marker = playerList[player];
 		map.panTo(marker.getPosition());
 		followEvent = marker.addListener('position_changed', function(){
 			map.panTo(marker.getPosition());
