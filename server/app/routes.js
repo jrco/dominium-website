@@ -123,12 +123,12 @@ module.exports = function(app){
 
 	    var sub = new Subscribers(); // create a new instance of the Rss model
 	    sub._id = new mongoose.Types.ObjectId(req.body._id);
-	    sub.name = req.query.name;
+	    sub.name = req.body.name;
 	    sub.email = req.body.email;
 
 	    //console.log(req);
 	    //console.log(res);
-	    console.log(sub.name);
+	    //console.log(sub.name);
 	    
 	     // save the rss and check for errors
 	    sub.save(function(err) {
