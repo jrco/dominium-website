@@ -1,11 +1,13 @@
 
 // load de game model
 var Games = require('./models/game');
+var Subscribers = require('./models/subscriber');
 var mongoose   = require('mongoose'); // mongoose for mongodb
 var express    = require('express');        // call express
 var app        = express(); // define our app using express
 mongoose.Promise = global.Promise;
 var path = require("path");
+var http = require('http');
 
 // expose the routes to our app
 module.exports = function(app){
@@ -105,6 +107,37 @@ module.exports = function(app){
 	        });
 	    });
 	});
+
+	// get all games
+	app.get('/subscribers', function(req, res){
+	    Subscribers.find(function(err, subs) {
+	        if (err)
+	            return res.send(err);
+	        res.json(subs);
+	        //path = "";
+	        //res.sendFile(path.join(__dirname, '../public', 'all_games.html'));
+	    });
+	});
+
+	app.post('/subscribers',function(req, res) {
+
+	    var sub = new Subscribers(); // create a new instance of the Rss model
+	    sub._id = new mongoose.Types.ObjectId(req.body._id);
+	    sub.name = req.query.name;
+	    sub.email = req.body.email;
+
+	    //console.log(req);
+	    //console.log(res);
+	    console.log(sub.name);
+	    
+	     // save the rss and check for errors
+	    sub.save(function(err) {
+	        if (err)
+	            return res.send(err);
+
+	        res.json({_id: sub._id });
+	    });
+	    });
 
 	// application -------------------------------------------------------------
 	/*app.get('*', function(req, res) {
