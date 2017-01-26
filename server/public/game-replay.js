@@ -197,7 +197,7 @@ function updateState(){
 //Updates the energy of the player in the UI
 function updatePlayerState(player){
 
-	document.getElementById(player.username+"-energy").style["background-color"] = getEnergyColor(player.energy);
+	//document.getElementById(player.username+"-energy").style["background-color"] = getEnergyColor(player.energy);
 
 	document.getElementById(player.username+"-energy").setAttribute("aria-valuenow",player.energy);
 	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";
