@@ -11,6 +11,14 @@ var http = require('http');
 
 // expose the routes to our app
 module.exports = function(app){
+
+	//TODO - Remove this later (Usado para conseguir fazer CORS no ajax)
+	app.use(function(req, res, next) {
+		res.header("Access-Control-Allow-Origin", "*");
+		res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		next();
+	});
+
 	// api ==============================================
 	app.get('/api', function(req, res){
 		res.json({message: 'Welcome to Dominium API' });
@@ -137,7 +145,7 @@ module.exports = function(app){
 
 	        res.json({_id: sub._id });
 	    });
-	    });
+	});
 
 	// application -------------------------------------------------------------
 	/*app.get('*', function(req, res) {
