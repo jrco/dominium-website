@@ -4,13 +4,27 @@ function setWinner(game) {
     var ptB = game.gameState[game.gameState.length - 1].insurgents.points;
     var td;
 
-
     if (ptA > ptB) {
         //console.log("WINNER B");
-        $('.winner_cp').addClass('won');
+        /*$('.winner_cp').addClass('won');*/
+        $('.coorporation_fr').addClass('victory');
+        //$( ".coorporation_fr" ).remove();
+        $( ".coorporation_fr" ).append( "Victory" );
+        $('.insurgents_fr').addClass('defeat');
+        $( ".insurgents_fr" ).append( "Defeat" );
+        console.log("A")
     } else if (ptA < ptB) {
         //console.log("WINNER A");
-        $('.winner_in').addClass('won');
+        $( ".coorporation_fr" ).addClass( "defeat" );
+        $( ".coorporation_fr" ).append( "Defeat" );
+        $( ".insurgents_fr" ).addClass( "victory" );
+        $( ".insurgents_fr" ).append( "Victory" );
+        console.log("B")
+    } else {
+        $( ".coorporation_fr" ).append( "tie" );
+        $( ".insurgents_fr" ).append( "tie" );
+        $( ".coorporation_fr" ).append( "Tie" );
+        $( ".insurgents_fr" ).append( "Tie" );
     }
 }
 

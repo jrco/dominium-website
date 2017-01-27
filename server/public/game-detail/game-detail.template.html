@@ -3,7 +3,7 @@
         <div class="margin_left"></div>
         <div class="match_result">
             <div class="coorporation_name">
-                <div class="coorporation_fr">Victory</div>
+                <div class="coorporation_fr"></div>
                 <div class="name">
                     <span>Coorporation</span>
                 </div>
@@ -40,8 +40,8 @@
                 </div>
                 <div class="energy">
                     <div class="info">
-                        <span class="name">{{player.username}}</span>
-                        <span class="infolabel">Energy</span>
+                        <!--span class="name"></span-->
+                        <span class="infolabel">{{player.username}}</span>
                     </div>
 
                     <div id="{{player.username}}-energy" class="progress-bar" style="background-color:rgba(39, 174, 96,1.0);width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
@@ -54,18 +54,18 @@
             <div id="dominium-map"></div>
             <div class="gamestate-controls">
                 <div class="buttons_left">
-                    <button class="style-button" onclick="resumeOrPause();"><i class="fa fa-play" aria-hidden="true"></i> / <i class="fa fa-pause" aria-hidden="true"></i>
+                    <button class="playorpause" onclick="resumeOrPause();"><i class="fa fa-play" aria-hidden="true"></i> / <i class="fa fa-pause" aria-hidden="true"></i>
 </button>
                     <button id="start-button" ng-click="$ctrl.playGame();" class="style-button"><i class="fa fa-repeat" aria-hidden="true"></i>
 </button>
                 </div>
                 <div class="buttons_right">
 					<!-- Yes this needs to be like this !-->
-                    <button class="style-button" onclick="changeSpeed(0.5);"><i class="fa fa-minus" aria-hidden="true"></i></button
-					><div>
+                    <button class="plus" onclick="changeSpeed(0.5);"><i class="fa fa-minus" aria-hidden="true"></i></button
+					><div class = "values">
                         <span id="speed">1</span><span>x</span>
                     </div
-					><button class="style-button" onclick="changeSpeed(2);"><i class="fa fa-plus" aria-hidden="true"></i></button>
+					><button class="minus" onclick="changeSpeed(2);"><i class="fa fa-plus" aria-hidden="true"></i></button>
 					<!-- Don't change !-->
                 </div>
             </div>
@@ -75,13 +75,14 @@
 				<div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);"/>		                
 				<div class="energy">
                     <div class="info">
-                        <span class="infolabel">Energy</span>
-                        <span class="name">{{player.username}}</span>
+                        <span class="infolabel">{{player.username}}</span>
+                        <!--span class="name"></span-->
                     </div>
                     <div id="{{player.username}}-energy" class="progress-bar" style="background-color:rgba(39, 174, 96,1.0);width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
                 </div>
                 <div class="image_div">
-                    <img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
+                    <!--img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" /-->
+                    <img ng-src="../img/Red/red_support.png" alt="{{player.role}}"/>
                 </div>
             </div>
         </section>
