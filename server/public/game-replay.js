@@ -35,6 +35,8 @@ function initMap() {
 		//disableDoubleClickZoom: true,
 		mapTypeId: 'satellite'
 	});
+	//setWinner(dominiumGame);
+	//console.log(dominiumGame);
 }
 
 
@@ -86,7 +88,7 @@ function processGameStates() {
 	console.log("Executing "+currentGameState);
 	if(currentGameState >= dominiumGame.gameState.length-1){
 		stopFollowing();
-		setWinner(dominiumGame);
+		setWinner(dominiumGame)
 		return;
 	}
 
@@ -197,7 +199,7 @@ function updateState(){
 //Updates the energy of the player in the UI
 function updatePlayerState(player){
 
-	//document.getElementById(player.username+"-energy").style["background-color"] = getEnergyColor(player.energy);
+	document.getElementById(player.username+"-energy").style["background-color"] = getEnergyColor(player.energy);
 
 	document.getElementById(player.username+"-energy").setAttribute("aria-valuenow",player.energy);
 	document.getElementById(player.username+"-energy").style["width"] = player.energy+"%";

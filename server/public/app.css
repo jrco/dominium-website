@@ -435,6 +435,22 @@ a:hover {
 	text-align: center;
 }
 
+#top > .match_result > .coorporation_name > .coorporation_fr.victory,
+#top > .match_result > .insurgents_name > .insurgents_fr.victory{
+	color : rgba(39, 174, 96,0.8);
+}
+
+#top > .match_result > .coorporation_name > .coorporation_fr.defeat,
+#top > .match_result > .insurgents_name > .insurgents_fr.defeat{
+	
+	color : rgba(192, 57, 43,0.8);
+}
+
+#top > .match_result > .coorporation_name > .coorporation_fr.tie,
+#top > .match_result > .insurgents_name > .insurgents_fr.tie{
+	color : rgba(243, 156, 18,0.8);
+}
+
 #top > .match_result > .coorporation_name,
 #top > .match_result > .coorporation_img,
 #top > .match_result > .coorporation_result,
@@ -639,18 +655,19 @@ a:hover {
 }
 
 #section_container >  .team_list.left > .player_row > .image_div {
-	border-left: 2px solid #16a085;
-	text-align: left;
+	/*border-left: 2px solid #16a085;*/
+	text-align: center;
 }
 
 #section_container >  .team_list.right > .player_row > .image_div {
-	border-right: 2px solid #e74c3c;
-	text-align: right;
+	/*border-right: 2px solid #e74c3c;*/
+	text-align: center;
 }
 
 #section_container >  .team_list > .player_row > .energy {
 	/*width: 90%; isto muda consoante a cena*/
 	background-color: rgba(20, 20, 20,0.5);
+	vertical-align: middle;
 }
 
 #section_container >  .team_list > .player_row > .image_div > img {
@@ -664,22 +681,23 @@ a:hover {
 	width: 100%;
 	overflow: hidden;
 	height: 50%;
-}
-
-#section_container >  .team_list > .player_row > .energy > .info > span.infolabel,
-#section_container >  .team_list > .player_row > .energy > .info > span.name {
-	display: inline-block;
 	vertical-align: middle;
-	width: 50%;
-	color: rgba(236, 240, 241,1.0);
+	text-align: center;
 
 }
 
-#section_container >  .team_list > .player_row > .energy > .info > span.infolabel {
-	font-size: 1.0em;
+#section_container >  .team_list > .player_row > .energy > .info > span.infolabel{
+	text-align: center;
+	font-size: 1.2em;
 	opacity: 0.6;
 	color: rgba(236, 240, 241,1.0);
 
+}
+
+/*#section_container >  .team_list > .player_row > .energy > .info > span.infolabel {
+	font-size: 1.0em;
+	opacity: 0.6;
+	color: rgba(236, 240, 241,1.0);
 }
 
 #section_container >  .team_list > .player_row > .energy > .info > span.name {
@@ -688,25 +706,15 @@ a:hover {
 	color: rgba(236, 240, 241,1.0);
 }
 
-#section_container >  .team_list.left > .player_row > .energy > .info > span.infolabel {
-	text-align: right;
-	color: rgba(236, 240, 241,1.0);
-}
-
+#section_container >  .team_list.left > .player_row > .energy > .info > span.infolabel,
 #section_container >  .team_list.right > .player_row > .energy > .info > span.infolabel {
-	text-align: left;
+	text-align: center;
+	font-size: 1.2em;
+	opacity: 0.6;
 	color: rgba(236, 240, 241,1.0);
-}
 
-#section_container >  .team_list.left > .player_row > .energy > .info > span.name {
-	text-align: left;
-	color: rgba(236, 240, 241,1.0);
-}
+}*/
 
-#section_container >  .team_list.right > .player_row > .energy > .info > span.name {
-	text-align: right;
-	color: rgba(236, 240, 241,1.0);
-}
 
 #dominium-map {
 	width: 98%;
@@ -1011,17 +1019,38 @@ a:hover {
 	background-color: rgba(20, 20, 20,0.5);
 }
 
-.gamestate-controls div{
+.gamestate-controls > .buttons_left{
 	height: 100%;
+	display: table;
+}
+
+.gamestate-controls > .buttons_left > .playorpause{
 	display: table-cell;
 }
+
+.gamestate-controls > .buttons_left > #start-button{
+	display: table-cell;
+}
+
+.gamestate-controls > .buttons_right{
+	height: 100%;
+	display: table;
+}
+
+.gamestate-controls > .buttons_right > .plus,
+.gamestate-controls > .buttons_right > .minus,
+.gamestate-controls > .buttons_right > .values{
+	display: table-cell;
+}
+
+
+/*
 
 .gamestate-controls div:first-child{
 	float: left;
 }
 .gamestate-controls div:last-child{
 	float: right;
-	color: white;
 }
 
 .gamestate-controls div *{
@@ -1044,6 +1073,11 @@ a:hover {
 	border: none;
 }
 
+.gamestate-controls > .buttons_right > span {
+	background-color: #000000; 
+}
+
+*/
 /*#full_stats > .stats > .more_stats > .travel_distance > .title_cv > span {
 	display: table-cell;
 	width: 50%;
@@ -1051,7 +1085,7 @@ a:hover {
 	text-align: center;
 }*/
 
-.style-button {
+/*.style-button {
     position: relative;
     border: none;
     font-size: 5px;
@@ -1060,7 +1094,7 @@ a:hover {
     width: 80px;
     text-align: center;
     -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
+    /*transition-duration: 0.4s;
     text-decoration: none;
     overflow: hidden;
     cursor: pointer;
@@ -1084,7 +1118,4 @@ a:hover {
     margin: 0;
     opacity: 1;
     transition: 0s
-}
-
-
-
+}*/
