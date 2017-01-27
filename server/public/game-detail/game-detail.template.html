@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="coorporation_img">
-                <img ng-src="img/diamond_blue.png" alt="Dominium">
+                <img ng-src="img/Orange/orange_logo.png" alt="Dominium">
             </div>
             <div class="coorporation_result">
                 <span>{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.points}}</span>
@@ -36,13 +36,14 @@
             <div class="player_row corporation" ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
 				<div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);"/>		
                 <div class="image_div">
-                    <img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
+                    <img ng-src="../img/Orange/orange_attacker.png" alt="{{player.role}}" />
                 </div>
                 <div class="energy">
                     <div class="info">
                         <span class="name">{{player.username}}</span>
                         <span class="infolabel">Energy</span>
                     </div>
+
                     <div id="{{player.username}}-energy" class="progress-bar" style="background-color:rgba(39, 174, 96,1.0);width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
                 </div>
             </div>
