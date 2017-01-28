@@ -107,14 +107,14 @@
     </div-->
 </div>
 <div class="slider_down">
-    <a href="http://localhost:8082/#!/games/{{$ctrl.game._id}}/#slider_up">
+    <a href="" onclick="$('html,body').animate({scrollTop:$('#slider_up').offset().top},1000)">
         <div class="arrow_down">
             <img ng-src="img/arrow_down.png" alt="down">
         </div>
     </a>
 </div>
 <div id="slider_up">
-    <a href="http://localhost:8082/#!/games/{{$ctrl.game._id}}/#top">
+    <a href="" onclick="$('html,body').animate({scrollTop:$('#top').offset().top},1000)">
         <div class="arrow_up">
             <img ng-src="img/arrow_up.png" alt="down">
         </div>
