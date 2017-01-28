@@ -85,6 +85,7 @@ function createAuxData(nextGamestate){
 
 //Processes the next gamestate acording to the currentGamestate var
 function processGameStates() {
+	removeWinner();
 	console.log("Executing "+currentGameState);
 	if(currentGameState >= dominiumGame.gameState.length-1){
 		stopFollowing();
@@ -192,8 +193,11 @@ function updateState(){
 		updatePlayerState(player);
 	});
 
-	$('span.corporation_points').text(gamestate.corporation.points);
-	$('span.insurgents_points').text(gamestate.insurgents.points);
+	$( ".coorporation_result span" ).text(gamestate.corporation.points);
+    $( ".insurgents_result span" ).text( gamestate.insurgents.points );
+
+	//$('span.coorporation_result').text(gamestate.corporation.points);
+	//$('span.insurgents_result').text(gamestate.insurgents.points);
 }
 
 //Updates the energy of the player in the UI
