@@ -28,11 +28,26 @@ sub getRandomFloat{
 }
 
 sub getRandomRole{
-	return ("Attacker","Defender","Support")[getRandomInt(0,2)];
+	my @roles = ("Attacker","Defender","Support");
+	return $roles[getRandomInt(0,$#roles)];
 }
 
 sub getRandomTeam{
-	return ("Corporation","Insurgents")[getRandomInt(0,1)];
+	my @teams = ("Corporation","Insurgents");
+	return $teams[getRandomInt(0,$#teams)];
+}
+
+sub getRandomTeamColor{
+	my @colors = (
+		"#7ba3eb",#Mate Blue
+		"#83ad7f",#Mate Green
+		"#f2a925",#Orange
+		"#af80af",#Mate Purple
+		"#bb7070",#Mate Red
+		"#f7f55a",#Yellow
+		"#aaacae",#Light Grey
+	);
+	return $colors[getRandomInt(0,$#colors)];
 }
 
 ###DEFS
@@ -56,6 +71,13 @@ my %game = (
 
 my %corporation;
 my %insurgents;
+
+my $corpColor = getRandomTeamColor();
+my $insColor;
+do{
+	$insColor = getRandomTeamColor();
+} while($corpColor eq $insColor);
+
 
 for(my $i = 0; $i < $numUsers; $i++){
 
@@ -111,7 +133,7 @@ for(my $i = 0; $i<$numGamestates; $i++){
 	else{
 		$gamestate{"corporation"}{"points"} = $game{"gameState"}[$i-1]{"corporation"}{"points"}+getRandomInt(0,5);
 	}
-
+	$gamestate{"corporation"}{"color"} = $corpColor;
 
 	foreach my $username (keys %insurgents){
 		push(@{$gamestate{"insurgents"}{"players"}},{
@@ -134,6 +156,7 @@ for(my $i = 0; $i<$numGamestates; $i++){
 	else{
 		$gamestate{"insurgents"}{"points"} = $game{"gameState"}[$i-1]{"insurgents"}{"points"}+getRandomInt(0,5);
 	}
+	$gamestate{"insurgents"}{"color"} = $insColor;
 
 
 	foreach my $name (keys %points){

@@ -29,10 +29,12 @@ var GameState = new Schema({
   _id: Schema.Types.ObjectId,
   corporation: {
     players : [Player],
+    color: String,
     points : Number
   },
   insurgents: {
     players : [Player],
+    color: String,
     points : Number
   },
   timeStamp : Date,

@@ -16,6 +16,8 @@ function aggregateGameStates(game){
 	};
 
 	statistics.gamestates = game.gameState.length;
+	statistics.corporation.color = game.gameState[0].corporation.color;
+	statistics.insurgents.color = game.gameState[0].insurgents.color;
 
 	game.gameState.forEach(function(gamestate){
 		
@@ -104,7 +106,7 @@ function createPointControlCharts(statistics){
 						trimNumber((totalCorporation/total)*100,3), 
 						trimNumber((totalInsurgents/total)*100,3)
 					],
-					backgroundColor: [getTeamColor("corporation"),getTeamColor("insurgents")]
+					backgroundColor: [statistics.corporation.color,statistics.insurgents.color]
 				}]
 			},
 			{
@@ -152,7 +154,7 @@ function createDistanceCharts(statistics){
 			datasets: [{
 				data: distancesCorp.concat(distancesIns),
 				borderWidth: 1,
-				backgroundColor: getRepeatedArray(getTeamColor("corporation"),namesCorp.length).concat(getRepeatedArray(getTeamColor("insurgents"),namesIns.length)),
+				backgroundColor: getRepeatedArray(statistics.corporation.color,namesCorp.length).concat(getRepeatedArray(statistics.insurgents.color,namesIns.length)),
 			}]
 		},
 		{
@@ -194,14 +196,14 @@ function createPointsCharts(statistics){
 			datasets: [{
 				label: "Corporation",
 				data: statistics.corporation.points,
-				borderColor: getTeamColor("corporation"),
-				backgroundColor: getTeamColor("corporation"),
+				borderColor: statistics.corporation.color,
+				backgroundColor: statistics.corporation.color,
 				fill: false
 			},{
 				label: "Insurgents",
 				data: statistics.insurgents.points,
-				borderColor: getTeamColor("insurgents"),
-				backgroundColor: getTeamColor("insurgents"),
+				borderColor: statistics.insurgents.color,
+				backgroundColor: statistics.insurgents.color,
 				fill: false
 			}]			
 		},
@@ -262,10 +264,6 @@ function getRange(num){
 		array.push(i);
 	}
 	return array;
-}
-
-function getTeamColor(team){
-	return team === "corporation" ? "#16a085" : "#e74c3c";
 }
 
 function getRepeatedArray(item,times){

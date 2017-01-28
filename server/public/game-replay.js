@@ -186,7 +186,7 @@ function updateState(){
 	var gamestate = dominiumGame.gameState[currentGameState];
 
 	gamestate.capturePoints.forEach(function(point){
-		updateCapturePointState(point);
+		updateCapturePointState(gamestate,point);
 	});
 	getAllPlayers(gamestate).forEach(function (player) {
 		updatePlayerState(player);
@@ -207,7 +207,7 @@ function updatePlayerState(player){
 }
 
 //Updates the marker and UI of capture points
-function updateCapturePointState(point){
+function updateCapturePointState(gamestate,point){
 
 	capList[point.name].setIcon(new google.maps.MarkerImage(
 		getCapturePointIcon(point.teamOwner),
@@ -225,7 +225,7 @@ function updateCapturePointState(point){
 	//document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
 	//$('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
 
-	capList[point.name].set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(point.teamOwner,point.energy));
+	capList[point.name].set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(gamestate,point.teamOwner,point.energy));
 }
 
 //Returns all players in a gamestate
@@ -234,7 +234,7 @@ function getAllPlayers(gamestate){
 }
 
 //Creates the HTML element that represents the energy bar of the capture point marker - used by updateCapturePointState()
-function createCapturePointBar(team,energy){
+function createCapturePointBar(gamestate,team,energy){
 	var corpEnergy = 0;
 	var insEnergy = 0;
 	
@@ -249,11 +249,11 @@ function createCapturePointBar(team,energy){
 	<table class='energy-progress-bar'>\
 		<tr>\
 			<td>\
-				<div style='width:"+corpEnergy+"%;'>&nbsp;</div>\
+				<div style='width:"+corpEnergy+"%;background-color:"+gamestate.corporation.color+";'>&nbsp;</div>\
 				<span>"+corpEnergy+"</span>\
 			</td>\
 			<td>\
-				<div style='width:"+insEnergy+"%;'>&nbsp;</div>\
+				<div style='width:"+insEnergy+"%;background-color:"+gamestate.insurgents.color+";'>&nbsp;</div>\
 				<span>"+insEnergy+"</span>\
 			</td>\
 		</tr>\
