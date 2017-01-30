@@ -65,7 +65,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-size:14px;
 	font-weight:normal;
-	color:#888888;
+	color:#ECEFF1;
 	margin:0;
 }
 h2{
@@ -225,7 +225,7 @@ color: #fff;
 
 .main-section{
 	padding:50px 0 50px;
-	background: #fdfdfd;
+	background: #F5F5F5;
 }
 
 
@@ -254,8 +254,8 @@ color: #fff;
 }
 .main-section.alabaster{
 	padding-top: 50px;
-	background:#f7f7f7;
-}
+	background:#90A4AE;
+	}
 
 /* Featured Work
 ---------------------------------*/
