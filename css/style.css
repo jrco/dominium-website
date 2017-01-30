@@ -65,7 +65,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-size:14px;
 	font-weight:normal;
-	color:#888888;
+	color:#ECEFF1;
 	margin:0;
 }
 h2{
@@ -110,9 +110,11 @@ p{
 	padding-right: 0%;
 	padding-bottom: 8%;
 	height: 100vh;
+	min-height: 600px;
+	overflow: hidden;
 }
 .logo{
-	width:20%;
+	width: 200px;
 	margin:0 auto 35px;
 }
 .header h1{
@@ -120,7 +122,7 @@ p{
 	font-size:70px;
 	font-weight:400;
 	letter-spacing: -1px;
-	margin:0 0 22px 0 ;
+	margin:0 0 5vh 0 ;
 	color:#fff;
 }
 
@@ -150,7 +152,7 @@ p{
 }
 
 .start-button li a{
-color: #fff;
+	color: #fff;
 }
 
 
@@ -190,6 +192,7 @@ color: #fff;
 	box-shadow:0 4px 5px -3px #ececec;
 	position:relative;
 	background:#fff;
+	z-index:9999;
 }
 .main-nav{
 	text-align:center;
@@ -225,7 +228,7 @@ color: #fff;
 
 .main-section{
 	padding:50px 0 50px;
-	background: #fdfdfd;
+	background: #F5F5F5;
 }
 
 
@@ -254,8 +257,8 @@ color: #fff;
 }
 .main-section.alabaster{
 	padding-top: 50px;
-	background:#f7f7f7;
-}
+	background:#90A4AE;
+	}
 
 /* Featured Work
 ---------------------------------*/
@@ -527,8 +530,8 @@ border: 2px solid #fff;
 	width:auto;
 	height:auto;
 	position:relative;
-	border-radius:80%;
-	box-shadow:0px 0px 0px 7px rgba(241,241,241,0.80);
+	/*border-radius:80%;*/
+	/*box-shadow:0px 0px 0px 7px rgba(241,241,241,0.80);*/
 	margin:7px 7px 25px 7px;
 	
 }
@@ -549,12 +552,15 @@ border: 2px solid #fff;
 	height:100%;
 }
 .team-leader:hover .team-leader-shadow{
-	box-shadow:inset  0px 0px 0px 148px rgba(17,17,17,0.80);
+	/*box-shadow:inset  0px 0px 0px 148px rgba(17,17,17,0.80);*/
 }
 .team-leader:hover ul{ display:block; opacity:1}
 .team-leader img{
 	display:block;
-	border-radius:50%;
+	/*border-radius:50%;*/
+	max-width: 200px;
+	max-height: 200px;
+	margin: 0 auto;
 }
 .team-leader ul{
 	display:block;
@@ -660,12 +666,14 @@ border: 2px solid #fff;
 ul.social-buttons {
   margin-bottom: 0;
 }
+
 ul.social-buttons li a {
   display: block;
   background-color: #222222;
   height: 40px;
   width: 40px;
   border-radius: 100%;
+  box-shadow: 0 0 0 3px white;
   font-size: 20px;
   line-height: 40px;
   color: white;
@@ -674,6 +682,7 @@ ul.social-buttons li a {
   -moz-transition: all 0.3s;
   transition: all 0.3s;
 }
+
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
@@ -771,9 +780,12 @@ ul.social-buttons li a:active {
 .footer{
 	background:url(../img/pw_maze_black_2X.png) left top repeat;
 	padding:0px 0 0px;
+	padding-bottom: 25px;
+	padding-top: 25px;
 }
+
 .footer-logo{
-	margin:15px auto 15px;
+	margin: 15px auto 15px;
 	width: 76px;
 }
 .copyright, .credits{
@@ -891,8 +903,9 @@ ul.social-buttons li a:active {
 }
 
 .replay-text {
-	animation: blinker 3s linear infinite;
-	color: #C0392B !important;
+	animation: blinker 1s linear infinite;
+	font-size: 130%;
+	color: #03A9F4 !important;
 }
 
 @keyframes blinker {
@@ -977,7 +990,6 @@ ul.social-buttons li a:active {
 	padding-bottom: 10%;
 	padding-left: 10%;
 	padding-right: 10%;
-
 }
 
 .centered {
@@ -1003,29 +1015,68 @@ ul.social-buttons li a:active {
 .verticallyAlign {
 	padding-top: 3%;
 	padding-bottom: 3%;
-
 }
 
 .style2 {
-  height: 40px;
-  border-radius: 100%;
-  font-size: 15px;
-  line-height: 40px;
+  height: 100%;
+  font-size: 18px;
+  line-height: 60px;
   color: white;
-  outline: none;
-  text-align: right;
-  padding-top: 4%;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .logoCentered {
 	padding-right: 45%;
 	padding-left: 45%; 
-	padding-top: 3%;
+	max-width: 200%;
+	height: 60px;
 }
 
 .no-margin-top {
 	margin-top: 0;
 }
 
+.roleList{
+	height: 183.75px;
+}
 
+.roleList > img{
+	max-width: 183.75px;
+    max-height: 183.75px;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+	transform: translateX(-50%); 
+    opacity: 0;
+    animation: fade 3s linear infinite 0s; 
+}
+.roleList > img:nth-child(1){
+	animation-delay: 0.5s;
+}
+.roleList > img:nth-child(2){
+	animation-delay: 1.5s;
+}
+.roleList > img:nth-child(3){
+	animation-delay: 2.5s;
+}
+@keyframes fade { 
+    0% {
+		opacity: 0;
+	    animation-timing-function: ease-in;
+	}
+    8% {
+		opacity: 1;
+		animation-timing-function: ease-out;
+	}
+    17% {
+		opacity: 1;
+	}
+    25% {
+		opacity: 0;
+	}
+    100% {
+		opacity: 0;
+	}
+}
 
