@@ -527,8 +527,8 @@ border: 2px solid #fff;
 	width:auto;
 	height:auto;
 	position:relative;
-	border-radius:80%;
-	box-shadow:0px 0px 0px 7px rgba(241,241,241,0.80);
+	/*border-radius:80%;*/
+	/*box-shadow:0px 0px 0px 7px rgba(241,241,241,0.80);*/
 	margin:7px 7px 25px 7px;
 	
 }
@@ -549,12 +549,15 @@ border: 2px solid #fff;
 	height:100%;
 }
 .team-leader:hover .team-leader-shadow{
-	box-shadow:inset  0px 0px 0px 148px rgba(17,17,17,0.80);
+	/*box-shadow:inset  0px 0px 0px 148px rgba(17,17,17,0.80);*/
 }
 .team-leader:hover ul{ display:block; opacity:1}
 .team-leader img{
 	display:block;
-	border-radius:50%;
+	/*border-radius:50%;*/
+	max-width: 200px;
+	max-height: 200px;
+	margin: 0 auto;
 }
 .team-leader ul{
 	display:block;
@@ -774,7 +777,15 @@ ul.social-buttons li a:active {
 .footer{
 	background:url(../img/pw_maze_black_2X.png) left top repeat;
 	padding:0px 0 0px;
+	height: 100px;
 }
+
+.footer > .container {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 .footer-logo{
 	margin: 15px auto 15px;
 	width: 76px;
@@ -1013,7 +1024,7 @@ ul.social-buttons li a:active {
 .style2 {
   height: 40px;
   border-radius: 100%;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 40px;
   color: white;
   outline: none;
@@ -1024,7 +1035,9 @@ ul.social-buttons li a:active {
 .logoCentered {
 	padding-right: 45%;
 	padding-left: 45%; 
-	padding-top: 3%;
+	/*padding-top: 3%;*/
+	max-width: 200%;
+	height: 60px;
 }
 
 .no-margin-top {
