@@ -660,12 +660,14 @@ border: 2px solid #fff;
 ul.social-buttons {
   margin-bottom: 0;
 }
+
 ul.social-buttons li a {
   display: block;
   background-color: #222222;
   height: 40px;
   width: 40px;
   border-radius: 100%;
+  box-shadow: 0 0 0 3px white;
   font-size: 20px;
   line-height: 40px;
   color: white;
@@ -674,6 +676,7 @@ ul.social-buttons li a {
   -moz-transition: all 0.3s;
   transition: all 0.3s;
 }
+
 ul.social-buttons li a:hover,
 ul.social-buttons li a:focus,
 ul.social-buttons li a:active {
@@ -773,7 +776,7 @@ ul.social-buttons li a:active {
 	padding:0px 0 0px;
 }
 .footer-logo{
-	margin:15px auto 15px;
+	margin: 15px auto 15px;
 	width: 76px;
 }
 .copyright, .credits{
@@ -891,8 +894,9 @@ ul.social-buttons li a:active {
 }
 
 .replay-text {
-	animation: blinker 3s linear infinite;
-	color: #C0392B !important;
+	animation: blinker 1s linear infinite;
+	font-size: 130%;
+	color: #03A9F4 !important;
 }
 
 @keyframes blinker {

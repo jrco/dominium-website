@@ -56,7 +56,7 @@
                 </li>
                 <li><a href="#roles">Roles</a></li>
                 <li><a href="#Contact" data-toggle="modal" data-target="#subscribeModal">Subscribe </a></li>
-                <li><a href="http://192.168.85.242:8082" class="replay-text" target="_blank">Watch Replays!</a></li>
+                <li><a href="http://192.168.85.242:8082" class="replay-text" target="_blank"><b><u>Watch Replays!</u></b></a></li>
             </ul>
             <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
         </div>
@@ -93,7 +93,7 @@
           <div class="col-md-3">
 			<img src="img/Team.png" alt="" class="exp">        
             <h3 class="wow fadeInDown delay-09s centered padding-20">Choose Your Color</h3>
-            <p class="wow fadeInDown delay-09s centered">Dominium allows you to custom your team as you wish. The color you choose will define your team so be sure to pick the right one.  </p>                
+            <p class="wow fadeInDown delay-09s centered">Dominium allows you to customize your team as you wish. The color you choose will define your team so be sure to pick the right one.  </p>                
         </div>
         <div class="col-md-3">
 			<img src="img/Role.gif" alt="" class="exp">               
@@ -116,7 +116,7 @@
         <!--main-section team-start-->
         <div class="container">
             <h2>Roles</h2>
-            <h6>Choosing the appropriate role it's the first step to win.</h6>
+            <h6>Choosing the appropriate role is the first step to victory.</h6>
             <div class="team-leader-block clearfix">
                 <div class="team-leader-box">
                     <div class="team-leader wow fadeInDown delay-09s">
@@ -152,7 +152,7 @@
                         </ul>
                     </div>
                     <h3 class="wow fadeInDown delay-03s">Support</h3>
-                    <p class="wow fadeInDown delay-03s">The support class help control the teams energy consumption, being able to replenish the energy of they´re team members.</p>
+                    <p class="wow fadeInDown delay-03s">The support class help control the teams energy consumption, being able to replenish the energy of their team members.</p>
                 </div>
             </div>
         </div>
@@ -162,7 +162,6 @@
 <script>
 function subscribe(){
     $.ajax({
-		//TODO - FIX URL (CORS)
         url: 'http://localhost:8082/subscribers',
         type: 'post',
         data: $('#subscribeForm').serialize(),
