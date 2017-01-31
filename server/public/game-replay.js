@@ -147,8 +147,8 @@ function createPlayerMarker(player,color){
 	playerList[player.username] = new MarkerWithLabel({
 		position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
 		icon: new google.maps.MarkerImage(
-			//"/img/marker/"+encodeURIComponent(color)+"_"+player.role+".png",
-			"/img/marker/"+encodeURIComponent(color)+".png",
+			//"/img/player/"+encodeURIComponent(color)+"_"+player.role+".png",
+			"/img/player/"+encodeURIComponent(color)+".png",
 			null,
 			null,
 			new google.maps.Point(markerVars.playerWidth/2,markerVars.playerHeight),
