@@ -152,7 +152,11 @@
 <script>
 function subscribe(){
     $.ajax({
+<<<<<<< HEAD
         url: 'http://localhost:8082/subscribers',
+=======
+        url: '/subscribers',
+>>>>>>> bcf6f6f2f2327f3fa1eaee70c6fb9f1e6fb9fbf5
         type: 'post',
         data: $('#subscribeForm').serialize(),
         success: function(data){

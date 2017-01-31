@@ -45,7 +45,6 @@ sub getRandomTeamColor{
 		"#af80af",#Mate Purple
 		"#bb7070",#Mate Red
 		"#f7f55a" #Yellow
-		#"#aaacae",#Light Grey
 	);
 	return $colors[getRandomInt(0,$#colors)];
 }

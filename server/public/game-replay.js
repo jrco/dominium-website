@@ -1,8 +1,7 @@
 var map;
 
 var playerList = {};//username: marker
-var capList = {};//name: marker
-var circleList = [];
+var capList = {};//name: {marker,circle}
 
 var followEvent;
 
@@ -19,6 +18,15 @@ var animationData = {
 	nextCallback: undefined,
 	animationLoop: undefined
 };
+
+var markerVars = {
+	playerWidth: 32,
+	playerHeight: 64,
+	playerLabelOffset: 85,
+	pointWidth: 48,
+	pointHeight: 96,
+	pointLabelOffset: 125
+}
 
 //Initializes the google map
 function initMap() {
@@ -44,10 +52,10 @@ function initMap() {
 function initializeGame() {
 	var gamestate = dominiumGame.gameState[0];
 	gamestate.corporation.players.forEach(function(player){
-		createPlayerMarker(player,"Corporation");
+		createPlayerMarker(player,gamestate.corporation.color);
 	});
 	gamestate.insurgents.players.forEach(function(player){
-		createPlayerMarker(player,"Insurgents");
+		createPlayerMarker(player,gamestate.insurgents.color);
 	});
 
 	gamestate.capturePoints.forEach(function(point){
@@ -134,19 +142,20 @@ function moveIteration(gamestate, dataAux) {
 }
 
 //Creates a player marker
-function createPlayerMarker(player,team){
+function createPlayerMarker(player,color){
 
 	playerList[player.username] = new MarkerWithLabel({
 		position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
 		icon: new google.maps.MarkerImage(
-			getPlayerMarkerIcon(team),
+			//"/img/player/"+encodeURIComponent(color)+"_"+player.role+".png",
+			"/img/player/"+encodeURIComponent(color)+".png",
 			null,
 			null,
-			new google.maps.Point(16,32),
-			new google.maps.Size(32,32)
+			new google.maps.Point(markerVars.playerWidth/2,markerVars.playerHeight),
+			new google.maps.Size(markerVars.playerWidth,markerVars.playerHeight)
 		),
 		labelContent: "<span class='text_label'>"+player.username+"</span>",
-		labelAnchor: new google.maps.Point(0,50),
+		labelAnchor: new google.maps.Point(0,markerVars.playerLabelOffset),
 		labelClass: "map_label",
 		optimized: false,
 		map: map
@@ -155,31 +164,30 @@ function createPlayerMarker(player,team){
 
 //Creates a capture point marker with a circle
 function createCapturePointMarker(point){
-	capList[point.name] = new MarkerWithLabel({
+	capList[point.name] = {};
+	capList[point.name].marker = new MarkerWithLabel({
 		position: new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng)),
 		icon: new google.maps.MarkerImage(
-			"../img/diamond_black.png",
+			"/img/point/neutral.png",
 			null,
 			null,
-			new google.maps.Point(15,15),
-			new google.maps.Size(30, 30)			
+			new google.maps.Point(markerVars.pointWidth/2,markerVars.pointHeight),
+			new google.maps.Size(markerVars.pointWidth,markerVars.pointHeight)	
 		),
 		labelContent: "<span class='text_label'>"+point.name+"</span>",
-		labelAnchor: new google.maps.Point(0,50),
+		labelAnchor: new google.maps.Point(0,markerVars.pointLabelOffset),
 		labelClass: "map_label",
 		zIndex: -1,
 		map: map
 	});
-	var circle = new google.maps.Circle({
+	capList[point.name].circle = new google.maps.Circle({
 		map: map,
 		radius: point.radius,
-		fillColor: '#44ff00',
-		strokeColor: '#ffff00',
+		fillColor: '#FFFFFF',
+		strokeColor: '#000000',
 		strokeWidth: 6
 	});
-	circle.bindTo('center', capList[point.name], 'position');
-
-	circleList.push(circle);
+	capList[point.name].circle.bindTo('center', capList[point.name].marker, 'position');
 }
 
 //Updates the UI/Markers according to the gamestate
@@ -213,13 +221,26 @@ function updatePlayerState(player){
 //Updates the marker and UI of capture points
 function updateCapturePointState(gamestate,point){
 
-	capList[point.name].setIcon(new google.maps.MarkerImage(
-		getCapturePointIcon(point.teamOwner),
+	//Update marker icon
+	capList[point.name].marker.setIcon(new google.maps.MarkerImage(
+		getCapturePointIcon(gamestate,point.teamOwner),
 		null,
 		null,
-		new google.maps.Point(15,15),
-		new google.maps.Size(30, 30)			
+		new google.maps.Point(markerVars.pointWidth/2,markerVars.pointHeight),
+		new google.maps.Size(markerVars.pointWidth,markerVars.pointHeight)			
 	));
+
+	//Update circle fill color
+	if(point.teamOwner === "Corporation"){
+		capList[point.name].circle.setOptions({fillColor:gamestate.corporation.color});
+	}
+	else if(point.teamOwner === "Insurgents"){
+		capList[point.name].circle.setOptions({fillColor:gamestate.insurgents.color});
+	}
+	else{
+		capList[point.name].circle.setOptions({fillColor:'#FFFFFF'});
+	}
+	
 
 	//document.getElementById(point.name+"-energy").style["background-color"] = getTeamColorHex(point.teamOwner);
 	
@@ -228,8 +249,9 @@ function updateCapturePointState(gamestate,point){
 	//document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
 	//document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
 	//$('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
-
-	capList[point.name].set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(gamestate,point.teamOwner,point.energy));
+	
+	//Update energy bar
+	capList[point.name].marker.set("labelContent","<span class='text_label'>"+point.name+"</span>"+createCapturePointBar(gamestate,point.teamOwner,point.energy));
 }
 
 //Returns all players in a gamestate
@@ -264,29 +286,16 @@ function createCapturePointBar(gamestate,team,energy){
 	</div>";
 }
 
-//Gets the correct player icon according to the team
-function getPlayerMarkerIcon(team){
-	if(team === "Corporation"){
-		return "https://maps.gstatic.com/mapfiles/ms2/micons/blue.png";
-	}
-	else if(team === "Insurgents"){
-		return "https://maps.gstatic.com/mapfiles/ms2/micons/red.png";
-	}
-	else{
-		return "https://maps.gstatic.com/mapfiles/ms2/micons/green.png";
-	}
-}
-
 //Gets the correct cap point icon according to the team
-function getCapturePointIcon(teamOwner){
+function getCapturePointIcon(gamestate,teamOwner){
 	if(teamOwner === "Corporation"){
-		return "../img/diamond_blue.png";
+		return "/img/point/"+encodeURIComponent(gamestate.corporation.color)+".png";
 	}
 	else if(teamOwner === "Insurgents"){
-		return "../img/diamond_red.png";
+		return "/img/point/"+encodeURIComponent(gamestate.insurgents.color)+".png";
 	}
 	else{
-		return "../img/diamond_black.png";
+		return "/img/point/neutral.png";
 	}
 }
 
@@ -303,19 +312,6 @@ function getEnergyColor(energy){
 	}
 	else{
 		return "rgba(39, 174, 96,1.0)";
-	}
-}
-
-//Gets the correct team color according to the team
-function getTeamColorHex(team){
-	if(team === "Corporation"){
-		return "#16a085";
-	}
-	else if(team === "Insurgents"){
-		return "#e74c3c";
-	}
-	else{
-		return "#000000";
 	}
 }
 
@@ -339,15 +335,11 @@ function clearMarkers(){
 
 	for (var key in capList) {
 		if (capList.hasOwnProperty(key)) {
-			capList[key].setMap(null);
+			capList[key].marker.setMap(null);
+			capList[key].circle.setMap(null);
 		}
 	}
 	capList = {};
-
-	circleList.forEach(function(circle){
-		circle.setMap(null);
-	});
-	circleList = [];
 }
 
 //Clears all animation data
@@ -369,18 +361,12 @@ function setGameRectangle(game){
 	game.gameState.forEach(function(gamestate){
 		getAllPlayers(gamestate).forEach(function(player){
 			bounds.extend(
-				new google.maps.LatLng(
-					parseFloat(player.lat),
-					parseFloat(player.lng)
-				)
+				new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng))
 			);
 		});
 		gamestate.capturePoints.forEach(function(point){
 			bounds.extend(
-				new google.maps.LatLng(
-					parseFloat(point.lat),
-					parseFloat(point.lng)
-				)
+				new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng))
 			);
 		});
 	});
@@ -409,7 +395,6 @@ function changeSpeed(scale){
 
 //Stops following players
 function stopFollowing(){
-	
 	
 	var players = document.getElementsByClassName("player_selection");
 	for (var i = 0; i < players.length; i++) {
