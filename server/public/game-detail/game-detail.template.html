@@ -4,9 +4,7 @@
         <div class="match_result">
             <div class="coorporation_name">
                 <div class="coorporation_fr"></div>
-                <div class="name">
-                    <span>Coorporation</span>
-                </div>
+                <span class="name">Coorporation</span>
             </div>
             <div class="coorporation_img">
                 <img ng-src="img/Orange/orange_logo.png" alt="Dominium">
@@ -29,6 +27,9 @@
             </div>
         </div>
         <div class="margin_right"></div>
+    </div>
+    <div class="game_stats_title">
+        <span>Replay</span>
     </div>
     <div id="section_container">
         <section class="team_list left">
@@ -111,23 +112,22 @@
 </div>
 <div class="slider_down">
     <a href="" onclick="$('html,body').animate({scrollTop:$('#slider_up').offset().top},1000)">
-        <div class="arrow_down">
-            <img ng-src="img/arrow_down.png" alt="down">
-        </div>
+        <span>Go to game stats</span>
     </a>
 </div>
 <div id="slider_up">
     <a href="" onclick="$('html,body').animate({scrollTop:$('#top').offset().top},1000)">
-        <div class="arrow_up">
-            <img ng-src="img/arrow_up.png" alt="down">
-        </div>
+        <span>Go to replay</span>
     </a>
+</div>
+
+<div class="game_stats_title">
+    <span>Game Stats</span>
 </div>
 <div id="full_stats">
     <div class="margin_left"></div>
     <div class="stats">
         <div class="control_value">
-            <div class="title_cv"><span></span></div>
             <div id="canvas_cv"></div>
         </div>
         <div class="more_stats">
