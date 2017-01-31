@@ -13,7 +13,11 @@ angular.
         when('/games/:gameId', {
           template: '<game-detail></game-detail>'
         }).
-        otherwise('/games');
+        otherwise({
+			redirectTo: function(){
+					window.location = '/index';
+			}
+		});
     }
   ]).controller('ScrollController', ['$scope', '$location', '$anchorScroll',
   function($scope, $location, $anchorScroll) {

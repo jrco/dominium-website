@@ -104,7 +104,7 @@ p{
 
 .header{
 	text-align:center;
-	background:url(../img/pw_maze_black_2X.png) left top repeat;
+	background:url(../img/bg.png) left top repeat;
 	padding-top:6%;
 	padding-left: 0%;
 	padding-right: 0%;
@@ -137,7 +137,7 @@ p{
 	display:inline-block;
 	font-family: 'Montserrat',sans-serif;
 	font-size:14px;
-	color: #bcbcbc;
+	color: #FAFAFA;
 	text-transform: uppercase;
 	font-weight: 400;
 	margin:0 5px 0 0;
@@ -191,8 +191,9 @@ p{
 	border-bottom:1px solid #dddddd;
 	box-shadow:0 4px 5px -3px #ececec;
 	position:relative;
-	background:#fff;
-	z-index:9999;
+	background:#B0BEC5;
+	z-index:20;
+
 }
 .main-nav{
 	text-align:center;
@@ -219,7 +220,7 @@ p{
 
 .main-nav li a:hover{ 
 	text-decoration:none;
-	color: #7cc576;
+	color: #FFFFFF;
 }
 
 .small-logo{ 
@@ -228,7 +229,7 @@ p{
 
 .main-section{
 	padding:50px 0 50px;
-	background: #F5F5F5;
+	background: #ECEFF1;
 }
 
 
@@ -257,7 +258,7 @@ p{
 }
 .main-section.alabaster{
 	padding-top: 50px;
-	background:#90A4AE;
+	background:#B0BEC5;
 	}
 
 /* Featured Work
@@ -521,6 +522,9 @@ border: 2px solid #fff;
 	text-align: center;
 	float: left;
 }
+.team-leader-box > p {
+ color: #607D8B;
+}
 .team-leader-box span{
 	margin-bottom:24px;
 	display:block;
@@ -780,6 +784,9 @@ ul.social-buttons li a:active {
 .footer{
 	background:url(../img/pw_maze_black_2X.png) left top repeat;
 	padding:0px 0 0px;
+}
+
+.footer > .container {
 	padding-bottom: 25px;
 	padding-top: 25px;
 }
@@ -905,7 +912,7 @@ ul.social-buttons li a:active {
 .replay-text {
 	animation: blinker 1s linear infinite;
 	font-size: 130%;
-	color: #03A9F4 !important;
+	color: #EF5350 !important;
 }
 
 @keyframes blinker {
@@ -982,14 +989,18 @@ ul.social-buttons li a:active {
 }
 
 .exp {
-	width: 70%;
-	height: 70%;
 	margin: auto;
-	display: block;
-	padding-top: 10%;
-	padding-bottom: 10%;
-	padding-left: 10%;
-	padding-right: 10%;
+	display: table;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.exp > img {
+    width: 175px;
+    height: 175px;
+    display: table-cell;
+    vertical-align: middle;
+
 }
 
 .centered {
@@ -1037,46 +1048,7 @@ ul.social-buttons li a:active {
 	margin-top: 0;
 }
 
-.roleList{
-	height: 183.75px;
-}
-
-.roleList > img{
-	max-width: 183.75px;
-    max-height: 183.75px;
-    position: absolute;
-    top: 0px;
-    left: 50%;
-	transform: translateX(-50%); 
-    opacity: 0;
-    animation: fade 3s linear infinite 0s; 
-}
-.roleList > img:nth-child(1){
-	animation-delay: 0.5s;
-}
-.roleList > img:nth-child(2){
-	animation-delay: 1.5s;
-}
-.roleList > img:nth-child(3){
-	animation-delay: 2.5s;
-}
-@keyframes fade { 
-    0% {
-		opacity: 0;
-	    animation-timing-function: ease-in;
-	}
-    8% {
-		opacity: 1;
-		animation-timing-function: ease-out;
-	}
-    17% {
-		opacity: 1;
-	}
-    25% {
-		opacity: 0;
-	}
-    100% {
-		opacity: 0;
-	}
+.subscribe-window{
+	color: black;
 }
 
