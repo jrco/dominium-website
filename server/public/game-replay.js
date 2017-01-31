@@ -89,7 +89,7 @@ function processGameStates() {
 	console.log("Executing "+currentGameState);
 	if(currentGameState >= dominiumGame.gameState.length-1){
 		stopFollowing();
-		setWinner(dominiumGame)
+		setWinner(dominiumGame);
 		return;
 	}
 

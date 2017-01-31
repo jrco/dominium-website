@@ -30,14 +30,17 @@ var GameState = new Schema({
   corporation: {
     players : [Player],
     color: String,
+    color_name: String,
     points : Number
   },
   insurgents: {
     players : [Player],
     color: String,
+    color_name: String,
     points : Number
   },
-  timeStamp : Date,
+  timeStamp : String,
+  local : String,
   capturePoints: [CapturePoint]
 });
 

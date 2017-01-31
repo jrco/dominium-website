@@ -106,7 +106,7 @@ body {
 
 @font-face {
     font-family: 'dom';
-    src: url('/font/4114blaster.ttf');
+    src: url('/font/vlaster_infinite.ttf');
 }
 
 
@@ -429,9 +429,9 @@ a:hover {
 	}
 
 	#top > .match_result > .coorporation_name > .coorporation_fr,
-	#top > .match_result > .coorporation_name > .name,
-	#top > .match_result > .coorporation_name > .insurgents_fr,
-	#top > .match_result > .coorporation_name > .name {
+	#top > .match_result > .coorporation_name > .namecp,
+	#top > .match_result > .insurgents_name > .insurgents_fr,
+	#top > .match_result > .insurgents_name > .namein {
 		display: table-row;
 		vertical-align: middle;
 		text-align: center;
@@ -479,8 +479,8 @@ a:hover {
             transition: opacity 2s ease-in;
 	}
 
-	#top > .match_result > .coorporation_name > .name,
-	#top > .match_result > .insurgents_name > .name {
+	#top > .match_result > .coorporation_name > .namecp,
+	#top > .match_result > .insurgents_name > .namein {
 		height: 40px;
 		vertical-align: middle;
 		font-family: dom;
@@ -552,9 +552,9 @@ a:hover {
 	}
 
 	#top > .match_result > .coorporation_name > .coorporation_fr,
-	#top > .match_result > .coorporation_name > .name,
-	#top > .match_result > .coorporation_name > .insurgents_fr,
-	#top > .match_result > .coorporation_name > .name {
+	#top > .match_result > .coorporation_name > .namecp,
+	#top > .match_result > .insurgents_name > .insurgents_fr,
+	#top > .match_result > .insurgents_name > .namein {
 		display: table-row;
 		vertical-align: middle;
 		text-align: center;
@@ -603,8 +603,8 @@ a:hover {
 
 	}
 
-	#top > .match_result > .coorporation_name > .name,
-	#top > .match_result > .insurgents_name > .name {
+	#top > .match_result > .coorporation_name > .namecp,
+	#top > .match_result > .insurgents_name > .namein {
 		height: 40px;
 		vertical-align: middle;
 		font-family: dom;
@@ -676,7 +676,7 @@ a:hover {
 	}
 
 	#top > .match_result > .coorporation_name > .coorporation_fr,
-	#top > .match_result > .coorporation_name > .name,
+	#top > .match_result > .coorporation_name > .namecp,
 	#top > .match_result > .coorporation_name > .insurgents_fr,
 	#top > .match_result > .coorporation_name > .name {
 		display: table-row;
@@ -727,8 +727,8 @@ a:hover {
 
 	}
 
-	#top > .match_result > .coorporation_name > .name,
-	#top > .match_result > .insurgents_name > .name {
+	#top > .match_result > .coorporation_name > .namecp,
+	#top > .match_result > .insurgents_name > .namein {
 		height: 40px;
 		vertical-align: middle;
 		font-family: dom;

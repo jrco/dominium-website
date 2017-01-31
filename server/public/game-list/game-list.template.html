@@ -14,15 +14,15 @@
             <div class="info">
                 <div class="team">
                     <div class="name_img">
-                        <div class="img"><img ng-src="../img/diamond_blue.png" alt="coorporation" /></div>
+                        <div class="img"><img ng-src="img/{{game.gameState[0].corporation.color_name}}/logo.png" alt="" /></div>
                         <div class="name">
-                            <span>Corporation</span>
+                            <span>{{game.gameState[0].corporation.color_name}} Team</span>
                         </div>
                     </div>
                     <div class="all_roles">
                         <div class="role" ng-repeat="player in game.gameState[0].corporation.players">
                             <div class="image_div right">
-                                <img title="{{player.username}}" ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
+                                <img title="{{player.username}}" ng-src="../img/team_roles/{{player.role}}_{{game.gameState[0].corporation.color_name}}_left.png" alt="{{player.role}}" />
                             </div>
                         </div>
                     </div>
@@ -44,15 +44,15 @@
                 </div-->
                 <div class="team">
                     <div class="name_img">
-                        <div class="img"><img ng-src="../img/diamond_red.png" alt="coorporation" /></div>
+                        <div class="img"><img ng-src="../img/{{game.gameState[0].insurgents.color_name}}/logo.png" alt="coorporation" /></div>
                         <div class="name">
-                            <span>Insurgents</span>
+                            <span>{{game.gameState[0].insurgents.color_name}} Team</span>
                         </div>
                     </div>
                     <div class="all_roles">
                         <div class="role" ng-repeat="player in game.gameState[0].insurgents.players">
                             <div class="image_div right">
-                                <img title="{{player.username}}" ng-src="../img/{{player.role}}.png" alt="{{player.role}}" />
+                                <img title="{{player.username}}" ng-src="../img/team_roles/{{player.role}}_{{game.gameState[0].insurgents.color_name}}_right.png" alt="{{player.role}}" alt="{{player.role}}" />
                             </div>
                         </div>
                     </div>

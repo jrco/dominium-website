@@ -14,6 +14,7 @@ component('gameDetail', {
             $http.get('games/' + $routeParams.gameId).then(function(response) {
                 self.game = response.data;
                 setWinner(self.game);
+                //setNameofTeam(self.game);
 				setGameRectangle(self.game);
 				aggregateGameStates(self.game);
             });

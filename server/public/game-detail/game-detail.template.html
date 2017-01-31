@@ -4,10 +4,10 @@
         <div class="match_result">
             <div class="coorporation_name">
                 <div class="coorporation_fr"></div>
-                <span class="name">Coorporation</span>
+                <span class='namecp'>{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.color_name}} Team</span>
             </div>
             <div class="coorporation_img">
-                <img ng-src="img/Orange/orange_logo.png" alt="Dominium">
+                <img ng-src='img/{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.color_name}}/logo.png' alt='Dominium'>
             </div>
             <div class="coorporation_result">
                 <span>{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.points}}</span>
@@ -19,11 +19,11 @@
                 <span>{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.points}}</span>
             </div>
             <div class="insurgents_img">
-                <img ng-src="img/diamond_red.png" alt="Dominium">
+                <img ng-src='img/{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.color_name}}/logo.png' alt='Dominium'>
             </div>
             <div class="insurgents_name">
                 <div class="insurgents_fr"></div>
-                <span class="name">Insurgents</span>
+                <span class='namein'>{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.color_name}} Team</span>
             </div>
         </div>
         <div class="margin_right"></div>
@@ -36,7 +36,7 @@
             <div class="player_row corporation" ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
                 <div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);" />
                 <div class="image_div">
-                    <img ng-src="../img/Orange/orange_attacker.png" alt="{{player.role}}" />
+                    <img ng-src="../img/team_roles/{{player.role}}_{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.color_name}}_left.png" alt="{{player.role}}" />
                 </div>
                 <div class="energy">
                     <div class="info">
@@ -86,7 +86,7 @@
                 </div>
                 <div class="image_div">
                     <!--img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" /-->
-                    <img ng-src="../img/Red/red_support.png" alt="{{player.role}}" />
+                    <img ng-src="../img/team_roles/{{player.role}}_{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].insurgents.color_name}}_right.png" alt="{{player.role}}" alt="{{player.role}}" />
                 </div>
             </div>
         </section>

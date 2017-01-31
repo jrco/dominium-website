@@ -28,7 +28,7 @@ sub getRandomFloat{
 }
 
 sub getRandomRole{
-	my @roles = ("Attacker","Defender","Support");
+	my @roles = ("ATTACKER","DEFENDER","SUPPORT");
 	return $roles[getRandomInt(0,$#roles)];
 }
 
@@ -44,8 +44,8 @@ sub getRandomTeamColor{
 		"#f2a925",#Orange
 		"#af80af",#Mate Purple
 		"#bb7070",#Mate Red
-		"#f7f55a",#Yellow
-		"#aaacae",#Light Grey
+		"#f7f55a" #Yellow
+		#"#aaacae",#Light Grey
 	);
 	return $colors[getRandomInt(0,$#colors)];
 }
@@ -135,6 +135,26 @@ for(my $i = 0; $i<$numGamestates; $i++){
 	}
 	$gamestate{"corporation"}{"color"} = $corpColor;
 
+	if ($corpColor eq "#7ba3eb") {
+		$gamestate{"corporation"}{"color_name"} = "Blue";
+	}
+	if ($corpColor eq "#83ad7f") {
+		$gamestate{"corporation"}{"color_name"} = "Green";
+	}
+	if ($corpColor eq "#f2a925") {
+		$gamestate{"corporation"}{"color_name"} = "Orange";
+	}
+	if ($corpColor eq "#af80af") {
+		$gamestate{"corporation"}{"color_name"} = "Purple";
+	}
+	if ($corpColor eq "#bb7070") {
+		$gamestate{"corporation"}{"color_name"} = "Red";
+	}
+	if ($corpColor eq "#f7f55a") {
+		$gamestate{"corporation"}{"color_name"} = "Yellow";
+	}
+	
+
 	foreach my $username (keys %insurgents){
 		push(@{$gamestate{"insurgents"}{"players"}},{
 			"username" => $username,
@@ -158,6 +178,25 @@ for(my $i = 0; $i<$numGamestates; $i++){
 	}
 	$gamestate{"insurgents"}{"color"} = $insColor;
 
+	if ($insColor eq "#7ba3eb") {
+		$gamestate{"insurgents"}{"color_name"} = "Blue";
+	}
+	if ($insColor eq "#83ad7f") {
+		$gamestate{"insurgents"}{"color_name"} = "Green";
+	} 
+	if ($insColor eq "#f2a925") {
+		$gamestate{"insurgents"}{"color_name"} = "Orange";
+	}
+	if ($insColor eq "#af80af") {
+		$gamestate{"insurgents"}{"color_name"} = "Purple";
+	}
+	if ($insColor eq "#bb7070") {
+		$gamestate{"insurgents"}{"color_name"} = "Red";
+	}
+	if ($insColor eq "#f7f55a") {
+		$gamestate{"insurgents"}{"color_name"} = "Yellow";
+	}
+
 
 	foreach my $name (keys %points){
 		push(@{$gamestate{"capturePoints"}},{
@@ -170,7 +209,8 @@ for(my $i = 0; $i<$numGamestates; $i++){
 		});
 	}
 
-	$gamestate{"timeStamp"} = "2016-12-14T10:05:01Z";
+	$gamestate{"timeStamp"} = getRandomInt(0,28)." December";
+	$gamestate{"local"} = "Braga";
 
 	push(@{$game{"gameState"}},\%gamestate);
 }
