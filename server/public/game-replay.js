@@ -19,6 +19,15 @@ var animationData = {
 	animationLoop: undefined
 };
 
+var markerVars = {
+	playerWidth: 32,
+	playerHeight: 64,
+	playerLabelOffset: 85,
+	pointWidth: 48,
+	pointHeight: 96,
+	pointLabelOffset: 125
+}
+
 //Initializes the google map
 function initMap() {
 	console.log("LOADING MAP");
@@ -138,14 +147,15 @@ function createPlayerMarker(player,color){
 	playerList[player.username] = new MarkerWithLabel({
 		position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
 		icon: new google.maps.MarkerImage(
+			//"/img/marker/"+encodeURIComponent(color)+"_"+player.role+".png",
 			"/img/marker/"+encodeURIComponent(color)+".png",
 			null,
 			null,
-			new google.maps.Point(9,36),
-			new google.maps.Size(18,36)
+			new google.maps.Point(markerVars.playerWidth/2,markerVars.playerHeight),
+			new google.maps.Size(markerVars.playerWidth,markerVars.playerHeight)
 		),
 		labelContent: "<span class='text_label'>"+player.username+"</span>",
-		labelAnchor: new google.maps.Point(0,55),
+		labelAnchor: new google.maps.Point(0,markerVars.playerLabelOffset),
 		labelClass: "map_label",
 		optimized: false,
 		map: map
@@ -161,11 +171,11 @@ function createCapturePointMarker(point){
 			"/img/point/neutral.png",
 			null,
 			null,
-			new google.maps.Point(16,64),
-			new google.maps.Size(32,64)			
+			new google.maps.Point(markerVars.pointWidth/2,markerVars.pointHeight),
+			new google.maps.Size(markerVars.pointWidth,markerVars.pointHeight)	
 		),
 		labelContent: "<span class='text_label'>"+point.name+"</span>",
-		labelAnchor: new google.maps.Point(0,100),
+		labelAnchor: new google.maps.Point(0,markerVars.pointLabelOffset),
 		labelClass: "map_label",
 		zIndex: -1,
 		map: map
@@ -216,8 +226,8 @@ function updateCapturePointState(gamestate,point){
 		getCapturePointIcon(gamestate,point.teamOwner),
 		null,
 		null,
-		new google.maps.Point(16,64),
-		new google.maps.Size(32,64)			
+		new google.maps.Point(markerVars.pointWidth/2,markerVars.pointHeight),
+		new google.maps.Size(markerVars.pointWidth,markerVars.pointHeight)			
 	));
 
 	//Update circle fill color
@@ -351,18 +361,12 @@ function setGameRectangle(game){
 	game.gameState.forEach(function(gamestate){
 		getAllPlayers(gamestate).forEach(function(player){
 			bounds.extend(
-				new google.maps.LatLng(
-					parseFloat(player.lat),
-					parseFloat(player.lng)
-				)
+				new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng))
 			);
 		});
 		gamestate.capturePoints.forEach(function(point){
 			bounds.extend(
-				new google.maps.LatLng(
-					parseFloat(point.lat),
-					parseFloat(point.lng)
-				)
+				new google.maps.LatLng(parseFloat(point.lat),parseFloat(point.lng))
 			);
 		});
 	});
