@@ -162,8 +162,7 @@
 <script>
 function subscribe(){
     $.ajax({
-		//TODO - FIX URL (CORS)
-        url: 'http://localhost:8082/subscribers',
+        url: '/subscribers',
         type: 'post',
         data: $('#subscribeForm').serialize(),
         success: function(data){
