@@ -44,10 +44,10 @@ function initMap() {
 function initializeGame() {
 	var gamestate = dominiumGame.gameState[0];
 	gamestate.corporation.players.forEach(function(player){
-		createPlayerMarker(player,"Corporation");
+		createPlayerMarker(player,gamestate.corporation.color);
 	});
 	gamestate.insurgents.players.forEach(function(player){
-		createPlayerMarker(player,"Insurgents");
+		createPlayerMarker(player,gamestate.insurgents.color);
 	});
 
 	gamestate.capturePoints.forEach(function(point){
@@ -134,12 +134,12 @@ function moveIteration(gamestate, dataAux) {
 }
 
 //Creates a player marker
-function createPlayerMarker(player,team){
+function createPlayerMarker(player,color){
 
 	playerList[player.username] = new MarkerWithLabel({
 		position: new google.maps.LatLng(parseFloat(player.lat),parseFloat(player.lng)),
 		icon: new google.maps.MarkerImage(
-			getPlayerMarkerIcon(team),
+			"img/marker/"+color+".png",
 			null,
 			null,
 			new google.maps.Point(16,32),
