@@ -1048,56 +1048,7 @@ ul.social-buttons li a:active {
 	margin-top: 0;
 }
 
-.roleList{
-	height: 183.75px;
+.subscribe-window{
+	color: black;
 }
-
-.roleList > img{
-	max-width: 183.75px;
-    max-height: 183.75px;
-    position: absolute;
-    top: 0px;
-    left: 50%;
-	transform: translateX(-50%); 
-    opacity: 0;
-    animation: fade 3s linear infinite 0s; 
-}
-.roleList > img:nth-child(1){
-	animation-delay: 0.5s;
-}
-.roleList > img:nth-child(2){
-	animation-delay: 1.5s;
-}
-.roleList > img:nth-child(3){
-	animation-delay: 2.5s;
-}
-@keyframes fade { 
-    0% {
-		opacity: 0;
-	    animation-timing-function: ease-in;
-	}
-    8% {
-		opacity: 1;
-		animation-timing-function: ease-out;
-	}
-    17% {
-		opacity: 1;
-	}
-    25% {
-		opacity: 0;
-	}
-    100% {
-		opacity: 0;
-	}
-}
-
-.roleImg{
-    display: block;
-    margin: auto;
-
-    max-width: 183.75px;
-	max-height: 183.75px;
-}
-
-
 
