@@ -784,15 +784,11 @@ ul.social-buttons li a:active {
 .footer{
 	background:url(../img/pw_maze_black_2X.png) left top repeat;
 	padding:0px 0 0px;
-	height: 75px;
 }
 
 .footer > .container {
-	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
 	padding-bottom: 25px;
-	padding-top: 25px;s
+	padding-top: 25px;
 }
 
 .footer-logo{
