@@ -39,12 +39,12 @@ sub getRandomTeam{
 
 sub getRandomTeamColor{
 	my @colors = (
-		"#7ba3eb",#Mate Blue
-		"#83ad7f",#Mate Green
+		#"#7ba3eb",#Mate Blue
+		#"#83ad7f",#Mate Green
 		"#f2a925",#Orange
 		"#af80af",#Mate Purple
-		"#bb7070",#Mate Red
-		"#f7f55a" #Yellow
+		#"#bb7070",#Mate Red
+		#"#f7f55a" #Yellow
 	);
 	return $colors[getRandomInt(0,$#colors)];
 }
@@ -209,7 +209,6 @@ for(my $i = 0; $i<$numGamestates; $i++){
 	}
 
 	$gamestate{"timeStamp"} = getRandomInt(0,28)." December";
-	$gamestate{"local"} = "Braga";
 
 	push(@{$game{"gameState"}},\%gamestate);
 }

@@ -206,10 +206,29 @@ body {
 	background-color: rgba(20, 20, 20,0.5);
 }
 
-#all_page_list > .game_list > .single_game > .location_date > span{
-	font-size: 0.9em;
-	color: rgba(236, 240, 241,1.0);
+#all_page_list > .game_list > .single_game > .location_date > .location {
+	display: table-row;
 	width: 100%;
+	text-align: center;
+}
+
+#all_page_list > .game_list > .single_game > .location_date > .date {
+	display: table-row;
+	width: 100%;
+	text-align: center;
+}
+
+#all_page_list > .game_list > .single_game > .location_date > .location > span {
+	color: rgba(236, 240, 241,1.0);
+	font-size: 0.9em;
+	font-family: dom;
+
+}
+
+#all_page_list > .game_list > .single_game > .location_date > .date > span {
+	color: rgba(236, 240, 241,1.0);
+	font-size: 0.9em;
+	font-family: dom;
 }
 
 #all_page_list > .game_list > .single_game > a > .info {
@@ -398,7 +417,6 @@ a:hover {
     font-family: myFirstFont;
 }*/
 
-@media screen and (min-width: 1455px) {
 
 	#top {
 		width: 100%;
@@ -519,7 +537,7 @@ a:hover {
 		width: 40px;
 		height: 40px;
 	}
-}
+
 
 @media screen and (max-width: 1450px) and (min-width: 1150px ) {
 
@@ -939,6 +957,7 @@ a:hover {
 	height: 50%;
 	vertical-align: middle;
 	text-align: center;
+	padding-top: 9px;
 
 }
 

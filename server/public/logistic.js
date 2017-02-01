@@ -19,7 +19,9 @@ function setWinner(game) {
         $( ".insurgents_fr" ).addClass( "victory" );
         $( ".insurgents_fr" ).append( "Victory" );
     } else {
+        $( ".coorporation_fr" ).addClass( "tie" );
         $( ".coorporation_fr" ).append( "Tie" );
+        $( ".insurgents_fr" ).addClass( "tie" );
         $( ".insurgents_fr" ).append( "Tie" );
     }
 }
