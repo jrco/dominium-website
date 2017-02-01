@@ -346,9 +346,11 @@ function initializeGame() {
     var gamestate = dominiumGame.gameState[0];
     gamestate.corporation.players.forEach(function(player) {
         createPlayerMarker(player, gamestate.corporation.color);
+		document.getElementById(player.username + "-energy").style["background-color"] = gamestate.corporation.color;
     });
     gamestate.insurgents.players.forEach(function(player) {
         createPlayerMarker(player, gamestate.insurgents.color);
+    	document.getElementById(player.username + "-energy").style["background-color"] = gamestate.insurgents.color;
     });
 
     gamestate.capturePoints.forEach(function(point) {
@@ -490,7 +492,10 @@ function updateState() {
     gamestate.capturePoints.forEach(function(point) {
         updateCapturePointState(gamestate, point);
     });
-    getAllPlayers(gamestate).forEach(function(player) {
+    gamestate.corporation.players.forEach(function(player) {
+        updatePlayerState(player);
+    });
+	gamestate.insurgents.players.forEach(function(player) {
         updatePlayerState(player);
     });
 
@@ -504,8 +509,7 @@ function updateState() {
 //Updates the energy of the player in the UI
 function updatePlayerState(player) {
 
-    document.getElementById(player.username + "-energy").style["background-color"] = getEnergyColor(player.energy);
-
+    document.getElementById(player.username + "-energy").style["opacity"] = player.energy/100;
     document.getElementById(player.username + "-energy").setAttribute("aria-valuenow", player.energy);
     document.getElementById(player.username + "-energy").style["width"] = player.energy + "%";
     document.getElementById(player.username + "-energy").innerHTML = player.energy;
@@ -587,26 +591,6 @@ function getCapturePointIcon(gamestate, teamOwner) {
     }
 }
 
-//Gets the correct energy bar color according to the current energy
-function getEnergyColor(gamestate, energy) {
-    if (energy < 25) {
-        return "rgba(39, 174, 96,0.2)";
-        //LARANJA #F2A92540
-        //PURPLE #AF80AF40
-    } else if (energy < 50) {
-        return "rgba(39, 174, 96,0.5)";
-        //LARANJA #F2A92580
-        //PURPLE #AF80AF80
-    } else if (energy < 75) {
-        return "rgba(39, 174, 96,0.7)";
-        //LARANJA #F2A925BF
-        //PURPLE #AF80AFBF
-    } else {
-        return "rgba(39, 174, 96,1.0)";
-        //LARANJA #F2A925FF
-        //PURPLE #AF80AFFF
-    }
-}
 
 //Gets a position based on the starting position, final position, and the % of travel done
 function getCurrentPosition(start, end, percent) {
