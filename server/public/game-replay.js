@@ -338,6 +338,11 @@ function initMap() {
 
     map.mapTypes.set('night_map', styledMapTypeNight);
         //map.setMapTypeId('night_map');
+	google.maps.event.addDomListener(window, "resize", function() {
+		var center = map.getCenter();
+		google.maps.event.trigger(map, "resize");
+		map.setCenter(center); 
+	});
 }
 
 
