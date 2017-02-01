@@ -202,7 +202,7 @@ body {
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
-	width: 20%;
+	width: 15%;
 	background-color: rgba(20, 20, 20,0.5);
 }
 
@@ -882,16 +882,24 @@ a:hover {
 	overflow-x: hidden;
 }
 
-#section_container > .team_list {
-	width: 25%;
+#section_container > #map > .team_list.left {
+	position: absolute;
+	z-index: 100;
+	left: 0;
+}
+
+#section_container > #map > .team_list.right {
+	position: absolute;
+	z-index: 100;
+	right: 0;
 }
 
 #section_container > #map{
-	width: 50%;
+	width: 100%;
 	text-align: center;
 }
 
-#section_container > .team_list > .player_row {
+#section_container > #map > .team_list > .player_row {
 	width: calc(100% - 2px);
 	position: relative;
 	display: table;
@@ -900,7 +908,7 @@ a:hover {
 	border: 1px solid rgba(52, 73, 94, 0.15);
 }
 
-#section_container > .team_list > .player_row > .player_selection {
+#section_container > #map > .team_list > .player_row > .player_selection {
 	position:absolute;
 	left:0;
 	top:0;
@@ -908,12 +916,12 @@ a:hover {
 	width:100%;
 }
 
-#section_container > .team_list > .player_row:last-of-type {
+#section_container > #map > .team_list > .player_row:last-of-type {
 	margin-bottom: 0;
 }
 
-#section_container >  .team_list > .player_row > .image_div,
-#section_container >  .team_list > .player_row > .energy {
+#section_container > #map >  .team_list > .player_row > .image_div,
+#section_container > #map >  .team_list > .player_row > .energy {
 	display: table-cell;
 	vertical-align: middle;
 	height: 100%;
@@ -922,33 +930,33 @@ a:hover {
 	padding: 0;
 }
 
-#section_container >  .team_list > .player_row > .image_div {
+#section_container > #map > .team_list > .player_row > .image_div {
 	width: 20%;
 }
 
-#section_container >  .team_list.left > .player_row > .image_div {
+#section_container > #map >  .team_list.left > .player_row > .image_div {
 	/*border-left: 2px solid #16a085;*/
 	text-align: center;
 }
 
-#section_container >  .team_list.right > .player_row > .image_div {
+#section_container > #map >  .team_list.right > .player_row > .image_div {
 	/*border-right: 2px solid #e74c3c;*/
 	text-align: center;
 }
 
-#section_container >  .team_list > .player_row > .energy {
+#section_container > #map >  .team_list > .player_row > .energy {
 	/*width: 90%; isto muda consoante a cena*/
 	background-color: rgba(20, 20, 20,0.5);
 	vertical-align: middle;
 }
 
-#section_container >  .team_list > .player_row > .image_div > img {
+#section_container > #map >  .team_list > .player_row > .image_div > img {
 	width: 60px;
 	height: 60px;
 }
 
-#section_container >  .team_list > .player_row > .energy > .info,
-#section_container >  .team_list > .player_row > .energy > .progress-bar {
+#section_container > #map > .team_list > .player_row > .energy > .info,
+#section_container > #map > .team_list > .player_row > .energy > .progress-bar {
 	display: block;
 	width: 100%;
 	overflow: hidden;
@@ -956,10 +964,18 @@ a:hover {
 	vertical-align: middle;
 	text-align: center;
 	padding-top: 9px;
-
 }
 
-#section_container >  .team_list > .player_row > .energy > .info > span.infolabel{
+#section_container > #map > .team_list > .player_row > .energy > .progress-bar {
+	border: 1px rgba(242,169,37,1.0);
+}
+
+#section_container > #map > .team_list > .player_row > .energy > .progress-bar.right{
+	float: right;
+}
+
+
+#section_container > #map > .team_list > .player_row > .energy > .info > span.infolabel{
 	text-align: center;
 	font-size: 1.2em;
 	opacity: 0.6;

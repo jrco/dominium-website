@@ -26,6 +26,11 @@ function setWinner(game) {
     }
 }
 
+function setColorToDiv(game){
+    
+}
+
+
 function setNameofTeam(game) {
     console.log(game.gameState[0].corporation.color);
     console.log(game.gameState[0].insurgents.color);

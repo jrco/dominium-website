@@ -32,7 +32,8 @@
         <span>Replay</span>
     </div>
     <div id="section_container">
-        <section class="team_list left">
+        <section id="map">
+            <section class="team_list left">
             <div class="player_row corporation" ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
                 <div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);" />
                 <div class="image_div">
@@ -43,11 +44,27 @@
                         <!--span class="name"></span-->
                         <span class="infolabel">{{player.username}}</span>
                     </div>
-                    <div id="{{player.username}}-energy" class="progress-bar" style="background-color:rgba(39, 174, 96,1.0);width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+                    <div id="{{player.username}}-energy" class="progress-bar left" style="background-color:rgba(39, 174, 96,1.0);width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
                 </div>
             </div>
         </section>
-        <section id="map">
+        <section class="team_list right">
+            <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
+                <div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);" />
+                <div class="energy">
+                    <div class="info">
+                        <span class="infolabel">{{player.username}}</span>
+                        <!--span class="name"></span-->
+                    </div>
+                    <div id="{{player.username}}-energy" class="progress-bar right" style="background-color:rgba(39, 174, 96,1.0);width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
+                </div>
+                <div class="image_div">
+                    <!--img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" /-->
+                    <img ng-src="../img/team_roles/{{$ctrl.game.gameState[0].insurgents.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" alt="{{player.role}}" />
+                </div>
+            </div>
+        </section>
+
             <div class="replay_result table-responsive container" id="replay_result">
             </div>
             <div id="dominium-map"></div>
@@ -74,22 +91,7 @@
                 </div>
             </div>
         </section>
-        <section class="team_list right">
-            <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
-                <div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);" />
-                <div class="energy">
-                    <div class="info">
-                        <span class="infolabel">{{player.username}}</span>
-                        <!--span class="name"></span-->
-                    </div>
-                    <div id="{{player.username}}-energy" class="progress-bar" style="background-color:rgba(39, 174, 96,1.0);width:100%" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100</div>
-                </div>
-                <div class="image_div">
-                    <!--img ng-src="../img/{{player.role}}.png" alt="{{player.role}}" /-->
-                    <img ng-src="../img/team_roles/{{$ctrl.game.gameState[0].insurgents.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" alt="{{player.role}}" />
-                </div>
-            </div>
-        </section>
+        
     </div>
     <!--div id="capture_points">
         <div class="capture_point" ng-repeat="cp in $ctrl.game.gameState[0].capturePoints">

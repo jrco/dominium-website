@@ -18,6 +18,8 @@ function aggregateGameStates(game){
 	statistics.gamestates = game.gameState.length;
 	statistics.corporation.color = game.gameState[0].corporation.color;
 	statistics.insurgents.color = game.gameState[0].insurgents.color;
+	statistics.corporation.color_name = game.gameState[0].corporation.color_name;
+	statistics.insurgents.color_name = game.gameState[0].insurgents.color_name;
 
 	game.gameState.forEach(function(gamestate){
 		
@@ -100,7 +102,7 @@ function createPointControlCharts(statistics){
 		createChart(canvasId,'pie',
 			{
 				position: 'bottom',
-				labels: ["Corporation", "Insurgents"],
+				labels: [statistics.corporation.color_name + " Team", statistics.insurgents.color_name + " Team"],
 				datasets: [{
 					data: [
 						trimNumber((totalCorporation/total)*100,3), 
@@ -189,18 +191,17 @@ function createPointsCharts(statistics){
 	var canvasId = "pointTimeCanvas";
 	document.getElementById("canvas_sc").innerHTML += "<canvas id='"+canvasId+"'></canvas></div>";
 
-
 	createChart(canvasId,'line',
 		{
 			labels: getRange(statistics.gamestates),
 			datasets: [{
-				label: "Corporation",
+				label: statistics.corporation.color_name + " Team",
 				data: statistics.corporation.points,
 				borderColor: statistics.corporation.color,
 				backgroundColor: statistics.corporation.color,
 				fill: false
 			},{
-				label: "Insurgents",
+				label: statistics.insurgents.color_name + " Team",
 				data: statistics.insurgents.points,
 				borderColor: statistics.insurgents.color,
 				backgroundColor: statistics.insurgents.color,
