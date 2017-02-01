@@ -872,26 +872,29 @@ a:hover {
 	width: 100%;
 	display: table;
 	table-layout: fixed;
-
 }
 
-#section_container > .team_list,
 #section_container > #map {
-	display: table-cell;
+	/*display: table-row;*/
 	vertical-align: top;
 	overflow-x: hidden;
+	position: relative;
 }
 
 #section_container > #map > .team_list.left {
 	position: absolute;
 	z-index: 100;
+	width: 20%;
 	left: 0;
+	bottom: 25px;
 }
 
 #section_container > #map > .team_list.right {
 	position: absolute;
 	z-index: 100;
+	width: 20%;
 	right: 0;
+	bottom: 25px;
 }
 
 #section_container > #map{
@@ -1006,10 +1009,8 @@ a:hover {
 
 
 #dominium-map {
-	width: 98%;
-	padding: 0;
-	margin: 0 1%;
-	min-height: 450px;
+	width: 100%;
+	height: 65vh;
 }
 
 /************* CAPTURE POINTS ******************/
@@ -1363,10 +1364,8 @@ a:hover {
 	left:0;
 }
 
-#map > .gamestate-controls {
-	width: 98%;
-	margin-left: 1%;
-	margin-right: 1%;
+.gamestate-controls {
+	width: 100%;
 	height: 30px;
 	display: table;
 	background-color: rgba(20, 20, 20,0.5);
