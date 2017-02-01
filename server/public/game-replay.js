@@ -325,17 +325,16 @@ function initMap() {
         //scaleControl: false,
         //scrollwheel: false,
         //disableDoubleClickZoom: true,
+        mapTypeControl: true,
         mapTypeControlOptions: {
-            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
-                    'dominium_map', 'night_map']
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'dominium_map', 'night_map'],
           }
         //mapTypeId: 'satellite'
     });
     //setWinner(dominiumGame);
     //console.log(dominiumGame);
     map.mapTypes.set('dominium_map', styledMapType);
-        map.setMapTypeId('dominium_map');
-
+    map.setMapTypeId('dominium_map');
     map.mapTypes.set('night_map', styledMapTypeNight);
         //map.setMapTypeId('night_map');
 	google.maps.event.addDomListener(window, "resize", function() {
