@@ -40,7 +40,6 @@ var GameState = new Schema({
     points : Number
   },
   timeStamp : String,
-  local : String,
   capturePoints: [CapturePoint]
 });
 

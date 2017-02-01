@@ -8,7 +8,13 @@
     <div class="game_list">
         <div class="single_game" ng-repeat="game in $ctrl.games">
             <div class="location_date">
-                <span>{{game.location}}, {{game.gameState[0].timeStamp}}</span>
+                <div class="location">
+                    <span>{{game.location}}</span>
+                </div>
+                <div class="date">
+                    <span>{{game.gameState[0].timeStamp}}</span>
+                </div>
+                
             </div>
             <a href="#!/games/{{game._id}}">
             <div class="info">
@@ -22,7 +28,7 @@
                     <div class="all_roles">
                         <div class="role" ng-repeat="player in game.gameState[0].corporation.players">
                             <div class="image_div right">
-                                <img title="{{player.username}}" ng-src="../img/team_roles/{{player.role}}_{{game.gameState[0].corporation.color_name}}_left.png" alt="{{player.role}}" />
+                                <img title="{{player.username}}" ng-src="../img/team_roles/{{game.gameState[0].corporation.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" alt="{{player.role}}" />
                             </div>
                         </div>
                     </div>
@@ -52,7 +58,7 @@
                     <div class="all_roles">
                         <div class="role" ng-repeat="player in game.gameState[0].insurgents.players">
                             <div class="image_div right">
-                                <img title="{{player.username}}" ng-src="../img/team_roles/{{player.role}}_{{game.gameState[0].insurgents.color_name}}_right.png" alt="{{player.role}}" alt="{{player.role}}" />
+                                <img title="{{player.username}}" ng-src="../img/team_roles/{{game.gameState[0].corporation.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" alt="{{player.role}}" alt="{{player.role}}" />
                             </div>
                         </div>
                     </div>
