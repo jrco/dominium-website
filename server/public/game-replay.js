@@ -346,11 +346,9 @@ function initializeGame() {
     var gamestate = dominiumGame.gameState[0];
     gamestate.corporation.players.forEach(function(player) {
         createPlayerMarker(player, gamestate.corporation.color);
-		document.getElementById(player.username + "-energy").style["background-color"] = gamestate.corporation.color;
     });
     gamestate.insurgents.players.forEach(function(player) {
         createPlayerMarker(player, gamestate.insurgents.color);
-    	document.getElementById(player.username + "-energy").style["background-color"] = gamestate.insurgents.color;
     });
 
     gamestate.capturePoints.forEach(function(point) {
