@@ -831,7 +831,7 @@ ul.social-buttons li a:active {
 }
 
 .res-nav_click:hover, .res-nav_click:active, .res-nav_click:focus {
-	color: #7cc576 !important;
+	color: #FFFFFF !important;
 }
 
 .portfolioContainer{
@@ -1051,4 +1051,70 @@ ul.social-buttons li a:active {
 .subscribe-window{
 	color: black;
 }
+
+.subscribe-text{
+   font-size: 40px;
+   color:#ECEFF1 !important;
+}
+
+/*
+.subscribe-buttons{
+margin: 0 auto;
+vertical-align: middle;
+
+}
+
+.subscribe-button{
+width: 100%;
+max-height: 20%;
+position: relative;
+
+}*/
+
+.subscribe-buttons {
+display: table;
+position:relative;
+top: 50%;
+transform : translateY(-50%);
+vertical-align:middle;
+}
+
+.subscribe-buttons > .buttonsubs,
+.subscribe-buttons > .linksubs {
+display : table-row;
+text-align:center;
+}
+
+.subscribe-buttons > .buttonsubs > button {
+border: 2px solid;
+background: #EF5350;
+color:#ECEFF1 !important;
+border-radius: 10px;
+width: 40%;
+margin-bottom: 30px;
+padding-left:10px;
+padding-right:10px;
+text-align: center;
+transition:all 0.3s ease-in-out;
+-moz-transition:all 0.3s ease-in-out;
+-webkit-transition:all 0.3s ease-in-out;
+}
+
+.subscribe-buttons > .buttonsubs > button:hover {
+	text-decoration:none;
+	color:#F44336 !important;
+	background:#fff;
+}
+
+
+.subscribe-buttons > .linksubs > a > img {
+width: 40%;
+}
+
+.divbuttons{
+height:200px;
+}
+
+
+
 
