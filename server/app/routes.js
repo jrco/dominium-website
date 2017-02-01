@@ -142,7 +142,7 @@ module.exports = function(app){
 	     // save the rss and check for errors
 	    sub.save(function(err) {
 	        if (err)
-	            return res.send(err);
+	            return res.status(500).send(err);
 
 	        res.json({_id: sub._id });
 	    });
