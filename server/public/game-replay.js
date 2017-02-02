@@ -622,7 +622,7 @@ function stopFollowing() {
 }
 
 //Follow a player
-function followPlayer(player) {
+function followPlayer(player,team) {
     var selectedPlayer = document.getElementById(player + "_selection");
 
     if (selectedPlayer.style["box-shadow"] === null || selectedPlayer.style["box-shadow"] === "") {
@@ -633,7 +633,7 @@ function followPlayer(player) {
             return;
         }
 
-        selectedPlayer.style["box-shadow"] = "inset 0 0 5px 1px white";
+        selectedPlayer.style["box-shadow"] = "inset 0 0 8px 3px "+colors[team];
 
         map.panTo(marker.getPosition());
         followEvent = marker.addListener('position_changed', function() {

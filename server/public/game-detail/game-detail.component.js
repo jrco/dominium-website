@@ -28,8 +28,8 @@ component('gameDetail', {
                 playGame(self.game);
             };
 
-			self.follow = function(player){
-				followPlayer(player);
+			self.follow = function(player,team){
+				followPlayer(player,team);
 			};
 			
             //this.gameId = $routeParams.gameId;

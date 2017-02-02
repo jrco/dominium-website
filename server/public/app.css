@@ -1433,10 +1433,16 @@ a:hover {
 
 .gamestate-controls > .buttons_right > div{
 	min-width: 80px;
-	font-size: 1.2em;
-	color: rgba(189, 195, 199,1.0);
 	box-shadow: inset 0 -15px 0 -10px buttonface, inset 0 15px 0 -10px buttonface;
 	line-height: 27px;
+}
+
+.gamestate-controls > .buttons_right > div > span{
+	font-size: 1.2em;
+	color: rgba(189, 195, 199,1.0);
+
+	vertical-align: middle;
+	line-height: 30px;
 }
 
 .gamestate-controls > .buttons_right > div,
