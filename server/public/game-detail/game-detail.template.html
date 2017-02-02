@@ -1,5 +1,10 @@
 <div id="pagewrap">
-    <div id="top">
+
+    <div class="game_stats_title">
+        <span>Replay</span>
+    </div>
+    <div id="section_container">
+        <div id="top">
         <div class="margin_left"></div>
         <div class="match_result">
             <div class="coorporation_name">
@@ -28,10 +33,6 @@
         </div>
         <div class="margin_right"></div>
     </div>
-    <div class="game_stats_title">
-        <span>Replay</span>
-    </div>
-    <div id="section_container">
         <section id="map">
             <section class="team_list left">
 		        <div class="player_row corporation" ng-repeat="player in $ctrl.game.gameState[0].corporation.players">

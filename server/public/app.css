@@ -362,6 +362,7 @@ body {
 
 #all_page_list > .game_list > .single_game > a > .info > .info_game {
 	width: 50%;
+	height: 100%;
 	text-align: center;
 	vertical-align: middle;
 }
@@ -373,6 +374,36 @@ body {
 	height: 100%;
 	text-align: center;
 	vertical-align: middle;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width: 17%;
+	background-color: rgba(20, 20, 20,0.5);
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > .location {
+	width: 100%;
+	text-align: center;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > .date {
+	text-align: center;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > .location > span {
+	color: rgba(236, 240, 241,1.0);
+	font-size: 1.2em;
+	font-family: dom;
+
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > .date > span {
+	color: rgba(236, 240, 241,1.0);
+	font-size: 1.2em;
+	font-family: dom;
 }
 
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points > span,
@@ -693,126 +724,7 @@ a:hover {
 
 @media screen and (max-width: 1149px) {
 
-	#top {
-		width: 100%;
-		display: table;
-		table-layout: fixed;
-		height: 120px;
-		/*border-style: 1px solid rgba(52, 73, 94, 0.15);*/
-		background-color: rgba(20, 20, 20,0.5);
-	}
 
-	#top > .margin_left,
-	#top > .margin_right {
-		width: 5%;
-		display: table-cell;
-	}
-
-	#top > .match_result {
-		display: table;
-		padding-top: 20px;
-		padding-bottom: 20px;
-	}
-
-	#top > .match_result > .coorporation_name,
-	#top > .match_result > .insurgents_name {
-		display: table;
-		vertical-align: middle;
-		width: 20%;
-	}
-
-	#top > .match_result > .coorporation_name > .coorporation_fr,
-	#top > .match_result > .coorporation_name > .namecp,
-	#top > .match_result > .coorporation_name > .insurgents_fr,
-	#top > .match_result > .coorporation_name > .name {
-		display: table-row;
-		vertical-align: middle;
-		text-align: center;
-	}
-
-	#top > .match_result > .coorporation_name > .coorporation_fr.victory,
-	#top > .match_result > .insurgents_name > .insurgents_fr.victory{
-		color : rgba(39, 174, 96,0.8);
-	}
-
-	#top > .match_result > .coorporation_name > .coorporation_fr.defeat,
-	#top > .match_result > .insurgents_name > .insurgents_fr.defeat{
-		
-		color : rgba(192, 57, 43,0.8);
-	}
-
-	#top > .match_result > .coorporation_name > .coorporation_fr.tie,
-	#top > .match_result > .insurgents_name > .insurgents_fr.tie{
-		color : rgba(243, 156, 18,0.8);
-	}
-
-	#top > .match_result > .coorporation_name,
-	#top > .match_result > .coorporation_img,
-	#top > .match_result > .coorporation_result,
-	#top > .match_result > .logo,
-	#top > .match_result > .insurgents_result,
-	#top > .match_result > .insurgents_img,
-	#top > .match_result > .insurgents_name {
-		display: table-cell;
-		vertical-align: middle;
-		text-align: center;
-	}
-
-	#top > .match_result > .coorporation_name > .coorporation_fr,
-	#top > .match_result > .insurgents_name > .insurgents_fr {
-		height: 20px;
-		vertical-align: middle;
-		font-family: dom;
-		color: rgba(236, 240, 241,1.0);
-		font-size: 1.0em;
-		-webkit-transition: opacity 2s ease-in;
-       -moz-transition: opacity 2s ease-in;
-        -ms-transition: opacity 2s ease-in;
-         -o-transition: opacity 2s ease-in;
-            transition: opacity 2s ease-in;
-
-	}
-
-	#top > .match_result > .coorporation_name > .namecp,
-	#top > .match_result > .insurgents_name > .namein {
-		height: 40px;
-		vertical-align: middle;
-		font-family: dom;
-		color: rgba(236, 240, 241,1.0);
-		font-size: 1.5em;
-	}
-
-	#top > .match_result > .logo {
-		width: 10%;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
-	#top > .match_result > .coorporation_img,
-	#top > .match_result > .insurgents_img {
-		width: 25%;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
-	#top > .match_result > .coorporation_result,
-	#top > .match_result > .insurgents_result {
-		width: 10%;
-		font-family: dom;
-		color: rgba(236, 240, 241,0.5);
-		font-size: 1.5em;
-	}
-
-	#top > .match_result > .coorporation_img > img,
-	#top > .match_result > .insurgents_img > img {
-		width: 80px;
-		height: 80px;
-	}
-
-	#top > .match_result > .logo > img {
-		width: 20px;
-		height: 20px;
-	}
 }
 
 
@@ -1045,7 +957,7 @@ a:hover {
 
 #dominium-map {
 	width: 100%;
-	height: 60vh;
+	height: 65vh;
 }
 
 /************* CAPTURE POINTS ******************/
@@ -1122,6 +1034,129 @@ a:hover {
 	height: 80%;
 	margin: 10% auto;
 }*/
+
+	#section_container > #top {
+		width: 100%;
+		display: table;
+		table-layout: fixed;
+		height: 120px;
+		/*border-style: 1px solid rgba(52, 73, 94, 0.15);*/
+		background-color: rgba(20, 20, 20,0.5);
+		position: absolute;
+		z-index: 100;
+	}
+
+	#section_container > #top > .margin_left,
+	#section_container > #top > .margin_right {
+		width: 5%;
+		display: table-cell;
+	}
+
+	#section_container > #top > .match_result {
+		display: table;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	#section_container > #top > .match_result > .coorporation_name,
+	#section_container > #top > .match_result > .insurgents_name {
+		display: table;
+		vertical-align: middle;
+		width: 20%;
+	}
+
+	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr,
+	#section_container > #top > .match_result > .coorporation_name > .namecp,
+	#section_container > #top > .match_result > .coorporation_name > .insurgents_fr,
+	#section_container > #top > .match_result > .coorporation_name > .name {
+		display: table-row;
+		vertical-align: middle;
+		text-align: center;
+	}
+
+	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.victory,
+	#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.victory{
+		color : rgba(39, 174, 96,0.8);
+	}
+
+	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.defeat,
+	#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.defeat{
+		
+		color : rgba(192, 57, 43,0.8);
+	}
+
+	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.tie,
+	#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.tie{
+		color : rgba(243, 156, 18,0.8);
+	}
+
+	#section_container > #top > .match_result > .coorporation_name,
+	#section_container > #top > .match_result > .coorporation_img,
+	#section_container > #top > .match_result > .coorporation_result,
+	#section_container > #top > .match_result > .logo,
+	#section_container > #top > .match_result > .insurgents_result,
+	#section_container > #top > .match_result > .insurgents_img,
+	#section_container > #top > .match_result > .insurgents_name {
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+	}
+
+	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr,
+	#section_container > #top > .match_result > .insurgents_name > .insurgents_fr {
+		height: 20px;
+		vertical-align: middle;
+		font-family: dom;
+		color: rgba(236, 240, 241,1.0);
+		font-size: 1.0em;
+		-webkit-transition: opacity 2s ease-in;
+       -moz-transition: opacity 2s ease-in;
+        -ms-transition: opacity 2s ease-in;
+         -o-transition: opacity 2s ease-in;
+            transition: opacity 2s ease-in;
+
+	}
+
+	#section_container > #top > .match_result > .coorporation_name > .namecp,
+	#section_container > #top > .match_result > .insurgents_name > .namein {
+		height: 40px;
+		vertical-align: middle;
+		font-family: dom;
+		color: rgba(236, 240, 241,1.0);
+		font-size: 1.5em;
+	}
+
+	#section_container > #top > .match_result > .logo {
+		width: 10%;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	#section_container > #top > .match_result > .coorporation_img,
+	#section_container > #top > .match_result > .insurgents_img {
+		width: 25%;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	#section_container > #top > .match_result > .coorporation_result,
+	#section_container > #top > .match_result > .insurgents_result {
+		width: 10%;
+		font-family: dom;
+		color: rgba(236, 240, 241,0.5);
+		font-size: 1.5em;
+	}
+
+	#section_container > #top > .match_result > .coorporation_img > img,
+	#section_container > #top > .match_result > .insurgents_img > img {
+		width: 80px;
+		height: 80px;
+	}
+
+	#section_container > #top > .match_result > .logo > img {
+		width: 20px;
+		height: 20px;
+	}
 
 /***********************************/
 /*		ARROW DOWN AND UP          */
@@ -1425,7 +1460,7 @@ a:hover {
 	font-size: 1.2em;
 	color: rgba(189, 195, 199,1.0);
 	box-shadow: inset 0 -15px 0 -10px buttonface, inset 0 15px 0 -10px buttonface;
-	line-height: 28px;
+	line-height: 27px;
 }
 
 .gamestate-controls > .buttons_right > div,

@@ -8,14 +8,6 @@
     <div class="options left"></div>
     <div class="game_list">
         <div class="single_game" ng-repeat="game in $ctrl.games">
-            <div class="location_date">
-                <div class="location">
-                    <span>{{game.location}}</span>
-                </div>
-                <div class="date">
-                    <span>{{game.gameState[0].timeStamp}}</span>
-                </div>
-            </div>
             <a href="#!/games/{{game._id}}">
                 <div class="info">
                     <div class="team">
@@ -36,8 +28,16 @@
                     <div class="info_game">
                         <div class="result">
                             <div class=cp_points><span>{{game.gameState[game.gameState.length-1].corporation.points}}</span></div>
-                            <div class="logo"><img ng-src="img/logo-gray.png" alt="Dominium"/></div>
+                            <div class="logo"><img ng-src="img/logo-gray.png" alt="Dominium" /></div>
                             <div class="in_points"><span>{{game.gameState[game.gameState.length-1].insurgents.points}}</span></div>
+                        </div>
+                        <div class="location_date">
+                            <div class="location">
+                                <span>{{game.location}}</span>
+                            </div>
+                            <div class="date">
+                                <span>{{game.gameState[0].timeStamp}}</span>
+                            </div>
                         </div>
                     </div>
                     <div class="team">
