@@ -36,88 +36,7 @@ var markerVars = {
 //Initializes the google map
 function initMap() {
     console.log("LOADING MAP");
-    var styledMapTypeNight = new google.maps.StyledMapType(
-        [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-            {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{color: '#263c3f'}]
-            },
-            {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#6b9a76'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{color: '#38414e'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#212a37'}]
-            },
-            {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#9ca5b3'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{color: '#746855'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#1f2835'}]
-            },
-            {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#f3d19c'}]
-            },
-            {
-              featureType: 'transit',
-              elementType: 'geometry',
-              stylers: [{color: '#2f3948'}]
-            },
-            {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{color: '#17263c'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#515c6d'}]
-            },
-            {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{color: '#17263c'}]
-            }
-          ], { name: 'Night Map' });
-
+    
 	var styledMapType = new google.maps.StyledMapType(
         [{
             "featureType": "all",
@@ -332,7 +251,7 @@ function initMap() {
         //disableDoubleClickZoom: true,
         mapTypeControl: true,
         mapTypeControlOptions: {
-            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'dominium_map', 'night_map'],
+            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'dominium_map'],
           }
         //mapTypeId: 'satellite'
     });
@@ -340,8 +259,7 @@ function initMap() {
     //console.log(dominiumGame);
     map.mapTypes.set('dominium_map', styledMapType);
     map.setMapTypeId('dominium_map');
-    map.mapTypes.set('night_map', styledMapTypeNight);
-        //map.setMapTypeId('night_map');
+
 	google.maps.event.addDomListener(window, "resize", function() {
 		var center = map.getCenter();
 		google.maps.event.trigger(map, "resize");
@@ -534,10 +452,11 @@ function updateState() {
 //Updates the energy of the player in the UI
 function updatePlayerState(player) {
 
-    $("#"+player.username + "-energy").css("opacity", player.energy/50);
-    $("#"+player.username + "-energy").attr("aria-valuenow", player.energy);
-    $("#"+player.username + "-energy").css("width", player.energy + "%");
+    $("#"+player.username + "-bar").css("opacity", player.energy/50);
+    $("#"+player.username + "-bar").attr("aria-valuenow", player.energy);
+    $("#"+player.username + "-bar").css("width", player.energy + "%");
     $("#"+player.username + "-energy").html(player.energy);
+
 }
 
 //Updates the capture points
@@ -748,6 +667,17 @@ function resume() {
     } else {
         $("#start-button").click();
     }
+}
+
+function resetAll(){
+	stopFollowing();
+	clearAnimationState();
+	clearMarkers();
+	currentGameStateDuration = DEFAULT_GAMESTATE_DURATION;
+	colors = {
+		corporation: "#FFFFFF",
+		insurgents: "#000000"
+	};
 }
 
 //Start playing a game
