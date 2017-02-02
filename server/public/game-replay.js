@@ -11,6 +11,11 @@ var currentGameStateDuration = DEFAULT_GAMESTATE_DURATION;
 var dominiumGame;
 var currentGameState;
 
+var colors = {
+	corporation: "#FFFFFF",
+	insurgents: "#000000"
+};
+
 var animationData = {
     startTime: undefined,
     timeOffset: 0,
@@ -348,11 +353,14 @@ function initMap() {
 //Initializes the game, creates all markers
 function initializeGame() {
     var gamestate = dominiumGame.gameState[0];
+	colors.corporation = gamestate.corporation.color;
+	colors.insurgents = gamestate.insurgents.color;
+
     gamestate.corporation.players.forEach(function(player) {
-        createPlayerMarker(player, gamestate.corporation.color);
+        createPlayerMarker(player,"corporation");
     });
     gamestate.insurgents.players.forEach(function(player) {
-        createPlayerMarker(player, gamestate.insurgents.color);
+        createPlayerMarker(player,"insurgents");
     });
 
     gamestate.capturePoints.forEach(function(point) {
@@ -439,13 +447,13 @@ function moveIteration(gamestate, dataAux) {
 }
 
 //Creates a player marker
-function createPlayerMarker(player, color) {
+function createPlayerMarker(player, team) {
 
     playerList[player.username] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(player.lat), parseFloat(player.lng)),
         icon: new google.maps.MarkerImage(
             //"/img/player/"+encodeURIComponent(color)+"_"+player.role+".png",
-            "/img/player/" + encodeURIComponent(color) + ".png",
+            "/img/player/" + encodeURIComponent(colors[team]) + ".png",
             null,
             null,
             new google.maps.Point(markerVars.playerWidth / 2, markerVars.playerHeight),
@@ -471,7 +479,7 @@ function createCapturePointMarker(point) {
             new google.maps.Point(markerVars.pointWidth / 2, markerVars.pointHeight),
             new google.maps.Size(markerVars.pointWidth, markerVars.pointHeight)
         ),
-        labelContent: "<span class='text_label'>" + point.name + "</span>",
+        labelContent: "<span class='text_label'>" + point.name + "</span>"+getCapturePointBar(point),
         labelAnchor: new google.maps.Point(0, markerVars.pointLabelOffset),
         labelClass: "map_label",
         zIndex: -1,
@@ -487,12 +495,27 @@ function createCapturePointMarker(point) {
     capList[point.name].circle.bindTo('center', capList[point.name].marker, 'position');
 }
 
+//Creates the energy bar label
+function getCapturePointBar(point){
+	return "\
+		<div class='energy-progress-bar'>\
+			<div class='progress'>\
+				<div  id='"+point.name+"-bar-corporation' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%;background-color:" + colors.corporation + ";'></div>\
+				<span id='"+point.name+"-energy-corporation'>0</span>\
+			</div>\
+			<div class='progress'>\
+				<div  id='"+point.name+"-bar-insurgents' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%;background-color:" + colors.insurgents + ";'></div>\
+				<span id='"+point.name+"-energy-insurgents'>0</span>\
+			</div>\
+		</div>";
+}
+
 //Updates the UI/Markers according to the gamestate
 function updateState() {
     var gamestate = dominiumGame.gameState[currentGameState];
 
     gamestate.capturePoints.forEach(function(point) {
-        updateCapturePointState(gamestate, point);
+        updateCapturePointState(point);
     });
     gamestate.corporation.players.forEach(function(player) {
         updatePlayerState(player);
@@ -511,18 +534,18 @@ function updateState() {
 //Updates the energy of the player in the UI
 function updatePlayerState(player) {
 
-    document.getElementById(player.username + "-energy").style["opacity"] = player.energy/100;
-    document.getElementById(player.username + "-energy").setAttribute("aria-valuenow", player.energy);
-    document.getElementById(player.username + "-energy").style["width"] = player.energy + "%";
-    document.getElementById(player.username + "-energy").innerHTML = player.energy;
+    $("#"+player.username + "-energy").css("opacity", player.energy/50);
+    $("#"+player.username + "-energy").attr("aria-valuenow", player.energy);
+    $("#"+player.username + "-energy").css("width", player.energy + "%");
+    $("#"+player.username + "-energy").html(player.energy);
 }
 
-//Updates the marker and UI of capture points
-function updateCapturePointState(gamestate, point) {
+//Updates the capture points
+function updateCapturePointState(point) {
 
     //Update marker icon
     capList[point.name].marker.setIcon(new google.maps.MarkerImage(
-        getCapturePointIcon(gamestate, point.teamOwner),
+        getCapturePointIcon(point.teamOwner),
         null,
         null,
         new google.maps.Point(markerVars.pointWidth / 2, markerVars.pointHeight),
@@ -531,24 +554,36 @@ function updateCapturePointState(gamestate, point) {
 
     //Update circle fill color
     if (point.teamOwner === "Corporation") {
-        capList[point.name].circle.setOptions({ fillColor: gamestate.corporation.color });
+        capList[point.name].circle.setOptions({ fillColor: colors.corporation });
     } else if (point.teamOwner === "Insurgents") {
-        capList[point.name].circle.setOptions({ fillColor: gamestate.insurgents.color });
+        capList[point.name].circle.setOptions({ fillColor: colors.insurgents });
     } else {
         capList[point.name].circle.setOptions({ fillColor: '#FFFFFF' });
     }
 
+	//Update energy bar
+	updateCapturePointBar(point);
+}
 
-    //document.getElementById(point.name+"-energy").style["background-color"] = getTeamColorHex(point.teamOwner);
+//Updates the energy bar label of a capture point
+function updateCapturePointBar(point) {
+    var corpEnergy = 0;
+    var insEnergy = 0;
 
-    //document.getElementById(point.name+"-owner").innerHTML = point.teamOwner;
+    if (point.teamOwner === "Corporation") {
+        corpEnergy = point.energy;
+    } else if (point.teamOwner === "Insurgents") {
+        insEnergy = point.energy
+    }
 
-    //document.getElementById(point.name+"-energy").setAttribute("aria-valuenow",point.energy);
-    //document.getElementById(point.name+"-energy").style["width"] = point.energy+"%";
-    //$('#'+point.name+'-energy').parent().find('span.value_now').text(point.energy+"%");
+	
+	$("#"+point.name + "-bar-corporation").attr("aria-valuenow", corpEnergy);
+	$("#"+point.name + "-bar-corporation").css("width", corpEnergy + "%");
+	$("#"+point.name + "-energy-corporation").html(corpEnergy);
 
-    //Update energy bar
-    capList[point.name].marker.set("labelContent", "<span class='text_label'>" + point.name + "</span>" + createCapturePointBar(gamestate, point.teamOwner, point.energy));
+	$("#"+point.name + "-bar-insurgents").attr("aria-valuenow", insEnergy);
+	$("#"+point.name + "-bar-insurgents").css("width", insEnergy + "%");
+	$("#"+point.name + "-energy-insurgents").html(insEnergy);
 }
 
 //Returns all players in a gamestate
@@ -556,38 +591,12 @@ function getAllPlayers(gamestate) {
     return gamestate.corporation.players.concat(gamestate.insurgents.players);
 }
 
-//Creates the HTML element that represents the energy bar of the capture point marker - used by updateCapturePointState()
-function createCapturePointBar(gamestate, team, energy) {
-    var corpEnergy = 0;
-    var insEnergy = 0;
-
-    if (team === "Corporation") {
-        corpEnergy = energy;
-    } else if (team === "Insurgents") {
-        insEnergy = energy
-    }
-
-    return "\
-	<table class='energy-progress-bar'>\
-		<tr>\
-			<td>\
-				<div style='width:" + corpEnergy + "%;background-color:" + gamestate.corporation.color + ";'>&nbsp;</div>\
-				<span>" + corpEnergy + "</span>\
-			</td>\
-			<td>\
-				<div style='width:" + insEnergy + "%;background-color:" + gamestate.insurgents.color + ";'>&nbsp;</div>\
-				<span>" + insEnergy + "</span>\
-			</td>\
-		</tr>\
-	</div>";
-}
-
 //Gets the correct cap point icon according to the team
-function getCapturePointIcon(gamestate, teamOwner) {
+function getCapturePointIcon(teamOwner) {
     if (teamOwner === "Corporation") {
-        return "/img/point/" + encodeURIComponent(gamestate.corporation.color) + ".png";
+        return "/img/point/" + encodeURIComponent(colors.corporation) + ".png";
     } else if (teamOwner === "Insurgents") {
-        return "/img/point/" + encodeURIComponent(gamestate.insurgents.color) + ".png";
+        return "/img/point/" + encodeURIComponent(colors.insurgents) + ".png";
     } else {
         return "/img/point/neutral.png";
     }
@@ -656,11 +665,11 @@ function setGameRectangle(game) {
 
 //Change the animation speed
 function changeSpeed(scale) {
-    var newSpeed = document.getElementById('speed').innerHTML * scale;
+    var newSpeed = $('#speed').html() * scale;
 
     //clamp speed between 1/16 and 16
     newSpeed = Math.max(1 / 16, Math.min(newSpeed, 16));
-    document.getElementById('speed').innerHTML = newSpeed;
+    $('#speed').html(newSpeed);
 
     var newGameStateDuration = DEFAULT_GAMESTATE_DURATION / newSpeed;
 
@@ -675,10 +684,9 @@ function changeSpeed(scale) {
 //Stops following players
 function stopFollowing() {
 
-    var players = document.getElementsByClassName("player_selection");
-    for (var i = 0; i < players.length; i++) {
-        players[i].style.removeProperty("box-shadow");
-    }
+    $(".player_selection").each(function(i,obj){
+        obj.style.removeProperty("box-shadow");
+    });
 
     if (typeof followEvent !== 'undefined') {
         google.maps.event.removeListener(followEvent);
@@ -732,7 +740,7 @@ function resume() {
         pauseTime = undefined;
         animationData.animationLoop = window.requestAnimationFrame(animationData.nextCallback);
     } else {
-        document.getElementById("start-button").click();
+        $("#start-button").click();
     }
 }
 
