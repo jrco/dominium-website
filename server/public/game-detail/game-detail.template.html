@@ -35,13 +35,12 @@
         <section id="map">
             <section class="team_list left">
 		        <div class="player_row corporation" ng-repeat="player in $ctrl.game.gameState[0].corporation.players">
-		            <div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);"/>
+		            <div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);" style="border: 1px solid {{$ctrl.game.gameState[0].corporation.color}};"/>
 		            <div class="image_div">
 		                <img ng-src="../img/team_roles/{{$ctrl.game.gameState[$ctrl.game.gameState.length-1].corporation.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" />
 		            </div>
 		            <div class="energy">
 		                <div class="info">
-		                    <!--span class="name"></span-->
 		                    <span class="infolabel" style="color:{{$ctrl.game.gameState[0].corporation.color}};">{{player.username}}</span>
 		                </div>
 						<div class="progress">
@@ -53,7 +52,7 @@
         	</section>
 		    <section class="team_list right">
 		        <div class="player_row insurgents" ng-repeat="player in $ctrl.game.gameState[0].insurgents.players">
-		            <div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);" />
+		            <div id="{{player.username}}_selection" class="player_selection" ng-click="$ctrl.follow(player.username);" style="border: 1px solid {{$ctrl.game.gameState[0].insurgents.color}};"/>
 		            <div class="energy">
 		                <div class="info">
 		                    <span class="infolabel" style="color:{{$ctrl.game.gameState[0].insurgents.color}};">{{player.username}}</span>
