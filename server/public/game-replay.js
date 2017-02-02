@@ -381,6 +381,7 @@ function createPlayerMarker(player, team) {
         labelAnchor: new google.maps.Point(0, markerVars.playerLabelOffset),
         labelClass: "map_label",
         optimized: false,
+		clickable: false,
         map: map
     });
 }
@@ -401,6 +402,7 @@ function createCapturePointMarker(point) {
         labelAnchor: new google.maps.Point(0, markerVars.pointLabelOffset),
         labelClass: "map_label",
         zIndex: -1,
+		clickable: false,
         map: map
     });
     capList[point.name].circle = new google.maps.Circle({
