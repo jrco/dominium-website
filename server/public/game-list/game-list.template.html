@@ -1,8 +1,7 @@
 <div class="topbar">
-   <img ng-src="img/logo-gray.png" alt="Dominium"> 
-   <div class="name">DOMINIUM</div>
+    <img ng-src="img/logo-gray.png" alt="Dominium">
+    <div class="name">DOMINIUM</div>
 </div>
-
 <div id="all_page_list">
     <div class="options left"></div>
     <div class="game_list">
@@ -14,56 +13,55 @@
                 <div class="date">
                     <span>{{game.gameState[0].timeStamp}}</span>
                 </div>
-                
             </div>
             <a href="#!/games/{{game._id}}">
-            <div class="info">
-                <div class="team">
-                    <div class="name_img">
-                        <div class="img"><img ng-src="img/{{game.gameState[0].corporation.color_name}}/logo.png" alt="" /></div>
-                        <div class="name">
-                            <span>{{game.gameState[0].corporation.color_name}} Team</span>
+                <div class="info">
+                    <div class="team">
+                        <div class="name_img">
+                            <div class="img"><img ng-src="img/{{game.gameState[0].corporation.color_name}}/logo.png" alt="" /></div>
+                            <div class="name">
+                                <span>{{game.gameState[0].corporation.color_name}} Team</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="all_roles">
-                        <div class="role" ng-repeat="player in game.gameState[0].corporation.players">
-                            <div class="image_div right">
-                                <img title="{{player.username}}" ng-src="../img/team_roles/{{game.gameState[0].corporation.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" alt="{{player.role}}" />
+                        <div class="all_roles">
+                            <div class="role" ng-repeat="player in game.gameState[0].corporation.players">
+                                <div class="image_div right">
+                                    <img title="{{player.username}}" ng-src="../img/team_roles/{{game.gameState[0].corporation.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" alt="{{player.role}}" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="info_game">
-                    <div class="result">
-                        <div class=cp_points>
-                            <span>{{game.gameState[game.gameState.length-1].corporation.points}}<span>
+                    <div class="info_game">
+                        <div class="result">
+                            <div class=cp_points>
+                                <span>{{game.gameState[game.gameState.length-1].corporation.points}}<span>
                     </div>
                     <div class="logo"><img ng-src="img/logo-gray.png" alt="Dominium"></div>
                     <div class="in_points"><span>{{game.gameState[game.gameState.length-1].insurgents.points}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--div class="full_details">
+                    <!--div class="full_details">
                     <a href="#!/games/{{game._id}}">
                         <span>More info...</span>
                     </a>
                 </div-->
-                <div class="team">
-                    <div class="name_img">
-                        <div class="img"><img ng-src="../img/{{game.gameState[0].insurgents.color_name}}/logo.png" alt="coorporation" /></div>
-                        <div class="name">
-                            <span>{{game.gameState[0].insurgents.color_name}} Team</span>
+                    <div class="team">
+                        <div class="name_img">
+                            <div class="img"><img ng-src="../img/{{game.gameState[0].insurgents.color_name}}/logo.png" alt="coorporation" /></div>
+                            <div class="name">
+                                <span>{{game.gameState[0].insurgents.color_name}} Team</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="all_roles">
-                        <div class="role" ng-repeat="player in game.gameState[0].insurgents.players">
-                            <div class="image_div right">
-                                <img title="{{player.username}}" ng-src="../img/team_roles/{{game.gameState[0].corporation.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" alt="{{player.role}}" alt="{{player.role}}" />
+                        <div class="all_roles">
+                            <div class="role" ng-repeat="player in game.gameState[0].insurgents.players">
+                                <div class="image_div right">
+                                    <img title="{{player.username}}" ng-src="../img/team_roles/{{game.gameState[0].corporation.color_name}}{{player.role}}Border.svg" alt="{{player.role}}" alt="{{player.role}}" alt="{{player.role}}" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             </a>
         </div>
     </div>
