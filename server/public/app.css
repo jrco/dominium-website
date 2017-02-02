@@ -46,9 +46,10 @@ table {
 
 html, body {
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 
 }
+
 
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -113,21 +114,35 @@ body {
 /* STRUCTURE GAME LIST */
 .topbar {
 	width: 100%;
-	height: 150px;
+	height: 160px;
 	background-color: rgba(20, 20, 20,0.8);
+	text-align: center;
+	display: table;
+	vertical-align: middle;
+}
+
+.topbar > .topbar_img {
+	width: 100%;
+	height: 50%;
+	padding-top: 10px;
 	text-align: center;
 	vertical-align: middle;
 }
 
-.topbar > img {
-	padding-top: 10px;
+.topbar > .topbar_img > img {
 	height: 90px;
 	width: 90px;
 }
 
 .topbar > .name {
+	width: 100%;
 	font-size: 2.5em;
-	vertical-align: middle;
+	color: rgba(236, 240, 241,1.0);
+	font-family: dom;
+}
+
+.topbar > .name > span {
+	font-size: 1.5em;
 	color: rgba(236, 240, 241,1.0);
 	font-family: dom;
 }
@@ -230,6 +245,20 @@ body {
 	font-family: dom;
 }
 
+#all_page_list > .game_list > .single_game > a:link {
+	text-decoration: none;
+	color: rgba(149, 165, 166,0.5);
+}
+
+#all_page_list > .game_list > .single_game > a,
+ #all_page_list > .game_list > .single_game > a:hover,
+ #all_page_list > .game_list > .single_game > a:visited,
+ #all_page_list > .game_list > .single_game > a:active,
+ #all_page_list > .game_list > .single_game > a:link{
+	text-decoration: none;
+	color: rgba(149, 165, 166,0.5);
+}
+
 #all_page_list > .game_list > .single_game > a > .info {
 	display: table;
 	width: 100%;
@@ -272,8 +301,8 @@ body {
 
 #all_page_list > .game_list > .single_game > a > .info > .team > .name_img > .img > img {
 	/*border: 2px solid rgba(52, 73, 94, 0.15);*/
-	height: 80px;
-	width: 80px;
+	height: 90px;
+	width: 90px;
 	margin: 10px;
 }
 
@@ -310,8 +339,8 @@ body {
 	text-align: center;
 	vertical-align: middle;
 	text-align: center;
-	padding-left: 2px;
-	padding-right: 2px;
+	padding-left: 1px;
+	padding-right: 1px;
 	/*border: 2px solid rgba(52, 73, 94, 0.15);*/
 }
 
@@ -327,8 +356,8 @@ body {
 #all_page_list > .game_list > .single_game > a > .info > .team > .all_roles > .role > .image_div > img {
 	padding-left: 2px;
 	padding-right: 2px;
-	width: 20px;
-	height: 20px;
+	width: 40px;
+	height: 40px;
 }
 
 #all_page_list > .game_list > .single_game > a > .info > .info_game {
@@ -346,13 +375,14 @@ body {
 	vertical-align: middle;
 }
 
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points,
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points{
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points > span,
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points > span{
 	width: 30%;
 	display: table-cell;
 	font-size: 2.5em;
 	font-family: dom;
 	color: rgba(236, 240, 241,1.0);
+	text-align: center;
 }
 
 /*#all_page_list > .game_list > .single_game > .info > .info_game > .result > .cp_points {
@@ -363,7 +393,7 @@ body {
 	padding-right: 50px;
 }*/
 
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .logo {
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .logo {
 	display: table-cell;
 	height: 20px;
 }
@@ -392,7 +422,6 @@ body {
 
 a:link, a:visited, a:active {
     text-decoration: none;
-    font-style: 
 }
 
 a:hover {
@@ -909,7 +938,7 @@ a:hover {
 	display: table;
 	height: 60px;
 	margin-bottom: 5px;
-	border: 1px solid rgba(52, 73, 94, 0.15);
+	/*border: 1px solid rgba(52, 73, 94, 0.15);*/
 }
 
 #section_container > #map > .team_list > .player_row > .player_selection {
@@ -964,16 +993,16 @@ a:hover {
 	display: block;
 	width: 100%;
 	overflow: hidden;
-	height: 50%;
+	height: 40%;
 	vertical-align: middle;
 	text-align: center;
-	margin-top: 9px;
+	margin-top: 6px;
 	margin-bottom: 0px;
 	border-radius: 0px;
 }
 
 #section_container > #map > .team_list > .player_row > .energy > .progress > .progress-bar {
-	border: 1px rgba(242,169,37,1.0);
+	/*border: 1px rgba(242,169,37,1.0);*/
 	font-size: 120%;
 	font-weight: bold;
 	/*color: black;*/
@@ -1016,7 +1045,7 @@ a:hover {
 
 #dominium-map {
 	width: 100%;
-	height: 65vh;
+	height: 60vh;
 }
 
 /************* CAPTURE POINTS ******************/
@@ -1100,11 +1129,17 @@ a:hover {
 
 .slider_down{
 	width: 100%;
-	height: 500px;
+	height: 30px;
 	display: table;
 	text-align: center;
-	padding-top: 10px;
+	padding-top: 2px;
 	padding-bottom: 30px;
+}
+
+.slider_down > a,
+.slider_down > a:hover,
+.slider_down > a:focus, {
+	text-decoration: none;
 }
 
 .slider_down > a > span {
@@ -1114,6 +1149,7 @@ a:hover {
 	font-family: dom;
 	font-size: 2.0em;
 	color : rgba(149, 165, 166,0.5);
+	text-decoration: none;
 }
 
 #slider_up{
@@ -1140,7 +1176,7 @@ a:hover {
 
 .game_stats_title {
 	width: 100%;
-	height: 100px;
+	height: 60px;
 	text-align: center;
 	border-top: 2px solid rgba(127, 140, 141,1.0);
 	border-bottom: 2px solid rgba(127, 140, 141,1.0);
@@ -1366,10 +1402,10 @@ a:hover {
 
 .gamestate-controls {
 	width: 100%;
-	height: 30px;
+	height: 25px;
 	display: table;
 	background-color: rgba(20, 20, 20,0.5);
-	padding-top: 5px;
+	padding-top: 3px;
 }
 
 .gamestate-controls > .buttons_left{
