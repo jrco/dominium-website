@@ -1400,41 +1400,57 @@ a:hover {
 	font-weight: bold;
 }
 
+
+
 .gamestate-controls {
 	width: 100%;
-	height: 25px;
-	display: table;
+	height: 30px;
+	position: relative;
 	background-color: rgba(20, 20, 20,0.5);
-	padding-top: 3px;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .gamestate-controls > .buttons_left{
-	height: 100%;
-	display: table-cell;
-	width: 50%;
-	text-align: left;
+	display: inline-block;
 }
 
-.gamestate-controls > .buttons_left > .playorpause{
-	display: table-cell;
+.gamestate-controls > .buttons_right{
+	display: inline-block;
+	float: right;
 }
 
-.gamestate-controls > .buttons_left > #start-button{
-	display: table-cell;
+.gamestate-controls > .buttons_right > div{
+	min-width: 80px;
+	/*font-size: 1.2em;*/
+	color: rgba(189, 195, 199,1.0);
+	box-shadow: inset 0 -15px 0 -10px buttonface, inset 0 15px 0 -10px buttonface;
+	line-height: 30px;
 }
 
+.gamestate-controls > .buttons_right > div,
+.gamestate-controls > .buttons_right > button{
+	display: inline-block;	
+	text-align: center;
+	height: 30px;
+}
+
+.gamestate-controls > .buttons_right > button:first-child{
+	border-radius: 10px 0px 0px 10px;
+}
+.gamestate-controls > .buttons_right > button:last-child{
+	border-radius: 0px 10px 10px 0px;
+}
+
+
+/*
 .gamestate-controls > .buttons_right{
 	display: table;
 	width: 100%;
 	height: 100%;
 }
 
-.gamestate-controls > .buttons_right > .space{
-	display: table-cell;
-	width: 50%;
-}
-
-.gamestate-controls > .buttons_right > .buttons_plusminus{
+.gamestate-controls > .buttons_right > .button_group{
 	display: table;
 	width: 100%;
 }
@@ -1462,15 +1478,17 @@ a:hover {
 .gamestate-controls > .buttons_right > .values {
 }*/
 
+/*
+
 .gamestate-controls > .buttons_right > .buttons_plusminus >  .values > #speed,
 .gamestate-controls > .buttons_right > .buttons_plusminus > .values > .x{
 	color: rgba(189, 195, 199,1.0);
 	font-size: 1.2em;
 }
+*/
 
 
 
-}
 
 
 /*

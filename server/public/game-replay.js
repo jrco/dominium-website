@@ -498,7 +498,7 @@ function createCapturePointMarker(point) {
 //Creates the energy bar label
 function getCapturePointBar(point){
 	return "\
-		<div class='energy-progress-bar'>\
+		<div id='"+point.name+"-label' class='energy-progress-bar'>\
 			<div class='progress'>\
 				<div  id='"+point.name+"-bar-corporation' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%;background-color:" + colors.corporation + ";'></div>\
 				<span id='"+point.name+"-energy-corporation'>0</span>\
@@ -584,6 +584,12 @@ function updateCapturePointBar(point) {
 	$("#"+point.name + "-bar-insurgents").attr("aria-valuenow", insEnergy);
 	$("#"+point.name + "-bar-insurgents").css("width", insEnergy + "%");
 	$("#"+point.name + "-energy-insurgents").html(insEnergy);
+
+	//Update label stored in MarkerLabel - The label was reset on zoom
+	var elem = $("#"+point.name + "-label").prop('outerHTML');
+	if(typeof elem !== 'undefined'){
+		capList[point.name].marker.labelContent = elem;
+	}
 }
 
 //Returns all players in a gamestate

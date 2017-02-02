@@ -76,25 +76,14 @@
         </section>
         <div class="gamestate-controls">
             <div class="buttons_left">
-                <button class="playorpause" onclick="resumeOrPause();"><i class="fa fa-play" aria-hidden="true"></i> / <i class="fa fa-pause" aria-hidden="true"></i>
-                </button>
-                <button id="start-button" ng-click="$ctrl.playGame();" class="style-button"><i class="fa fa-repeat" aria-hidden="true"></i>
-                </button>
+                <button class="playerpause btn btn-circle" onclick="resumeOrPause();"><i class="fa fa-play" aria-hidden="true"></i> / <i class="fa fa-pause" aria-hidden="true"></i></button>
+                <button id="start-button" ng-click="$ctrl.playGame();" class="style-button btn btn-circle"><i class="fa fa-repeat" aria-hidden="true"></i></button>
             </div>
             <div class="buttons_right">
-                <!-- Yes this needs to be like this !-->
-                <div class="space"></div>
-                <div class="buttons_plusminus">
-                    <div class="plus_div">
-                    <button class="minus" onclick="changeSpeed(0.5);"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                        
-                    </div>
-                    <div class="values"><span id="speed">1</span><span class="x">x</span></div>
-                    <div class="minus_div">
-                        <button class="plus" onclick="changeSpeed(2);"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                    </div>
-                </div>
-                <!-- Don't change !-->
+                <button class="minus btn btn-circle" onclick="changeSpeed(0.5);"><i class="fa fa-minus" aria-hidden="true"></i></button><!--
+                --><div class="values"><span id="speed">1</span><span class="x">x</span></div><!--
+                --><button class="plus btn btn-circle" onclick="changeSpeed(2);"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
             </div>
         </div>
     </div>
