@@ -164,6 +164,8 @@ body {
 	margin: 3px;
 	border-top: 2px solid rgba(127, 140, 141,1.0);
 	border-bottom: 2px solid rgba(127, 140, 141,1.0);
+	border-left: 2px solid rgba(127, 140, 141,1.0);
+	border-right: 2px solid rgba(127, 140, 141,1.0);
 	background-color : rgba(0, 0, 0,0.8);
 }
 
@@ -207,25 +209,24 @@ body {
 }
 
 #all_page_list > .game_list > .single_game > .location_date > .location {
-	display: table-row;
+	width: 100%;
 	text-align: center;
 }
 
 #all_page_list > .game_list > .single_game > .location_date > .date {
-	display: table-row;
 	text-align: center;
 }
 
 #all_page_list > .game_list > .single_game > .location_date > .location > span {
 	color: rgba(236, 240, 241,1.0);
-	font-size: 0.9em;
+	font-size: 1.2em;
 	font-family: dom;
 
 }
 
 #all_page_list > .game_list > .single_game > .location_date > .date > span {
 	color: rgba(236, 240, 241,1.0);
-	font-size: 0.9em;
+	font-size: 1.2em;
 	font-family: dom;
 }
 
