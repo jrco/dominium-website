@@ -960,21 +960,26 @@ a:hover {
 }
 
 #section_container > #map > .team_list > .player_row > .energy > .info,
-#section_container > #map > .team_list > .player_row > .energy > .progress-bar {
+#section_container > #map > .team_list > .player_row > .energy > .progress {
 	display: block;
 	width: 100%;
 	overflow: hidden;
 	height: 50%;
 	vertical-align: middle;
 	text-align: center;
-	padding-top: 9px;
+	margin-top: 9px;
+	margin-bottom: 0px;
+	border-radius: 0px;
 }
 
-#section_container > #map > .team_list > .player_row > .energy > .progress-bar {
+#section_container > #map > .team_list > .player_row > .energy > .progress > .progress-bar {
 	border: 1px rgba(242,169,37,1.0);
+	font-size: 120%;
+	font-weight: bold;
+	/*color: black;*/
 }
 
-#section_container > #map > .team_list > .player_row > .energy > .progress-bar.right{
+#section_container > #map > .team_list > .player_row > .energy > .progress > .progress-bar.right{
 	float: right;
 }
 
@@ -1326,44 +1331,37 @@ a:hover {
 }
 
 .energy-progress-bar {
-	width: 100px;
-	border: 1px solid black;
-}
-
-.energy-progress-bar tr{
-	width: 100%;
+	width: 150px;
+	height: 15px;
 	background-color: white;
+	display: table;
 }
 
-.energy-progress-bar tr td{
+.energy-progress-bar .progress{
+	border: 1px solid black;
 	width: 50%;
-	position: relative;
-	height: 10px;
-}
-
-.energy-progress-bar tr td span{
-	position: absolute;
-	text-align: center;
-	left: 0;
-	top: 0;
-	width: 100%;
 	height: 100%;
-	line-height: 11px;
-	z-index: 100;
+	margin-bottom: 0px;
+	border-radius: 0px;
+	display: table-cell;
+	position: relative;
 }
 
-.energy-progress-bar tr td div{
+.energy-progress-bar .progress:first-child .progress-bar{
+	float: right;
+}
+
+.energy-progress-bar .progress:last-child .progress-bar{
+	float: left;
+}
+
+.energy-progress-bar .progress span{
 	position: absolute;
-	z-index: 50;
-	height: 10px;
-}
-
-.energy-progress-bar tr td:first-child div{
-	right:0;
-}
-
-.energy-progress-bar tr td:last-child div{
-	left:0;
+	display: block;
+	width: 100%;
+	color: black;
+	line-height: 15px;
+	font-weight: bold;
 }
 
 .gamestate-controls {
