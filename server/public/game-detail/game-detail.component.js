@@ -5,9 +5,14 @@ angular.
 module('gameDetail').
 component('gameDetail', {
     templateUrl: 'game-detail/game-detail.template.html',
-    controller: ['$http', '$routeParams',
-        function GameDetailController($http, $routeParams) {
+    controller: ['$http', '$routeParams', '$scope',
+        function GameDetailController($http, $routeParams, $scope) {
             var self = this;
+
+			$scope.$on('$locationChangeStart', function(event){
+				//Clean everything when user leaves
+				resetAll();
+			});
 
 			initMap();
 
@@ -23,8 +28,8 @@ component('gameDetail', {
                 playGame(self.game);
             };
 
-			self.follow = function(player){
-				followPlayer(player);
+			self.follow = function(player,team){
+				followPlayer(player,team);
 			};
 			
             //this.gameId = $routeParams.gameId;
