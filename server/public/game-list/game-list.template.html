@@ -9,7 +9,7 @@
     <div class="game_list">
         <div class="single_game" ng-repeat="game in $ctrl.games">
             <a href="#!/games/{{game._id}}">
-                <div class="info" style="background-color: {{$ctrl.getColor(game,0.3)}}; border: 2px solid {{$ctrl.getColor(game,1)}};">
+                <div class="info" style="background-color: {{$ctrl.getColor(game,0.2)}}; border: 2px solid {{$ctrl.getColor(game,1)}};">
                     <div class="team">
                         <div class="name_img">
                             <div class="img"><img ng-src="img/team_roles/{{game.gameState[0].corporation.color_name}}Logo.svg" alt="" /></div>
