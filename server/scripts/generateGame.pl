@@ -48,12 +48,13 @@ sub getRandomTeamColor{
 	);
 	return $colors[getRandomInt(0,$#colors)];
 }
-
+#p1 (41.543209,8.401852)
+#p2 (41.542567,8.400425)
 ###DEFS
-my $maxLat = 41.560788;
-my $minLat = 41.559331;
-my $maxLng = -8.400355;
-my $minLng = -8.398973;
+my $maxLat = 41.543209;
+my $minLat = 41.542567;
+my $maxLng = -8.401852;
+my $minLng = -8.400425;
 
 my $numUsers = 2;
 my $numPoints = 3;

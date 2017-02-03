@@ -252,8 +252,19 @@ function initMap() {
         mapTypeControl: true,
         mapTypeControlOptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'dominium_map'],
-          }
-        //mapTypeId: 'satellite'
+            position: google.maps.ControlPosition.BOTTOM_CENTER
+          },
+          fullscreenControl: true,
+          fullscreenControlOptions: {
+              position: google.maps.ControlPosition.BOTTOM_CENTER
+          },
+          streetViewControl: true,
+          streetViewControlOptions: {
+              position: google.maps.ControlPosition.BOTTOM_CENTER
+          },
+          addressControlOptions: {
+          position: google.maps.ControlPosition.BOTTOM_CENTER, // <- change position
+        }
     });
     //setWinner(dominiumGame);
     //console.log(dominiumGame);
