@@ -1231,6 +1231,7 @@ a:hover {
 }
 
 .gamestate-controls > .buttons_right > div,
+.gamestate-controls > .buttons_left > button,
 .gamestate-controls > .buttons_right > button{
 	display: inline-block;
 	text-align: center;
