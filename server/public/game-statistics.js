@@ -95,7 +95,7 @@ function createPointControlCharts(statistics){
 		var canvasId = pointName+"-canvas";
 		//document.getElementById("canvas_cv").innerHTML += "<div><can id='"+canvasId+"'></canvas></div>";
 		//document.getElementById("canvas_cv").innerHTML += "<div class="box"><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></div>";
-		document.getElementById("canvas_cv").innerHTML += "<div class='circular_canvas'><canvas id='"+canvasId+"' class= 'canvas_style='max-width:250px' height='200px'></canvas></div>";
+		document.getElementById("canvas_cv").innerHTML += "<div class='circular_canvas'><canvas id='"+canvasId+"' class='canvas_style'></canvas></div>";
 		//document.getElementById("pointControl").innerHTML += "<div><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></div>";
 
 		var total = totalCorporation+totalInsurgents;
@@ -114,7 +114,7 @@ function createPointControlCharts(statistics){
 			{
 				title: {
 				    display: true,
-				    text: "Time % Control of "+pointName,
+				    text: "Control % of "+pointName,
 					fontSize: 20
 				},
 				responsive: true,

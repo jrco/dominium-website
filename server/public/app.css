@@ -178,10 +178,12 @@ body {
 	display: table;
 	table-layout: fixed;
 	margin: 3px;
+/*
 	border-top: 2px solid rgba(127, 140, 141,1.0);
 	border-bottom: 2px solid rgba(127, 140, 141,1.0);
 	border-left: 2px solid rgba(127, 140, 141,1.0);
 	border-right: 2px solid rgba(127, 140, 141,1.0);
+*/
 	background-color : rgba(0, 0, 0,0.8);
 }
 
@@ -960,16 +962,38 @@ a:hover {
 	text-align: center;
 	border-top: 2px solid rgba(127, 140, 141,1.0);
 	border-bottom: 2px solid rgba(127, 140, 141,1.0);
-	display: table;
+	display: relative;
 	vertical-align: middle;
 }
 
 .game_stats_title > span {
-	display: table-cell;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	line-height: 60px;
+	text-align: center;
 	vertical-align: middle;
 	font-family: dom;
 	font-size: 3.5em;
 	color : rgba(149, 165, 166,1.0);
+}
+
+.game_stats_title > a{
+	position: absolute;
+	top: 5px;	
+	left: 5px;
+	width: 50px;
+	height: 50px;
+}
+
+.game_stats_title > a > button{
+	width: 100%;
+	height: 100%;
+	border-radius: 50px;
+	font-size: 2em;
+	border: none;
+	color: black;
+	background-color: white;
 }
 
 
@@ -996,7 +1020,6 @@ a:hover {
 	display: table;
 	table-layout: fixed;
 	padding-bottom: 10px;
-	overflow-x: scroll;
 }
 
 
@@ -1006,18 +1029,7 @@ a:hover {
 }
 
 
-#full_stats > .stats > .control_value > #canvas_cv {
-	display: table;
-	vertical-align: middle;
-	text-align: center;
-	height: 250px;
-	background-color: rgba(20, 20, 20,0.5);
-	text-align: center;
-	vertical-align: center;
-	display: block;
-	overflow-x: scroll;
-	overflow-y: hidden
-}
+
 
 /* Let's get this party started */
 ::-webkit-scrollbar {
@@ -1043,25 +1055,25 @@ a:hover {
 	background: rgba(149, 165, 166,1.0); 
 }
 
-#full_stats > .stats > .control_value > #canvas_cv > .circular_canvas{
-	display: table-cell;
-	table-layout: fixed;
-	text-align: center;
-	vertical-align: center;
-	padding-bottom: 30px;
-	padding-left: 10px;
-	width: calc(100% / 5);
-}
-
-#full_stats > .stats > .control_value > #canvas_cv > .circular_canvas > iframe > .canvas_style{
+#full_stats > .stats > .control_value > #canvas_cv {
 	display: block;
+	vertical-align: middle;
+	text-align: center;
+	width: 100%;
+	height: 300px;
+	background-color: rgba(20, 20, 20,0.5);
+  	white-space: nowrap;
+	overflow-x: scroll;
+	overflow-y: hidden;
 }
 
+#full_stats > .stats > .control_value > #canvas_cv > .circular_canvas{
+	display: inline-block;
+	text-align: center;
+	height: 100%;
+	width: 300px;
+}
 
-
-/*#full_stats > .stats > .control_value > #canvas_cv > #pointControl > div > canvas{
-	table-layout: table-cell;
-}*/
 
 #full_stats > .stats > .more_stats {
 	display: table;
@@ -1193,6 +1205,10 @@ a:hover {
 
 .gamestate-controls > .buttons_left{
 	display: inline-block;
+}
+
+.gamestate-controls > .buttons_left > button{
+	line-height: 15px;
 }
 
 .gamestate-controls > .buttons_right{
@@ -1353,3 +1369,5 @@ a:hover {
     opacity: 1;
     transition: 0s
 }*/
+
+
