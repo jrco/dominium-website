@@ -102,7 +102,7 @@ for(my $i = 0; $i < $numPoints; $i++){
 	$points{"Point$i"} = {
 		"lat" => "".getRandomFloat($minLat,$maxLat),
 		"lng" => "".getRandomFloat($minLng,$maxLng),
-		"radius" => getRandomInt(5,30)
+		"radius" => 15
 	};
 }
 

@@ -470,7 +470,6 @@ function updatePlayerState(player) {
     $("#"+player.username + "-bar").attr("aria-valuenow", player.energy);
     $("#"+player.username + "-bar").css("width", player.energy + "%");
     $("#"+player.username + "-energy").html(player.energy);
-
 }
 
 //Updates the capture points
@@ -487,11 +486,11 @@ function updateCapturePointState(point) {
 
     //Update circle fill color
     if (point.teamOwner === "Corporation") {
-        capList[point.name].circle.setOptions({ fillColor: colors.corporation });
+        capList[point.name].circle.setOptions({ fillColor: colors.corporation, strokeColor: colors.corporation});
     } else if (point.teamOwner === "Insurgents") {
-        capList[point.name].circle.setOptions({ fillColor: colors.insurgents });
+        capList[point.name].circle.setOptions({ fillColor: colors.insurgents, strokeColor: colors.insurgents});
     } else {
-        capList[point.name].circle.setOptions({ fillColor: '#FFFFFF' });
+        capList[point.name].circle.setOptions({ fillColor: '#FFFFFF', strokeColor: '#000000'});
     }
 
 	//Update energy bar
