@@ -1238,10 +1238,10 @@ a:hover {
 }
 
 .gamestate-controls > .buttons_right > button:first-child{
-	border-radius: 10px 0px 0px 10px;
+	border-radius: 4px 0px 0px 4px;
 }
 .gamestate-controls > .buttons_right > button:last-child{
-	border-radius: 0px 10px 10px 0px;
+	border-radius: 0px 4px 4px 0px;
 }
 
 
