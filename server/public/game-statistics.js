@@ -114,7 +114,7 @@ function createPointControlCharts(statistics){
 			{
 				title: {
 				    display: true,
-				    text: "Time % Control of "+pointName,
+				    text: "Control % of "+pointName,
 					fontSize: 20
 				},
 				responsive: true,
