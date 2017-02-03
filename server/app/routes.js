@@ -35,8 +35,6 @@ module.exports = function(app){
 	    	oneValue = 1;
 
 		} else {
-			//var query = {name:'counters'};
-			//db.counters.findOneAndUpdate({name:'counters'},{$inc : { gamereplay : 1}});
 			Counters.findOneAndUpdate({name:'counters'},{$inc : {index: 1}},function(err, doc){
 		    if(err){
 		        console.log("Something wrong when updating data!");
@@ -82,19 +80,6 @@ module.exports = function(app){
 			console.log(doc);
 			});
 
-		//Counters.findOneAndUpdate(query, {$inc : {replay: 1}});
-	    //Model.findByIdAndUpdate(_id : '589472509b9988645fd8ad5f', { $inc: { "replay" : 1 } });
-
-	    /*var counter = new Counters();
-		counter._id = new mongoose.Types.ObjectId(req.body._id);
-	    counter.index = 0;
-	    counter.replay = 1;
-	    counter.gamereplay = 0;
-
-	    counter.save(function(err) {
-	        if (err)
-	            return res.send(err);;
-	    });*/
 	});
 
 	// create a game to send back all games after creation
@@ -115,25 +100,7 @@ module.exports = function(app){
 	        res.json({_id: game._id });
 	    });
 
-
-	    /*Games.create({
-	     _id: new mongoose.Types.ObjectId(req.body._id),
-	      name_of_room: req.body.name_of_room,
-	      location: req.body.location,
-	      timeGame :  req.body.timeGame,
-	      gameState: req.body.gameState
-	    }, function(err, games){
-	        if (err)
-	            res.send(err);
-	        res.json({id : "_id"});
-	        //console.log("_id");
-	        /*Games.find(function(err, games) {
-	            if (err)
-	                res.send(err)
-	            res.json(games);
-	        });*/
 	    });
-	//});
 
 	// get a game with selected id
 	app.get('/games/:game_id',function(req, res){
@@ -143,9 +110,6 @@ module.exports = function(app){
 	        res.json(game);
 	    });
 
-	    //var query = { name: 'counters' };
-		//	Counters.findOneAndUpdate(query, {$inc : {game_replay: 1}});
-	    //Model.findByIdAndUpdate(_id : '589472509b9988645fd8ad5f', { $inc: { 'gamereplay' : 1 } });
 		Counters.findOneAndUpdate({name:'counters'},{$inc : {gamereplay: 1}},function(err, doc){
 		    if(err){
 		        console.log("Something wrong when updating data!");
@@ -153,17 +117,6 @@ module.exports = function(app){
 			console.log(doc);
 			});
 
-
-	    /*var counter = new Counters();
-		counter._id = new mongoose.Types.ObjectId(req.body._id);
-	    counter.index = 0;
-	    counter.replay = 0;
-	    counter.gamereplay = 1;
-
-	    counter.save(function(err) {
-	        if (err)
-	            return res.send(err);;
-	    });*/
 	});
 
 	// get a gamestate from game with selected id
