@@ -245,6 +245,7 @@ function initMap() {
         center: new google.maps.LatLng(0, 0),
         disableDefaultUI: true,
         clickableIcons: false,
+		rotateControl: true,
         //zoomControl: false,
         //scaleControl: false,
         //scrollwheel: false,
@@ -252,18 +253,18 @@ function initMap() {
         mapTypeControl: true,
         mapTypeControlOptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain', 'dominium_map'],
-            position: google.maps.ControlPosition.BOTTOM_CENTER
-          },
-          fullscreenControl: true,
-          fullscreenControlOptions: {
-              position: google.maps.ControlPosition.BOTTOM_CENTER
-          },
-          streetViewControl: true,
-          streetViewControlOptions: {
-              position: google.maps.ControlPosition.BOTTOM_CENTER
-          },
-          addressControlOptions: {
-          position: google.maps.ControlPosition.BOTTOM_CENTER, // <- change position
+            position: google.maps.ControlPosition.TOP_LEFT
+        },
+        fullscreenControl: true,
+        fullscreenControlOptions: {
+            position: google.maps.ControlPosition.TOP_RIGHT
+        },
+        streetViewControl: true,
+        streetViewControlOptions: {
+            position: google.maps.ControlPosition.TOP_RIGHT
+        },
+        addressControlOptions: {
+        	position: google.maps.ControlPosition.BOTTOM_CENTER, // <- change position
         }
     });
     //setWinner(dominiumGame);
@@ -469,7 +470,6 @@ function updatePlayerState(player) {
     $("#"+player.username + "-bar").attr("aria-valuenow", player.energy);
     $("#"+player.username + "-bar").css("width", player.energy + "%");
     $("#"+player.username + "-energy").html(player.energy);
-
 }
 
 //Updates the capture points
@@ -486,11 +486,11 @@ function updateCapturePointState(point) {
 
     //Update circle fill color
     if (point.teamOwner === "Corporation") {
-        capList[point.name].circle.setOptions({ fillColor: colors.corporation });
+        capList[point.name].circle.setOptions({ fillColor: colors.corporation, strokeColor: colors.corporation});
     } else if (point.teamOwner === "Insurgents") {
-        capList[point.name].circle.setOptions({ fillColor: colors.insurgents });
+        capList[point.name].circle.setOptions({ fillColor: colors.insurgents, strokeColor: colors.insurgents});
     } else {
-        capList[point.name].circle.setOptions({ fillColor: '#FFFFFF' });
+        capList[point.name].circle.setOptions({ fillColor: '#FFFFFF', strokeColor: '#000000'});
     }
 
 	//Update energy bar
