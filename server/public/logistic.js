@@ -9,20 +9,20 @@ function setWinner(game) {
         /*$('.winner_cp').addClass('won');*/
         $('.coorporation_fr').addClass('victory');
         //$( ".coorporation_fr" ).remove();
-        $( ".coorporation_fr" ).append( "Victory" );
+        $( ".coorporation_fr" ).html( "Victory" );
         $('.insurgents_fr').addClass('defeat');
-        $( ".insurgents_fr" ).append( "Defeat" );
+        $( ".insurgents_fr" ).html( "Defeat" );
     } else if (ptA < ptB) {
         //console.log("WINNER A");
         $( ".coorporation_fr" ).addClass( "defeat" );
-        $( ".coorporation_fr" ).append( "Defeat" );
+        $( ".coorporation_fr" ).html( "Defeat" );
         $( ".insurgents_fr" ).addClass( "victory" );
-        $( ".insurgents_fr" ).append( "Victory" );
+        $( ".insurgents_fr" ).html( "Victory" );
     } else {
         $( ".coorporation_fr" ).addClass( "tie" );
-        $( ".coorporation_fr" ).append( "Tie" );
+        $( ".coorporation_fr" ).html( "Tie" );
         $( ".insurgents_fr" ).addClass( "tie" );
-        $( ".insurgents_fr" ).append( "Tie" );
+        $( ".insurgents_fr" ).html( "Tie" );
     }
 }
 
@@ -87,9 +87,12 @@ function removeWinner(){
     $( ".insurgents_fr" ).removeClass("victory");
     $( ".insurgents_fr" ).removeClass("tie");
 
+	$( ".coorporation_fr" ).html("&nbsp;");
+    $( ".insurgents_fr" ).html("&nbsp;");
+/*
     $( ".coorporation_fr" ).empty();
     $( ".insurgents_fr" ).empty();
-
+*/
 }
 
 function getAllPlayers(gamestate) {
