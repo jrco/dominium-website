@@ -815,6 +815,9 @@ a:hover {
 		background-color: rgba(20, 20, 20,0.8);
 		position: relative;
 		z-index: 100;
+		width: 600px;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	#section_container > #top > .match_result > .coorporation_name,
