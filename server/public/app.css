@@ -176,6 +176,7 @@ body {
 
 #all_page_list > .game_list > .single_game {
 	display: table;
+	table-layout: fixed;
 	margin: 3px;
 	border-top: 2px solid rgba(127, 140, 141,1.0);
 	border-bottom: 2px solid rgba(127, 140, 141,1.0);
@@ -262,20 +263,31 @@ body {
 #all_page_list > .game_list > .single_game > a > .info {
 	display: table;
 	width: 100%;
+	height: 90%;
 	background-color: rgba(20, 20, 20,0.2);
 }
 
 
-#all_page_list > .game_list > .single_game > a > .info > .team,
-#all_page_list > .game_list > .single_game > a > .info > .info_game {
+
+#all_page_list > .game_list > .single_game > a > .info > .team{
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
 	height: 100%;
 }
 
+#all_page_list > .game_list > .single_game > a > .info > .info_game{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
 #all_page_list > .game_list > .single_game > a > .info > .team{
 	width: 25%;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game{
+	width: 50%;
 }
 
 /*#all_page_list > .game_list > .single_game > .info > .team.left {
@@ -286,9 +298,7 @@ body {
 	border-left: 2px solid rgba(127, 140, 141,1.0);
 }*/
 
-#all_page_list > .game_list > .single_game > a > .info > .info_game {
-	width: 50%;
-}
+
 
 #all_page_list > .game_list > .single_game > a > .info > .team > .name_img{
 	width: 100%;
@@ -362,56 +372,30 @@ body {
 
 #all_page_list > .game_list > .single_game > a > .info > .info_game {
 	height: 100%;
-	text-align: center;
-	vertical-align: middle;
+	width: 60vw;
 }
 
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result {
+	height: 80%;
+	width: 100%;
 	display: table;
+	vertical-align: middle;
 	table-layout: fixed;
-	width: 100%;
+	text-align: center;
+}
+
+/*#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points {
+	display: table-cell;
 	height: 100%;
-	text-align: center;
-	vertical-align: middle;
-}
+}*/
 
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date {
-	display: table;
-	vertical-align: middle;
-	text-align: center;
-	width: 100%;
-	background-color: rgba(20, 20, 20,0.5);
-}
-
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > .location {
-	width: 100%;
-	text-align: center;
-	display: table-cell;
-}
-
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > .date {
-	text-align: center;
-	display: table-cell;
-}
-
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > .location > span {
-	color: rgba(236, 240, 241,1.0);
-	font-size: 1.2em;
-	font-family: dom;
-
-}
-
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > .date > span {
-	color: rgba(236, 240, 241,1.0);
-	font-size: 1.2em;
-	font-family: dom;
-}
 
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points > span,
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points > span{
 	width: 30%;
-	display: table-cell;
-	font-size: 2.5em;
+	/*display: table-cell;*/
+	font-size: 2.7em;
 	font-family: dom;
 	color: rgba(236, 240, 241,1.0);
 	text-align: center;
@@ -425,32 +409,32 @@ body {
 	padding-right: 50px;
 }*/
 
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points,
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points,
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .logo {
 	display: table-cell;
-	height: 20px;
+	height: 100%;
+	vertical-align: middle;
 }
 
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .logo{
-	display: table-cell;
-}
 
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .logo > img{
 	width: 40px;
 	height: 40px;
 }
 
-#all_page_list > .game_list > .single_game > a > .more_info {
-	display: table-row;
-	font-size: 0.5em;
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date {
+	height: 20%;
 }
 
-#all_page_list > .game_list > .single_game > a > .info_game > .more_info > span {
-	font-size: 0.7em;
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .location_date > span {
+	color: rgba(236, 240, 241,1.0);
+	font-size: 1.4em;
+	font-family: dom;
+
 }
 
-#all_page_list > .game_list > .single_game > a > .info_game > .full_details > a > span {
-	font-size: 0.7em;
-}
 
 a:link, a:visited, a:active {
     text-decoration: none;

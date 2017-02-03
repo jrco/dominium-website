@@ -137,3 +137,15 @@ function Cenas($route, $routeParams, $location, $scope) {
   });
 }*/
 
+/*function stopFollowing() {
+
+    $(".player_selection").each(function(i,obj){
+        obj.style.removeProperty("box-shadow");
+    });
+
+    if (typeof followEvent !== 'undefined') {
+        google.maps.event.removeListener(followEvent);
+        followEvent = undefined;
+    }
+}*/
+
