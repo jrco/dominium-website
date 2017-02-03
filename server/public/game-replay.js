@@ -245,6 +245,7 @@ function initMap() {
         center: new google.maps.LatLng(0, 0),
         disableDefaultUI: true,
         clickableIcons: false,
+		rotateControl: true,
         //zoomControl: false,
         //scaleControl: false,
         //scrollwheel: false,
