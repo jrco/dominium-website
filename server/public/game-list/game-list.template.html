@@ -9,7 +9,8 @@
     <div class="game_list">
         <div class="single_game" ng-repeat="game in $ctrl.games">
             <a href="#!/games/{{game._id}}">
-                <div class="info" style="background-color: {{$ctrl.getColor(game,0.2)}}; border: 2px solid {{$ctrl.getColor(game,1)}};">
+                <!--div class="info" style="background-color: {{$ctrl.getColor(game,0.2)}}; border: 2px solid {{$ctrl.getColor(game,1)}};"-->
+                <div class="info" style="border: 2px solid rgba(127, 140, 141,1.0)">
                     <div class="team">
                         <div class="name_img">
                             <div class="img"><img ng-src="img/team_roles/{{game.gameState[0].corporation.color_name}}Logo.svg" alt="" /></div>
@@ -27,9 +28,11 @@
                     </div>
                     <div class="info_game">
                         <div class="result">
-                            <div class=cp_points><span>{{game.gameState[game.gameState.length-1].corporation.points}}</span></div>
+                            <div class=cp_points><div class="res {{$ctrl.getCorpResult(game)}}">{{$ctrl.getCorpResult(game)}}</div>
+                            <span>{{game.gameState[game.gameState.length-1].corporation.points}}</span></div>
                             <div class="logo"><img ng-src="img/logo-gray.png" alt="Dominium" /></div>
-                            <div class="in_points"><span>{{game.gameState[game.gameState.length-1].insurgents.points}}</span></div>
+                            <div class="in_points"><div class="res {{$ctrl.getInsResult(game)}}">{{$ctrl.getInsResult(game)}}</div>
+                            <span>{{game.gameState[game.gameState.length-1].insurgents.points}}</span></div>
                         </div>
                         <div class="location_date">
                             <span>{{game.location}}, {{game.gameState[0].timeStamp}}</span>

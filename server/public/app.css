@@ -403,6 +403,28 @@ body {
 	text-align: center;
 }
 
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points > .res,
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points > .res {
+	font-size: 1.4em;
+	font-family: dom;
+	text-transform: capitalize;
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points > .res.victory,
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points > .res.victory {
+	color : rgba(39, 174, 96,0.5);
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points > .res.defeat,
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points > .res.defeat {
+	color : rgba(192, 57, 43,0.5);
+}
+
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points > .res.tie,
+#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points > .res.tie {
+	color : rgba(243, 156, 18,0.5);
+}
+
 /*#all_page_list > .game_list > .single_game > .info > .info_game > .result > .cp_points {
 	padding-left: 50px;
 }

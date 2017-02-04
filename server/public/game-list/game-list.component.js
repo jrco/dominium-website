@@ -36,6 +36,33 @@ angular.
 			}
 		};
 
+    self.getCorpResult= function(game){
+      var pointsA = game.gameState[0].corporation.points;
+      var pointsB = game.gameState[0].insurgents.points;
+  
+      if(pointsA > pointsB){
+        return "victory";
+      } else if(pointsA < pointsB){
+        return "defeat";
+      }
+      else{
+        return "tie";
+      }
+    };
+
+    self.getInsResult= function(game){
+      var pointsA = game.gameState[0].corporation.points;
+      var pointsB = game.gameState[0].insurgents.points;
+  
+      if(pointsA > pointsB){
+        return "defeat";
+      } else if(pointsA < pointsB){
+        return "victory";
+      }
+      else{
+        return "tie";
+      }
+    };
     }]
 
   // create empty search model (object) to trigger $watch on update
