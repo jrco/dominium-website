@@ -283,7 +283,7 @@ function initMap() {
 
 //Initializes the game, creates all markers
 function initializeGame() {
-    var gamestate = dominiumGame.gameState[0];
+    var gamestate = dominiumGame.gameState[currentGameState];
 	colors.corporation = gamestate.corporation.color;
 	colors.insurgents = gamestate.insurgents.color;
 
@@ -744,7 +744,13 @@ function playGame(newGame) {
         clearMarkers();
     }
 
-    currentGameState = 0;
+	if(newGame.isGameOver){
+		currentGameState = 0;
+	}
+	else{
+		currentGameState = newGame.gameState.length-1;
+	}
+
     dominiumGame = newGame;
     initializeGame();
 
