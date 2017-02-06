@@ -334,14 +334,14 @@ function getNextGameState(){
         type: 'get',
         success: function(data){
 			console.log(data);
-			if(data.isGameOver === false && typeof data.gameState === 'undefined'){
+			if(data.isFinal === false && typeof data.gameState === 'undefined'){
 				requestEvent = setTimeout(function(){
 					getNextGameState();
 				},1000);
 				return;
 			}
 
-			if(data.isGameOver === true){
+			if(data.isFinal === true){
 				dominiumGame.isGameOver = true;
 			}
 			if(typeof data.gameState !== 'undefined'){

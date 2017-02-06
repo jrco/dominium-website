@@ -160,7 +160,7 @@ module.exports = function(app){
 	            return res.send(err);
 
 			res.json({
-				isGameOver: game.isGameOver,
+				isFinal: (game.isGameOver && req.params.index >= game.gameState.length-1),
 				gameState: game.gameState[req.params.index]
 			});
 	    });
