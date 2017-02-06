@@ -2,7 +2,19 @@
     <div class="topbar_img">
         <img ng-src="img/logo-gray.png" alt="Dominium">
     </div>
-    <div class="name"><span>DOMINIUM REPLAYS</span></div>
+    <div class="name"><span>DOMINIUM GAMES</span></div>
+</div>
+<div class="navbar">
+    <a href="" onclick="allReplayGames();">
+        <div class="replay">
+            <div class="title"><span>Replay</span></div>
+        </div>
+    </a>
+    <a href="" onclick="allLiveGame();">
+        <div class="live">
+            <div class="title"><span>Live</span></div>
+        </div>
+    </a>
 </div>
 <div id="all_page_list">
     <div class="options left"></div>
@@ -28,11 +40,13 @@
                     </div>
                     <div class="info_game">
                         <div class="result">
-                            <div class=cp_points><div class="res {{$ctrl.getCorpResult(game)}}">{{$ctrl.getCorpResult(game)}}</div>
-                            <span>{{game.gameState[game.gameState.length-1].corporation.points}}</span></div>
+                            <div class=cp_points>
+                                <div class="res {{$ctrl.getCorpResult(game)}}">{{$ctrl.getCorpResult(game)}}</div>
+                                <span>{{game.gameState[game.gameState.length-1].corporation.points}}</span></div>
                             <div class="logo"><img ng-src="img/logo-gray.png" alt="Dominium" /></div>
-                            <div class="in_points"><div class="res {{$ctrl.getInsResult(game)}}">{{$ctrl.getInsResult(game)}}</div>
-                            <span>{{game.gameState[game.gameState.length-1].insurgents.points}}</span></div>
+                            <div class="in_points">
+                                <div class="res {{$ctrl.getInsResult(game)}}">{{$ctrl.getInsResult(game)}}</div>
+                                <span>{{game.gameState[game.gameState.length-1].insurgents.points}}</span></div>
                         </div>
                         <div class="location_date">
                             <span>{{game.location}}, {{game.gameState[0].timeStamp}}</span>

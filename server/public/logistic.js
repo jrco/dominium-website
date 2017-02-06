@@ -103,6 +103,23 @@ $('a').click(function(){
 });
 
 
+/*$( function() {
+    $( "#tabs" ).tabs();
+} );*/
+
+var games_replay;
+
+function getGamesReplay(){
+    $.getJSON('http://localhost/games-short').done(function(data) {
+       console.log(data);
+    });
+}
+//games_replay = getGamesReplay();
+//console.log(games_replay);
+
+
+//console.log(games_replay);
+
 
 /*function setRules(game) {
     var td;
