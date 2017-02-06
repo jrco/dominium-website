@@ -56,10 +56,10 @@ my $minLat = 41.542567;
 my $maxLng = -8.401852;
 my $minLng = -8.400425;
 
-my $numUsers = 2;
+my $numUsers = 5;
 my $numPoints = 3;
 
-my $numGamestates = 2000;
+my $numGamestates = 5;
 
 ###INITIALIZE
 my %game = (

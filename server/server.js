@@ -8,7 +8,7 @@
 var express    = require('express');        // call express
 var app        = express(); // define our app using express
 var mongoose   = require('mongoose'); // mongoose for mongodb
-var port = process.env.PORT || 80;        // set our port
+var port = process.env.PORT || 8082;        // set our port
 var morgan     = require('morgan') // log requests to the console (express4)
 var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)

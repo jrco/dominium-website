@@ -10,6 +10,7 @@ var currentGameStateDuration = DEFAULT_GAMESTATE_DURATION;
 
 var dominiumGame;
 var currentGameState;
+var requestEvent;
 
 var colors = {
 	corporation: "#FFFFFF",
@@ -301,7 +302,7 @@ function initializeGame() {
     $('span.corporation_points').text(gamestate.corporation.points);
     $('span.insurgents_points').text(gamestate.insurgents.points);
 
-    updateState();
+    updateState(gamestate);
 }
 
 //Creates auxiliary structure used in moveIteration()
@@ -326,18 +327,57 @@ function createAuxData(nextGamestate) {
     return dataAux;
 }
 
+function getNextGameState(){
+	console.log("Trying to fetch gamestate "+(currentGameState+1));
+	$.ajax({
+        url: "/games/"+dominiumGame._id+"/gamestate/"+(currentGameState+1),
+        type: 'get',
+        success: function(data){
+			console.log(data);
+			if(data.isGameOver === false && typeof data.gameState === 'undefined'){
+				requestEvent = setTimeout(function(){
+					getNextGameState();
+				},1000);
+				return;
+			}
+
+			if(data.isGameOver === true){
+				dominiumGame.isGameOver = true;
+			}
+			if(typeof data.gameState !== 'undefined'){
+				dominiumGame.gameState.push(data.gameState);
+			}
+
+			processGameStates();
+        },
+		error: function(xhr,status,error){
+			console.log("Error on get");
+		}
+    });
+}
+
 //Processes the next gamestate acording to the currentGamestate var
 function processGameStates() {
     removeWinner();
-    console.log("Executing " + currentGameState);
-    if (currentGameState >= dominiumGame.gameState.length - 1) {
-        stopFollowing();
-        setWinner(dominiumGame);
-        return;
-    }
+	
+    console.log("Executing " + (currentGameState +1));
+	if(currentGameState+1 > dominiumGame.gameState.length - 1){
+		if(dominiumGame.isGameOver === true){
+			console.log("Game is over");
+			stopFollowing();
+        	setWinner(dominiumGame);
+		}
+		else{
+			console.log("Game is not over, requesting next GS");
+			getNextGameState();
+		}
+		return;
+	}
+	currentGameState++;
+	console.log("I have it, running the GS");
 
-    var gamestate = dominiumGame.gameState[++currentGameState];
-    updateState();
+    var gamestate = dominiumGame.gameState[currentGameState];
+    updateState(gamestate);
 
     var dataAux = createAuxData(gamestate);
     animationData.startTime = (new Date()).getTime();
@@ -443,8 +483,7 @@ function getCapturePointBar(point){
 }
 
 //Updates the UI/Markers according to the gamestate
-function updateState() {
-    var gamestate = dominiumGame.gameState[currentGameState];
+function updateState(gamestate) {
 
     gamestate.capturePoints.forEach(function(point) {
         updateCapturePointState(point);
@@ -666,6 +705,7 @@ function resumeOrPause() {
 
 //Pause the animation
 function pause() {
+	clearTimeout(requestEvent);
     animationData.pauseTime = (new Date()).getTime();
     window.cancelAnimationFrame(animationData.animationLoop);
     animationData.animationLoop = undefined;
@@ -687,6 +727,7 @@ function resetAll(){
 	clearAnimationState();
 	clearMarkers();
 	currentGameStateDuration = DEFAULT_GAMESTATE_DURATION;
+	clearTimeout(requestEvent);
 	colors = {
 		corporation: "#FFFFFF",
 		insurgents: "#000000"
@@ -697,6 +738,7 @@ function resetAll(){
 function playGame(newGame) {
 
     if (typeof dominiumGame !== 'undefined') {
+		clearTimeout(requestEvent);
         clearAnimationState();
         stopFollowing();
         clearMarkers();

@@ -66,7 +66,7 @@ module.exports = function(app){
 
 	// get all games with only the last gamestate
 	app.get('/games-short', function(req, res){
-	    Games.find({isGameOver: true},{gameState:{$slice:-1}},function(err, games) {
+	    Games.find({$where:'this.gameState.length >= 1'/*isGameOver: true*/},{gameState:{$slice:-1}},function(err, games) {
 	        if (err)
 	            return res.send(err);
 	        res.json(games);
@@ -78,7 +78,7 @@ module.exports = function(app){
 		        console.log("Something wrong when updating data!");
 		    }
 			//console.log(doc);
-			});
+		});
 
 	});
 
@@ -92,7 +92,7 @@ module.exports = function(app){
 	    game.timeGame = req.body.timeGame;
 	    game.gameState = req.body.gameState;
 		game.isGameOver = req.body.isGameOver;
-	    
+
 	     // save the rss and check for errors
 	    game.save(function(err) {
 	        if (err)
@@ -101,13 +101,14 @@ module.exports = function(app){
 	        res.json({_id: game._id });
 	    });
 
-	    });
+	});
 
 	// get a game with selected id
 	app.get('/games/:game_id',function(req, res){
 	    Games.findById(req.params.game_id, function(err, game) {
 	        if (err)
 	            return res.send(err);
+
 	        res.json(game);
 	    });
 
@@ -129,14 +130,17 @@ module.exports = function(app){
 	    });
 	});
 
+
 	// create a gamestate and to game to send back all gamestates after creation
 	app.post('/games/:game_id/gamestate',function(req, res){
 	    Games.findById(req.params.game_id, function(err, game) {
 	        if (err)
 	            return res.send(err);
 
-			game.isGameOver = req.body.isGameOver;
-			delete req.body.isGameOver;
+			if(typeof req.body.isGameOver !== 'undefined'){
+				game.isGameOver = req.body.isGameOver;
+				delete req.body.isGameOver;
+			}
 			
 	        game.gameState.push(req.body);
 
@@ -146,6 +150,19 @@ module.exports = function(app){
 
 	            res.json({ message: 'Game updated!' });
 	        });
+	    });
+	});
+
+
+	app.get('/games/:game_id/gamestate/:index',function(req, res){
+	    Games.findById(req.params.game_id, function(err, game) {
+	        if (err)
+	            return res.send(err);
+
+			res.json({
+				isGameOver: game.isGameOver,
+				gameState: game.gameState[req.params.index]
+			});
 	    });
 	});
 
