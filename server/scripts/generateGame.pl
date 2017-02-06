@@ -66,7 +66,8 @@ my %game = (
 	"name_of_room" => "Room Teste",
 	"location" => "Braga",
 	"timeGame" => getRandomInt(0,50),
-	"gameState" => []
+	"gameState" => [],
+	"isGameOver" => JSON::true
 );
 
 my %corporation;

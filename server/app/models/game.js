@@ -39,6 +39,7 @@ var GameState = new Schema({
     color_name: String,
     points : Number
   },
+  isGameOver: Boolean,
   timeStamp : String,
   capturePoints: [CapturePoint]
 });

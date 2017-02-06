@@ -66,7 +66,7 @@ module.exports = function(app){
 
 	// get all games with only the last gamestate
 	app.get('/games-short', function(req, res){
-	    Games.find({},{gameState:{$slice:-1}},function(err, games) {
+	    Games.find({isGameOver: true},{gameState:{$slice:-1}},function(err, games) {
 	        if (err)
 	            return res.send(err);
 	        res.json(games);
@@ -91,6 +91,7 @@ module.exports = function(app){
 	    game.location = req.body.location;
 	    game.timeGame = req.body.timeGame;
 	    game.gameState = req.body.gameState;
+		game.isGameOver = req.body.isGameOver;
 	    
 	     // save the rss and check for errors
 	    game.save(function(err) {
@@ -133,6 +134,10 @@ module.exports = function(app){
 	    Games.findById(req.params.game_id, function(err, game) {
 	        if (err)
 	            return res.send(err);
+
+			game.isGameOver = req.body.isGameOver;
+			delete req.body.isGameOver;
+			
 	        game.gameState.push(req.body);
 
 	        game.save(function(err) {
