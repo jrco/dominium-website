@@ -41,11 +41,13 @@
                     <div class="info_game">
                         <div class="result">
                             <div class=cp_points>
-                                <div class="res {{$ctrl.getCorpResult(game)}}">{{$ctrl.getCorpResult(game)}}</div>
+                                <div ng-if="game.isGameOver == 1" class="res {{$ctrl.getCorpResult(game)}}">{{$ctrl.getCorpResult(game)}}</div>
+                                <div ng-if="game.isGameOver == 0" class="res">&nbsp;</div>
                                 <span>{{game.gameState[game.gameState.length-1].corporation.points}}</span></div>
                             <div class="logo"><img ng-src="img/logo-gray.png" alt="Dominium" /></div>
                             <div class="in_points">
-                                <div class="res {{$ctrl.getInsResult(game)}}">{{$ctrl.getInsResult(game)}}</div>
+                                <div ng-if="game.isGameOver == 1" class="res {{$ctrl.getInsResult(game)}}">{{$ctrl.getInsResult(game)}}</div>
+                                <div ng-if="game.isGameOver == 0" class="res">&nbsp;</div>
                                 <span>{{game.gameState[game.gameState.length-1].insurgents.points}}</span></div>
                         </div>
                         <div class="location_date">
