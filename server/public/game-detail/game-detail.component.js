@@ -22,10 +22,11 @@ component('gameDetail', {
                 //setNameofTeam(self.game);
 				setGameRectangle(self.game);
 				aggregateGameStates(self.game);
+				playGame(self.game,self.game.isGameOver);
             });
 
-            self.playGame = function() {
-                playGame(self.game);
+            self.playGame = function(fromStart) {
+                playGame(self.game,fromStart);
             };
 
 			self.follow = function(player,team){
