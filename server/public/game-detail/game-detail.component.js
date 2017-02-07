@@ -21,9 +21,13 @@ component('gameDetail', {
                 setWinner(self.game);
                 //setNameofTeam(self.game);
 				setGameRectangle(self.game);
-				aggregateGameStates(self.game);
+				
+				//if isLive
 				if(!self.game.isGameOver){
 					playGame(self.game,false);
+				}
+				else{
+					aggregateGameStates(self.game);
 				}
             });
 
