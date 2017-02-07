@@ -63,6 +63,39 @@ angular.
         return "tie";
       }
     };
+
+
+	self.allReplayGames= function(){
+		self.filter = "replay";
+		$('#live-tab').removeClass('selected');
+		$('#replay-tab').addClass('selected');	
+
+		$('#live-tab').css('border-left','2px solid rgba(127,140,141,1.0)');
+		$('#replay-tab').css('border-right','none');
+	}
+
+	self.allLiveGames = function(){
+		self.filter = "live";
+		$('#replay-tab').removeClass('selected');
+		$('#live-tab').addClass('selected');
+
+		$('#replay-tab').css('border-right','2px solid rgba(127,140,141,1.0)');
+		$('#live-tab').css('border-left','none');	
+	}
+
+	self.getFilter = function(){
+		switch(self.filter){
+			case "replay":
+				return {isGameOver: true};
+			case "live":
+				return {isGameOver: false};
+			default:
+				return {};
+		}
+	}
+
+	self.allReplayGames();
+
     }]
 
   // create empty search model (object) to trigger $watch on update

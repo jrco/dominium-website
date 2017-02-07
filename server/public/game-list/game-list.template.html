@@ -5,13 +5,13 @@
     <div class="name"><span>DOMINIUM GAMES</span></div>
 </div>
 <div class="navbar">
-    <a href="" onclick="allReplayGames();">
-        <div class="replay">
+    <a href="" ng-click="$ctrl.allReplayGames();">
+        <div id="replay-tab" class="replay">
             <div class="title"><span>Replay</span></div>
         </div>
     </a>
-    <a href="" onclick="allLiveGame();">
-        <div class="live">
+    <a href="" ng-click="$ctrl.allLiveGames();">
+        <div id="live-tab" class="live">
             <div class="title"><span>Live</span></div>
         </div>
     </a>
@@ -19,7 +19,7 @@
 <div id="all_page_list">
     <div class="options left"></div>
     <div class="game_list">
-        <div class="single_game" ng-repeat="game in $ctrl.games">
+        <div class="single_game" ng-repeat="game in $ctrl.games | filter: $ctrl.getFilter()">
             <a href="#!/games/{{game._id}}">
                 <!--div class="info" style="background-color: {{$ctrl.getColor(game,0.2)}}; border: 2px solid {{$ctrl.getColor(game,1)}};"-->
                 <div class="info" style="border: 2px solid rgba(127, 140, 141,1.0)">
