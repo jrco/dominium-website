@@ -10,7 +10,7 @@ var currentGameStateDuration = DEFAULT_GAMESTATE_DURATION;
 
 var dominiumGame;
 var currentGameState;
-var requestEvent;
+var requestEvent = undefined;
 
 var colors = {
 	corporation: "#FFFFFF",
@@ -696,7 +696,7 @@ function followPlayer(player,team) {
 
 //Resume or pause the game
 function resumeOrPause() {
-    if (typeof animationData.animationLoop !== 'undefined') {
+    if (typeof animationData.animationLoop !== 'undefined' || typeof requestEvent !== 'undefined') {
         pause();
     } else {
         resume();
@@ -706,6 +706,7 @@ function resumeOrPause() {
 //Pause the animation
 function pause() {
 	clearTimeout(requestEvent);
+	requestEvent = undefined;
     animationData.pauseTime = (new Date()).getTime();
     window.cancelAnimationFrame(animationData.animationLoop);
     animationData.animationLoop = undefined;
@@ -713,13 +714,18 @@ function pause() {
 
 //Resume the animation, or restart if already finished
 function resume() {
+	
     if (typeof animationData.nextCallback !== 'undefined') {
         animationData.timeOffset += (new Date()).getTime() - animationData.pauseTime;
         pauseTime = undefined;
         animationData.animationLoop = window.requestAnimationFrame(animationData.nextCallback);
+    } else if(!dominiumGame.isGameOver) {
+		//If the game is live don't reset on resume
+        processGameStates();
     } else {
-        $("#start-button").click();
-    }
+		//Start from the begining
+		playGame(dominiumGame,true);
+	}
 }
 
 function resetAll(){
@@ -728,6 +734,7 @@ function resetAll(){
 	clearMarkers();
 	currentGameStateDuration = DEFAULT_GAMESTATE_DURATION;
 	clearTimeout(requestEvent);
+	requestEvent = undefined;
 	colors = {
 		corporation: "#FFFFFF",
 		insurgents: "#000000"
@@ -735,16 +742,17 @@ function resetAll(){
 }
 
 //Start playing a game
-function playGame(newGame) {
+function playGame(newGame,fromStart) {
 
     if (typeof dominiumGame !== 'undefined') {
 		clearTimeout(requestEvent);
+		requestEvent = undefined;
         clearAnimationState();
         stopFollowing();
         clearMarkers();
     }
 
-	if(newGame.isGameOver){
+	if(fromStart){
 		currentGameState = 0;
 	}
 	else{
