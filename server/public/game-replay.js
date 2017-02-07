@@ -362,7 +362,7 @@ function processGameStates() {
 	
     console.log("Executing " + (currentGameState +1));
 	if(currentGameState+1 > dominiumGame.gameState.length - 1){
-		if(dominiumGame.isGameOver === true){
+		if(dominiumGame.isGameOver){
 			console.log("Game is over");
 			stopFollowing();
         	setWinner(dominiumGame);
@@ -650,9 +650,13 @@ function changeSpeed(scale) {
 
     var newGameStateDuration = DEFAULT_GAMESTATE_DURATION / newSpeed;
 
-    var now = animationData.pauseTime || (new Date()).getTime();
-    var current = (now - (animationData.startTime + animationData.timeOffset)) / currentGameStateDuration;
-    animationData.timeOffset = (now - animationData.startTime) - current * newGameStateDuration;
+	if (typeof animationData.nextCallback !== 'undefined') {
+		console.log("Data before: ", animationData);
+		var now = animationData.pauseTime || (new Date()).getTime();
+		var current = (now - (animationData.startTime + animationData.timeOffset)) / currentGameStateDuration;
+		animationData.timeOffset = (now - animationData.startTime) - current * newGameStateDuration;
+		console.log("Data after: ",animationData);
+	}
 
     currentGameStateDuration = newGameStateDuration;
     console.log("Speed changed to:", currentGameStateDuration);
@@ -696,17 +700,18 @@ function followPlayer(player,team) {
 
 //Resume or pause the game
 function resumeOrPause() {
-    if (typeof animationData.animationLoop !== 'undefined' || typeof requestEvent !== 'undefined') {
+    if (typeof animationData.animationLoop !== 'undefined') {
         pause();
-    } else {
+    } else if(typeof requestEvent !== 'undefined'){
+		clearTimeout(requestEvent);
+		requestEvent = undefined;
+	} else {
         resume();
     }
 }
 
 //Pause the animation
 function pause() {
-	clearTimeout(requestEvent);
-	requestEvent = undefined;
     animationData.pauseTime = (new Date()).getTime();
     window.cancelAnimationFrame(animationData.animationLoop);
     animationData.animationLoop = undefined;
@@ -719,12 +724,12 @@ function resume() {
         animationData.timeOffset += (new Date()).getTime() - animationData.pauseTime;
         pauseTime = undefined;
         animationData.animationLoop = window.requestAnimationFrame(animationData.nextCallback);
-    } else if(!dominiumGame.isGameOver) {
+    } else if(typeof dominiumGame !== 'undefined' && !dominiumGame.isGameOver) {
 		//If the game is live don't reset on resume
         processGameStates();
     } else {
 		//Start from the begining
-		playGame(dominiumGame,true);
+		$('#start-button').click();
 	}
 }
 
@@ -739,6 +744,7 @@ function resetAll(){
 		corporation: "#FFFFFF",
 		insurgents: "#000000"
 	};
+	dominiumGame = undefined;
 }
 
 //Start playing a game

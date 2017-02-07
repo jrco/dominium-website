@@ -22,7 +22,9 @@ component('gameDetail', {
                 //setNameofTeam(self.game);
 				setGameRectangle(self.game);
 				aggregateGameStates(self.game);
-				playGame(self.game,self.game.isGameOver);
+				if(!self.game.isGameOver){
+					playGame(self.game,false);
+				}
             });
 
             self.playGame = function(fromStart) {
