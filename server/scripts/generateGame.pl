@@ -48,6 +48,19 @@ sub getRandomTeamColor{
 	);
 	return $colors[getRandomInt(0,$#colors)];
 }
+
+sub getColorName{
+	my $hexColor = shift;
+	my %colors = (
+		"#7ba3eb" => "Blue",
+		"#83ad7f" => "Green",
+		"#f2a925" => "Orange",
+		"#af80af" => "Purple",
+		"#bb7070" => "Red",
+		"#f7f55a" => "Yellow"
+	);
+	return $colors{$hexColor};
+}
 #p1 (41.543209,8.401852)
 #p2 (41.542567,8.400425)
 ###DEFS
@@ -135,25 +148,7 @@ for(my $i = 0; $i<$numGamestates; $i++){
 		$gamestate{"corporation"}{"points"} = $game{"gameState"}[$i-1]{"corporation"}{"points"}+getRandomInt(0,5);
 	}
 	$gamestate{"corporation"}{"color"} = $corpColor;
-
-	if ($corpColor eq "#7ba3eb") {
-		$gamestate{"corporation"}{"color_name"} = "Blue";
-	}
-	if ($corpColor eq "#83ad7f") {
-		$gamestate{"corporation"}{"color_name"} = "Green";
-	}
-	if ($corpColor eq "#f2a925") {
-		$gamestate{"corporation"}{"color_name"} = "Orange";
-	}
-	if ($corpColor eq "#af80af") {
-		$gamestate{"corporation"}{"color_name"} = "Purple";
-	}
-	if ($corpColor eq "#bb7070") {
-		$gamestate{"corporation"}{"color_name"} = "Red";
-	}
-	if ($corpColor eq "#f7f55a") {
-		$gamestate{"corporation"}{"color_name"} = "Yellow";
-	}
+	$gamestate{"corporation"}{"color_name"} = getColorName($corpColor);
 	
 
 	foreach my $username (keys %insurgents){
@@ -178,25 +173,7 @@ for(my $i = 0; $i<$numGamestates; $i++){
 		$gamestate{"insurgents"}{"points"} = $game{"gameState"}[$i-1]{"insurgents"}{"points"}+getRandomInt(0,5);
 	}
 	$gamestate{"insurgents"}{"color"} = $insColor;
-
-	if ($insColor eq "#7ba3eb") {
-		$gamestate{"insurgents"}{"color_name"} = "Blue";
-	}
-	if ($insColor eq "#83ad7f") {
-		$gamestate{"insurgents"}{"color_name"} = "Green";
-	} 
-	if ($insColor eq "#f2a925") {
-		$gamestate{"insurgents"}{"color_name"} = "Orange";
-	}
-	if ($insColor eq "#af80af") {
-		$gamestate{"insurgents"}{"color_name"} = "Purple";
-	}
-	if ($insColor eq "#bb7070") {
-		$gamestate{"insurgents"}{"color_name"} = "Red";
-	}
-	if ($insColor eq "#f7f55a") {
-		$gamestate{"insurgents"}{"color_name"} = "Yellow";
-	}
+	$gamestate{"insurgents"}{"color_name"} = getColorName($insColor);
 
 
 	foreach my $name (keys %points){
