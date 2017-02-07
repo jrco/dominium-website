@@ -28,7 +28,7 @@ sub getRandomFloat{
 }
 
 sub getRandomRole{
-	my @roles = ("ATTACKER","DEFENDER","SUPPORT");
+	my @roles = ("Attacker","Defender","Support");
 	return $roles[getRandomInt(0,$#roles)];
 }
 
