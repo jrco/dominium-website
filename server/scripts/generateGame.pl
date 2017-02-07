@@ -98,12 +98,12 @@ for(my $i = 0; $i < $numUsers; $i++){
 	my $corpRole = getRandomRole();
 	my $insRole = getRandomRole();
 
-	$corporation{"UserA$i"} = {
+	$corporation{"User A$i"} = {
 		"role" => $corpRole#,
 		#"skillName" => "$corpRole-Skill",
 		#"skillCost" => getRandomInt(5,10)
 	};
-	$insurgents{"UserB$i"} = {
+	$insurgents{"User B$i"} = {
 		"role" => $insRole#,
 		#"skillName" => "$insRole-Skill",
 		#"skillCost" => getRandomInt(5,10)
@@ -113,7 +113,7 @@ for(my $i = 0; $i < $numUsers; $i++){
 my %points;
 
 for(my $i = 0; $i < $numPoints; $i++){
-	$points{"Point$i"} = {
+	$points{"Point $i"} = {
 		"lat" => "".getRandomFloat($minLat,$maxLat),
 		"lng" => "".getRandomFloat($minLng,$maxLng),
 		"radius" => 15

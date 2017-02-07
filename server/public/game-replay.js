@@ -422,7 +422,6 @@ function createPlayerMarker(player, team) {
     playerList[player.username] = new MarkerWithLabel({
         position: new google.maps.LatLng(parseFloat(player.lat), parseFloat(player.lng)),
         icon: new google.maps.MarkerImage(
-            //"/img/player/"+encodeURIComponent(color)+"_"+player.role+".png",
             "/img/player/" + encodeURIComponent(colors[team]) + ".png",
             null,
             null,
@@ -470,14 +469,14 @@ function createCapturePointMarker(point) {
 //Creates the energy bar label
 function getCapturePointBar(point){
 	return "\
-		<div id='"+point.name+"-label' class='energy-progress-bar'>\
+		<div id='"+dominiumGame.idMap.points[point.name]+"-label' class='energy-progress-bar'>\
 			<div class='progress'>\
-				<div  id='"+point.name+"-bar-corporation' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%;background-color:" + colors.corporation + ";'></div>\
-				<span id='"+point.name+"-energy-corporation'>0</span>\
+				<div  id='"+dominiumGame.idMap.points[point.name]+"-bar-corporation' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%;background-color:" + colors.corporation + ";'></div>\
+				<span id='"+dominiumGame.idMap.points[point.name]+"-energy-corporation'>0</span>\
 			</div>\
 			<div class='progress'>\
-				<div  id='"+point.name+"-bar-insurgents' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%;background-color:" + colors.insurgents + ";'></div>\
-				<span id='"+point.name+"-energy-insurgents'>0</span>\
+				<div  id='"+dominiumGame.idMap.points[point.name]+"-bar-insurgents' class='progress-bar' role='progressbar' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100' style='width:0%;background-color:" + colors.insurgents + ";'></div>\
+				<span id='"+dominiumGame.idMap.points[point.name]+"-energy-insurgents'>0</span>\
 			</div>\
 		</div>";
 }
@@ -505,10 +504,10 @@ function updateState(gamestate) {
 //Updates the energy of the player in the UI
 function updatePlayerState(player) {
 
-    $("#"+player.username + "-bar").css("opacity", player.energy/50);
-    $("#"+player.username + "-bar").attr("aria-valuenow", player.energy);
-    $("#"+player.username + "-bar").css("width", player.energy + "%");
-    $("#"+player.username + "-energy").html(player.energy);
+    $("#"+dominiumGame.idMap.players[player.username] + "-bar").css("opacity", player.energy/50);
+    $("#"+dominiumGame.idMap.players[player.username] + "-bar").attr("aria-valuenow", player.energy);
+    $("#"+dominiumGame.idMap.players[player.username] + "-bar").css("width", player.energy + "%");
+    $("#"+dominiumGame.idMap.players[player.username] + "-energy").html(player.energy);
 }
 
 //Updates the capture points
@@ -548,13 +547,13 @@ function updateCapturePointBar(point) {
     }
 
 	
-	$("#"+point.name + "-bar-corporation").attr("aria-valuenow", corpEnergy);
-	$("#"+point.name + "-bar-corporation").css("width", corpEnergy + "%");
-	$("#"+point.name + "-energy-corporation").html(corpEnergy);
+	$("#"+dominiumGame.idMap.points[point.name] + "-bar-corporation").attr("aria-valuenow", corpEnergy);
+	$("#"+dominiumGame.idMap.points[point.name] + "-bar-corporation").css("width", corpEnergy + "%");
+	$("#"+dominiumGame.idMap.points[point.name] + "-energy-corporation").html(corpEnergy);
 
-	$("#"+point.name + "-bar-insurgents").attr("aria-valuenow", insEnergy);
-	$("#"+point.name + "-bar-insurgents").css("width", insEnergy + "%");
-	$("#"+point.name + "-energy-insurgents").html(insEnergy);
+	$("#"+dominiumGame.idMap.points[point.name] + "-bar-insurgents").attr("aria-valuenow", insEnergy);
+	$("#"+dominiumGame.idMap.points[point.name] + "-bar-insurgents").css("width", insEnergy + "%");
+	$("#"+dominiumGame.idMap.points[point.name] + "-energy-insurgents").html(insEnergy);
 
 	//Update label stored in MarkerLabel - The label was reset on zoom
 	var elem = $("#"+point.name + "-label").prop('outerHTML');
@@ -749,7 +748,7 @@ function resetAll(){
 
 //Start playing a game
 function playGame(newGame,fromStart) {
-
+	console.log(newGame);
     if (typeof dominiumGame !== 'undefined') {
 		clearTimeout(requestEvent);
 		requestEvent = undefined;

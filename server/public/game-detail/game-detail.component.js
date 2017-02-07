@@ -18,6 +18,22 @@ component('gameDetail', {
 
             $http.get('games/' + $routeParams.gameId).then(function(response) {
                 self.game = response.data;
+
+				//TODO remove this when players and points have ids
+				self.game.idMap = {
+					players: {},
+					points: {}
+				};
+
+				self.game.gameState[0].corporation.players.concat(self.game.gameState[0].insurgents.players).forEach(function(player,index){
+					self.game.idMap.players[player.username] = "player"+index;
+				});
+				self.game.gameState[0].capturePoints.forEach(function(point,index){
+					self.game.idMap.points[point.name] = "point"+index;
+				});
+				//-------------------------------------------------
+			
+
                 setWinner(self.game);
 				setGameRectangle(self.game);
 				
