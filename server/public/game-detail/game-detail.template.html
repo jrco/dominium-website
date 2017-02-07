@@ -102,21 +102,21 @@
         </div>
     </div-->
 </div>
-<div ng-if="$ctrl.game.isGameOver == 1" class="slider_down">
+<div ng-if="$ctrl.game.isGameOver == true" class="slider_down">
     <a href="" onclick="$('html,body').animate({scrollTop:$('#slider_up').offset().top},1000)">
         <span>Go to game stats</span>
     </a>
 </div>
 <div id="slider_up">
-    <a href="" ng-if="$ctrl.game.isGameOver == 1" onclick="$('html,body').animate({scrollTop:$('#replay').offset().top},1000)">
+    <a href="" ng-if="$ctrl.game.isGameOver == true" onclick="$('html,body').animate({scrollTop:$('#replay').offset().top},1000)">
         <span>Go to replay</span>
     </a>
 </div>
 
-<div ng-if="$ctrl.game.isGameOver == 1" class="game_stats_title">
+<div ng-if="$ctrl.game.isGameOver == true" class="game_stats_title">
     <span>Game Stats</span>
 </div>
-<div ng-if="$ctrl.game.isGameOver == 1" id="full_stats">
+<div ng-if="$ctrl.game.isGameOver == true" id="full_stats">
     <div class="margin_left"></div>
     <div class="stats">
         <div class="control_value">
@@ -135,5 +135,4 @@
     </div>
     <div class="margin_right"></div>
 </div>
-<!--div id="charts" class="container">
-</div-->
+

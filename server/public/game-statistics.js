@@ -73,8 +73,6 @@ function aggregateGameStates(game){
 		statistics.insurgents.points.push(gamestate.insurgents.points);
 	});
 
-	console.log(statistics);
-
 	createPointControlCharts(statistics);
 	createDistanceCharts(statistics);
 	createPointsCharts(statistics);

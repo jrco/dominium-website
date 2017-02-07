@@ -5,8 +5,8 @@ angular.
 module('gameDetail').
 component('gameDetail', {
     templateUrl: 'game-detail/game-detail.template.html',
-    controller: ['$http', '$routeParams', '$scope',
-        function GameDetailController($http, $routeParams, $scope) {
+    controller: ['$http', '$routeParams', '$scope', "$timeout",
+        function GameDetailController($http, $routeParams, $scope, $timeout) {
             var self = this;
 
 			$scope.$on('$locationChangeStart', function(event){
@@ -19,7 +19,6 @@ component('gameDetail', {
             $http.get('games/' + $routeParams.gameId).then(function(response) {
                 self.game = response.data;
                 setWinner(self.game);
-                //setNameofTeam(self.game);
 				setGameRectangle(self.game);
 				
 				//if isLive
@@ -27,7 +26,10 @@ component('gameDetail', {
 					playGame(self.game,false);
 				}
 				else{
-					aggregateGameStates(self.game);
+					//Needs to be done after page render
+					$timeout(function(){
+						aggregateGameStates(self.game);
+					},0);
 				}
             });
 
