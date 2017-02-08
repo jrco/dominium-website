@@ -24,53 +24,23 @@ function setWinner(game) {
     }
 }
 
-//This can be refactored
 function setNameofTeam(game) {
-    console.log(game.gameState[0].corporation.color);
-    console.log(game.gameState[0].insurgents.color);
-    /* BLUE */
-    if (game.gameState[0].corporation.color == "#7ba3eb") {
-        $( ".coorporation_name" ).append( "<span class='namecp'>Blue Team</span>" );
-        $( ".coorporation_img" ).append( "<img ng-src='img/Blue/blue_logo.png' alt='Dominium'>" );
-    }
-    if (game.gameState[0].insurgents.color == "#7ba3eb") {
-        $( ".insurgents_name" ).append( "<span class='namein'>Blue Team</span>" );
-        $( ".insurgents_img" ).append( "<img ng-src='img/Blue/blue_logo.png' alt='Dominium'>" );
-        /*Green*/
-    }
-    if (game.gameState[0].corporation.color == "#83ad7f") {
-        $( ".coorporation_name" ).append( "<span class='namecp'>Green Team</span>" );
-    }
-    if (game.gameState[0].insurgents.color == "#83ad7f") {
-        $( ".insurgents_name" ).append( "<span class='namein'>Green Team</span>" );
-        /* Orange*/
-    }
-    if (game.gameState[0].corporation.color == "#f2a925") {
-        $( ".coorporation_name" ).append( "<span class='namecp'>Orange Team</span>" );
-    }
-    if (game.gameState[0].insurgents.color == "#f2a925") {
-        $( ".insurgents_name" ).append( "<span class='namein'>Orange Team</span>" );
-        /* Purple*/
-    }
-    if (game.gameState[0].corporation.color == "#af80af") {
-        $( ".coorporation_name" ).append( "<span class='namecp'>Purple Team</span>" );
-    }
-    if (game.gameState[0].insurgents.color == "#af80af") {
-        $( ".insurgents_name" ).append( "<span class='namein'>Purple Team</span>" );
-        /* Red */
-    }
-    if (game.gameState[0].corporation.color == "#bb7070") {
-        $( ".coorporation_name" ).append( "<span class='namecp'>   Red Team</span>" );
-    }
-    if (game.gameState[0].insurgents.color == "#bb7070") {
-        $( ".insurgents_name" ).append( "<span class='namein'>Red Team</span>" );
-        /* Yellow */
-    } if (game.gameState[0].corporation.color == "#f7f55a") {
-        $( ".coorporation_name" ).append( "<span class='namecp'>Yellow Team</span>" );
-    }
-    if (game.gameState[0].insurgents.color == "#f7f55a") {
-        $( ".insurgents_name" ).append( "<span class='namein'>Yellow Team</span>" );
-    } 
+	var colorMap = {
+		"#7ba3eb": "Blue",
+		"#83ad7f": "Green",
+		"#f2a925": "Orange",
+		"#af80af": "Purple",
+		"#bb7070": "Red",
+		"#f7f55a": "Yellow"
+	};
+
+	$( ".coorporation_name" ).append( "<span class='namecp'>"+colorMap[game.gameState[0].corporation.color]+" Team</span>" );
+	$( ".insurgents_name" ).append( "<span class='namein'>"+colorMap[game.gameState[0].insurgents.color]+" Team</span>" );
+
+	/*
+	$( ".coorporation_img" ).append( "<img ng-src='img/Blue/blue_logo.png' alt='Dominium'>" );
+	$( ".insurgents_img" ).append( "<img ng-src='img/Blue/blue_logo.png' alt='Dominium'>" );
+	*/
 }
 
 function removeWinner(){

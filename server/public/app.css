@@ -1027,4 +1027,10 @@ a:hover {
 	border-radius: 0px 4px 4px 0px;
 }
 
+a, a:hover, a:focus {
+	color: rgba(127, 140, 141,1.0) !important;
+	text-decoration: none !important;
+}
+
+
 
