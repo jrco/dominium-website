@@ -499,10 +499,10 @@ function updateState(gamestate) {
 //Updates the energy of the player in the UI
 function updatePlayerState(player) {
 
-    $("#"+dominiumGame.idMap.players[player.username] + "-bar").css("opacity", player.energy/50);
-    $("#"+dominiumGame.idMap.players[player.username] + "-bar").attr("aria-valuenow", player.energy);
-    $("#"+dominiumGame.idMap.players[player.username] + "-bar").css("width", player.energy + "%");
-    $("#"+dominiumGame.idMap.players[player.username] + "-energy").html(player.energy);
+    $("#"+dominiumGame.idMap.players[player.username]+"-bar").css("opacity", player.energy/50);
+    $("#"+dominiumGame.idMap.players[player.username]+"-bar").attr("aria-valuenow", player.energy);
+    $("#"+dominiumGame.idMap.players[player.username]+"-bar").css("width", player.energy + "%");
+    $("#"+dominiumGame.idMap.players[player.username]+"-energy").html(player.energy);
 }
 
 //Updates the capture points
@@ -542,16 +542,16 @@ function updateCapturePointBar(point) {
     }
 
 	
-	$("#"+dominiumGame.idMap.points[point.name] + "-bar-corporation").attr("aria-valuenow", corpEnergy);
-	$("#"+dominiumGame.idMap.points[point.name] + "-bar-corporation").css("width", corpEnergy + "%");
-	$("#"+dominiumGame.idMap.points[point.name] + "-energy-corporation").html(corpEnergy);
+	$("#"+dominiumGame.idMap.points[point.name]+"-bar-corporation").attr("aria-valuenow", corpEnergy);
+	$("#"+dominiumGame.idMap.points[point.name]+"-bar-corporation").css("width", corpEnergy + "%");
+	$("#"+dominiumGame.idMap.points[point.name]+"-energy-corporation").html(corpEnergy);
 
-	$("#"+dominiumGame.idMap.points[point.name] + "-bar-insurgents").attr("aria-valuenow", insEnergy);
-	$("#"+dominiumGame.idMap.points[point.name] + "-bar-insurgents").css("width", insEnergy + "%");
-	$("#"+dominiumGame.idMap.points[point.name] + "-energy-insurgents").html(insEnergy);
+	$("#"+dominiumGame.idMap.points[point.name]+"-bar-insurgents").attr("aria-valuenow", insEnergy);
+	$("#"+dominiumGame.idMap.points[point.name]+"-bar-insurgents").css("width", insEnergy + "%");
+	$("#"+dominiumGame.idMap.points[point.name]+"-energy-insurgents").html(insEnergy);
 
 	//Update label stored in MarkerLabel - The label was reset on zoom
-	var elem = $("#"+point.name + "-label").prop('outerHTML');
+	var elem = $("#"+dominiumGame.idMap.points[point.name]+"-label").prop('outerHTML');
 	if(typeof elem !== 'undefined'){
 		capList[point.name].marker.labelContent = elem;
 	}

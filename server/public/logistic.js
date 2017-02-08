@@ -6,9 +6,7 @@ function setWinner(game) {
 
     if (ptA > ptB) {
         //console.log("WINNER B");
-        /*$('.winner_cp').addClass('won');*/
         $('.coorporation_fr').addClass('victory');
-        //$( ".coorporation_fr" ).remove();
         $( ".coorporation_fr" ).html( "Victory" );
         $('.insurgents_fr').addClass('defeat');
         $( ".insurgents_fr" ).html( "Defeat" );
@@ -26,7 +24,7 @@ function setWinner(game) {
     }
 }
 
-
+//This can be refactored
 function setNameofTeam(game) {
     console.log(game.gameState[0].corporation.color);
     console.log(game.gameState[0].insurgents.color);
@@ -85,83 +83,7 @@ function removeWinner(){
 
 	$( ".coorporation_fr" ).html("&nbsp;");
     $( ".insurgents_fr" ).html("&nbsp;");
-/*
-    $( ".coorporation_fr" ).empty();
-    $( ".insurgents_fr" ).empty();
-*/
 }
 
-function getAllPlayers(gamestate) {
-    return gamestate.corporation.players.concat(gamestate.insurgents.players);
-}
 
-$('a').click(function(){
-    $('html, body').animate({
-        scrollTop: $( $(this).attr('href') ).offset().top
-    }, 500);
-    return false;
-});
-
-
-/*$( function() {
-    $( "#tabs" ).tabs();
-} );*/
-
-var games_replay;
-
-function getGamesReplay(){
-    $.getJSON('http://localhost/games-short').done(function(data) {
-       console.log(data);
-    });
-}
-//games_replay = getGamesReplay();
-//console.log(games_replay);
-
-
-//console.log(games_replay);
-
-
-/*function setRules(game) {
-    var td;
-    //var list = getAllPlayers(game.gameState[0]);
-    //console.log(list);
-    console.log("ENTREI");
-    getAllPlayers(game.gameState[0]).forEach(function(player) {
-        td = document.getElementById(player.username);
-        console.log(td);
-        console.log(player.username);
-        console.log(player.role);
-        if (player.role == "Support") {
-            td.innerHTML += '<img width="50" width="50" src="../img/viking.png" class="img-responsive" alt="viking"/>';
-        }
-        if (player.role == "Attacker") {
-            td.innerHTML += '<img width="50" width="50" src="../img/espada.png" class="img-responsive" alt="atracker"/>';
-        }
-        if (player.role == "Defender") {
-            td.innerHTML += '<img width="50" width="50" src="../img/escudo.png" class="img-responsive" alt="defender"/>';
-        }
-
-    });
-}
-
-function Cenas($route, $routeParams, $location, $scope) {
-  this.$route = $route;
-  this.$location = $location;
-  this.$routeParams = $routeParams;
-  $scope.$on('$viewContentLoaded', function(){
-    setRules($scope.game);
-  });
-}*/
-
-/*function stopFollowing() {
-
-    $(".player_selection").each(function(i,obj){
-        obj.style.removeProperty("box-shadow");
-    });
-
-    if (typeof followEvent !== 'undefined') {
-        google.maps.event.removeListener(followEvent);
-        followEvent = undefined;
-    }
-}*/
 

@@ -79,27 +79,6 @@ body {
   top: 0;
 }
 
-/*.view-frame.ng-enter {
-  animation: 1s fade-in;
-  z-index: 100;
-}
-
-.view-frame.ng-leave {
-  animation: 1s fade-out;
-  z-index: 99;
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-@keyframes fade-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
-}
-*/
-
 /****************************************************************************************/
 /********************************* LAYOUT FROM PAGE *************************************/
 /*****************************************************************************************/
@@ -192,7 +171,6 @@ body {
 	display: table;
 	table-layout: fixed;
 	overflow-x: scroll;
-	/*background-image: url("img/bg.png");*/
 }
 
 #all_page_list > .options {
@@ -216,12 +194,6 @@ body {
 	display: table;
 	table-layout: fixed;
 	margin: 3px;
-/*
-	border-top: 2px solid rgba(127, 140, 141,1.0);
-	border-bottom: 2px solid rgba(127, 140, 141,1.0);
-	border-left: 2px solid rgba(127, 140, 141,1.0);
-	border-right: 2px solid rgba(127, 140, 141,1.0);
-*/
 	background-color : rgba(0, 0, 0,0.8);
 }
 
@@ -256,35 +228,6 @@ body {
   padding-top: 0;
 }
 
-/*#all_page_list > .game_list > .single_game > .location_date {
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-	width: 17%;
-	background-color: rgba(20, 20, 20,0.5);
-}
-
-#all_page_list > .game_list > .single_game > .location_date > .location {
-	width: 100%;
-	text-align: center;
-}
-
-#all_page_list > .game_list > .single_game > .location_date > .date {
-	text-align: center;
-}
-
-#all_page_list > .game_list > .single_game > .location_date > .location > span {
-	color: rgba(236, 240, 241,1.0);
-	font-size: 1.2em;
-	font-family: dom;
-
-}
-
-#all_page_list > .game_list > .single_game > .location_date > .date > span {
-	color: rgba(236, 240, 241,1.0);
-	font-size: 1.2em;
-	font-family: dom;
-}*/
 
 #all_page_list > .game_list > .single_game > a:link {
 	text-decoration: none;
@@ -307,8 +250,6 @@ body {
 	background-color: rgba(20, 20, 20,0.2);
 }
 
-
-
 #all_page_list > .game_list > .single_game > a > .info > .team{
 	display: table-cell;
 	vertical-align: middle;
@@ -330,16 +271,6 @@ body {
 	width: 50%;
 }
 
-/*#all_page_list > .game_list > .single_game > .info > .team.left {
-	border-right: 2px solid rgba(127, 140, 141,1.0);
-}
-
-#all_page_list > .game_list > .single_game > .info > .team.right {
-	border-left: 2px solid rgba(127, 140, 141,1.0);
-}*/
-
-
-
 #all_page_list > .game_list > .single_game > a > .info > .team > .name_img{
 	width: 100%;
 	vertical-align: middle;
@@ -350,7 +281,6 @@ body {
 }
 
 #all_page_list > .game_list > .single_game > a > .info > .team > .name_img > .img > img {
-	/*border: 2px solid rgba(52, 73, 94, 0.15);*/
 	height: 90px;
 	width: 90px;
 	margin: 10px;
@@ -377,7 +307,6 @@ body {
 #all_page_list > .game_list > .single_game > a > .info > .team > .all_roles {
 	width: 100%;
 	display: table;
-	/*border-top : 1px solid rgba(127, 140, 141,0.8);*/
 }
 
 #all_page_list > .game_list > .single_game > a > .info > .team > .all_roles > .role {
@@ -391,7 +320,6 @@ body {
 	text-align: center;
 	padding-left: 1px;
 	padding-right: 1px;
-	/*border: 2px solid rgba(52, 73, 94, 0.15);*/
 }
 
 #all_page_list > .game_list > .single_game > a > .info > .team > .all_roles > .role > .image_div.left {
@@ -424,17 +352,9 @@ body {
 	text-align: center;
 }
 
-/*#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points
-#all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points {
-	display: table-cell;
-	height: 100%;
-}*/
-
-
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points > span,
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points > span{
 	width: 30%;
-	/*display: table-cell;*/
 	font-size: 2.7em;
 	font-family: dom;
 	color: rgba(236, 240, 241,1.0);
@@ -462,14 +382,6 @@ body {
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .in_points > .res.tie {
 	color : rgba(243, 156, 18,0.5);
 }
-
-/*#all_page_list > .game_list > .single_game > .info > .info_game > .result > .cp_points {
-	padding-left: 50px;
-}
-
-#all_page_list > .game_list > .single_game > .info > .info_game > .result > .in_points {
-	padding-right: 50px;
-}*/
 
 
 #all_page_list > .game_list > .single_game > a > .info > .info_game > .result > .cp_points,
@@ -516,90 +428,6 @@ a:hover {
 	border-right:none;
 }
 
-/************* FINAL RESULT **********************/
-
-
-/*div {
-    font-family: myFirstFont;
-}*/
-
-/*#match_result {
-	width: 100%;
-	display: table;
-	table-layout: fixed;
-	height: 120px;
-	/*border-style: 1px solid rgba(52, 73, 94, 0.15);
-	background-color: rgba(20, 20, 20,0.5);
-}
-
-#margin_left,
-#margin_right {
-	display: table-cell;
-	width: 20%;
-}
-
-#match_result > .final_result {
-	display: table-cell;
-	width: 60%;
-}
-
-#match_result > .coorporation_name,
-#match_result > .coorporation_img,
-#match_result > .coorporation_result,
-#match_result > .logo,
-#match_result > .insurgents_result,
-#match_result > .insurgents_img, 
-#match_result > .insurgents_name {
-	display: table-cell;
-	vertical-align: middle;
-	height: 100%;
-	text-align: center;
-}
-
-
-
-#match_result > .winner_cp,
-#match_result > span.corporation_points,
-#match_result > .logo,
-#match_result > span.insurgents_points,
-#match_result > .winner_in {
-	width: 20%;
-}
-
-#match_result > span.corporation,
-#match_result > span.insurgents {
-	width: 25%;
-}
-
-#match_result > .winner_cp > img,
-#match_result > .winner_in > img {
-	opacity: 0;
-	-webkit-transition: opacity 0.5s ease-in-out;
-    transition: opacity 1.5s ease-in-out;
-}
-
-#match_result > .logo > img,
-#match_result > .winner_cp > img,
-#match_result > .winner_in > img {
-	height: 60px;
-}
-
-#match_result > .winner_cp.won > img,
-#match_result > .winner_in.won > img {
-	opacity: 1;
-}
-
-
-#match_result > span.corporation,
-#match_result > span.corporation_points,
-#match_result > span.insurgents_points,
-#match_result > span.insurgents {
-	text-transform: uppercase;
-	font-size: 1.5em;
-	color: rgba(236, 240, 241,1.0);
-}*/
-
-
 /********************** TEAMS AND MAP **************************/
 
 #section_container {
@@ -609,7 +437,6 @@ a:hover {
 }
 
 #section_container > #map {
-	/*display: table-row;*/
 	vertical-align: top;
 	overflow-x: hidden;
 	position: relative;
@@ -642,7 +469,6 @@ a:hover {
 	display: table;
 	height: 60px;
 	margin-bottom: 5px;
-	/*border: 1px solid rgba(52, 73, 94, 0.15);*/
 	background-color: rgba(20, 20, 20,0.8);
 }
 
@@ -675,16 +501,11 @@ a:hover {
 
 #section_container > #map >  .team_list.left > .player_row > .image_div,
 #section_container > #map >  .team_list.right > .player_row > .image_div {
-	/*border-left: 2px solid #16a085;*/
 	text-align: center;
-	/*border-right: 1px solid #f2a925;*/
-	
 }
 
 
 #section_container > #map >  .team_list > .player_row > .energy {
-	/*width: 90%; isto muda consoante a cena*/
-	/*background-color: rgba(20, 20, 20,0.8);*/
 	vertical-align: middle;
 }
 
@@ -717,10 +538,8 @@ a:hover {
 }
 
 #section_container > #map > .team_list > .player_row > .energy > .progress > .progress-bar {
-	/*border: 1px rgba(242,169,37,1.0);*/
 	font-size: 120%;
 	font-weight: bold;
-	/*color: black;*/
 }
 
 #section_container > #map > .team_list > .player_row > .energy > .progress > .progress-bar.right{
@@ -736,234 +555,137 @@ a:hover {
 
 }
 
-/*#section_container >  .team_list > .player_row > .energy > .info > span.infolabel {
-	font-size: 1.0em;
-	opacity: 0.6;
-	color: rgba(236, 240, 241,1.0);
-}
-
-#section_container >  .team_list > .player_row > .energy > .info > span.name {
-	font-size: 0.9em;
-	color: #444;
-	color: rgba(236, 240, 241,1.0);
-}
-
-#section_container >  .team_list.left > .player_row > .energy > .info > span.infolabel,
-#section_container >  .team_list.right > .player_row > .energy > .info > span.infolabel {
-	text-align: center;
-	font-size: 1.2em;
-	opacity: 0.6;
-	color: rgba(236, 240, 241,1.0);
-
-}*/
-
 
 #dominium-map {
 	width: 100%;
 	height: 80vh;
 }
 
-/************* CAPTURE POINTS ******************/
-/*#capture_points {
+#section_container > #top {
 	width: 100%;
-	display: block;
+	display: table;
+	table-layout: fixed;
+	height: 100px;
+	position: absolute;
 }
 
-#capture_points > .capture_point {
-	display: inline-block;
-	vertical-align: center;
-	margin-left: 1.25%;
-	width: calc(95% / 3 - 4px);
-	border: 2px solid rgba(28,28,28,0.3);
-	border-radius: 4px;
-	overflow:hidden;
-} 
-
-#capture_points > .capture_point:last-of-type {
-	margin-right: 1.25%;
+#section_container > #top > .margin_left,
+#section_container > #top > .margin_right {
+	width: 30%;
+	display: table-cell;
+	z-index: -1;
 }
 
-#capture_points > .capture_point > .cp_info,
-#capture_points > .capture_point > .teamOwner {
-	width: 50%;
-	display: inline-block;
+#section_container > #top > .match_result {
+	display: table;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background-color: rgba(20, 20, 20,0.8);
+	position: relative;
+	z-index: 100;
+	width: 600px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+#section_container > #top > .match_result > .coorporation_name,
+#section_container > #top > .match_result > .insurgents_name {
+	display: table;
 	vertical-align: middle;
 	text-align: center;
-	overflow-x: hidden;
 }
 
-#capture_points > .capture_point > .cp_info > div,
-#capture_points > .capture_point > .teamOwner > div {
-	display: block;
-	width: 100%;
-}
-
-#capture_points > .capture_point > .cp_info > .cp_img,
-#capture_points > .capture_point > .teamOwner > .team_icon{
+#section_container > #top > .match_result > .coorporation_name > .coorporation_fr,
+#section_container > #top > .match_result > .coorporation_name > .namecp,
+#section_container > #top > .match_result > .coorporation_name > .insurgents_fr,
+#section_container > #top > .match_result > .coorporation_name > .name {
+	display: table-row;
+	vertical-align: middle;
 	text-align: center;
-	height: 100px;		
 }
 
-#capture_points > .capture_point > .cp_info > .checkpoint,
-#capture_points > .capture_point > .teamOwner > .progress-bar-container {
-	height: 40px;
+#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.victory,
+#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.victory{
+	color : rgba(39, 174, 96,0.8);
+}
+
+#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.defeat,
+#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.defeat{
+	
+	color : rgba(192, 57, 43,0.8);
+}
+
+#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.tie,
+#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.tie{
+	color : rgba(243, 156, 18,0.8);
+}
+
+#section_container > #top > .match_result > .coorporation_img,
+#section_container > #top > .match_result > .coorporation_result,
+#section_container > #top > .match_result > .logo,
+#section_container > #top > .match_result > .insurgents_result,
+#section_container > #top > .match_result > .insurgents_img{
+	display: table-cell;
+	vertical-align: middle;
 	text-align: center;
-	line-height: 40px;
-}
-
-#capture_points > .capture_point > .teamOwner > .progress-bar-container {
-	background-color: rgba(189, 195, 199, 0.5);
-	position: relative;
-}
-
-#capture_points > .capture_point > .teamOwner > .progress-bar-container > .progress-bar {
 	height: 100%;
 }
 
-#capture_points > .capture_point > .teamOwner > .progress-bar-container > span.value_now {
-	text-align: right;
-	position: absolute;
-	top:0;
-	right: 2%;
-	bottom: 0;
-	z-index: 100;
-	color: rgba(25,25,25,0.8);
-	font-size: 0.8em;
+#section_container > #top > .match_result > .coorporation_name > .coorporation_fr,
+#section_container > #top > .match_result > .insurgents_name > .insurgents_fr {
+	height: 10%;
+	vertical-align: middle;
+	font-family: dom;
+	color: rgba(236, 240, 241,1.0);
+	font-size: 1.0em;
+	-webkit-transition: opacity 2s ease-in;
+   -moz-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+     -o-transition: opacity 2s ease-in;
+        transition: opacity 2s ease-in;
+
 }
 
-#capture_points > .capture_point > .cp_info > .cp_img > img,
-#capture_points > .capture_point > .teamOwner > .info > .team_icon > img {
-	display: block;
-	height: 80%;
-	margin: 10% auto;
-}*/
+#section_container > #top > .match_result > .coorporation_name > .namecp,
+#section_container > #top > .match_result > .insurgents_name > .namein {
+	height: 90%;
+	vertical-align: middle;
+	font-family: dom;
+	color: rgba(236, 240, 241,1.0);
+	font-size: 1.5em;
+}
 
-	#section_container > #top {
-		width: 100%;
-		display: table;
-		table-layout: fixed;
-		height: 100px;
-		/*border-style: 1px solid rgba(52, 73, 94, 0.15);*/
-		position: absolute;
-	}
+#section_container > #top > .match_result > .logo {
+	width: 10%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
-	#section_container > #top > .margin_left,
-	#section_container > #top > .margin_right {
-		width: 30%;
-		display: table-cell;
-		z-index: -1;
-	}
+#section_container > #top > .match_result > .coorporation_img,
+#section_container > #top > .match_result > .insurgents_img {
+	width: 15%;
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
-	#section_container > #top > .match_result {
-		display: table;
-		padding-top: 10px;
-		padding-bottom: 10px;
-		background-color: rgba(20, 20, 20,0.8);
-		position: relative;
-		z-index: 100;
-		width: 600px;
-		left: 50%;
-		transform: translateX(-50%);
-	}
+#section_container > #top > .match_result > .coorporation_result,
+#section_container > #top > .match_result > .insurgents_result {
+	width: 10%;
+	font-family: dom;
+	color: rgba(236, 240, 241,0.5);
+	font-size: 1.5em;
+}
 
-	#section_container > #top > .match_result > .coorporation_name,
-	#section_container > #top > .match_result > .insurgents_name {
-		display: table;
-		vertical-align: middle;
-		text-align: center;
-	}
+#section_container > #top > .match_result > .coorporation_img > img,
+#section_container > #top > .match_result > .insurgents_img > img {
+	width: 80px;
+	height: 80px;
+}
 
-	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr,
-	#section_container > #top > .match_result > .coorporation_name > .namecp,
-	#section_container > #top > .match_result > .coorporation_name > .insurgents_fr,
-	#section_container > #top > .match_result > .coorporation_name > .name {
-		display: table-row;
-		vertical-align: middle;
-		text-align: center;
-	}
-
-	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.victory,
-	#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.victory{
-		color : rgba(39, 174, 96,0.8);
-	}
-
-	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.defeat,
-	#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.defeat{
-		
-		color : rgba(192, 57, 43,0.8);
-	}
-
-	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr.tie,
-	#section_container > #top > .match_result > .insurgents_name > .insurgents_fr.tie{
-		color : rgba(243, 156, 18,0.8);
-	}
-
-	#section_container > #top > .match_result > .coorporation_img,
-	#section_container > #top > .match_result > .coorporation_result,
-	#section_container > #top > .match_result > .logo,
-	#section_container > #top > .match_result > .insurgents_result,
-	#section_container > #top > .match_result > .insurgents_img{
-		display: table-cell;
-		vertical-align: middle;
-		text-align: center;
-		height: 100%;
-	}
-
-	#section_container > #top > .match_result > .coorporation_name > .coorporation_fr,
-	#section_container > #top > .match_result > .insurgents_name > .insurgents_fr {
-		height: 10%;
-		vertical-align: middle;
-		font-family: dom;
-		color: rgba(236, 240, 241,1.0);
-		font-size: 1.0em;
-		-webkit-transition: opacity 2s ease-in;
-       -moz-transition: opacity 2s ease-in;
-        -ms-transition: opacity 2s ease-in;
-         -o-transition: opacity 2s ease-in;
-            transition: opacity 2s ease-in;
-
-	}
-
-	#section_container > #top > .match_result > .coorporation_name > .namecp,
-	#section_container > #top > .match_result > .insurgents_name > .namein {
-		height: 90%;
-		vertical-align: middle;
-		font-family: dom;
-		color: rgba(236, 240, 241,1.0);
-		font-size: 1.5em;
-	}
-
-	#section_container > #top > .match_result > .logo {
-		width: 10%;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
-	#section_container > #top > .match_result > .coorporation_img,
-	#section_container > #top > .match_result > .insurgents_img {
-		width: 15%;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
-	#section_container > #top > .match_result > .coorporation_result,
-	#section_container > #top > .match_result > .insurgents_result {
-		width: 10%;
-		font-family: dom;
-		color: rgba(236, 240, 241,0.5);
-		font-size: 1.5em;
-	}
-
-	#section_container > #top > .match_result > .coorporation_img > img,
-	#section_container > #top > .match_result > .insurgents_img > img {
-		width: 80px;
-		height: 80px;
-	}
-
-	#section_container > #top > .match_result > .logo > img {
-		width: 20px;
-		height: 20px;
-	}
+#section_container > #top > .match_result > .logo > img {
+	width: 20px;
+	height: 20px;
+}
 
 /***********************************/
 /*		ARROW DOWN AND UP          */
@@ -1253,7 +975,7 @@ a:hover {
 }
 
 
-
+/*Gamestate control*/
 .gamestate-controls {
 	width: 100%;
 	height: 30px;
@@ -1304,130 +1026,5 @@ a:hover {
 .gamestate-controls > .buttons_right > button:last-child{
 	border-radius: 0px 4px 4px 0px;
 }
-
-
-/*
-.gamestate-controls > .buttons_right{
-	display: table;
-	width: 100%;
-	height: 100%;
-}
-
-.gamestate-controls > .buttons_right > .button_group{
-	display: table;
-	width: 100%;
-}
-
-.gamestate-controls > .buttons_right > .buttons_plusminus >  .plus_div,
-.gamestate-controls > .buttons_right > .buttons_plusminus > .minus_div,
-.gamestate-controls > .buttons_right > .buttons_plusminus > .values_div{
-	display: table-cell;
-	table-layout: fixed;
-}
-
-.gamestate-controls > .buttons_right > .buttons_plusminus > .plus_div,
-.gamestate-controls > .buttons_right > .buttons_plusminus > .minus_div,{
-	text-align: right;
-}
-
-.gamestate-controls > .buttons_right > .buttons_plusminus > .values_div{
-	width: 200px;
-	text-align: center;
-}
-/*.gamestate-controls > .buttons_right > .plus_div,
-.gamestate-controls > .buttons_right > .minus_div {
-}
-
-.gamestate-controls > .buttons_right > .values {
-}*/
-
-/*
-
-.gamestate-controls > .buttons_right > .buttons_plusminus >  .values > #speed,
-.gamestate-controls > .buttons_right > .buttons_plusminus > .values > .x{
-	color: rgba(189, 195, 199,1.0);
-	font-size: 1.2em;
-}
-*/
-
-
-
-
-
-/*
-
-.gamestate-controls div:first-child{
-	float: left;
-}
-.gamestate-controls div:last-child{
-	float: right;
-}
-
-.gamestate-controls div *{
-	height: 100%;
-	line-height: 30px;
-	vertical-align: middle;
-	text-align: center;
-	font-size: 120%;
-}
-
-.gamestate-controls div div{
-	display:inline-block;
-	width:70px;
-	font-size:80%;
-	box-shadow: inset 0 15px 0 -10px buttonface, inset 0 -15px 0 -10px buttonface; 
-}
-
-.gamestate-controls div button{
-	min-width: 30px;
-	border: none;
-}
-
-.gamestate-controls > .buttons_right > span {
-	background-color: #000000; 
-}
-
-*/
-/*#full_stats > .stats > .more_stats > .travel_distance > .title_cv > span {
-	display: table-cell;
-	width: 50%;
-	vertical-align: middle;
-	text-align: center;
-}*/
-
-/*.style-button {
-    position: relative;
-    border: none;
-    font-size: 5px;
-    color: #FFFFFF;
-    padding: 5px;
-    width: 80px;
-    text-align: center;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    /*transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.style-button:after {
-    content: "";
-    background: #f1f1f1;
-    display: block;
-    position: absolute;
-    padding-top: 300%;
-    padding-left: 350%;
-    margin-left: -20px !important;
-    margin-top: -120%;
-    opacity: 0;
-    transition: all 0.8s
-}
-
-.style-button:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-}*/
 
 
