@@ -11,11 +11,19 @@ var path = require("path");
 var http = require('http');
 var oneValue = 0;
 
+//Checks if request comes from localhost
+function isLocalhostConnection(req){
+	return (req.connection.remoteAddress === '::ffff:127.0.0.1' || req.connection.remoteAddress === '127.0.0.1');
+	//return true;
+}
+var permissionErrorMessage = "<h1 style='color:red'>You should not be here!</h1>";
+
 // expose the routes to our app
 module.exports = function(app){
 	
 	// api ==============================================
 	app.get('/index', function(req, res){
+
 		res.sendFile(
 			path.join(__dirname, '../public', 'main-page/index.html')
 		);
@@ -30,7 +38,7 @@ module.exports = function(app){
 		    
 		    counter.save(function(err) {
 	        if (err)
-	            return res.send(err);;
+	            return res.send(err);
 	    	});
 	    	oneValue = 1;
 
@@ -48,10 +56,11 @@ module.exports = function(app){
 
 
 	// api ==============================================
+/*
 	app.get('/api', function(req, res){
 		res.json({message: 'Welcome to Dominium API' });
 	});
-
+*/
 
 	// get all games
 	app.get('/games', function(req, res){
@@ -66,7 +75,7 @@ module.exports = function(app){
 
 	// get all games with only the last gamestate
 	app.get('/games-short', function(req, res){
-	    Games.find({$where:'this.gameState.length >= 1'/*isGameOver: true*/},{gameState:{$slice:-1}},function(err, games) {
+	    Games.find({$where:'this.gameState.length >= 1'},{gameState:{$slice:-1}},function(err, games) {
 	        if (err)
 	            return res.send(err);
 	        res.json(games);
@@ -84,8 +93,12 @@ module.exports = function(app){
 
 	// create a game to send back all games after creation
 	app.post('/games',function(req, res) {
+		if(!isLocalhostConnection(req)){
+			console.log("Connection rejected from "+req.connection.remoteAddress);
+			return res.status(403).send(permissionErrorMessage);
+		}
 
-	    var game = new Games(); // create a new instance of the Rss model
+	    var game = new Games();
 	    game._id = new mongoose.Types.ObjectId(req.body._id);
 	    game.name_of_room = req.body.name_of_room;
 	    game.location = req.body.location;
@@ -93,7 +106,6 @@ module.exports = function(app){
 	    game.gameState = req.body.gameState;
 		game.isGameOver = req.body.isGameOver;
 
-	     // save the rss and check for errors
 	    game.save(function(err) {
 	        if (err)
 	            return res.send(err);
@@ -133,6 +145,11 @@ module.exports = function(app){
 
 	// create a gamestate and to game to send back all gamestates after creation
 	app.post('/games/:game_id/gamestate',function(req, res){
+		if(!isLocalhostConnection(req)){
+			console.log("Connection rejected from "+req.connection.remoteAddress);
+			return res.status(403).send(permissionErrorMessage);
+		}
+
 	    Games.findById(req.params.game_id, function(err, game) {
 	        if (err)
 	            return res.send(err);
@@ -168,6 +185,11 @@ module.exports = function(app){
 
 	// get all games
 	app.get('/subscribers', function(req, res){
+		if(!isLocalhostConnection(req)){
+			console.log("Connection rejected from "+req.connection.remoteAddress);
+			return res.status(403).send(permissionErrorMessage);
+		}
+
 	    Subscribers.find(function(err, subs) {
 	        if (err)
 	            return res.send(err);
@@ -179,7 +201,7 @@ module.exports = function(app){
 
 	app.post('/subscribers',function(req, res) {
 
-	    var sub = new Subscribers(); // create a new instance of the Rss model
+	    var sub = new Subscribers();
 	    sub._id = new mongoose.Types.ObjectId(req.body._id);
 	    sub.name = req.body.name;
 	    sub.email = req.body.email;
@@ -198,6 +220,11 @@ module.exports = function(app){
 	});
 
 	app.get('/counters', function(req,res) {
+		if(!isLocalhostConnection(req)){
+			console.log("Connection rejected from "+req.connection.remoteAddress);
+			return res.status(403).send(permissionErrorMessage);
+		}
+
 		 Counters.find(function(err, counters) {
 	        if (err)
 	            return res.send(err);
