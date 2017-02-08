@@ -676,7 +676,7 @@ function stopFollowing() {
 
 //Follow a player
 function followPlayer(player,team) {
-    var selectedPlayer = document.getElementById(player + "_selection");
+    var selectedPlayer = document.getElementById(dominiumGame.idMap.players[player] + "_selection");
 
     if (selectedPlayer.style["box-shadow"] === null || selectedPlayer.style["box-shadow"] === "") {
         stopFollowing();
