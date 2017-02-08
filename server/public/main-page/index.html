@@ -182,9 +182,6 @@
 <script>
 function subscribe(){
     $.ajax({
-
-        /*url: 'http://localhost:8082/subscribers',*/
-        /*url: '/subscribers',*/
         url: '/subscribers',
         type: 'post',
         data: $('#subscribeForm').serialize(),

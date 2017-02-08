@@ -7,34 +7,10 @@ angular.
     templateUrl: 'game-list/game-list.template.html',
     controller: ['$http',function gameListController($http) {
       var self = this;
-      //self.orderProp = 'age';
 
       $http.get('/games-short').then(function(response) {
         self.games = response.data;
       });
-
-      self.hexToRGB = function(hex,opacity){
-		var r = parseInt(hex.substring(1,3), 16);
-		var g = parseInt(hex.substring(3,5), 16);
-		var b = parseInt(hex.substring(5,7), 16);
-		return 'rgba('+r+','+g+','+b+','+opacity+')';
-      };
-
-		self.getColor= function(game,opacity){
-			var pointsA = game.gameState[0].corporation.points;
-			var colorA = game.gameState[0].corporation.color;
-			var pointsB = game.gameState[0].insurgents.points;
-			var colorB = game.gameState[0].insurgents.color;
-	
-			if(pointsA > pointsB){
-				return self.hexToRGB(colorA,opacity);
-			} else if(pointsA < pointsB){
-				return self.hexToRGB(colorB,opacity);
-			}
-			else{
-				return 'rgba(20, 20, 20,0.2)';
-			}
-		};
 
     self.getCorpResult= function(game){
       var pointsA = game.gameState[0].corporation.points;
@@ -120,4 +96,4 @@ angular.
     $scope.currentPage = 1;
   }, true);
     */
-  });
+});

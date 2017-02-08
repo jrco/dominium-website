@@ -57,7 +57,6 @@ component('gameDetail', {
 				followPlayer(player,team);
 			};
 			
-            //this.gameId = $routeParams.gameId;
         }
     ]
 });

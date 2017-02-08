@@ -79,7 +79,7 @@ function aggregateGameStates(game){
 }
 
 function createPointControlCharts(statistics){
-	//document.getElementById("canvas_cv").innerHTML += "<div id='pointControl'></div>";
+
 	Object.keys(statistics.capturePoints).forEach(function(pointName){
 		var totalCorporation = 0;
 		var totalInsurgents = 0;
@@ -91,10 +91,7 @@ function createPointControlCharts(statistics){
 
 
 		var canvasId = pointName+"-canvas";
-		//document.getElementById("canvas_cv").innerHTML += "<div><can id='"+canvasId+"'></canvas></div>";
-		//document.getElementById("canvas_cv").innerHTML += "<div class="box"><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></div>";
 		document.getElementById("canvas_cv").innerHTML += "<div class='circular_canvas'><canvas id='"+canvasId+"' class='canvas_style'></canvas></div>";
-		//document.getElementById("pointControl").innerHTML += "<div><canvas id='"+canvasId+"' style='max-width:200px' height='200px'></canvas></div>";
 
 		var total = totalCorporation+totalInsurgents;
 		createChart(canvasId,'pie',
@@ -123,7 +120,6 @@ function createPointControlCharts(statistics){
 }
 
 function createDistanceCharts(statistics){
-	/*document.getElementById("canvas_td").innerHTML += "<div id='distance'></div>";*/
 
 	var namesCorp = [];
 	var distancesCorp = [];
@@ -144,9 +140,7 @@ function createDistanceCharts(statistics){
 	});
 
 	var canvasId = "distanceCanvas";
-	//document.getElementById("distance").innerHTML += "<div class='distance_canvas'><canvas id='"+canvasId+"'></canvas></div>";
 	document.getElementById("canvas_td").innerHTML += "<canvas id='"+canvasId+"'></canvas>";
-	//document.getElementById("canvas_td").innerHTML += "<canvas id='"+canvasId+" class='distance_canvas'></canvas>";
 
 	createChart(canvasId,'bar',
 		{
@@ -233,7 +227,6 @@ function createPointsCharts(statistics){
 			maintainAspectRatio: false,
 		}
 	);
-	
 }
 
 function createChart(id,chartType,chartData,chartOptions){

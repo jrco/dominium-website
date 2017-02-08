@@ -36,7 +36,7 @@ var markerVars = {
 
 //Initializes the google map
 function initMap() {
-    console.log("LOADING MAP");
+    console.log("Loading map");
     
 	var styledMapType = new google.maps.StyledMapType(
         [{
@@ -265,11 +265,10 @@ function initMap() {
             position: google.maps.ControlPosition.TOP_RIGHT
         },
         addressControlOptions: {
-        	position: google.maps.ControlPosition.BOTTOM_CENTER, // <- change position
+        	position: google.maps.ControlPosition.BOTTOM_CENTER,
         }
     });
-    //setWinner(dominiumGame);
-    //console.log(dominiumGame);
+
     map.mapTypes.set('dominium_map', styledMapType);
     map.setMapTypeId('dominium_map');
 
@@ -358,7 +357,6 @@ function getNextGameState(){
 
 //Processes the next gamestate acording to the currentGamestate var
 function processGameStates() {
-    removeWinner();
 	
     console.log("Executing " + (currentGameState +1));
 	if(currentGameState+1 > dominiumGame.gameState.length - 1){
@@ -496,9 +494,6 @@ function updateState(gamestate) {
 
     $(".coorporation_result span").text(gamestate.corporation.points);
     $(".insurgents_result span").text(gamestate.insurgents.points);
-
-    //$('span.coorporation_result').text(gamestate.corporation.points);
-    //$('span.insurgents_result').text(gamestate.insurgents.points);
 }
 
 //Updates the energy of the player in the UI
@@ -650,11 +645,9 @@ function changeSpeed(scale) {
     var newGameStateDuration = DEFAULT_GAMESTATE_DURATION / newSpeed;
 
 	if (typeof animationData.nextCallback !== 'undefined') {
-		console.log("Data before: ", animationData);
 		var now = animationData.pauseTime || (new Date()).getTime();
 		var current = (now - (animationData.startTime + animationData.timeOffset)) / currentGameStateDuration;
 		animationData.timeOffset = (now - animationData.startTime) - current * newGameStateDuration;
-		console.log("Data after: ",animationData);
 	}
 
     currentGameStateDuration = newGameStateDuration;
@@ -748,7 +741,8 @@ function resetAll(){
 
 //Start playing a game
 function playGame(newGame,fromStart) {
-	console.log(newGame);
+
+    removeWinner();
     if (typeof dominiumGame !== 'undefined') {
 		clearTimeout(requestEvent);
 		requestEvent = undefined;
