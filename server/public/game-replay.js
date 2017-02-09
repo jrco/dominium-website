@@ -3,14 +3,14 @@ var map;
 var playerList = {}; //username: marker
 var capList = {}; //name: {marker,circle}
 
-var followEvent;
-
 var DEFAULT_GAMESTATE_DURATION = 1000;
 var currentGameStateDuration = DEFAULT_GAMESTATE_DURATION;
 
 var dominiumGame;
 var currentGameState;
+
 var requestEvent = undefined;
+var followEvent = undefined;
 
 var colors = {
 	corporation: "#FFFFFF",
@@ -430,7 +430,7 @@ function createPlayerMarker(player, team) {
         labelAnchor: new google.maps.Point(0, markerVars.playerLabelOffset),
         labelClass: "map_label",
         optimized: false,
-		clickable: false,
+        clickable: false,
         map: map
     });
 }
@@ -451,7 +451,7 @@ function createCapturePointMarker(point) {
         labelAnchor: new google.maps.Point(0, markerVars.pointLabelOffset),
         labelClass: "map_label",
         zIndex: -1,
-		clickable: false,
+        clickable: false,
         map: map
     });
     capList[point.name].circle = new google.maps.Circle({
@@ -459,7 +459,9 @@ function createCapturePointMarker(point) {
         radius: point.radius,
         fillColor: '#FFFFFF',
         strokeColor: '#000000',
-        strokeWidth: 6
+        strokeWidth: 6,
+        clickable: false,
+        zIndex: -2
     });
     capList[point.name].circle.bindTo('center', capList[point.name].marker, 'position');
 }
@@ -541,7 +543,6 @@ function updateCapturePointBar(point) {
         insEnergy = point.energy
     }
 
-	
 	$("#"+dominiumGame.idMap.points[point.name]+"-bar-corporation").attr("aria-valuenow", corpEnergy);
 	$("#"+dominiumGame.idMap.points[point.name]+"-bar-corporation").css("width", corpEnergy + "%");
 	$("#"+dominiumGame.idMap.points[point.name]+"-energy-corporation").html(corpEnergy);
