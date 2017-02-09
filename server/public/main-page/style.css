@@ -283,10 +283,6 @@ body {
 	color: rgba(236,240,241,1.0);
 }
 
-<<<<<<< HEAD:server/public/main-page/Website-Dominium/style.css
-
-=======
->>>>>>> e02d8ea434408628e55d5d6491e3d02fae9fc259:server/public/main-page/style.css
 .input-subs {
 	display: table;
 	table-layout: fixed;
@@ -304,14 +300,11 @@ body {
 	border-bottom-left-radius : 25px;
 }
 
-<<<<<<< HEAD:server/public/main-page/Website-Dominium/style.css
 .input-subs > button {
 	border-top-right-radius : 25px;
 	border-bottom-right-radius : 25px;
 }
 
-=======
->>>>>>> e02d8ea434408628e55d5d6491e3d02fae9fc259:server/public/main-page/style.css
 /*Video*/
 .video-overlay {
 	position: absolute;
@@ -329,4 +322,3 @@ body {
 	width: 90%;
 	height: 80%;
 }
-/*-------*/
