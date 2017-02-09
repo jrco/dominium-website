@@ -31,23 +31,18 @@
 					$('#formSubmit').html("Subscribed");
 					$('#formSubmit').css("background-color","green");
 					$('#formSubmit').css("border-color","green");
-					setTimeout(function(){
-						$('#formSubmit').html("Subscribe");
-						$('#formSubmit').css("background-color","#39b3d7");
-						$('#formSubmit').css("border-color","#39b3d7");
-					},3000);
 				},
 				error: function(xhr,status,error){
-					console.log(xhr.responseText);
 					$('#formSubmit').html("Error");
 					$('#formSubmit').css("background-color","red");
-					$('#formSubmit').css("border-color","red");
-					setTimeout(function(){
-						$('#formSubmit').html("Subscribe");
-						$('#formSubmit').css("background-color","#39b3d7");
-						$('#formSubmit').css("border-color","#39b3d7");
-					},3000);
+					$('#formSubmit').css("border-color","red");				
 				}
+			}).done(function(){
+				setTimeout(function(){
+					$('#formSubmit').html("Subscribe");
+					$('#formSubmit').css("background-color","#39b3d7");
+					$('#formSubmit').css("border-color","#39b3d7");
+				},3000);
 			});
 		}
 		
