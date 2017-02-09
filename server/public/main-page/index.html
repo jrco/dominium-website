@@ -13,49 +13,51 @@
 </head>
 
 <body>
-	<script>
-		function showVideo(){
-			$('#video-overlay').css('z-index','100');
-			$('#video-overlay').html('<iframe id="video" class="video" frameborder="0" src="https://www.youtube.com/embed/x2RJN9a_jdM?autoplay=1&rel=0"></iframe>');
-			$('#video-overlay').animate({
-				opacity: 1
-			});
-		}
-		function subscribe(){
-			$.ajax({
-				url: '/subscribers',
-				type: 'post',
-				data: $('#subscribeForm').serialize(),
-				success: function(data){
-					$('#email').val("");
-					$('#formSubmit').html("Subscribed");
-					$('#formSubmit').css("background-color","green");
-					$('#formSubmit').css("border-color","green");
-				},
-				error: function(xhr,status,error){
-					$('#formSubmit').html("Error");
-					$('#formSubmit').css("background-color","red");
-					$('#formSubmit').css("border-color","red");				
-				}
-			}).done(function(){
-				setTimeout(function(){
-					$('#formSubmit').html("Subscribe");
-					$('#formSubmit').css("background-color","#39b3d7");
-					$('#formSubmit').css("border-color","#39b3d7");
-				},3000);
-			});
-		}
-		
-		$(function(){
-			$('#video-overlay').click(function(e){
-				$('#video-overlay').animate({opacity: 0}, 500, function(){
-					$('#video-overlay').html('');
-					$('#video-overlay').css('z-index','-100');
-				});
-			});
-		});
-	</script>
+    <script>
+    function showVideo() {
+        $('#video-overlay').css('z-index', '100');
+        $('#video-overlay').html('<iframe id="video" class="video" frameborder="0" src="https://www.youtube.com/embed/x2RJN9a_jdM?autoplay=1&rel=0"></iframe>');
+        $('#video-overlay').animate({
+            opacity: 1
+        });
+    }
 
+    function subscribe() {
+        $.ajax({
+            url: '/subscribers',
+            type: 'post',
+            data: $('#subscribeForm').serialize(),
+            success: function(data) {
+                $('#email').val("");
+                $('#formSubmit').html("Subscribed");
+                $('#formSubmit').css("background-color", "rgba(22, 160, 133,0.5)");
+                $('#formSubmit').css("border-color", "rgba(22, 160, 133,0.5)");
+            },
+            error: function(xhr, status, error) {
+                $('#formSubmit').html("Error");
+                $('#formSubmit').css("background-color", "rgba(192, 57, 43,0.5)");
+                $('#formSubmit').css("border-color", "rgba(192, 57, 43,0.5)");
+            }
+        }).done(function() {
+            setTimeout(function() {
+                $('#formSubmit').html("Subscribe");
+                $('#formSubmit').css("background-color", "rgba(20,20,20,0.5);");
+                $('#formSubmit').css("border-color", "rgba(20,20,20,0.5);");
+            }, 3000);
+        });
+    }
+
+    $(function() {
+        $('#video-overlay').click(function(e) {
+            $('#video-overlay').animate({
+                opacity: 0
+            }, 500, function() {
+                $('#video-overlay').html('');
+                $('#video-overlay').css('z-index', '-100');
+            });
+        });
+    });
+    </script>
     <div id="video-overlay" class="video-overlay"></div>
     <div class="topbar">
     </div>
@@ -74,6 +76,14 @@
                 <div class="teaser">
                     <a id="play-button" href="#" onclick="showVideo()"><img src="main-page/img/play-icon.svg" alt=""></a> <span>Watch Teaser</span>
                 </div>
+                <div class="subscribediv">
+                    <form id="subscribeForm" action="javascript:;" onsubmit="subscribe()">
+                        <div class="input-subs">
+                            <input class="form-control input-bm input-style" name="email" id="email" type="email" placeholder="Your email" required>
+                            <button id="formSubmit" class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="icons">
                     <div class="left-icons">
                         <div class="social-media">
@@ -88,10 +98,10 @@
                             <div class="right-sm"></div>
                         </div>
                     </div>
-                    <div class="center-icons"> 
+                    <div class="center-icons">
                     </div>
                     <div class="right-icons">
-                        <span>Coming Soon to the:</span>
+                        <span>Coming Soon</span>
                         <div class="stores">
                             <div class="gp_img">
                                 <img src="main-page/img/google_play.png" alt="google_play">
@@ -101,15 +111,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="subscribediv">
-
-                <form id="subscribeForm" action="javascript:;" onsubmit="subscribe()">
-                    <div class="input-subs">
-                        <input class="form-control input-bm" name="email" id="email" type="email" placeholder="Your Email" required>
-                        <button id="formSubmit" class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
-                    </div>
-                </form>
             </div>
         </div>
         <div class="phone">
@@ -122,7 +123,6 @@
             <button><a href="/#!/games">Watch Replays</a></button>
         </div>
     </div>
-
     <div class="footer"></div>
 </body>
 
