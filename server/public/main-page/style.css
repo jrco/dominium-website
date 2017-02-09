@@ -80,7 +80,7 @@ body {
 .middle_page > .infos, 
 .middle_page > .phone {
 	display: table-cell;
-	height: 80vh;
+	/*height: 80vh;*/
 	width: 50%;
 	text-align: center;
 	padding-left: 90px;
@@ -108,7 +108,6 @@ body {
 .middle_page > .infos > .info > .name,
 .middle_page > .infos > .info > .description,
 .middle_page > .infos > .info > .teaser,
-.middle_page > .infos > .info > .subscribeForm,
 .middle_page > .infos > .info > .icons,
 .middle_page > .infos > .social-media{
 	width: 100%;
@@ -232,7 +231,13 @@ body {
 
 .middle_page > .infos > .social-media > .left_sm,
 .middle_page > .infos > .social-media > .right_sm {
-	
+	width: 10%;
+}
+
+.middle_page > .infos > .social-media > .face_sm,
+.middle_page > .infos > .social-media > .email_sm,
+.middle_page > .infos > .social-media > .twitter_sm{
+	width: 10%;
 }
 
 .middle_page > .infos > .info > .subscribediv {
@@ -270,7 +275,7 @@ body {
 	width: 160px;
 	text-align: center;
 	background-color: transparent;/*#00bcd4;*/
-	margin-top: 540px;
+	margin-top: 536px;
 	position: absolute;
 	transform: translateX(-50%);
 	z-index: 3;
