@@ -203,7 +203,6 @@ module.exports = function(app){
 
 	    var sub = new Subscribers();
 	    sub._id = new mongoose.Types.ObjectId(req.body._id);
-	    sub.name = req.body.name;
 	    sub.email = req.body.email;
 
 	    //console.log(req);

@@ -21,6 +21,35 @@
 				opacity: 1
 			});
 		}
+		function subscribe(){
+			$.ajax({
+				url: '/subscribers',
+				type: 'post',
+				data: $('#subscribeForm').serialize(),
+				success: function(data){
+					$('#email').val("");
+					$('#formSubmit').html("Subscribed");
+					$('#formSubmit').css("background-color","green");
+					$('#formSubmit').css("border-color","green");
+					setTimeout(function(){
+						$('#formSubmit').html("Subscribe");
+						$('#formSubmit').css("background-color","#39b3d7");
+						$('#formSubmit').css("border-color","#39b3d7");
+					},3000);
+				},
+				error: function(xhr,status,error){
+					console.log(xhr.responseText);
+					$('#formSubmit').html("Error");
+					$('#formSubmit').css("background-color","red");
+					$('#formSubmit').css("border-color","red");
+					setTimeout(function(){
+						$('#formSubmit').html("Subscribe");
+						$('#formSubmit').css("background-color","#39b3d7");
+						$('#formSubmit').css("border-color","#39b3d7");
+					},3000);
+				}
+			});
+		}
 		
 		$(function(){
 			$('#video-overlay').click(function(e){
@@ -73,13 +102,13 @@
                 <div class="right-sm"></div> 
             </div>
             <div class="subscribediv">
-                    <form action="#">
-                        <div class="input-subs">
-                            <input class="form-control input-bm" name="email" id="email" type="email" placeholder="Your Email" required>
-                            <button class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
+                <form id="subscribeForm" action="javascript:;" onsubmit="subscribe()">
+                    <div class="input-subs">
+                        <input class="form-control input-bm" name="email" id="email" type="email" placeholder="Your Email" required>
+                        <button id="formSubmit" class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="phone">
 			<div class="image">
@@ -91,6 +120,7 @@
 			<button><a href="/#!/games">Watch Replays</a></button>
         </div>
     </div>
+
     <div class="footer"></div>
 </body>
 
