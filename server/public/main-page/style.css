@@ -50,7 +50,7 @@ html, body {
 
 body {
 	/*font-family: 'Open Sans', sans-serif;*/
-	background: url("img/bg.png") no-repeat center center fixed;
+	background: url("img/bg3.png") no-repeat center center fixed;
 	background-color : #FFFFFF;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -80,10 +80,18 @@ body {
 .middle_page > .infos, 
 .middle_page > .phone {
 	display: table-cell;
-	/*height: 80vh;*/
-	width: 50%;
 	text-align: center;
 	padding-left: 90px;
+}
+
+.middle_page > .infos{
+	height: 80vh;
+	width: 60vw;
+}
+
+.middle_page > .phone{
+	width: 40vw;
+	padding-right: 11%;
 }
 
 
@@ -101,6 +109,7 @@ body {
 	width: 100%;
 	background-color: rgba(20, 20, 20,0.7);
 	border-radius: 25px;
+	height: 55vh;
 }
 
 
@@ -108,8 +117,7 @@ body {
 .middle_page > .infos > .info > .name,
 .middle_page > .infos > .info > .description,
 .middle_page > .infos > .info > .teaser,
-.middle_page > .infos > .info > .icons,
-.middle_page > .infos > .social-media{
+.middle_page > .infos > .info > .icons{
 	width: 100%;
 	display: table-row;
 	text-align: center;
@@ -120,16 +128,28 @@ body {
 	height: 200px;
 }
 
+.middle_page > .infos > .info > .name {
+	height: 10vh;
+}
+
 .middle_page > .infos > .info > .name > span{
 	font-family: dom;
 	font-size: 3.5em;
 	color: rgba(236, 240, 241,1.0);
 }
 
+.middle_page > .infos > .info > .description {
+	height: 10vh;
+}
+
 .middle_page > .infos > .info > .description > span{
 	font-family: textdom;
 	font-size: 1.5em;
 	color: rgba(236, 240, 241,1.0);
+}
+
+.middle_page > .infos > .info > .teaser {
+	height: 10vh;
 }
 
 .middle_page > .infos > .info > .teaser > a > img {
@@ -146,7 +166,7 @@ body {
 	color: rgba(236, 240, 241,1.0);
 }
 
-.middle_page > .infos > .info > .subscribediv > .subscribeForm {
+.middle_page > .subscribediv > .subscribeForm {
 	display: table;
 	height: 60px;
 	vertical-align: middle;
@@ -176,12 +196,13 @@ body {
 }
 
 .middle_page > .infos > .info > .icons > .left-icons,
+.middle_page > .infos > .info > .icons > .center-icons,
 .middle_page > .infos > .info > .icons > .right-icons{
 	display: table-cell;
 	width: 30%
 }
 
-.middle_page > .infos > .info > .icons > .center-icons{ 
+.middle_page > .infos > .info > .icons > .right-icons{ 
 	width: 100%;
 	display: table;
 	font-family: textdom;
@@ -192,53 +213,99 @@ body {
 	height: 100%;
 }
 
-.middle_page > .infos > .info > .icons > .center-icons > span {
+.middle_page > .infos > .info > .icons > .right-icons > span {
 	display: table-cell;
 	text-align: center;	
 	vertical-align: middle;
 }
 
-.middle_page > .infos > .info > .icons > .center-icons > .stores {
+.middle_page > .infos > .info > .icons > .right-icons > .stores {
 	vertical-align: middle;
 	display: table;
 	height: 100%;
 }
 
-.middle_page > .infos > .info > .icons > .center-icons > .stores > .gp_img,
-.middle_page > .infos > .info > .icons > .center-icons > .stores > .ap_img{
+.middle_page > .infos > .info > .icons > .right-icons > .stores > .gp_img,
+.middle_page > .infos > .info > .icons > .right-icons > .stores > .ap_img{
 	display: table-cell;
 	vertical-align: middle;
-	padding: 5px;
+	padding: 7px;
 }
 
-.middle_page > .infos > .info > .icons > .center-icons > .stores > .gp_img > img,
-.middle_page > .infos > .info > .icons > .center-icons > .stores > .ap_img > img{ 
-	width: 20px;
-	height: 20px;
+.middle_page > .infos > .info > .icons > .right-icons > .stores > .gp_img > img,
+.middle_page > .infos > .info > .icons > .right-icons > .stores > .ap_img > img{ 
+	width: 25px;
+	height: 27px;
 }
 
-.middle_page > .infos > .social-media {
+.middle_page > .infos > .info >.icons > .left-icons > .social-media {
 	display: table;
+	width: 100%;
 }
 
-.middle_page > .infos > .social-media > .left_sm,
-.middle_page > .infos > .social-media > .face_sm,
-.middle_page > .infos > .social-media > .email_sm,
-.middle_page > .infos > .social-media > .twitter_sm,
-.middle_page > .infos > .social-media > .right_sm {
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .left-sm,
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .face-sm,
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .email-sm,
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .twitter-sm,
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .right-sm {
 	display: table-cell;
 }
 
-.middle_page > .infos > .social-media > .left_sm,
-.middle_page > .infos > .social-media > .right_sm {
-	width: 10%;
+.middle_page > .infos > .social-media > .left-sm,
+.middle_page > .infos > .social-media > .right-sm {
+	width: 15%;
 }
 
-.middle_page > .infos > .social-media > .face_sm,
-.middle_page > .infos > .social-media > .email_sm,
-.middle_page > .infos > .social-media > .twitter_sm{
-	width: 10%;
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .face-sm,
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .email-sm,
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .twitter-sm {
+	width: 33%;
 }
+
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .face-sm > a,
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .email-sm > a,
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .twitter-sm > a {
+	color: rgba(236, 240, 241,1.0) !important;
+	text-decoration: none !important;
+}
+
+.middle_page > .infos > .info >.icons > .left-icons > .social-media > .face-sm > a >  i,
+.middle_page > .infos > .info > .icons > .left-icons > .social-media > .email-sm > a > i,
+.middle_page > .infos > .info > .icons > .left-icons > .social-media > .twitter-sm > a > i{
+	font-size: 2.0em;
+	/*border: 3px solid rgba(236,240,241,1.0);*/
+	/*border-radius: 10px;
+	margin: 40%;
+    padding: 5px;*/
+}
+
+/*.middle_page > .infos > .social-media > .email-sm > a > .img-sm {
+	border: 3px solid rgba(236,240,241,1.0);
+	height: 20px;
+	width: 20px;
+}*/
+
+.middle_page > .infos > .icons > .left-icons > .social-media > .face-sm > a > i{
+	padding-left: 15px;
+    padding-right: 17px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.middle_page > .infos > .social-media > .email-sm > a > i{
+	padding-left: 15px;
+    padding-right: 17px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.middle_page > .infos > .social-media > .twitter-sm > a > i{
+	padding-left: 15px;
+    padding-right: 17px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 
 .middle_page > .infos > .info > .subscribediv {
 	width: 100%;
@@ -283,15 +350,19 @@ body {
 	border: 3px solid rgba(236,240,241,1.0);
 }
 
+.middle_page > .phone > button > a,
 .middle_page > .phone > button > a {
 	font-size: 150%;
 	color: rgba(236,240,241,1.0);
+	text-decoration: none !important;
 }
 
 .input-subs {
 	display: table;
 	table-layout: fixed;
 	width: 100%;
+	margin-top: 10px;
+
 }
 
 .input-subs > input,
@@ -301,13 +372,17 @@ body {
 
 .input-subs > input {
 	width: 80%;
-	border-top-left-radius : 25px;
-	border-bottom-left-radius : 25px;
+	border-top-left-radius : 10px;
+	border-bottom-left-radius : 10px;
+	border-top-right-radius : 0px;
+	border-bottom-right-radius : 0px;
 }
 
 .input-subs > button {
-	border-top-right-radius : 25px;
-	border-bottom-right-radius : 25px;
+	border-top-right-radius : 10px;
+	border-bottom-right-radius : 10px;
+	border-top-left-radius : 0px;
+	border-bottom-left-radius : 0px;
 }
 
 /*Video*/
@@ -327,3 +402,4 @@ body {
 	width: 90%;
 	height: 80%;
 }
+

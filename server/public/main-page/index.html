@@ -9,31 +9,31 @@
     <link href="main-page/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
     <link href="main-page/css/responsive.css" rel="stylesheet" type="text/css">
     <link href="main-page/css/animate.css" rel="stylesheet" type="text/css">
-	<script src="main-page/js/jquery.1.8.3.min.js" type="text/javascript"></script>
+    <script src="main-page/js/jquery.1.8.3.min.js" type="text/javascript"></script>
 </head>
 
 <body>
-	<script>
-		function showVideo(){
-			$('#video-overlay').css('z-index','100');
-			$('#video-overlay').html('<iframe id="video" class="video" frameborder="0" src="https://www.youtube.com/embed/x2RJN9a_jdM?autoplay=1&rel=0"></iframe>');
-			$('#video-overlay').animate({
-				opacity: 1
-			});
-		}
-		
-		$(function(){
-			$('#video-overlay').click(function(e){
-				$('#video-overlay').animate({opacity: 0}, 500, function(){
-					$('#video-overlay').html('');
-					$('#video-overlay').css('z-index','-100');
-				});
-			});
-		});
-	</script>
+    <script>
+    function showVideo() {
+        $('#video-overlay').css('z-index', '100');
+        $('#video-overlay').html('<iframe id="video" class="video" frameborder="0" src="https://www.youtube.com/embed/x2RJN9a_jdM?autoplay=1&rel=0"></iframe>');
+        $('#video-overlay').animate({
+            opacity: 1
+        });
+    }
 
-	<div id="video-overlay" class="video-overlay"></div>
-
+    $(function() {
+        $('#video-overlay').click(function(e) {
+            $('#video-overlay').animate({
+                opacity: 0
+            }, 500, function() {
+                $('#video-overlay').html('');
+                $('#video-overlay').css('z-index', '-100');
+            });
+        });
+    });
+    </script>
+    <div id="video-overlay" class="video-overlay"></div>
     <div class="topbar">
     </div>
     <div class="middle_page">
@@ -52,8 +52,23 @@
                     <a id="play-button" href="#" onclick="showVideo()"><img src="main-page/img/play-icon.svg" alt=""></a> <span>Watch Teaser</span>
                 </div>
                 <div class="icons">
-                    <div class="left-icons"></div>
-                    <div class="center-icons"> <span>Coming Soon to the</span>
+                    <div class="left-icons">
+                        <div class="social-media">
+                            <div class="left-sm"></div>
+                            <div class="email-sm">
+                                <a href="mailto:master@dominium-game.com">
+                                    <i class="fa fa-envelope-o"></i>
+                                </a>
+                            </div>
+                            <div class="face-sm"><a href="https://www.facebook.com/DominiumGame/"><i class="fa fa-facebook"></i></a></div>
+                            <div class="twitter-sm"><a href="#"><i class="fa fa-twitter"></i></a></div>
+                            <div class="right-sm"></div>
+                        </div>
+                    </div>
+                    <div class="center-icons"> 
+                    </div>
+                    <div class="right-icons">
+                        <span>Coming Soon to the:</span>
                         <div class="stores">
                             <div class="gp_img">
                                 <img src="main-page/img/google_play.png" alt="google_play">
@@ -62,33 +77,25 @@
                                 <img src="main-page/img/apple.png" alt="apple_store"></div>
                         </div>
                     </div>
-                    <div class="right-icons"></div>
                 </div>
-            </div>
-            <div class="social-media">
-                <div class="left_sm"></div>
-                <div class="face-sm"><a href="https://www.facebook.com/DominiumGame/"><i class="fa fa-facebook"></i></a></div>
-                <div class="email-sm"><a href="mailto:master@dominium-game.com"><i class="fa fa-envelope-o"></i></a></div>
-                <div class="twitter-sm"><a href="#"><i class="fa fa-twitter"></i></a></div>
-                <div class="right-sm"></div> 
             </div>
             <div class="subscribediv">
-                    <form action="#">
-                        <div class="input-subs">
-                            <input class="form-control input-bm" name="email" id="email" type="email" placeholder="Your Email" required>
-                            <button class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
+                <form action="#">
+                    <div class="input-subs">
+                        <input class="form-control input-bm" name="email" id="email" type="email" placeholder="Your Email" required>
+                        <button class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="phone">
-			<div class="image">
-				<img id="phone-img" src="main-page/img/phone.png" alt="dominium">
-			</div>
-			<div id="screen">
-				<img id="gif" src="main-page/img/dominium.gif" alt="dominium">
-			</div>
-			<button><a href="/#!/games">Watch Replays</a></button>
+            <div class="image">
+                <img id="phone-img" src="main-page/img/phone.png" alt="dominium">
+            </div>
+            <div id="screen">
+                <img id="gif" src="main-page/img/fadeIn_V2.gif" alt="dominium">
+            </div>
+            <button><a href="/#!/games">Watch Replays</a></button>
         </div>
     </div>
     <div class="footer"></div>
