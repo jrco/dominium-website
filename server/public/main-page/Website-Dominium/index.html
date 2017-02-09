@@ -46,27 +46,33 @@
                     <span>Dominium</span>
                 </div>
                 <div class="description">
-                    <span>A Geolocation game for your and your friends</span>
+                    <span>A geolocation game for your and your friends</span>
                 </div>
                 <div class="teaser">
                     <a id="play-button" href="#" onclick="showVideo()"><img src="img/play-icon.svg" alt=""></a>
                 </div>
-                <div class="subscribediv">
-                	<form id="subscribeForm" action="javascript:;" onsubmit="subscribe()">
-		            <div class="form-group">
-		                <label for="email">Email:</label>
-		                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email"></input>
-		            </div>
-					<div>
-		            	<button type="submit" class="btn btn-default">Subscribe</button>
-					</div>
-				</form>
-                </div>
                 <div class="icons">
-                    <span>Coming Soon to the</span>
-                    <div class="stores"><img src="img/google_play.png" alt="google_play"><img src="img/apple.png" alt="apple_store"></div>
+                    <div class="left-icons"></div>
+                    <div class="center-icons"> <span>Coming Soon to the</span>
+                        <div class="stores">
+                            <div class="gp_img">
+                                <img src="img/google_play.png" alt="google_play">
+                            </div>
+                            <div class="ap_img">
+                                <img src="img/apple.png" alt="apple_store"></div>
+                        </div>
+                    </div>
+                    <div class="right-icons"></div>
                 </div>
             </div>
+            <div class="subscribediv">
+                    <form action="#">
+                        <div class="input-subs">
+                            <input class="form-control input-bm" name="email" id="email" type="email" placeholder="Your Email" required>
+                            <button class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
         </div>
         <div class="phone">
 			<div class="image">
