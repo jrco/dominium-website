@@ -13,26 +13,49 @@
 </head>
 
 <body>
-    <script>
-    function showVideo() {
-        $('#video-overlay').css('z-index', '100');
-        $('#video-overlay').html('<iframe id="video" class="video" frameborder="0" src="https://www.youtube.com/embed/x2RJN9a_jdM?autoplay=1&rel=0"></iframe>');
-        $('#video-overlay').animate({
-            opacity: 1
-        });
-    }
+	<script>
+		function showVideo(){
+			$('#video-overlay').css('z-index','100');
+			$('#video-overlay').html('<iframe id="video" class="video" frameborder="0" src="https://www.youtube.com/embed/x2RJN9a_jdM?autoplay=1&rel=0"></iframe>');
+			$('#video-overlay').animate({
+				opacity: 1
+			});
+		}
+		function subscribe(){
+			$.ajax({
+				url: '/subscribers',
+				type: 'post',
+				data: $('#subscribeForm').serialize(),
+				success: function(data){
+					$('#email').val("");
+					$('#formSubmit').html("Subscribed");
+					$('#formSubmit').css("background-color","green");
+					$('#formSubmit').css("border-color","green");
+				},
+				error: function(xhr,status,error){
+					$('#formSubmit').html("Error");
+					$('#formSubmit').css("background-color","red");
+					$('#formSubmit').css("border-color","red");				
+				}
+			}).done(function(){
+				setTimeout(function(){
+					$('#formSubmit').html("Subscribe");
+					$('#formSubmit').css("background-color","#39b3d7");
+					$('#formSubmit').css("border-color","#39b3d7");
+				},3000);
+			});
+		}
+		
+		$(function(){
+			$('#video-overlay').click(function(e){
+				$('#video-overlay').animate({opacity: 0}, 500, function(){
+					$('#video-overlay').html('');
+					$('#video-overlay').css('z-index','-100');
+				});
+			});
+		});
+	</script>
 
-    $(function() {
-        $('#video-overlay').click(function(e) {
-            $('#video-overlay').animate({
-                opacity: 0
-            }, 500, function() {
-                $('#video-overlay').html('');
-                $('#video-overlay').css('z-index', '-100');
-            });
-        });
-    });
-    </script>
     <div id="video-overlay" class="video-overlay"></div>
     <div class="topbar">
     </div>
@@ -80,10 +103,11 @@
                 </div>
             </div>
             <div class="subscribediv">
-                <form action="#">
+
+                <form id="subscribeForm" action="javascript:;" onsubmit="subscribe()">
                     <div class="input-subs">
                         <input class="form-control input-bm" name="email" id="email" type="email" placeholder="Your Email" required>
-                        <button class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
+                        <button id="formSubmit" class="btn btn-info btn-bm subs-but" type="submit">Subscribe</button>
                     </div>
                 </form>
             </div>
@@ -98,6 +122,7 @@
             <button><a href="/#!/games">Watch Replays</a></button>
         </div>
     </div>
+
     <div class="footer"></div>
 </body>
 

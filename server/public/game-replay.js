@@ -619,11 +619,14 @@ function setGameRectangle(game) {
     var bounds = new google.maps.LatLngBounds();
 
     game.gameState.forEach(function(gamestate) {
+		//Not using player coords, need to fix (0,0) bug first
+		/*
         getAllPlayers(gamestate).forEach(function(player) {
             bounds.extend(
                 new google.maps.LatLng(parseFloat(player.lat), parseFloat(player.lng))
             );
         });
+		*/
         gamestate.capturePoints.forEach(function(point) {
             bounds.extend(
                 new google.maps.LatLng(parseFloat(point.lat), parseFloat(point.lng))
