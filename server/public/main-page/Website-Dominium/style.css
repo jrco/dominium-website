@@ -77,10 +77,6 @@ body {
 	display: table;
 }
 
-.middle_page {
-	height: 60vh;
-}
-
 .middle_page > .infos, 
 .middle_page > .phone {
 	display: table-cell;
@@ -101,7 +97,7 @@ body {
 .middle_page > .infos > .info {
 	display: table;
 	width: 100%;
-	background-color: rgba(20, 20, 20,0.5);
+	background-color: rgba(20, 20, 20,0.7);
 	border-radius: 25px;
 }
 
@@ -110,6 +106,7 @@ body {
 .middle_page > .infos > .info > .name,
 .middle_page > .infos > .info > .description,
 .middle_page > .infos > .info > .teaser,
+.middle_page > .infos > .info > .subscribeForm,
 .middle_page > .infos > .info > .icons{
 	width: 100%;
 	display: table-row;
@@ -138,6 +135,25 @@ body {
 	height: 50px;
 }
 
+.middle_page > .infos > .info > .subscribediv > .subscribeForm {
+	display: table;
+	height: 60px;
+	vertical-align: middle;
+}
+
+/*.middle_page > .infos > .info > .subscribediv > .subs-div{
+	display: table-cell;
+	text-align: center;
+}*/
+
+
+.subs-but {
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-top-right-radius: 25px;
+	border-bottom-right-radius: 25px;
+}
+
 .middle_page > .infos > .info > .icons {
 	background-color: rgba(20, 20, 20,0.8);
 	border-bottom-left-radius: 25px;
@@ -145,30 +161,49 @@ body {
 	vertical-align: middle;
 	display: table;
 	table-layout: fixed;
-	height: 40px;
+	height: 50px;
 }
 
-.middle_page > .infos > .info > .icons > span {
+.middle_page > .infos > .info > .icons > .left-icons,
+.middle_page > .infos > .info > .icons > .right-icons{
 	display: table-cell;
+	width: 30%
+}
+
+.middle_page > .infos > .info > .icons > .center-icons{ 
+	width: 100%;
+	display: table;
 	font-family: textdom;
-	font-size: 0.8em;
+	font-size: 1.0em;
 	color: rgba(236, 240, 241,1.0);
 	vertical-align: middle;
 	text-align: right;
-
+	height: 100%;
 }
 
-.middle_page > .infos > .info > .icons > .stores{
+.middle_page > .infos > .info > .icons > .center-icons > span {
 	display: table-cell;
-	text-align: left;	
+	text-align: center;	
 	vertical-align: middle;
 }
 
-.middle_page > .infos > .info > .icons > .stores > img{
-	text-align: left;	
-	padding-left: 10px;
-	width: 30px;
-	height: 25px;
+.middle_page > .infos > .info > .icons > .center-icons > .stores {
+	vertical-align: middle;
+	display: table;
+	height: 100%;
+}
+
+.middle_page > .infos > .info > .icons > .center-icons > .stores > .gp_img,
+.middle_page > .infos > .info > .icons > .center-icons > .stores > .ap_img{
+	display: table-cell;
+	vertical-align: middle;
+	padding: 5px;
+}
+
+.middle_page > .infos > .info > .icons > .center-icons > .stores > .gp_img > img,
+.middle_page > .infos > .info > .icons > .center-icons > .stores > .ap_img > img{ 
+	width: 20px;
+	height: 20px;
 }
 
 .middle_page > .phone > .image {
@@ -183,3 +218,17 @@ body {
 	display: inline-block;
 }
 
+.input-subs {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+}
+
+.input-subs > input,
+.input-subs > button{
+	display: table-cell;
+}
+
+.input-subs > input {
+	width: 60%;
+}
