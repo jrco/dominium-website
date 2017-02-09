@@ -83,9 +83,11 @@ body {
 
 .middle_page > .infos, 
 .middle_page > .phone {
+	position: relative;
 	display: table-cell;
 	width: 50%;
 	text-align: center;
+	padding-left: 90px;
 }
 
 
@@ -173,14 +175,24 @@ body {
 
 .middle_page > .phone > .image {
 	width: 100%;
-	padding-left: 90px;
+	position: relative;
 }
 
-.middle_page > .phone > .image > img {
+.middle_page > .phone > .image > #phone-img {
 	width: 300px;
 	height: 594px;
 	text-align: center;
-	display: inline-block;
+	position: absolute;
+	transform: translateX(-50%);
+}
+
+.middle_page > .phone > #screen > #gif {
+	width: 270px;
+	height: 481px;
+	text-align: center;
+	margin-top: 48px;
+	position: absolute;
+	transform: translateX(-50%);
 }
 
 /*Video*/
