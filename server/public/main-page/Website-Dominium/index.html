@@ -14,13 +14,9 @@
 
 <body>
 	<script>
-		function switch(){
-			
-		}
-	
 		function showVideo(){
-			$('#video-overlay').css('z-index','1');
-			$('#video-overlay').html('<iframe id="video" class="video" frameborder="0" src="https://www.youtube.com/embed/x2RJN9a_jdM?autoplay=1&rel=0&vq=hd720"></iframe>');
+			$('#video-overlay').css('z-index','100');
+			$('#video-overlay').html('<iframe id="video" class="video" frameborder="0" src="https://www.youtube.com/embed/x2RJN9a_jdM?autoplay=1&rel=0"></iframe>');
 			$('#video-overlay').animate({
 				opacity: 1
 			});
@@ -30,7 +26,7 @@
 			$('#video-overlay').click(function(e){
 				$('#video-overlay').animate({opacity: 0}, 500, function(){
 					$('#video-overlay').html('');
-					$('#video-overlay').css('z-index','-1');
+					$('#video-overlay').css('z-index','-100');
 				});
 			});
 		});
@@ -74,18 +70,15 @@
         </div>
         <div class="phone">
 			<div class="image">
-				<img id="phone-img" src="img/telemovel.png" alt="dominium">
+				<img id="phone-img" src="img/phone.png" alt="dominium">
 			</div>
 			<div id="screen">
-				<img id="gif" src="img/ecra.png" alt="dominium">
+				<img id="gif" src="img/screen.png" alt="dominium">
 			</div>
+			<button><a href="/#!/games">Watch Replays</a></button>
         </div>
-		
-		
-		
-
     </div>
-    <div class="footer"><button onclick="switch()">Test</button></div>
+    <div class="footer"></div>
 </body>
 
 </html>
