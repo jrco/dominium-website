@@ -208,6 +208,14 @@ body {
     text-align: center;
 }
 
+.middle_page > .infos > .info > .logo {
+	   -webkit-transition: opacity 2s ease-in;
+    -moz-transition: opacity 2s ease-in;
+    -o-transition: opacity 2s ease-in;
+    -ms-transition: opacity 2s ease-in;
+    transition: opacity 2s ease-in;
+}
+
 .middle_page > .infos > .info > .logo > img {
     width: 200px;
     height: 200px;
@@ -241,6 +249,10 @@ body {
     width: 50px;
     height: 50px;
     vertical-align: middle;
+}
+
+.middle_page > .infos > .info > .teaser > a {
+	text-decoration: none !important;
 }
 
 .middle_page > .infos > .info > .teaser > a > span,
@@ -495,7 +507,7 @@ input[placeholder],
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.9);
     opacity: 0;
     z-index: -1;
 }
@@ -505,7 +517,7 @@ input[placeholder],
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
+    width: 70%;
     height: 80%;
 }
 
