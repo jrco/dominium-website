@@ -41,8 +41,8 @@
         }).done(function() {
             setTimeout(function() {
                 $('#formSubmit').html("Subscribe");
-                $('#formSubmit').css("background-color", "rgba(20,20,20,0.5);");
-                $('#formSubmit').css("border-color", "rgba(20,20,20,0.5);");
+                $('#formSubmit').css("background-color", "rgba(20,20,20,0.5)");
+                $('#formSubmit').css("border-color", "rgba(236,240,241,1.0)");
             }, 3000);
         });
     }
@@ -74,8 +74,11 @@
                     <span>A geolocation game for your and your friends</span>
                 </div>
                 <div class="teaser">
-                    <a id="play-button" href="#" onclick="showVideo()"><img src="main-page/img/play-icon.svg" alt=""></a> <span>Watch Teaser</span>
-                </div>
+                    <a id="play-button" href="#" onclick="showVideo()"><img src="main-page/img/play-icon.svg" alt=""> <span>Watch Teaser</span>
+                </div> </a>
+                <div class="teaser">
+                    <a id="play-button" href="/#!/games" onclick="showVideo()"><img src="main-page/img/play-icon.svg" alt=""> <span>Watch Games</span>
+                </div> </a>
                 <div class="subscribediv">
                     <form id="subscribeForm" action="javascript:;" onsubmit="subscribe()">
                         <div class="input-subs">
@@ -120,7 +123,7 @@
             <div id="screen">
                 <img id="gif" src="main-page/img/dominium.gif" alt="dominium">
             </div>
-            <button><a href="/#!/games">Watch Replays</a></button>
+            <!--button><a href="/#!/games">Watch Replays</a></button-->
         </div>
     </div>
     <div class="footer"></div>
