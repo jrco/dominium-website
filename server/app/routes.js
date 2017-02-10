@@ -13,8 +13,8 @@ var oneValue = 0;
 
 //Checks if request comes from localhost
 function isLocalhostConnection(req){
-	return (req.connection.remoteAddress === '::ffff:127.0.0.1' || req.connection.remoteAddress === '127.0.0.1');
-	//return true;
+	//return (req.connection.remoteAddress === '::ffff:127.0.0.1' || req.connection.remoteAddress === '127.0.0.1');
+	return true;
 }
 var permissionErrorMessage = "<h1 style='color:red'>You should not be here!</h1>";
 
